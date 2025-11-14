@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Real-world use cases demonstrating how PivotChip devices and techniques are used in security testing">
+    <title>Use Cases - PivotChip Security inc.</title>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/use-cases.css">
+</head>
+<body>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">PivotChip</a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="services.html" class="dropdown-toggle">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="service-red-teaming.html">Red Teaming</a></li>
+                            <li><a href="service-custom-shells.html">Custom Device Shells</a></li>
+                            <li><a href="service-security-audit.html">Security Audits</a></li>
+                            <li><a href="service-cybersecurity-training.html">Cybersecurity Training</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="pentesting-devices.html">Pentesting Devices</a></li>
+                    <li><a href="service-automated-reporting.html">Automated Reporting</a></li>
+                    <li><a href="use-cases.html">Use Cases</a></li>
+                    <li><a href="ethical-use-policy.html">Ethical Use Policy</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- PAGE HERO -->
+        <section class="hero">
+            <div class="container">
+                <h1>Use Cases</h1>
+                <p>Real-world demonstrations of how our devices and techniques are used in security testing scenarios</p>
+            </div>
+        </section>
+
+        <!-- USE CASES CONTENT WITH SIDEBAR -->
+        <section class="section">
+            <div class="container">
+                <div class="use-cases-layout">
+
+                    <!-- SIDEBAR NAVIGATION -->
+                    <aside class="use-cases-sidebar">
+                        <h3>Select a Use Case</h3>
+                        <nav class="use-case-nav">
+                            <a href="#hoteling-office" class="use-case-link active" data-use-case="hoteling-office">
+                                <span class="use-case-title">Testing Hoteling Office Spaces</span>
+                            </a>
+                            <a href="#ransomware-simulation" class="use-case-link" data-use-case="ransomware-simulation">
+                                <span class="use-case-title">Ransomware Simulation & User Response Testing</span>
+                            </a>
+                            <a href="#advanced-persistent-access" class="use-case-link" data-use-case="advanced-persistent-access">
+                                <span class="use-case-title">Advanced Persistent Access via Combined Devices</span>
+                            </a>
+                            <!-- Easy to add more use cases - just copy the structure above -->
+                        </nav>
+
+                        <div class="sidebar-note">
+                            <p><strong>Note:</strong> All techniques demonstrated here are for authorized security testing purposes only. See our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                        </div>
+                    </aside>
+
+                    <!-- MAIN CONTENT AREA -->
+                    <div class="use-cases-content">
+
+                        <!-- USE CASE 1: HOTELING OFFICE SPACES -->
+                        <article id="hoteling-office" class="use-case-article active">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Physical Security Testing</span>
+                                <h2>Testing Hoteling Office Spaces</h2>
+                                <p class="use-case-intro">Hoteling and hot-desking environments present unique security challenges. Shared workstations with docking stations create opportunities for attackers to compromise systems through physical access. This use case demonstrates how security professionals test these environments to identify vulnerabilities.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>Modern offices increasingly use hoteling (desk reservation) and hot-desking (first-come, first-served) arrangements where employees don't have assigned workstations. These spaces typically include:</p>
+                                <ul>
+                                    <li>Universal docking stations with USB ports</li>
+                                    <li>Shared monitors, keyboards, and peripherals</li>
+                                    <li>Network connectivity for temporary users</li>
+                                    <li>Minimal physical security monitoring</li>
+                                </ul>
+                                <p>This environment creates attack vectors that security teams need to identify and remediate.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>This security assessment utilizes the following specialized penetration testing devices:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Endpoint infiltration and keyboard emulation</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#keyboard-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/keyboard-module-icon.png" alt="Keyboard Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Keyboard Pass-Through Module</div>
+                                        <div class="device-used-description">Inline keystroke capture and logging</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#command-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/command-module-icon.png" alt="Command Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Command Module</div>
+                                        <div class="device-used-description">Centralized coordination and log collection</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Initial Reconnaissance</h4>
+                                        <p>Security testers identify hoteling stations throughout the facility. They document:</p>
+                                        <ul>
+                                            <li>Docking station models and USB port availability</li>
+                                            <li>Physical security controls (cameras, badge readers)</li>
+                                            <li>Employee traffic patterns and desk usage frequency</li>
+                                            <li>IT support response procedures</li>
+                                        </ul>
+
+                                        <div class="image-gallery">
+                                            <div class="use-case-image" data-image-modal="reconnaissance-desk.jpg">
+                                                <img src="/images/assets/hoteling_1.png" alt="Typical hoteling desk with docking station">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">Typical hoteling desk with universal docking station</p>
+                                            </div>
+                                            <div class="use-case-image" data-image-modal="docking-station.jpg">
+                                                <img src="/images/assets/hoteling_2.png" alt="Docking station USB ports">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">Multiple USB ports available for testing devices</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Device Deployment</h4>
+                                        <p>Authorized security testers deploy USB testing devices to available docking stations. These devices are configured to:</p>
+                                        <ul>
+                                            <li>Remain dormant until activated by scheduled scripts</li>
+                                            <li>Log connection events and system information</li>
+                                            <li>Execute predefined test scenarios when laptops connect</li>
+                                            <li>Report findings back to the security team</li>
+                                        </ul>
+                                        <p class="warning-box"><strong>⚠️ Authorization Required:</strong> This testing is only performed with explicit written authorization from organization leadership and legal counsel.</p>
+
+                                        <div class="image-gallery">
+                                            <div class="use-case-image" data-image-modal="usb-device.jpg">
+                                                <img src="/images/assets/devices.png" alt="USB security testing device">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">Specialized USB device for security testing (concealed in typical USB hub)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Automated Execution Script</h4>
+                                        <p>USB devices run an "arming" script at configured intervals. The typical attack simulation sequence includes:</p>
+
+                                        <div class="code-explanation">
+                                            <h5>Windows Execution:</h5>
+                                            <ul>
+                                                <li><strong>Step 1:</strong> Device emulates keyboard input to open Run dialog (Win + R)</li>
+                                                <li><strong>Step 2:</strong> Types command to open PowerShell in hidden mode</li>
+                                                <li><strong>Step 3:</strong> Executes reconnaissance commands to gather system information</li>
+                                                <li><strong>Step 4:</strong> Attempts to establish callback connection to test server</li>
+                                            </ul>
+
+                                            <h5>macOS Execution:</h5>
+                                            <ul>
+                                                <li><strong>Step 1:</strong> Device emulates keyboard to open Spotlight (Cmd + Space)</li>
+                                                <li><strong>Step 2:</strong> Searches for and opens Terminal application</li>
+                                                <li><strong>Step 3:</strong> Executes shell commands in hidden Terminal window</li>
+                                                <li><strong>Step 4:</strong> Gathers system configuration and network information</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="image-gallery">
+                                            <div class="use-case-image" data-image-modal="windows-run.jpg">
+                                                <img src="/images/assets/win_run.png" alt="Windows Run dialog appearing">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">User sees brief Run window (Windows) or Spotlight (Mac) appear</p>
+                                            </div>
+                                            <div class="use-case-image" data-image-modal="hidden-terminal.jpg">
+                                                <img src="/images/assets/arming.png" alt="Hidden command window executing">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">After initial window, commands execute invisibly to the user</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Attack Options & Data Collection</h4>
+                                        <p>Once access is established, the security testing team evaluates multiple threat scenarios:</p>
+
+                                        <div class="attack-options">
+                                            <div class="attack-option">
+                                                <h5>Persistence Installation</h5>
+                                                <p>Test whether attackers could install scripts that survive reboots and provide ongoing access:</p>
+                                                <ul>
+                                                    <li>Startup folder entries</li>
+                                                    <li>Scheduled tasks / cron jobs</li>
+                                                    <li>Registry modifications (Windows)</li>
+                                                    <li>Launch agents/daemons (macOS)</li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="attack-option">
+                                                <h5>Data Exfiltration</h5>
+                                                <p>Assess the risk of sensitive information theft:</p>
+                                                <ul>
+                                                    <li>Browser saved passwords and cookies</li>
+                                                    <li>Recently accessed documents</li>
+                                                    <li>Clipboard contents and keystrokes</li>
+                                                    <li>Network credentials and certificates</li>
+                                                    <li>Email and chat application data</li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="attack-option">
+                                                <h5>Manual Command Execution</h5>
+                                                <p>Evaluate whether attackers could execute commands in real-time:</p>
+                                                <ul>
+                                                    <li>Remote shell access via reverse connection</li>
+                                                    <li>Lateral movement to other network resources</li>
+                                                    <li>Privilege escalation attempts</li>
+                                                    <li>Network reconnaissance and scanning</li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="attack-option">
+                                                <h5>Persistent Compromise Chain</h5>
+                                                <p>Test whether multiple users become compromised over time:</p>
+                                                <ul>
+                                                    <li>Each new laptop connection provides potential access</li>
+                                                    <li>Device remains functional, arousing no suspicion</li>
+                                                    <li>Compromise spreads as employees rotate through hoteling stations</li>
+                                                    <li>Single physical breach yields multiple system compromises</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="image-gallery" style="display: none">
+                                            <div class="use-case-image" data-image-modal="command-control.jpg">
+                                                <img src="https://via.placeholder.com/400x300/16a085/ffffff?text=Command+%26+Control+Dashboard" alt="Testing dashboard showing connections">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">Security team's testing dashboard showing successful connections from compromised systems</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>MITRE ATT&CK Mapping</h3>
+                                <p>This testing methodology maps to the following MITRE ATT&CK tactics and techniques:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Initial Access</h4>
+                                        <ul>
+                                            <li><strong>T1200:</strong> Hardware Additions - USB device deployment to docking stations</li>
+                                            <li><strong>T1091:</strong> Replication Through Removable Media - USB-based initial compromise</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Execution</h4>
+                                        <ul>
+                                            <li><strong>T1059.001:</strong> Command and Scripting Interpreter: PowerShell - Automated PowerShell execution</li>
+                                            <li><strong>T1059.004:</strong> Command and Scripting Interpreter: Unix Shell - macOS Terminal command execution</li>
+                                            <li><strong>T1053:</strong> Scheduled Task/Job - Timed script execution from USB device</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Persistence</h4>
+                                        <ul>
+                                            <li><strong>T1547:</strong> Boot or Logon Autostart Execution - Startup folder and registry modifications</li>
+                                            <li><strong>T1053:</strong> Scheduled Task/Job - Persistent scheduled tasks and cron jobs</li>
+                                            <li><strong>T1543:</strong> Create or Modify System Process - Service creation for persistence</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Discovery</h4>
+                                        <ul>
+                                            <li><strong>T1082:</strong> System Information Discovery - OS and system configuration gathering</li>
+                                            <li><strong>T1016:</strong> System Network Configuration Discovery - Network enumeration</li>
+                                            <li><strong>T1033:</strong> System Owner/User Discovery - Current user identification</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Collection</h4>
+                                        <ul>
+                                            <li><strong>T1005:</strong> Data from Local System - File and credential harvesting</li>
+                                            <li><strong>T1056:</strong> Input Capture - Keylogging capabilities</li>
+                                            <li><strong>T1113:</strong> Screen Capture - Screenshots and display monitoring</li>
+                                            <li><strong>T1115:</strong> Clipboard Data - Clipboard content collection</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4><img src="images/devices/network-module-icon.png" alt="Network" style="width: 20px; height: 20px; vertical-align: middle;"> Command and Control</h4>
+                                        <ul>
+                                            <li><strong>T1071:</strong> Application Layer Protocol - HTTP/HTTPS C2 channels</li>
+                                            <li><strong>T1573:</strong> Encrypted Channel - Encrypted C2 communications</li>
+                                            <li><strong>T1132:</strong> Data Encoding - Obfuscated C2 traffic</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Findings & Vulnerabilities Identified</h3>
+                                <div class="findings-grid">
+                                    <div class="finding-card critical">
+                                        <h4>🔴 Critical: Zero USB Port Protection</h4>
+                                        <p>Testing revealed that 100% of hoteling stations accepted USB devices without any security controls, endpoint protection, or monitoring.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: Lack of Physical Monitoring</h4>
+                                        <p>Testers were able to deploy devices during business hours without being challenged or detected by security cameras.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: No Device Inventory</h4>
+                                        <p>IT department had no inventory of approved devices, making unauthorized USB devices indistinguishable from legitimate peripherals.</p>
+                                    </div>
+                                    <div class="finding-card medium">
+                                        <h4>🟡 Medium: Inadequate User Training</h4>
+                                        <p>Employees did not report suspicious USB devices, and most were unaware of physical security threats in hoteling environments.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Recommended Countermeasures</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Technical Controls</h4>
+                                        <ul>
+                                            <li>USB device whitelisting and port controls</li>
+                                            <li>Endpoint Detection and Response (EDR) solutions</li>
+                                            <li>Network segmentation for hoteling areas</li>
+                                            <li>Device authentication for docking stations</li>
+                                            <li>Application whitelisting to prevent unauthorized execution</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Administrative Controls</h4>
+                                        <ul>
+                                            <li>Regular physical security audits of hoteling areas</li>
+                                            <li>Approved device inventory and asset tagging</li>
+                                            <li>Security awareness training on physical threats</li>
+                                            <li>Incident reporting procedures for suspicious devices</li>
+                                            <li>Daily inspection protocols for shared workstations</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact & Results</h3>
+                                <p>This testing engagement successfully demonstrated critical vulnerabilities in the client's hoteling environment:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">12</div>
+                                        <div class="stat-label">Hoteling Stations Tested</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">35+</div>
+                                        <div class="stat-label">Systems Compromised</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">72hrs</div>
+                                        <div class="stat-label">Test Duration</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Detections by Security Team</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">Following our findings, the organization implemented comprehensive USB security controls, updated their physical security policies, and conducted company-wide training. Follow-up testing six months later showed 100% reduction in vulnerability to this attack vector.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>All testing described in this use case was performed under strict ethical guidelines:</p>
+                                <ul>
+                                    <li>Full written authorization from executive leadership and legal counsel</li>
+                                    <li>Clearly defined scope and rules of engagement</li>
+                                    <li>No actual data exfiltration or system damage</li>
+                                    <li>Immediate notification of critical findings</li>
+                                    <li>Secure disposal of test data upon project completion</li>
+                                    <li>Compliance with all applicable laws and regulations</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE 2: RANSOMWARE SIMULATION -->
+                        <article id="ransomware-simulation" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Security Awareness Testing</span>
+                                <h2>Ransomware Simulation & User Response Testing</h2>
+                                <p class="use-case-intro">Employee response to ransomware incidents is a critical component of organizational security. This use case demonstrates how security teams test user awareness, incident reporting procedures, and organizational response capabilities through controlled ransomware simulations using USB-deployed devices.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>Ransomware attacks represent one of the most significant cybersecurity threats facing organizations today. Testing how employees and security teams respond to ransomware incidents is essential for:</p>
+                                <ul>
+                                    <li>Validating incident response procedures and workflows</li>
+                                    <li>Measuring employee awareness and reaction time</li>
+                                    <li>Identifying gaps in detection and response capabilities</li>
+                                    <li>Training security teams with realistic attack scenarios</li>
+                                    <li>Assessing communication channels during security incidents</li>
+                                </ul>
+                                <p>This controlled simulation uses USB devices to trigger realistic ransomware notifications that appear to encrypt a user's system, while safely logging all employee actions and organizational responses for comprehensive security assessment.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>This security assessment utilizes the following specialized penetration testing devices:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Deploys ransomware simulation and logs user responses</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#command-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/command-module-icon.png" alt="Command Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Command Module</div>
+                                        <div class="device-used-description">Coordinates testing and aggregates incident response data</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Pre-Deployment Planning</h4>
+                                        <p>Before initiating ransomware simulation testing, security teams conduct thorough preparation:</p>
+                                        <ul>
+                                            <li>Obtain explicit written authorization from executive leadership and legal counsel</li>
+                                            <li>Coordinate with IT security team to ensure detection systems won't interfere with test</li>
+                                            <li>Define clear success metrics: reporting time, escalation procedures, containment actions</li>
+                                            <li>Prepare communication plan for post-test debriefing</li>
+                                            <li>Identify target user groups and systems for testing</li>
+                                            <li>Configure logging infrastructure to capture all user and system responses</li>
+                                        </ul>
+                                        <p class="warning-box"><strong>⚠️ Critical Coordination:</strong> Unlike other penetration testing, ransomware simulations must be carefully coordinated to avoid causing panic, business disruption, or triggering unnecessary escalations to external parties (law enforcement, cyber insurance, media relations).</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>USB Device Configuration</h4>
+                                        <p>Specialized USB devices are configured to deploy the ransomware simulation payload. These devices include:</p>
+                                        <ul>
+                                            <li>Hardware-based keyboard emulation for credential-free execution</li>
+                                            <li>Onboard storage containing the simulation payload and logging components</li>
+                                            <li>Trigger mechanisms: time-based activation or manual triggering via physical button</li>
+                                            <li>Secure logging system to record all user interactions and timestamps</li>
+                                            <li>Fail-safe mechanisms to immediately halt simulation if critical errors occur</li>
+                                        </ul>
+
+                                        <div class="image-gallery" style="display: none">
+                                            <div class="use-case-image" data-image-modal="ransomware-usb.jpg">
+                                                <img src="https://via.placeholder.com/400x300/e74c3c/ffffff?text=Ransomware+Testing+USB" alt="USB device configured for ransomware simulation">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">Discreet USB device housing ransomware simulation payload and logging system</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Physical Deployment & Activation</h4>
+                                        <p>Authorized security testers deploy USB devices to target workstations using one of several approaches:</p>
+
+                                        <div class="code-explanation">
+                                            <h5>Deployment Methods:</h5>
+                                            <ul>
+                                                <li><strong>Direct Installation:</strong> During non-business hours, testers connect devices to selected workstations in common areas, conference rooms, or specific departments being tested</li>
+                                                <li><strong>Social Engineering Component:</strong> Devices may be placed as "found" USB drives in parking lots, break rooms, or reception areas to test whether employees connect unknown devices</li>
+                                                <li><strong>Hoteling Integration:</strong> Devices integrated into docking stations or USB hubs in shared workspace environments</li>
+                                            </ul>
+
+                                            <h5>Activation Triggers:</h5>
+                                            <ul>
+                                                <li><strong>Time-Delay:</strong> Device activates at predetermined time (e.g., 10:00 AM on Tuesday) to simulate business-hours attack</li>
+                                                <li><strong>Connection-Based:</strong> Triggers when specific conditions are met (user logged in, network connected, specific time range)</li>
+                                                <li><strong>Manual Trigger:</strong> Tester activates remotely or via physical button for precise timing control</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="image-gallery" style="display: none">
+                                            <div class="use-case-image" data-image-modal="usb-deployment.jpg">
+                                                <img src="https://via.placeholder.com/400x300/3498db/ffffff?text=USB+Deployment+Locations" alt="Various USB deployment locations">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">Strategic deployment locations for maximum testing coverage</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Ransomware Simulation Execution</h4>
+                                        <p>When activated, the USB device executes a carefully orchestrated sequence that simulates realistic ransomware behavior:</p>
+
+                                        <div class="code-explanation">
+                                            <h5>Execution Sequence:</h5>
+                                            <ol>
+                                                <li><strong>Silent Preparation (5-10 seconds):</strong>
+                                                    <ul>
+                                                        <li>Device emulates keyboard to open system command interface (PowerShell/Terminal)</li>
+                                                        <li>Deploys simulation payload to temporary directory</li>
+                                                        <li>Initializes logging system to capture all subsequent user actions</li>
+                                                        <li>Takes screenshot of desktop before simulation begins (baseline)</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Visual Impact Display:</strong>
+                                                    <ul>
+                                                        <li>Displays full-screen ransomware notice mimicking real-world ransomware families (e.g., styled similar to WannaCry, REvil, LockBit)</li>
+                                                        <li>Shows "encryption progress" bar advancing across files</li>
+                                                        <li>Presents ransom message with payment instructions and countdown timer</li>
+                                                        <li>Includes contact information and "unique infection ID" for tracking</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Interactive Elements:</strong>
+                                                    <ul>
+                                                        <li>Buttons to "decrypt files" (non-functional, logs clicks)</li>
+                                                        <li>Payment instructions with Bitcoin wallet address (test wallet, no actual transactions)</li>
+                                                        <li>Support chat interface (simulated, logs all messages user attempts to send)</li>
+                                                        <li>File browser showing "encrypted" files (visual overlay only, no actual encryption)</li>
+                                                    </ul>
+                                                </li>
+                                            </ol>
+
+                                            <p class="warning-box"><strong>🛡️ Safety Measures:</strong> No actual file encryption occurs. The simulation uses visual overlays and file system monitoring to create the appearance of encryption without modifying user data. All actions are fully reversible.</p>
+                                        </div>
+
+                                        <div class="image-gallery">
+                                            <div class="use-case-image" data-image-modal="ransomware-screen.jpg">
+                                                <img src="/images/assets/fake_ransom.png" alt="Ransomware simulation screen">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">Full-screen ransomware notification displayed to user (simulation only)</p>
+                                            </div>
+                                            <div class="use-case-image" data-image-modal="encryption-progress.jpg" style="display: none">
+                                                <img src="https://via.placeholder.com/400x300/e67e22/ffffff?text=Encrypting+Files...%0A%0A47%25+Complete" alt="Fake encryption progress bar">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">Simulated encryption progress creates realistic urgency</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <h4>Comprehensive Logging & Data Collection</h4>
+                                        <p>The USB device's logging system captures detailed information about user and organizational response:</p>
+
+                                        <div class="attack-options">
+                                            <div class="attack-option">
+                                                <h5>User Action Logging</h5>
+                                                <p>Every interaction with the simulation is recorded with precise timestamps:</p>
+                                                <ul>
+                                                    <li><strong>Initial Response Time:</strong> How long until user takes first action (move mouse, press key, etc.)</li>
+                                                    <li><strong>Interaction Attempts:</strong> Clicks on buttons, attempts to close window, keyboard shortcuts tried</li>
+                                                    <li><strong>Communication Actions:</strong> Phone picked up, attempts to contact IT, discussions with nearby colleagues</li>
+                                                    <li><strong>Compliance Actions:</strong> Whether user follows/violates security policies (e.g., attempts payment, removes USB devices, shuts down system)</li>
+                                                    <li><strong>Screenshots:</strong> Periodic captures showing exactly what user sees during incident</li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="attack-option">
+                                                <h5>Response Time Metrics</h5>
+                                                <p>Critical timing data for incident response assessment:</p>
+                                                <ul>
+                                                    <li><strong>T+0:</strong> Ransomware notice appears on screen</li>
+                                                    <li><strong>T+[X]:</strong> User first acknowledges incident (moves mouse, touches keyboard)</li>
+                                                    <li><strong>T+[Y]:</strong> User contacts IT/Security (phone call, email, helpdesk ticket)</li>
+                                                    <li><strong>T+[Z]:</strong> IT/Security team acknowledges report and begins investigation</li>
+                                                    <li><strong>T+[W]:</strong> Incident formally escalated to appropriate response team</li>
+                                                    <li><strong>T+[V]:</strong> System quarantined or disconnected from network</li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="attack-option">
+                                                <h5>Behavioral Analysis</h5>
+                                                <p>Detailed psychological and behavioral response patterns:</p>
+                                                <ul>
+                                                    <li><strong>Panic Indicators:</strong> Rapid clicking, repeated identical actions, random keystrokes</li>
+                                                    <li><strong>Problem-Solving Attempts:</strong> Task Manager access, trying Alt+F4, attempting safe mode boot</li>
+                                                    <li><strong>Policy Compliance:</strong> Follows incident response procedures vs. attempts independent resolution</li>
+                                                    <li><strong>Information Gathering:</strong> Reads entire message vs. immediate reaction without reading</li>
+                                                    <li><strong>Social Response:</strong> Immediately alerts others vs. keeps incident private</li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="attack-option">
+                                                <h5>Network & System Monitoring</h5>
+                                                <p>Secondary monitoring systems track organizational response:</p>
+                                                <ul>
+                                                    <li><strong>Network Activity:</strong> When/if workstation is isolated from network</li>
+                                                    <li><strong>Security Tool Detection:</strong> Whether EDR, SIEM, or other security tools detect the simulation</li>
+                                                    <li><strong>Help Desk Activity:</strong> Ticket creation time, priority assignment, routing to appropriate team</li>
+                                                    <li><strong>Executive Notification:</strong> If/when leadership is informed of potential ransomware incident</li>
+                                                    <li><strong>Communication Channels:</strong> Which communication methods are used (email, phone, Slack, emergency channels)</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                     
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">6</div>
+                                    <div class="step-content">
+                                        <h4>Correlation & Incident Response Validation</h4>
+                                        <p>After the simulation, security teams correlate logged device data with information employees reported to validate incident response procedures:</p>
+
+                                        <div class="code-explanation">
+                                            <h5>Correlation Analysis:</h5>
+                                            <ul>
+                                                <li><strong>Report Accuracy:</strong> Compare employee's description of incident with actual logged events
+                                                    <ul>
+                                                        <li>Did they accurately describe the ransomware message?</li>
+                                                        <li>Did they note the time correctly?</li>
+                                                        <li>Did they mention specific details (ransom amount, file types mentioned, etc.)?</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Response Time Gaps:</strong> Identify delays in incident reporting chain
+                                                    <ul>
+                                                        <li>Employee saw message at T+0 but didn't report until T+15 minutes</li>
+                                                        <li>Help desk received report at T+15 but didn't escalate until T+45 minutes</li>
+                                                        <li>Security team notified at T+45 but didn't begin investigation until T+90 minutes</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Procedure Compliance:</strong> Verify employees followed documented incident response procedures
+                                                    <ul>
+                                                        <li>Did they immediately disconnect from network as policy requires?</li>
+                                                        <li>Did they use correct reporting channel (emergency hotline vs. regular help desk)?</li>
+                                                        <li>Did they preserve evidence (not reboot, not remove USB devices)?</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Training Effectiveness:</strong> Assess whether security awareness training prepared employees
+                                                    <ul>
+                                                        <li>Did they recognize it as ransomware?</li>
+                                                        <li>Did they avoid clicking payment links or providing information?</li>
+                                                        <li>Did they remember key steps from training?</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>MITRE ATT&CK Mapping</h3>
+                                <p>Ransomware simulation testing maps to the following MITRE ATT&CK tactics and techniques:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Initial Access</h4>
+                                        <ul>
+                                            <li><strong>T1200:</strong> Hardware Additions - Physical USB device deployment</li>
+                                            <li><strong>T1091:</strong> Replication Through Removable Media - USB-initiated compromise</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Execution</h4>
+                                        <ul>
+                                            <li><strong>T1204.002:</strong> User Execution: Malicious File - Automated execution via HID emulation</li>
+                                            <li><strong>T1059.001:</strong> Command and Scripting Interpreter: PowerShell - Hidden PowerShell window execution</li>
+                                            <li><strong>T1059.004:</strong> Command and Scripting Interpreter: Unix Shell - Terminal-based payload deployment</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Discovery</h4>
+                                        <ul>
+                                            <li><strong>T1082:</strong> System Information Discovery - System profiling before simulation</li>
+                                            <li><strong>T1083:</strong> File and Directory Discovery - File enumeration for simulation display</li>
+                                            <li><strong>T1057:</strong> Process Discovery - Running process identification</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Collection</h4>
+                                        <ul>
+                                            <li><strong>T1113:</strong> Screen Capture - Baseline and periodic screenshots</li>
+                                            <li><strong>T1056.001:</strong> Input Capture: Keylogging - User interaction logging</li>
+                                            <li><strong>T1119:</strong> Automated Collection - Comprehensive logging of all user actions</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Impact</h4>
+                                        <ul>
+                                            <li><strong>T1486:</strong> Data Encrypted for Impact - Simulated ransomware encryption display</li>
+                                            <li><strong>T1491:</strong> Defacement - Full-screen ransomware notification</li>
+                                            <li><strong>T1490:</strong> Inhibit System Recovery - Simulated system lockout (visual only)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Defense Evasion</h4>
+                                        <ul>
+                                            <li><strong>T1564.003:</strong> Hide Artifacts: Hidden Window - Execution in hidden command windows</li>
+                                            <li><strong>T1070.004:</strong> Indicator Removal: File Deletion - Cleanup of execution artifacts</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Findings & Vulnerabilities Identified</h3>
+                                <div class="findings-grid">
+                                    <div class="finding-card critical">
+                                        <h4>🔴 Critical: Delayed Incident Reporting</h4>
+                                        <p>Average time from infection to IT notification was 23 minutes. In real ransomware attacks, this delay allows malware to encrypt thousands of files and spread laterally across the network.</p>
+                                    </div>
+                                    <div class="finding-card critical">
+                                        <h4>🔴 Critical: Inconsistent Procedure Following</h4>
+                                        <p>Only 35% of affected employees followed documented incident response procedures. Most attempted to resolve the issue independently before contacting IT, potentially destroying forensic evidence.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: Network Isolation Failures</h4>
+                                        <p>In 78% of cases, infected workstations remained connected to the corporate network for 30+ minutes after ransomware notification appeared, allowing potential lateral movement.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: Inaccurate Incident Reports</h4>
+                                        <p>Employee descriptions of the incident contained significant inaccuracies (wrong times, incorrect ransom amounts, missing critical details), hampering effective incident response.</p>
+                                    </div>
+                                    <div class="finding-card medium">
+                                        <h4>🟡 Medium: Security Tool Detection Gaps</h4>
+                                        <p>Endpoint security solutions detected the simulation in only 40% of cases, revealing significant gaps in behavioral analysis and anomaly detection capabilities.</p>
+                                    </div>
+                                    <div class="finding-card medium">
+                                        <h4>🟡 Medium: Communication Channel Confusion</h4>
+                                        <p>Employees used multiple different channels to report incidents (email, Slack, phone, in-person), causing confusion and delays in coordinated response.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Recommended Countermeasures</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Enhanced Training Programs</h4>
+                                        <ul>
+                                            <li>Quarterly ransomware response drills with realistic scenarios</li>
+                                            <li>Clear, simplified incident response procedures posted at workstations</li>
+                                            <li>Mandatory security awareness training emphasizing immediate reporting</li>
+                                            <li>Gamified training exercises with rewards for proper incident handling</li>
+                                            <li>Department-specific response playbooks tailored to different roles</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Technical Improvements</h4>
+                                        <ul>
+                                            <li>Automated network isolation triggers for suspected ransomware activity</li>
+                                            <li>Enhanced EDR behavioral detection for file encryption patterns</li>
+                                            <li>Panic button software for immediate IT/Security notification</li>
+                                            <li>Improved USB device controls and execution prevention</li>
+                                            <li>Real-time SIEM correlation rules for ransomware indicators</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Process & Communication</h4>
+                                        <ul>
+                                            <li>Single, clearly defined incident reporting channel (e.g., dedicated security hotline)</li>
+                                            <li>Incident response team on-call rotation with defined SLAs</li>
+                                            <li>Regular tabletop exercises involving cross-functional teams</li>
+                                            <li>Post-incident review process to continuously improve procedures</li>
+                                            <li>Executive communication templates for rapid escalation</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Response Optimization</h4>
+                                        <ul>
+                                            <li>Pre-configured incident response scripts and automation</li>
+                                            <li>Network segmentation to limit ransomware spread</li>
+                                            <li>Immutable backup systems with offline copies</li>
+                                            <li>Ransomware-specific detection and response playbooks</li>
+                                            <li>Regular restoration testing to validate recovery capabilities</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact & Results</h3>
+                                <p>This ransomware simulation testing provided invaluable insights into organizational readiness:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">45</div>
+                                        <div class="stat-label">Employees Tested</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">23min</div>
+                                        <div class="stat-label">Average Report Time</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">35%</div>
+                                        <div class="stat-label">Followed Procedures</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-label">Event Correlation Success</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">The detailed logging and correlation capabilities provided unprecedented visibility into actual employee behavior during security incidents. Following implementation of recommended countermeasures and enhanced training, follow-up testing six months later showed average reporting time reduced to 4 minutes, procedure compliance improved to 87%, and automated network isolation activated in 95% of cases.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Ransomware simulation testing requires heightened ethical considerations:</p>
+                                <ul>
+                                    <li>Executive approval with full understanding of realistic simulation nature</li>
+                                    <li>Zero actual file encryption or data modification - all effects are visual only</li>
+                                    <li>Immediate availability of security team to halt simulation if employee distress is observed</li>
+                                    <li>Mandatory post-test debriefing with all affected employees within 24 hours</li>
+                                    <li>Clear communication that this was a test, with educational session on lessons learned</li>
+                                    <li>Counseling resources available for employees who experienced significant stress</li>
+                                    <li>All logging data secured and deleted after analysis per data retention policies</li>
+                                    <li>Compliance with all employment laws and regulations regarding workplace monitoring</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE 3: ADVANCED PERSISTENT ACCESS -->
+                        <article id="advanced-persistent-access" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Advanced Persistent Threat Simulation</span>
+                                <h2>Advanced Persistent Access via Combined Devices</h2>
+                                <p class="use-case-intro">Modern adversaries employ sophisticated multi-vector attack techniques combining physical network access with compromised endpoints. This use case demonstrates how security teams test organizational resilience against advanced persistent threats (APT) using coordinated LAN-connected command-and-control infrastructure paired with USB-deployed implants that establish covert communication channels for remote operation and data exfiltration.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>Advanced persistent threat actors increasingly use multi-stage attacks that combine physical access to network infrastructure with endpoint compromise. This sophisticated approach enables:</p>
+                                <ul>
+                                    <li>Persistent command-and-control (C2) even when internet egress is blocked</li>
+                                    <li>Covert data exfiltration through physical network devices</li>
+                                    <li>Long-range communication via emerging wireless standards (WiFi HaLow/802.11ah)</li>
+                                    <li>Coordinated attacks across multiple compromised endpoints</li>
+                                    <li>Evasion of traditional network security monitoring</li>
+                                    <li>Resilient infrastructure surviving network segmentation and isolation</li>
+                                </ul>
+                                <p>This testing methodology simulates a realistic APT scenario where attackers deploy both network-connected C2 infrastructure and endpoint implants that work in concert to maintain persistent access, enabling security teams to identify critical gaps in defense-in-depth strategies.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>This security assessment utilizes the following specialized penetration testing devices:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#long-distance-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/long-distance-icon.png" alt="Long Distance Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Long Distance Module</div>
+                                        <div class="device-used-description">LAN C2 nodes with WiFi HaLow for extended range (up to 1km)</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Endpoint implants for persistent access and data exfiltration</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#command-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/command-module-icon.png" alt="Command Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Command Module</div>
+                                        <div class="device-used-description">Orchestrates multi-device APT infrastructure</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Infrastructure Architecture Planning</h4>
+                                        <p>Before deployment, security testers design a comprehensive attack infrastructure that mimics real-world APT operations:</p>
+
+                                        <div class="code-explanation">
+                                            <h5>Component Architecture:</h5>
+                                            <ul>
+                                                <li><strong>LAN C2 Nodes:</strong> Network-connected devices acting as command-and-control servers
+                                                    <ul>
+                                                        <li>Raspberry Pi or similar single-board computers</li>
+                                                        <li>Configured with long-range WiFi HaLow (802.11ah) adapters for extended range (up to 1km)</li>
+                                                        <li>Connected to legitimate network ports (conference rooms, network closets, unused desk jacks)</li>
+                                                        <li>Run covert C2 server software accepting connections from USB implants</li>
+                                                        <li>Dual communication: wired LAN for C2 traffic, WiFi HaLow for external operator control</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>USB Endpoint Implants:</strong> Devices deployed to target workstations
+                                                    <ul>
+                                                        <li>USB-based implants with network client capabilities</li>
+                                                        <li>Programmed to beacon to LAN C2 nodes on local network</li>
+                                                        <li>Execute remote commands from C2 infrastructure</li>
+                                                        <li>Exfiltrate data through C2 channel to LAN nodes</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>External Operator Station:</strong> Remote control point for testers
+                                                    <ul>
+                                                        <li>Positioned within WiFi HaLow range (parking lot, nearby building, vehicle)</li>
+                                                        <li>Connects to LAN C2 nodes via long-range wireless</li>
+                                                        <li>Provides interface for commanding implants and retrieving exfiltrated data</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="image-gallery">
+                                            <div class="use-case-image" data-image-modal="apt-architecture.jpg">
+                                                <img src="/images/assets/advcanced_scenario.png" alt="APT attack infrastructure diagram">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">Multi-layer attack architecture combining wired and wireless communication</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>LAN C2 Node Deployment</h4>
+                                        <p>Security testers deploy network-connected C2 infrastructure to serve as the backbone for coordinated attacks:</p>
+
+                                        <div class="code-explanation">
+                                            <h5>Deployment Strategy:</h5>
+                                            <ul>
+                                                <li><strong>Target Locations:</strong> Areas with accessible network ports and minimal supervision
+                                                    <ul>
+                                                        <li>Conference rooms and meeting spaces</li>
+                                                        <li>Network closets and IDF/MDF rooms</li>
+                                                        <li>Unused desk ports in hoteling areas</li>
+                                                        <li>Break rooms and common areas with network jacks</li>
+                                                        <li>Behind network-connected printers or copiers</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Physical Concealment:</strong> Devices disguised to avoid detection
+                                                    <ul>
+                                                        <li>Housed in inconspicuous enclosures (power adapters, surge protectors)</li>
+                                                        <li>No visible indicators (LEDs disabled or covered)</li>
+                                                        <li>Positioned behind furniture or equipment</li>
+                                                        <li>Labeled as legitimate IT equipment when possible</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Network Configuration:</strong> C2 nodes configured for stealth and persistence
+                                                    <ul>
+                                                        <li>DHCP client to automatically obtain IP address</li>
+                                                        <li>MAC address spoofing to mimic legitimate device types</li>
+                                                        <li>Minimal network footprint (no broadcasts, limited traffic)</li>
+                                                        <li>Listen-only mode until USB implants connect</li>
+                                                        <li>Encrypted C2 traffic resembling legitimate protocols</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+
+                                            <h5>WiFi HaLow Configuration:</h5>
+                                            <ul>
+                                                <li><strong>Long-Range Wireless:</strong> 802.11ah provides superior range and penetration
+                                                    <ul>
+                                                        <li>Operates in sub-GHz frequencies (900MHz) with better building penetration</li>
+                                                        <li>Range up to 1km line-of-sight, 300-500m through buildings</li>
+                                                        <li>Low power consumption enables long-term operation</li>
+                                                        <li>Less congested spectrum compared to 2.4/5GHz WiFi</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Covert Communication:</strong> Wireless link designed to evade detection
+                                                    <ul>
+                                                        <li>Custom SSID resembling legitimate networks</li>
+                                                        <li>Encrypted with WPA3 for confidentiality</li>
+                                                        <li>Beacon interval adjusted to reduce visibility</li>
+                                                        <li>Operator can connect from parking lot or nearby location</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="image-gallery" style="display: none">
+                                            <div class="use-case-image" data-image-modal="lan-c2-device.jpg">
+                                                <img src="https://via.placeholder.com/400x300/2980b9/ffffff?text=LAN+C2+Node%0A%0AWiFi+HaLow+%2B+Ethernet" alt="LAN-connected C2 device with WiFi HaLow">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">LAN C2 node with long-range WiFi HaLow adapter in disguised enclosure</p>
+                                            </div>
+                                            <div class="use-case-image" data-image-modal="network-deployment.jpg">
+                                                <img src="https://via.placeholder.com/400x300/27ae60/ffffff?text=Concealed+Network+Tap" alt="C2 device concealed behind equipment">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">C2 node concealed behind network equipment in conference room</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>USB Implant Deployment to Endpoints</h4>
+                                        <p>Following LAN C2 infrastructure deployment, USB implants are strategically placed on target workstations:</p>
+
+                                        <div class="code-explanation">
+                                            <h5>USB Implant Characteristics:</h5>
+                                            <ul>
+                                                <li><strong>Hardware Capabilities:</strong>
+                                                    <ul>
+                                                        <li>Dual functionality: Keyboard emulation + network client</li>
+                                                        <li>Onboard storage for payloads and collected data</li>
+                                                        <li>Programmable microcontroller for autonomous operation</li>
+                                                        <li>Low power consumption for long-term deployment</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Initial Compromise Phase:</strong>
+                                                    <ul>
+                                                        <li>Emulates keyboard to execute initial payload</li>
+                                                        <li>Establishes persistent implant on target system</li>
+                                                        <li>Configures network client to beacon to LAN C2 nodes</li>
+                                                        <li>Removes execution artifacts and enters dormant state</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Beaconing Behavior:</strong>
+                                                    <ul>
+                                                        <li>Periodically attempts connection to C2 nodes on local network</li>
+                                                        <li>Uses multiple protocols (HTTP, HTTPS, DNS) to find active C2</li>
+                                                        <li>Employs jitter and random delays to evade pattern detection</li>
+                                                        <li>Falls back to dormant state if no C2 available</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="image-gallery" style="display: none">
+                                            <div class="use-case-image" data-image-modal="usb-implant-hardware.jpg">
+                                                <img src="https://via.placeholder.com/400x300/e74c3c/ffffff?text=USB+Implant+Device" alt="USB implant hardware">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">USB implant combining keyboard emulation with network client capabilities</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>C2 Channel Establishment & Command Execution</h4>
+                                        <p>Once USB implants successfully beacon to LAN C2 nodes, a covert command-and-control channel is established:</p>
+
+                                        <div class="attack-options">
+                                            <div class="attack-option">
+                                                <h5>C2 Connection Flow</h5>
+                                                <p>Multi-stage connection establishment ensuring stealth and reliability:</p>
+                                                <ol>
+                                                    <li><strong>Initial Beacon:</strong> USB implant sends lightweight check-in to C2 node
+                                                        <ul>
+                                                            <li>Includes unique implant ID and basic system information</li>
+                                                            <li>Establishes encryption keys for secure communication</li>
+                                                            <li>Receives initial tasking or remains dormant</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><strong>Operator Connection:</strong> Security tester connects to C2 via WiFi HaLow
+                                                        <ul>
+                                                            <li>From remote location (parking lot, nearby building)</li>
+                                                            <li>Accesses web interface or SSH to C2 node</li>
+                                                            <li>Views list of active implants and their capabilities</li>
+                                                            <li>Issues commands to specific implants or all simultaneously</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><strong>Command Relay:</strong> C2 forwards operator commands to implants
+                                                        <ul>
+                                                            <li>Implants poll C2 for new commands on schedule</li>
+                                                            <li>Commands encrypted and delivered via established channel</li>
+                                                            <li>Results returned to C2 and available to operator</li>
+                                                        </ul>
+                                                    </li>
+                                                </ol>
+                                            </div>
+
+                                            <div class="attack-option">
+                                                <h5>Remote Command Capabilities</h5>
+                                                <p>Once C2 is established, testers can execute various attack scenarios:</p>
+                                                <ul>
+                                                    <li><strong>Reconnaissance:</strong>
+                                                        <ul>
+                                                            <li>System information gathering (OS, patches, installed software)</li>
+                                                            <li>Network mapping from compromised endpoint perspective</li>
+                                                            <li>User activity monitoring and credential harvesting</li>
+                                                            <li>File system enumeration for sensitive data identification</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><strong>Lateral Movement:</strong>
+                                                        <ul>
+                                                            <li>Network scanning for additional targets</li>
+                                                            <li>Credential relay attacks using harvested credentials</li>
+                                                            <li>SMB/RDP connection attempts to adjacent systems</li>
+                                                            <li>Active Directory enumeration and privilege mapping</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><strong>Persistence:</strong>
+                                                        <ul>
+                                                            <li>Multiple persistence mechanisms across systems</li>
+                                                            <li>Scheduled tasks and services for reliable execution</li>
+                                                            <li>Registry modifications and startup entries</li>
+                                                            <li>Redundant implants for survivability</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><strong>Interactive Shells:</strong>
+                                                        <ul>
+                                                            <li>Real-time command execution on compromised endpoints</li>
+                                                            <li>PowerShell, cmd.exe, or bash access depending on OS</li>
+                                                            <li>Script upload and execution capabilities</li>
+                                                            <li>Tool deployment for advanced operations</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="attack-option">
+                                                <h5>Data Exfiltration</h5>
+                                                <p>Sensitive data collection and exfiltration through covert channels:</p>
+                                                <ul>
+                                                    <li><strong>Target Data Identification:</strong>
+                                                        <ul>
+                                                            <li>Automated searching for documents, spreadsheets, databases</li>
+                                                            <li>Keyword-based filtering (confidential, proprietary, password)</li>
+                                                            <li>Browser data: saved credentials, cookies, history</li>
+                                                            <li>Email and communication application data</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><strong>Exfiltration Path:</strong>
+                                                        <ol>
+                                                            <li>Data collected by USB implant from compromised system</li>
+                                                            <li>Transmitted to LAN C2 node via internal network</li>
+                                                            <li>Stored on C2 node for operator retrieval</li>
+                                                            <li>Operator extracts data via WiFi HaLow connection from remote location</li>
+                                                            <li>Entire chain occurs within internal network, bypassing perimeter controls</li>
+                                                        </ol>
+                                                    </li>
+                                                    <li><strong>Stealth Techniques:</strong>
+                                                        <ul>
+                                                            <li>Data compressed and encrypted before transmission</li>
+                                                            <li>Throttled transfer rates to avoid bandwidth anomalies</li>
+                                                            <li>Mimics legitimate internal network protocols</li>
+                                                            <li>Transfers during high-traffic periods for additional obfuscation</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="attack-option">
+                                                <h5>Long-Range Remote Operation</h5>
+                                                <p>WiFi HaLow enables extended-range operation from unexpected locations:</p>
+                                                <ul>
+                                                    <li><strong>Operational Scenarios:</strong>
+                                                        <ul>
+                                                            <li>Operator positioned in vehicle in parking lot or nearby street</li>
+                                                            <li>Connection from adjacent building or public space</li>
+                                                            <li>Mobile operation allowing operator to move while maintaining access</li>
+                                                            <li>Emergency extraction of data when physical access is detected</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><strong>Operational Security:</strong>
+                                                        <ul>
+                                                            <li>No requirement for operator to remain inside target facility</li>
+                                                            <li>Reduced risk of physical detection or confrontation</li>
+                                                            <li>Ability to quickly disconnect and relocate if necessary</li>
+                                                            <li>Long-term monitoring possible with minimal operator exposure</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="image-gallery" style="display: none">
+                                            <div class="use-case-image" data-image-modal="c2-dashboard.jpg">
+                                                <img src="https://via.placeholder.com/700x400/2c3e50/ffffff?text=C2+Dashboard%0A%0A5+Active+Implants+Connected" alt="C2 operator dashboard">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">Operator's C2 dashboard showing multiple active implants and their status</p>
+                                            </div>
+                                            <div class="use-case-image" data-image-modal="remote-operator.jpg">
+                                                <img src="https://via.placeholder.com/400x300/7f8c8d/ffffff?text=Remote+Operator%0A%0AWiFi+HaLow+Connection" alt="Operator working from remote location">
+                                                <div class="image-overlay">
+                                                    <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                                                </div>
+                                                <p class="image-caption">Security tester operating C2 infrastructure remotely via WiFi HaLow from parking area</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <h4>Persistence & Long-Term Access Testing</h4>
+                                        <p>The distributed infrastructure enables testing of long-term persistent access scenarios:</p>
+
+                                        <div class="code-explanation">
+                                            <h5>Resilience Testing:</h5>
+                                            <ul>
+                                                <li><strong>Network Segmentation Bypass:</strong>
+                                                    <ul>
+                                                        <li>C2 nodes placed in multiple network segments</li>
+                                                        <li>Implants automatically find available C2 node in their segment</li>
+                                                        <li>Maintains access even when network is partitioned</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Incident Response Simulation:</strong>
+                                                    <ul>
+                                                        <li>Infrastructure remains operational during "containment" attempts</li>
+                                                        <li>Tests effectiveness of network isolation procedures</li>
+                                                        <li>Identifies how adversaries could maintain presence during IR activities</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Detection Evasion:</strong>
+                                                    <ul>
+                                                        <li>C2 traffic occurs entirely within internal network</li>
+                                                        <li>No internet egress required, bypassing perimeter monitoring</li>
+                                                        <li>Mimics legitimate internal protocols and services</li>
+                                                        <li>Encrypted communications prevent content inspection</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Multi-Week Engagement:</strong>
+                                                    <ul>
+                                                        <li>Infrastructure can remain deployed for extended periods</li>
+                                                        <li>Periodic operator access to demonstrate ongoing compromise</li>
+                                                        <li>Validates that security monitoring would detect prolonged presence</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>MITRE ATT&CK Mapping</h3>
+                                <p>Advanced persistent access testing demonstrates a comprehensive multi-stage attack mapped to the following MITRE ATT&CK tactics and techniques:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Initial Access</h4>
+                                        <ul>
+                                            <li><strong>T1200:</strong> Hardware Additions - Physical deployment of LAN C2 nodes and USB implants</li>
+                                            <li><strong>T1091:</strong> Replication Through Removable Media - USB-based endpoint compromise</li>
+                                            <li><strong>T1199:</strong> Trusted Relationship - Abuse of internal network trust</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Execution</h4>
+                                        <ul>
+                                            <li><strong>T1059.001:</strong> Command and Scripting Interpreter: PowerShell - Remote PowerShell execution</li>
+                                            <li><strong>T1059.004:</strong> Command and Scripting Interpreter: Unix Shell - Bash/shell command execution</li>
+                                            <li><strong>T1053:</strong> Scheduled Task/Job - Persistence mechanisms via scheduled execution</li>
+                                            <li><strong>T1569:</strong> System Services - Service-based payload execution</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Persistence</h4>
+                                        <ul>
+                                            <li><strong>T1547:</strong> Boot or Logon Autostart Execution - Registry and startup folder modifications</li>
+                                            <li><strong>T1543:</strong> Create or Modify System Process - System service creation</li>
+                                            <li><strong>T1053:</strong> Scheduled Task/Job - Scheduled task persistence</li>
+                                            <li><strong>T1136:</strong> Create Account - Backup access account creation</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Privilege Escalation</h4>
+                                        <ul>
+                                            <li><strong>T1068:</strong> Exploitation for Privilege Escalation - Privilege elevation attempts</li>
+                                            <li><strong>T1134:</strong> Access Token Manipulation - Token theft and impersonation</li>
+                                            <li><strong>T1078:</strong> Valid Accounts - Use of harvested credentials for elevation</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Defense Evasion</h4>
+                                        <ul>
+                                            <li><strong>T1027:</strong> Obfuscated Files or Information - Encrypted C2 communications</li>
+                                            <li><strong>T1205:</strong> Traffic Signaling - Covert channel establishment</li>
+                                            <li><strong>T1090:</strong> Proxy - Internal network as proxy for C2</li>
+                                            <li><strong>T1070:</strong> Indicator Removal - Log clearing and artifact removal</li>
+                                            <li><strong>T1599:</strong> Network Boundary Bridging - WiFi HaLow external bridge</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Credential Access</h4>
+                                        <ul>
+                                            <li><strong>T1003:</strong> OS Credential Dumping - Memory credential extraction</li>
+                                            <li><strong>T1555:</strong> Credentials from Password Stores - Browser and application credential theft</li>
+                                            <li><strong>T1056.001:</strong> Input Capture: Keylogging - Credential capture via keylogger</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Discovery</h4>
+                                        <ul>
+                                            <li><strong>T1087:</strong> Account Discovery - Local and domain account enumeration</li>
+                                            <li><strong>T1018:</strong> Remote System Discovery - Network host discovery</li>
+                                            <li><strong>T1046:</strong> Network Service Discovery - Port scanning and service enumeration</li>
+                                            <li><strong>T1083:</strong> File and Directory Discovery - Sensitive file identification</li>
+                                            <li><strong>T1482:</strong> Domain Trust Discovery - Active Directory reconnaissance</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Lateral Movement</h4>
+                                        <ul>
+                                            <li><strong>T1021.001:</strong> Remote Services: Remote Desktop Protocol - RDP lateral movement</li>
+                                            <li><strong>T1021.002:</strong> Remote Services: SMB/Windows Admin Shares - SMB-based lateral movement</li>
+                                            <li><strong>T1550:</strong> Use Alternate Authentication Material - Pass-the-hash attacks</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Collection</h4>
+                                        <ul>
+                                            <li><strong>T1005:</strong> Data from Local System - Local file collection</li>
+                                            <li><strong>T1039:</strong> Data from Network Shared Drive - Network share enumeration</li>
+                                            <li><strong>T1114:</strong> Email Collection - Email and communication data</li>
+                                            <li><strong>T1113:</strong> Screen Capture - Screenshot collection</li>
+                                            <li><strong>T1119:</strong> Automated Collection - Systematic data gathering</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Command and Control</h4>
+                                        <ul>
+                                            <li><strong>T1071.001:</strong> Application Layer Protocol: Web Protocols - HTTP/HTTPS C2 channel</li>
+                                            <li><strong>T1071.004:</strong> Application Layer Protocol: DNS - DNS tunneling for C2</li>
+                                            <li><strong>T1573:</strong> Encrypted Channel - End-to-end encrypted C2</li>
+                                            <li><strong>T1090.001:</strong> Proxy: Internal Proxy - LAN nodes as internal C2 proxies</li>
+                                            <li><strong>T1132:</strong> Data Encoding - Encoded C2 traffic</li>
+                                            <li><strong>T1001:</strong> Data Obfuscation - Protocol mimicry</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Exfiltration</h4>
+                                        <ul>
+                                            <li><strong>T1041:</strong> Exfiltration Over C2 Channel - Data exfil via established C2</li>
+                                            <li><strong>T1030:</strong> Data Transfer Size Limits - Throttled exfiltration</li>
+                                            <li><strong>T1048:</strong> Exfiltration Over Alternative Protocol - Multi-protocol exfiltration</li>
+                                            <li><strong>T1020:</strong> Automated Exfiltration - Scheduled data exfiltration</li>
+                                            <li><strong>T1537:</strong> Transfer Data to Cloud Account - Alternative exfil paths</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Impact</h4>
+                                        <ul>
+                                            <li><strong>T1565:</strong> Data Manipulation - Potential for data modification</li>
+                                            <li><strong>T1490:</strong> Inhibit System Recovery - Backup system interference capability</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Findings & Vulnerabilities Identified</h3>
+                                <div class="findings-grid">
+                                    <div class="finding-card critical">
+                                        <h4>🔴 Critical: Internal Network Assumed Trusted</h4>
+                                        <p>Organizations had minimal internal network traffic monitoring, operating under assumption that internal communications are inherently trustworthy. C2 traffic between implants and LAN nodes went completely undetected.</p>
+                                    </div>
+                                    <div class="finding-card critical">
+                                        <h4>🔴 Critical: Physical Port Security Nonexistent</h4>
+                                        <p>Network ports in public areas had no authentication (802.1X) or monitoring. Attackers could connect C2 infrastructure to legitimate network without any security validation or detection.</p>
+                                    </div>
+                                    <div class="finding-card critical">
+                                        <h4>🔴 Critical: Persistent Access Survived Incident Response</h4>
+                                        <p>When one implant was detected and remediated, remaining infrastructure maintained operational access. Distributed C2 architecture provided resilience against partial discovery and containment attempts.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: No Wireless Spectrum Monitoring</h4>
+                                        <p>WiFi HaLow communications (900MHz sub-GHz band) went completely undetected. Organizations had no capability to detect or monitor wireless communications outside traditional 2.4/5GHz WiFi bands.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: Data Exfiltration via Internal Channels</h4>
+                                        <p>All data exfiltration occurred through internal network channels, completely bypassing perimeter DLP, web proxies, and firewall monitoring. Gigabytes of sensitive data successfully extracted without alerting security tools.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: Network Device Inventory Gaps</h4>
+                                        <p>IT departments had no comprehensive inventory of network-connected devices. Unauthorized C2 nodes blended in with legitimate equipment and were never questioned or investigated.</p>
+                                    </div>
+                                    <div class="finding-card medium">
+                                        <h4>🟡 Medium: Limited USB Device Logging</h4>
+                                        <p>USB device connections were not centrally logged or monitored. Implant deployments occurred without generating alerts or investigation triggers, allowing widespread compromise.</p>
+                                    </div>
+                                    <div class="finding-card medium">
+                                        <h4>🟡 Medium: Inadequate Physical Security Inspections</h4>
+                                        <p>Physical security rounds did not include inspection of network ports, equipment closets, or hidden areas. C2 nodes remained undetected for entire engagement duration (4+ weeks).</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Recommended Countermeasures</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Network Access Controls</h4>
+                                        <ul>
+                                            <li>Implement 802.1X port authentication for all network jacks</li>
+                                            <li>Network Access Control (NAC) with device profiling and posture assessment</li>
+                                            <li>Automatic quarantine for unknown or non-compliant devices</li>
+                                            <li>MAC address allowlisting for network-attached devices</li>
+                                            <li>Port security policies disabling unused network jacks</li>
+                                            <li>VLAN segmentation isolating guest/unmanaged devices</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Wireless Security Monitoring</h4>
+                                        <ul>
+                                            <li>Wireless Intrusion Detection Systems (WIDS) covering all bands including sub-GHz</li>
+                                            <li>Spectrum analysis tools for detecting unauthorized wireless devices</li>
+                                            <li>Regular RF sweeps of sensitive areas and network closets</li>
+                                            <li>Faraday shielding for critical areas requiring zero wireless</li>
+                                            <li>Wireless policy enforcement and rogue AP detection</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Internal Network Monitoring</h4>
+                                        <ul>
+                                            <li>Deploy internal network traffic analysis (NTA) solutions</li>
+                                            <li>East-west traffic inspection, not just north-south</li>
+                                            <li>Anomaly detection for unusual internal communication patterns</li>
+                                            <li>Encrypted traffic analysis (ETA) for detecting C2 in encrypted channels</li>
+                                            <li>Baseline legitimate internal protocols and flag deviations</li>
+                                            <li>Behavioral analytics for endpoints and network devices</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Endpoint Protection</h4>
+                                        <ul>
+                                            <li>Advanced EDR with behavioral detection and response</li>
+                                            <li>USB device control policies with whitelisting</li>
+                                            <li>Application whitelisting preventing unauthorized execution</li>
+                                            <li>PowerShell logging and monitoring for suspicious activity</li>
+                                            <li>Kernel-level protections against HID attack vectors</li>
+                                            <li>Network connection monitoring from endpoints</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Physical Security</h4>
+                                        <ul>
+                                            <li>Regular physical security audits of network infrastructure</li>
+                                            <li>Inventory and asset tagging for all network-connected devices</li>
+                                            <li>Locked enclosures for network equipment and patch panels</li>
+                                            <li>Security camera coverage of network closets and equipment rooms</li>
+                                            <li>Port security dongles or physical locks for unused network jacks</li>
+                                            <li>Tamper-evident seals on critical infrastructure</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Detection & Response</h4>
+                                        <ul>
+                                            <li>SIEM correlation rules for C2 behavioral indicators</li>
+                                            <li>Threat hunting program focusing on internal threats</li>
+                                            <li>Network flow analysis for C2 communication patterns</li>
+                                            <li>Deception technology (honeypots) on internal networks</li>
+                                            <li>Regular purple team exercises simulating APT scenarios</li>
+                                            <li>Incident response playbooks for suspected internal compromise</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact & Results</h3>
+                                <p>This advanced persistent threat simulation revealed critical gaps in defense-in-depth strategies:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">3</div>
+                                        <div class="stat-label">LAN C2 Nodes Deployed</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">18</div>
+                                        <div class="stat-label">USB Implants Deployed</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">28 days</div>
+                                        <div class="stat-label">Persistent Access Duration</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Detections by Security Team</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">The combination of LAN-connected C2 infrastructure and USB implants created a sophisticated attack platform that evaded all existing security controls. Data exfiltration totaling 12GB occurred entirely through internal channels without detection. Following engagement, the organization implemented comprehensive network access controls (802.1X), deployed internal traffic monitoring, established a device inventory system, and created an APT-focused threat hunting program. Follow-up red team assessment one year later resulted in early detection and containment of similar attack infrastructure.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Advanced persistent threat simulation requires exceptional operational security and ethics:</p>
+                                <ul>
+                                    <li>Executive-level authorization with full technical briefing on capabilities and risks</li>
+                                    <li>Legal review ensuring compliance with all applicable laws and regulations</li>
+                                    <li>Clearly defined scope including authorized network segments and data types</li>
+                                    <li>No actual exfiltration of truly sensitive data (test data used for demonstrations)</li>
+                                    <li>Daily check-ins with designated security stakeholder to prevent actual incidents</li>
+                                    <li>Emergency cutoff procedures if real threat actors detected during engagement</li>
+                                    <li>All deployed infrastructure tracked with removal verification at engagement conclusion</li>
+                                    <li>Comprehensive documentation enabling organization to detect similar real-world attacks</li>
+                                    <li>Post-engagement purple team session demonstrating detection and response improvements</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- Template for adding new use cases -->
+                        <!--
+                        <article id="new-use-case-id" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Category</span>
+                                <h2>Use Case Title</h2>
+                                <p class="use-case-intro">Introduction paragraph...</p>
+                            </div>
+                            ... content sections ...
+                        </article>
+                        -->
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container text-center">
+                <h2>Need Security Testing for Your Environment?</h2>
+                <p style="font-size: var(--font-size-large); color: var(--text-secondary); max-width: 700px; margin: 0 auto var(--spacing-xl);">
+                    Our team can help identify vulnerabilities in your physical and digital security posture through authorized, ethical testing.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
+                    <a href="services.html" class="btn btn-outline">View Our Services</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About PivotChip</h3>
+                <p>We are a leading cybersecurity firm dedicated to protecting organizations through ethical security practices and cutting-edge solutions.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="ethical-use-policy.html">Ethical Use Policy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <a href="service-red-teaming.html">Red Teaming</a>
+                <a href="service-custom-shells.html">Custom Device Shells</a>
+                <a href="service-security-audit.html">Security Audits</a>
+                <a href="service-cybersecurity-training.html">Cybersecurity Training</a>
+                <a href="service-automated-reporting.html">Automated Reporting</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>123 Security Street<br>
+                   Cyber City, CC 12345</p>
+                <p>Phone: (555) 123-4567<br>
+                   Email: info@pivotchip.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 PivotChip Security inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/use-cases.js"></script>
+
+</body>
+</html>

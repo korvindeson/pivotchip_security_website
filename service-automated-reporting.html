@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional automated security reporting for USB HID device testing with MITRE ATT&CK framework mapping and comprehensive analysis">
+    <title>Automated Security Reporting - PivotChip Security inc.</title>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">PivotChip</a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="services.html" class="dropdown-toggle">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="service-red-teaming.html">Red Teaming</a></li>
+                            <li><a href="service-custom-shells.html">Custom Device Shells</a></li>
+                            <li><a href="service-security-audit.html">Security Audits</a></li>
+                            <li><a href="service-cybersecurity-training.html">Cybersecurity Training</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="pentesting-devices.html">Pentesting Devices</a></li>
+                    <li><a href="service-automated-reporting.html">Automated Reporting</a></li>
+                    <li><a href="use-cases.html">Use Cases</a></li>
+                    <li><a href="ethical-use-policy.html">Ethical Use Policy</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- PAGE HERO -->
+        <section class="hero">
+            <div class="container">
+                <h1>Automated Security Reporting</h1>
+                <p>Comprehensive MITRE ATT&CK-mapped reports from USB security device testing</p>
+            </div>
+        </section>
+
+        <!-- SERVICE OVERVIEW -->
+        <section class="section">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Professional Security Analysis Reports</h2>
+                    <p>Our automated reporting system captures all activity as testers are using the device. Automation transforms raw security device logs into comprehensive, professional HTML reports that document every aspect of your penetration testing activities. Each report provides a detailed analysis of attack simulations, network intrusions, keystroke injection attacks, and other security testing operations – all mapped to the MITRE ATT&CK framework for industry-standard threat intelligence.</p>
+
+                    <p>The system connects directly to our USB HID security testing devices, extracts and combines activity logs from all devices, and produces presentation-ready reports suitable for clients, stakeholders, and compliance auditors.</p>
+
+                    <div class="highlight-box info">
+                        <h4>Why Automated Reporting Matters</h4>
+                        <p>Manual report creation is time-consuming and prone to inconsistencies. Our automated system ensures every security event is documented with precision, properly categorized by severity, and mapped to recognized attack frameworks. This saves hours of manual work while delivering more comprehensive and accurate documentation than traditional reporting methods.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REPORT SAMPLE PREVIEW -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Report Sample Preview</h2>
+                    <p>See what a comprehensive security assessment report looks like</p>
+                </div>
+
+                <div class="card" style="padding: var(--spacing-lg); background-color: var(--background-white);">
+                    <div class="report-preview-wrapper"
+                         style="border: 2px solid var(--accent-color); border-radius: var(--border-radius); overflow: hidden; background-color: #f8f9fa; cursor: pointer; position: relative;"
+                         data-report-preview="sample-security-report.html"
+                         data-report-title="Security Assessment Report - Interactive Preview">
+                        <!-- INTERACTIVE REPORT PREVIEW -->
+                        <iframe src="sample-security-report.html"
+                                style="width: 100%; height: 500px; border: none; pointer-events: none; background-color: white; display: block;"
+                                scrolling="no"></iframe>
+                        <div class="report-preview-overlay"
+                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: rgba(52, 152, 219, 0.1); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;">
+                            <div style="background-color: rgba(52, 152, 219, 0.95); color: white; padding: 1.5rem 3rem; border-radius: 8px; font-size: 1.2rem; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                                🔍 Click to View Full Report
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center" style="margin-top: var(--spacing-md); color: var(--text-secondary); font-style: italic;">
+                        ⬆️ Click the preview above to view the complete interactive security report
+                    </p>
+                </div>
+
+                <style>
+                    .report-preview-wrapper:hover .report-preview-overlay {
+                        opacity: 1 !important;
+                    }
+                </style>
+            </div>
+        </section>
+
+        <!-- REPORT SECTIONS -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Comprehensive Report Sections</h2>
+                    <p>Every report includes these detailed analysis components</p>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>1. Executive Summary</h3>
+                        <p>High-level overview of the project results.</p>
+                        <ul class="mt-3">
+                            <li>Report scope and assessment purpose</li>
+                            <li>Total events captured with severity breakdown</li>
+                            <li>Critical findings and security concerns identified</li>
+                            <li>Prioritized recommendations for remediation</li>
+                            <li>Risk level assessment (Critical, High, Medium, Low)</li>
+                        </ul>
+                        
+                            <div style="height: 400px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column; gap: 0.5rem;">
+                                
+								
+								<div class="report-preview-wrapper" style="margin-top:20px; border: 2px solid var(--accent-color); border-radius: var(--border-radius); overflow: hidden; background-color: #f8f9fa; cursor: pointer; position: relative;" data-report-preview="sample-security-report-exec.html" data-report-title="Security Assessment Report - Interactive Preview" tabindex="0" role="button" aria-label="Click to view full report">
+									<!-- INTERACTIVE REPORT PREVIEW -->
+									<iframe src="sample-security-report-exec.html" style="width: 100%; height: 500px; border: none; pointer-events: none; background-color: white; display: block;" scrolling="no"></iframe>
+									<div class="report-preview-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: rgba(52, 152, 219, 0.1); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;">
+										<div style="background-color: rgba(52, 152, 219, 0.95); color: white; padding: 1.5rem 3rem; border-radius: 8px; font-size: 1.2rem; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+											Click to View
+										</div>
+									</div>
+								</div>
+								
+								
+								
+                            </div>
+                        
+                    </div>
+
+                    <div class="card">
+                        <h3>2. Statistical Dashboard</h3>
+                        <p>Visual analytics providing quick insight into security testing results.</p>
+                        <ul class="mt-3">
+                            <li>Event type breakdown showing count distribution</li>
+                            <li>Logged events (boot, shutdown, command execution)</li>
+                            <li>Network activity and connection monitoring</li>
+                            <li>Attack technique occurrence frequency</li>
+                            <li>Multi-Device Combined Statistics</li>
+                        </ul>
+                        <div style="transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;"
+                             data-lightbox-placeholder="Statistical Dashboard Screenshot"
+                             onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'"
+                             onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="height: 400px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column; gap: 0.5rem;">
+                                
+								
+								<div class="report-preview-wrapper" style="margin-top:20px; border: 2px solid var(--accent-color); border-radius: var(--border-radius); overflow: hidden; background-color: #f8f9fa; cursor: pointer; position: relative;" data-report-preview="sample-security-report-stats.html" data-report-title="Security Assessment Report - Interactive Preview" tabindex="0" role="button" aria-label="Click to view full report">
+									<!-- INTERACTIVE REPORT PREVIEW -->
+									<iframe src="sample-security-report-stats.html" style="width: 100%; height: 500px; border: none; pointer-events: none; background-color: white; display: block;" scrolling="no"></iframe>
+									<div class="report-preview-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: rgba(52, 152, 219, 0.1); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;">
+										<div style="background-color: rgba(52, 152, 219, 0.95); color: white; padding: 1.5rem 3rem; border-radius: 8px; font-size: 1.2rem; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+											Click to View
+										</div>
+									</div>
+								</div>
+								
+								
+								
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>3. Interactive Timeline</h3>
+                        <p>Visual chronological representation showing the attack narrative unfold over time.</p>
+                        <ul class="mt-3">
+                            <li>Visual flow showing operational progression</li>
+                            <li>Color-coded severity indicators for quick assessment</li>
+                            <li>Expandable/collapsible session groups for detail</li>
+                            <li>Attack chain visualization: Initial Access → Execution → C2 → Collection</li>
+                            <li>Timestamp precision down to the second</li>
+                        </ul>
+                        <div style="transition: transform 0.2s ease, box-shadow 0.2s ease;"
+                             data-lightbox-placeholder="Interactive Timeline Screenshot"
+                             onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'"
+                             onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="height: 350px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column; gap: 0.5rem;">
+                                
+								<div class="report-preview-wrapper" style="margin-top:20px; border: 2px solid var(--accent-color); border-radius: var(--border-radius); overflow: hidden; background-color: #f8f9fa; cursor: pointer; position: relative;" data-report-preview="sample-security-report-timeline.html" data-report-title="Security Assessment Report - Interactive Preview" tabindex="0" role="button" aria-label="Click to view full report">
+									<!-- INTERACTIVE REPORT PREVIEW -->
+									<iframe src="sample-security-report-timeline.html" style="width: 100%; height: 500px; border: none; pointer-events: none; background-color: white; display: block;" scrolling="no"></iframe>
+									<div class="report-preview-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: rgba(52, 152, 219, 0.1); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;">
+										<div style="background-color: rgba(52, 152, 219, 0.95); color: white; padding: 1.5rem 3rem; border-radius: 8px; font-size: 1.2rem; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+											Click to View
+										</div>
+									</div>
+								</div>
+								
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>4. MITRE ATT&CK Mapping</h3>
+                        <p>Comprehensive table mapping all security events to recognized threat intelligence framework.</p>
+                        <ul class="mt-3">
+                            <li>Filterable by severity level (Critical/High/Medium/Low)</li>
+                            <li>Sortable columns for custom analysis</li>
+                            <li>Attack tactic classification (Initial Access, Execution, etc.)</li>
+                            <li>Technique IDs and names (e.g., T1200, T1557.002)</li>
+                            <li>Detailed security implication descriptions</li>
+                            <li>Occurrence count and first-seen timestamps</li>
+                        </ul>
+                        <div style="transition: transform 0.2s ease, box-shadow 0.2s ease;"
+                             data-lightbox-placeholder="MITRE ATT&CK Mapping Table Screenshot"
+                             onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'"
+                             onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column; gap: 0.5rem;">
+                                <div class="report-preview-wrapper" style="margin-top:20px; border: 2px solid var(--accent-color); border-radius: var(--border-radius); overflow: hidden; background-color: #f8f9fa; cursor: pointer; position: relative;" data-report-preview="sample-security-report-mitre.html" data-report-title="Security Assessment Report - Interactive Preview" tabindex="0" role="button" aria-label="Click to view full report">
+									<!-- INTERACTIVE REPORT PREVIEW -->
+									<iframe src="sample-security-report-mitre.html" style="width: 100%; height: 500px; border: none; pointer-events: none; background-color: white; display: block;" scrolling="no"></iframe>
+									<div class="report-preview-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: rgba(52, 152, 219, 0.1); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;">
+										<div style="background-color: rgba(52, 152, 219, 0.95); color: white; padding: 1.5rem 3rem; border-radius: 8px; font-size: 1.2rem; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+											Click to View
+										</div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>5. Multi-Device Coordination</h3>
+                        <p>Documentation of distributed attack operations involving multiple synchronized devices.</p>
+                        <ul class="mt-3">
+                            <li>All coordinated device identifiers and roles</li>
+                            <li>Device MAC addresses and network identifiers</li>
+                            <li>Log contribution counts per device</li>
+                            <li>First seen and last seen timestamps</li>
+                            <li>Synchronization event documentation</li>
+                            <li>Distributed operation flow visualization</li>
+                        </ul>
+                        <div style="transition: transform 0.2s ease, box-shadow 0.2s ease;"
+                             data-lightbox-placeholder="Paired Devices Section Screenshot"
+                             onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'"
+                             onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="height: 350px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column; gap: 0.5rem;">
+                                <div class="report-preview-wrapper" style="margin-top:20px; border: 2px solid var(--accent-color); border-radius: var(--border-radius); overflow: hidden; background-color: #f8f9fa; cursor: pointer; position: relative;" data-report-preview="sample-security-report-device.html" data-report-title="Security Assessment Report - Interactive Preview" tabindex="0" role="button" aria-label="Click to view full report">
+									<!-- INTERACTIVE REPORT PREVIEW -->
+									<iframe src="sample-security-report-device.html" style="width: 100%; height: 500px; border: none; pointer-events: none; background-color: white; display: block;" scrolling="no"></iframe>
+									<div class="report-preview-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: rgba(52, 152, 219, 0.1); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;">
+										<div style="background-color: rgba(52, 152, 219, 0.95); color: white; padding: 1.5rem 3rem; border-radius: 8px; font-size: 1.2rem; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+											Click to View
+										</div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>6. Complete Event Log</h3>
+                        <p>Detailed chronological listing of every security event captured during testing.</p>
+                        <ul class="mt-3">
+                            <li>Human-readable event descriptions</li>
+                            <li>Precise timestamps for forensic analysis</li>
+                            <li>Visual severity badges (color-coded)</li>
+                            <li>Device attribution for multi-device operations</li>
+                            <li>Searchable and filterable table</li>
+                            <li>Export capability for further analysis</li>
+                        </ul>
+                        <div style="transition: transform 0.2s ease, box-shadow 0.2s ease;"
+                             data-lightbox-placeholder="Complete Event Log Screenshot"
+                             onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'"
+                             onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                            <div style="height: 430px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column; gap: 0.5rem;">
+                                <div class="report-preview-wrapper" style="margin-top:20px; border: 2px solid var(--accent-color); border-radius: var(--border-radius); overflow: hidden; background-color: #f8f9fa; cursor: pointer; position: relative;" data-report-preview="sample-security-report-details.html" data-report-title="Security Assessment Report - Interactive Preview" tabindex="0" role="button" aria-label="Click to view full report">
+									<!-- INTERACTIVE REPORT PREVIEW -->
+									<iframe src="sample-security-report-details.html" style="width: 100%; height: 500px; border: none; pointer-events: none; background-color: white; display: block;" scrolling="no"></iframe>
+									<div class="report-preview-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: rgba(52, 152, 219, 0.1); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;">
+										<div style="background-color: rgba(52, 152, 219, 0.95); color: white; padding: 1.5rem 3rem; border-radius: 8px; font-size: 1.2rem; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+											Click to View
+										</div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENT CLASSIFICATIONS -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Event Classification System</h2>
+                    <p>Comprehensive categorization of 40+ security event types</p>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>System Operations</h3>
+                        <ul>
+                            <li>Device boot and shutdown sequences</li>
+                            <li>File system mounting and access</li>
+                            <li>Operating system initialization</li>
+                            <li>Hardware detection events</li>
+                            <li>Power management transitions</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Hardware Access Events</h3>
+                        <ul>
+                            <li>USB device plug and unplug detection</li>
+                            <li>Serial communication channel establishment</li>
+                            <li>HID device enumeration</li>
+                            <li>Interface activation and configuration</li>
+                            <li>Hardware capability discovery</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Network Operations</h3>
+                        <ul>
+                            <li>Ethernet interface activation</li>
+                            <li>IP address acquisition (DHCP/Static)</li>
+                            <li>Network connectivity monitoring</li>
+                            <li>Gateway and DNS discovery</li>
+                            <li>Traffic routing establishment</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Multi-Device Coordination</h3>
+                        <ul>
+                            <li>Device pairing for distributed operations</li>
+                            <li>Synchronized attack orchestration</li>
+                            <li>Command relay and forwarding</li>
+                            <li>Shared data collection</li>
+                            <li>Coordinated timing and sequencing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box danger mt-5">
+                    <h3>Critical Attack Techniques</h3>
+                    <p>The following high-severity events receive special attention in every report:</p>
+                    <div class="grid grid-2 mt-3">
+                        <div>
+                            <h4 style="color: #e74c3c; margin-bottom: var(--spacing-sm);">🔴 CRITICAL SEVERITY</h4>
+                            <ul>
+                                <li><strong>ARP Cache Poisoning:</strong> Man-in-the-middle network attacks intercepting traffic</li>
+                                <li><strong>Keystroke Injection:</strong> Automated DuckyScript execution and command delivery</li>
+                                <li><strong>Credential Harvesting:</strong> Attempted credential capture operations</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #e67e22; margin-bottom: var(--spacing-sm);">🟠 HIGH SEVERITY</h4>
+                            <ul>
+                                <li><strong>Initial Access:</strong> First compromise of target system</li>
+                                <li><strong>Command Execution:</strong> Remote command receipt and processing</li>
+                                <li><strong>Data Exfiltration:</strong> File read/write and data extraction operations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+              
+        <!-- TECHNICAL CAPABILITIES -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Technical Capabilities</h2>
+                    <p>Advanced automation for seamless report generation</p>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>Automated Data Collection</h3>
+                        <ul>
+                            <li><strong>Serial Port Detection:</strong> Automatically identifies and connects to USB security devices</li>
+                            <li><strong>Real-Time Streaming:</strong> Captures logs as events occur during testing</li>
+                            <li><strong>Multi-Device Support:</strong> Aggregates logs from multiple coordinated devices</li>
+                            <li><strong>Error Handling:</strong> Graceful recovery from connection issues</li>
+                            <li><strong>Protocol Support:</strong> Compatible with HID and serial communication protocols</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Intelligent Processing</h3>
+                        <ul>
+                            <li><strong>Timestamp Normalization:</strong> Synchronizes time across devices and time zones</li>
+                            <li><strong>Uptime Calculation:</strong> Tracks device operational duration</li>
+                            <li><strong>Event Correlation:</strong> Links related events into logical attack sessions</li>
+                            <li><strong>Duplicate Detection:</strong> Identifies and merges redundant events</li>
+                            <li><strong>Context Enrichment:</strong> Adds detailed descriptions and security implications</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Framework Integration</h3>
+                        <ul>
+                            <li><strong>MITRE ATT&CK Mapping:</strong> Automatic correlation to technique IDs</li>
+                            <li><strong>Tactic Classification:</strong> Groups events by attack lifecycle stage</li>
+                            <li><strong>Severity Assignment:</strong> Risk-based prioritization of findings</li>
+                            <li><strong>Kill Chain Tracking:</strong> Maps progression through attack phases</li>
+                            <li><strong>TTP Documentation:</strong> Records tactics, techniques, and procedures</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Output Generation</h3>
+                        <ul>
+                            <li><strong>HTML Report Creation:</strong> Professional self-contained documents</li>
+                            <li><strong>Custom Naming:</strong> Automatic date stamps and project identifiers</li>
+                            <li><strong>Template Flexibility:</strong> Customizable report branding and layout</li>
+                            <li><strong>Asset Embedding:</strong> All styles and scripts embedded in single file</li>
+                            <li><strong>Version Control:</strong> Report metadata and generation timestamps</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="display: none; margin-top: var(--spacing-xl); border: 2px dashed var(--accent-color); border-radius: var(--border-radius); padding: var(--spacing-lg); background-color: var(--background-light); transition: transform 0.2s ease, box-shadow 0.2s ease;"
+                     data-lightbox-placeholder="Technical Architecture Diagram"
+                     onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'"
+                     onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                    <div style="height: 250px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: var(--font-size-large); text-align: center; flex-direction: column; gap: 1rem;">
+                        <div>Technical Architecture Diagram</div>
+                        <div style="font-size: var(--font-size-base);">
+                            Flow: USB Device → Log Extraction → Processing → MITRE Mapping → HTML Report
+                        </div>
+                        <div style="font-size: 0.85rem; opacity: 0.7;">Click to view</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- ETHICAL APPROACH -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Ethical Reporting Standards</h2>
+                    <p>All automated reporting services follow our strict <a href="ethical-use-policy.html">Ethical Use Policy</a> to ensure responsible use:</p>
+
+                    <div class="grid grid-2 mt-4">
+                        <ul>
+                            <li><strong>Authorized Testing Only:</strong> Reports document only authorized security assessments with explicit written permission</li>
+                            <li><strong>Confidentiality:</strong> Reports contain sensitive security information and must be handled appropriately</li>
+                            <li><strong>Accurate Documentation:</strong> All events reported exactly as captured without modification or fabrication</li>
+                            <li><strong>Responsible Disclosure:</strong> Critical findings reported promptly to appropriate stakeholders</li>
+                        </ul>
+                        <ul>
+                            <li><strong>Data Protection:</strong> Reports stored securely with appropriate access controls</li>
+                            <li><strong>Retention Policies:</strong> Reports retained according to compliance and client requirements</li>
+                            <li><strong>No Malicious Use:</strong> Reporting capabilities never used to document or facilitate unauthorized activities</li>
+                            <li><strong>Professional Standards:</strong> Reports meet industry standards for penetration testing documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION -->
+        <section class="section">
+            <div class="container text-center">
+                <h2>Ready to Automate Your Security Reporting?</h2>
+                <p style="font-size: var(--font-size-large); color: var(--text-secondary); max-width: 700px; margin: 0 auto var(--spacing-xl);">
+                    Transform raw security device logs into professional, comprehensive reports in minutes. Contact us to learn how automated reporting can enhance your security assessment workflow.
+                </p>
+                <a href="contact.html" class="btn btn-primary" style="margin-right: var(--spacing-md);">Request Demo</a>
+                <a href="pentesting-devices.html" class="btn btn-secondary">View Our Devices</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About PivotChip</h3>
+                <p>We are a leading cybersecurity firm dedicated to protecting organizations through ethical security practices and cutting-edge solutions.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="ethical-use-policy.html">Ethical Use Policy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <a href="service-red-teaming.html">Red Teaming</a>
+                <a href="service-custom-shells.html">Custom Device Shells</a>
+                <a href="service-security-audit.html">Security Audits</a>
+                <a href="service-cybersecurity-training.html">Cybersecurity Training</a>
+                <a href="service-automated-reporting.html">Automated Reporting</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>123 Security Street<br>
+                   Cyber City, CC 12345</p>
+                <p>Phone: (555) 123-4567<br>
+                   Email: info@pivotchip.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 PivotChip Security inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Custom 3D-printed shells and enclosures for penetration testing devices - discreet, environment-specific designs">
+    <title>Custom Device Shell Design - PivotChip Security inc.</title>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .shell-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .shell-example {
+            background: var(--background-white);
+            border-radius: 8px;
+            padding: var(--spacing-xl);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .shell-example:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .shell-visual {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .design-process {
+            background: var(--background-light);
+            border-radius: 8px;
+            padding: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .design-step {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+            align-items: flex-start;
+        }
+
+        .design-step-number {
+            min-width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .design-step-content {
+            flex: 1;
+        }
+
+        .design-step-content h4 {
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-color);
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .material-card {
+            background: var(--background-white);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .material-card h4 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">PivotChip</a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="services.html" class="dropdown-toggle">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="service-red-teaming.html">Red Teaming</a></li>
+                            <li><a href="service-security-audit.html">Security Audits</a></li>
+                            <li><a href="service-cybersecurity-training.html">Cybersecurity Training</a></li>
+                            <li><a href="service-custom-shells.html">Custom Device Shells</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="pentesting-devices.html">Pentesting Devices</a></li>
+                    <li><a href="service-automated-reporting.html">Automated Reporting</a></li>
+                    <li><a href="use-cases.html">Use Cases</a></li>
+                    <li><a href="ethical-use-policy.html">Ethical Use Policy</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- PAGE HERO -->
+        <section class="hero">
+            <div class="container">
+                <h1>Custom Device Shell Design</h1>
+                <p>3D-printed enclosures designed for discretion, blending seamlessly into any environment</p>
+            </div>
+        </section>
+
+        <!-- SERVICE INTRODUCTION -->
+        <section class="section">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Discreet Hardware for Real-World Operations</h2>
+                    <p>In red team operations and physical penetration testing, the ability to deploy devices without detection is critical. Standard enclosures can be conspicuous and raise suspicion. Our custom shell design service creates 3D-printed enclosures that transform your penetration testing devices into everyday objects that blend seamlessly into target environments.</p>
+
+                    <p>We combine industrial design expertise with practical penetration testing experience to create shells that are not only visually appropriate but also maintain full device functionality, proper cooling, antenna placement, and access to ports and indicators.</p>
+
+                    <div class="highlight-box info">
+                        <h4>Why Custom Shells Matter</h4>
+                        <p>A $3,000 penetration testing device is worthless if it's immediately discovered. Custom shells designed for specific environments dramatically increase operational success rates by:</p>
+                        <ul class="mt-2">
+                            <li>Reducing visual suspicion from security personnel and employees</li>
+                            <li>Matching environmental aesthetics (office, industrial, healthcare, etc.)</li>
+                            <li>Appearing as authorized, expected equipment</li>
+                            <li>Enabling longer-duration deployments without detection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEVICE COMPATIBILITY -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Compatible with All Our Devices</h2>
+                    <p>Custom shells designed for any device in our lineup</p>
+                </div>
+
+                <div class="grid grid-3">
+                    <div class="card">
+                        <div class="card-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="width: 64px; height: 64px;"></div>
+                        <h3>USB Drive Module</h3>
+                        <p>Disguise as branded USB drives, phone chargers, conference badges, or other innocuous USB devices common in your target environment.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon"><img src="images/devices/keyboard-module-icon.png" alt="Keyboard Module" style="width: 64px; height: 64px;"></div>
+                        <h3>Keyboard Module</h3>
+                        <p>Hide keyboard pass-through devices in cable management boxes, desk organizers, or equipment-specific housings that blend with workstation setups.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🌐</div>
+                        <h3>Network Module</h3>
+                        <p>Design shells resembling network equipment, power strips, surge protectors, or environmental sensors appropriate for network closets and server rooms.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">📶</div>
+                        <h3>Long Distance Module</h3>
+                        <p>Create enclosures that look like building equipment, junction boxes, or utility infrastructure for outdoor or industrial deployments.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">📡</div>
+                        <h3>Command Module</h3>
+                        <p>Portable shells designed as briefcases, equipment cases, or backpack inserts for mobile command and control operations.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🔧</div>
+                        <h3>Custom Devices</h3>
+                        <p>For our custom-designed hardware, we create bespoke enclosures tailored to the device's specific form factor and deployment environment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESIGN EXAMPLES -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Shell Design Examples</h2>
+                    <p>Sample designs we've created for different environments and use cases</p>
+                </div>
+
+                <div class="shell-showcase">
+                    <div class="shell-example">
+                        <div class="shell-visual">🔌</div>
+                        <h3>Phone Charger Shell</h3>
+                        <p><strong>Device:</strong> USB Drive Module</p>
+                        <p><strong>Environment:</strong> Office/Corporate</p>
+                        <p>Standard white phone charger design with USB-A and USB-C ports. Completely functional as a charger while device operates covertly. Common sight on desks and in conference rooms.</p>
+                        <ul style="margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Fully functional charging capability</li>
+                            <li>✓ Standard wall plug form factor</li>
+                            <li>✓ Internal antenna placement</li>
+                            <li>✓ LED indicators hidden in design</li>
+                        </ul>
+                    </div>
+
+                    <div class="shell-example">
+                        <div class="shell-visual">⚡</div>
+                        <h3>Power Strip Shell</h3>
+                        <p><strong>Device:</strong> Network Module</p>
+                        <p><strong>Environment:</strong> Server Rooms/IDF Closets</p>
+                        <p>Functional power strip with integrated network tap device. Ethernet pass-through appears as standard surge-protected outlet strip. Blends perfectly in network closets and under-desk cable management.</p>
+                        <ul style="margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Working power outlets</li>
+                            <li>✓ Network pass-through design</li>
+                            <li>✓ Rack-mountable option available</li>
+                            <li>✓ PoE-powered or AC operation</li>
+                        </ul>
+                    </div>
+
+                    <div class="shell-example">
+                        <div class="shell-visual">📦</div>
+                        <h3>Equipment Junction Box</h3>
+                        <p><strong>Device:</strong> Long Distance Module</p>
+                        <p><strong>Environment:</strong> Industrial/Manufacturing</p>
+                        <p>Industrial-grade junction box design matching facility equipment. Appears as building infrastructure or utility equipment. Ruggedized for harsh environments with weatherproof sealing.</p>
+                        <ul style="margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ IP65 weatherproof rating</li>
+                            <li>✓ Standard industrial gray finish</li>
+                            <li>✓ Mounting bracket included</li>
+                            <li>✓ Cable gland ports</li>
+                        </ul>
+                    </div>
+
+                    <div class="shell-example">
+                        <div class="shell-visual">💼</div>
+                        <h3>Conference Badge Holder</h3>
+                        <p><strong>Device:</strong> USB Drive Module</p>
+                        <p><strong>Environment:</strong> Conferences/Events</p>
+                        <p>Lanyard badge holder with integrated USB device. Appears as event credential while monitoring nearby conversations or providing covert network access. Perfect for social engineering scenarios.</p>
+                        <ul style="margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Standard badge holder size</li>
+                            <li>✓ Lanyard attachment point</li>
+                            <li>✓ Customizable branding</li>
+                            <li>✓ Battery-powered operation</li>
+                        </ul>
+                    </div>
+
+                    <div class="shell-example">
+                        <div class="shell-visual">🖥️</div>
+                        <h3>Network Equipment Shell</h3>
+                        <p><strong>Device:</strong> Network Module</p>
+                        <p><strong>Environment:</strong> Data Centers</p>
+                        <p>Professional rack-mountable enclosure resembling network switches or patch panels. Includes proper ventilation, LED indicators, and labeling provisions. Blends seamlessly in rack environments.</p>
+                        <ul style="margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ 1U or 2U rack mount</li>
+                            <li>✓ Standard 19-inch width</li>
+                            <li>✓ Front panel Ethernet ports</li>
+                            <li>✓ Matches Cisco/HP aesthetics</li>
+                        </ul>
+                    </div>
+
+                    <div class="shell-example">
+                        <div class="shell-visual">🏥</div>
+                        <h3>Medical Equipment Shell</h3>
+                        <p><strong>Device:</strong> Custom Device</p>
+                        <p><strong>Environment:</strong> Healthcare</p>
+                        <p>Enclosure designed to resemble medical monitoring or diagnostic equipment. Clean medical-grade plastic finish with appropriate labeling and compliance markings. Designed for hospital environments.</p>
+                        <ul style="margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Medical-grade ABS plastic</li>
+                            <li>✓ Smooth, cleanable surfaces</li>
+                            <li>✓ Appropriate safety markings</li>
+                            <li>✓ Wall or cart mounting options</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESIGN PROCESS -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Design Process</h2>
+                    <p>From concept to 3D-printed prototype in 2-3 weeks</p>
+                </div>
+
+                <div class="design-process">
+                    <div class="design-step">
+                        <div class="design-step-number">1</div>
+                        <div class="design-step-content">
+                            <h4>Requirements Gathering</h4>
+                            <p>We work with you to understand the target environment, deployment scenario, and operational requirements. We'll discuss what the device should resemble, size constraints, mounting requirements, and any specific features needed.</p>
+                            <p style="margin-top: 0.5rem;"><strong>Duration:</strong> 1-2 days</p>
+                        </div>
+                    </div>
+
+                    <div class="design-step">
+                        <div class="design-step-number">2</div>
+                        <div class="design-step-content">
+                            <h4>Concept Design</h4>
+                            <p>Our designers create initial concept sketches and 3D models. We'll provide multiple design options showing different approaches to the shell design, including dimensions, material recommendations, and aesthetic variations.</p>
+                            <p style="margin-top: 0.5rem;"><strong>Duration:</strong> 3-5 days</p>
+                        </div>
+                    </div>
+
+                    <div class="design-step">
+                        <div class="design-step-number">3</div>
+                        <div class="design-step-content">
+                            <h4>Client Review & Revision</h4>
+                            <p>You review the concepts and provide feedback. We'll refine the design based on your input, adjusting aesthetics, dimensions, or functional elements. We typically go through 1-2 revision cycles.</p>
+                            <p style="margin-top: 0.5rem;"><strong>Duration:</strong> 2-3 days</p>
+                        </div>
+                    </div>
+
+                    <div class="design-step">
+                        <div class="design-step-number">4</div>
+                        <div class="design-step-content">
+                            <h4>Technical Engineering</h4>
+                            <p>We finalize the technical aspects: internal component layout, mounting points, port cutouts, ventilation, antenna placement, and cable routing. We ensure the design maintains device functionality while achieving the desired appearance.</p>
+                            <p style="margin-top: 0.5rem;"><strong>Duration:</strong> 2-3 days</p>
+                        </div>
+                    </div>
+
+                    <div class="design-step">
+                        <div class="design-step-number">5</div>
+                        <div class="design-step-content">
+                            <h4>3D Printing & Assembly</h4>
+                            <p>We 3D print the shell components using industrial-grade printers and professional materials. Parts are post-processed (sanding, painting, finishing) as needed. We assemble the device into the new shell and perform functional testing.</p>
+                            <p style="margin-top: 0.5rem;"><strong>Duration:</strong> 3-5 days</p>
+                        </div>
+                    </div>
+
+                    <div class="design-step">
+                        <div class="design-step-number">6</div>
+                        <div class="design-step-content">
+                            <h4>Quality Assurance & Delivery</h4>
+                            <p>Final testing ensures all device functions work correctly in the new shell. We verify wireless performance, thermal characteristics, port accessibility, and overall durability. Device ships with documentation and assembly instructions if disassembly is needed for travel.</p>
+                            <p style="margin-top: 0.5rem;"><strong>Duration:</strong> 1-2 days</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box info mt-4">
+                    <h4>Rush Service Available</h4>
+                    <p>Need a custom shell for an upcoming engagement? We offer expedited design and production with 7-10 day turnaround for an additional fee. Contact us to discuss your timeline.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MATERIALS & OPTIONS -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Materials & Finishing Options</h2>
+                </div>
+
+                <div class="content-section">
+                    <p>We offer a range of materials and finishing options to match your requirements for durability, aesthetics, and environment-specific needs.</p>
+
+                    <div class="materials-grid">
+                        <div class="material-card">
+                            <h4>PLA (Standard)</h4>
+                            <p><strong>Best For:</strong> Office environments, indoor use</p>
+                            <p><strong>Properties:</strong> Easy to print, good detail, biodegradable, various colors available</p>
+                            <p><strong>Finish:</strong> Matte or glossy coating options</p>
+                        </div>
+
+                        <div class="material-card">
+                            <h4>ABS (Durable)</h4>
+                            <p><strong>Best For:</strong> Impact resistance, higher temperatures</p>
+                            <p><strong>Properties:</strong> Strong, durable, heat resistant to 80°C, can be sanded and painted</p>
+                            <p><strong>Finish:</strong> Smooth surface with acetone vapor treatment</p>
+                        </div>
+
+                        <div class="material-card">
+                            <h4>PETG (Balanced)</h4>
+                            <p><strong>Best For:</strong> General purpose, chemical resistance</p>
+                            <p><strong>Properties:</strong> Strong, durable, food-safe, transparent options, moisture resistant</p>
+                            <p><strong>Finish:</strong> Semi-gloss natural finish</p>
+                        </div>
+
+                        <div class="material-card">
+                            <h4>Nylon (Industrial)</h4>
+                            <p><strong>Best For:</strong> High-stress applications, mechanical parts</p>
+                            <p><strong>Properties:</strong> Extremely strong, flexible, wear-resistant, chemical resistant</p>
+                            <p><strong>Finish:</strong> Textured surface, can be dyed</p>
+                        </div>
+
+                        <div class="material-card">
+                            <h4>TPU (Flexible)</h4>
+                            <p><strong>Best For:</strong> Shock absorption, gaskets, seals</p>
+                            <p><strong>Properties:</strong> Rubber-like flexibility, impact resistant, UV resistant</p>
+                            <p><strong>Finish:</strong> Matte rubber texture</p>
+                        </div>
+
+                        <div class="material-card">
+                            <h4>ASA (Outdoor)</h4>
+                            <p><strong>Best For:</strong> Outdoor deployments, UV exposure</p>
+                            <p><strong>Properties:</strong> Weather resistant, UV stable, temperature resistant</p>
+                            <p><strong>Finish:</strong> Matte finish, excellent color retention</p>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-5">Finishing Services</h3>
+                    <div class="grid grid-2 mt-3">
+                        <div>
+                            <h4>Surface Treatments</h4>
+                            <ul>
+                                <li><strong>Sanding & Smoothing:</strong> Remove layer lines for professional appearance</li>
+                                <li><strong>Priming & Painting:</strong> Custom color matching to specific equipment</li>
+                                <li><strong>Clear Coating:</strong> Protective clear coat for durability and UV resistance</li>
+                                <li><strong>Texture Application:</strong> Add realistic textures (brushed metal, rubber, etc.)</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4>Special Features</h4>
+                            <ul>
+                                <li><strong>Labeling & Branding:</strong> Apply realistic manufacturer labels, warning stickers, compliance marks</li>
+                                <li><strong>Weathering:</strong> Intentional aging/wear to match older equipment</li>
+                                <li><strong>Light Diffusion:</strong> Translucent sections for LED indicators</li>
+                                <li><strong>Insert Molding:</strong> Embedded metal threaded inserts for mounting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- USE CASES -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Real-World Use Cases</h2>
+                    <p>How custom shells enable successful engagements</p>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <div class="card-icon">🏢</div>
+                        <h3>Corporate Office Infiltration</h3>
+                        <p><strong>Challenge:</strong> Deploy network monitoring device in secured office environment</p>
+                        <p><strong>Solution:</strong> Network Module housed in phone charger shell left in conference room</p>
+                        <p><strong>Outcome:</strong> Device operated undetected for 2 weeks, captured credentials, mapped network topology</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🏭</div>
+                        <h3>Manufacturing Facility Assessment</h3>
+                        <p><strong>Challenge:</strong> Test IT/OT segmentation in industrial environment</p>
+                        <p><strong>Solution:</strong> Custom junction box shell matching facility infrastructure</p>
+                        <p><strong>Outcome:</strong> Device blended with building equipment, identified weak network segmentation between production and corporate networks</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🏥</div>
+                        <h3>Healthcare Security Testing</h3>
+                        <p><strong>Challenge:</strong> Assess medical device network security without alarming staff</p>
+                        <p><strong>Solution:</strong> Medical equipment aesthetic shell for Network Module</p>
+                        <p><strong>Outcome:</strong> Passed visual inspection by clinical staff, identified unencrypted patient data transmission</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🏛️</div>
+                        <h3>Government Facility Red Team</h3>
+                        <p><strong>Challenge:</strong> Long-duration monitoring requiring inconspicuous device</p>
+                        <p><strong>Solution:</strong> Custom shell resembling building automation equipment</p>
+                        <p><strong>Outcome:</strong> 6-week deployment, device discovered only during final debrief despite multiple security patrols</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONNECTION TO DEVICES -->
+        <section class="section">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Integration with PivotChip Devices</h2>
+                    <p>Our custom shells are designed specifically to work with our penetration testing device lineup, ensuring that discretion doesn't compromise functionality.</p>
+
+                    <div class="grid grid-3 mt-4">
+                        <div class="feature-box">
+                            <div class="feature-icon">📡</div>
+                            <h4>Antenna Optimization</h4>
+                            <p>Shells are designed with antenna placement in mind, ensuring Wi-Fi, cellular, and long-range communication performance is maintained or improved</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🌡️</div>
+                            <h4>Thermal Management</h4>
+                            <p>Proper ventilation designed into shells to prevent overheating during extended operations, critical for device reliability</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🔋</div>
+                            <h4>Power Considerations</h4>
+                            <p>Shells accommodate various power options (USB, battery, PoE) with proper cable routing and connection access</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">💡</div>
+                            <h4>LED Indicators</h4>
+                            <p>Status LEDs can be visible (for authorized access) or hidden (for covert operation) based on engagement requirements</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🔌</div>
+                            <h4>Port Access</h4>
+                            <p>All necessary ports (USB, Ethernet, power) remain accessible while maintaining the disguise aesthetic</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🛡️</div>
+                            <h4>Device Protection</h4>
+                            <p>Shells provide physical protection against bumps, drops, and environmental factors while maintaining operational access</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box warning mt-5">
+                        <h4>Device Compatibility Guarantee</h4>
+                        <p>All custom shells are designed and tested with the actual devices to ensure perfect fit and maintained functionality. If you're using our devices in your engagement, we guarantee the shell will work correctly or we'll redesign it at no additional cost.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING & ORDERING -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Pricing & Ordering</h2>
+                </div>
+
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Standard Shells</h3>
+                        <p style="font-size: 2rem; color: var(--primary-color); font-weight: bold; margin: var(--spacing-md) 0;">$350</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Pre-designed shell models</li>
+                            <li>✓ Single device enclosure</li>
+                            <li>✓ Standard materials (PLA/PETG)</li>
+                            <li>✓ Basic color options</li>
+                            <li>✓ 7-10 day production</li>
+                        </ul>
+                        <p style="margin-top: var(--spacing-md); font-size: 0.9rem; color: var(--text-secondary);">Perfect for common environments (office, conference, generic equipment)</p>
+                    </div>
+
+                    <div class="card" style="border: 2px solid var(--primary-color);">
+                        <div style="background: var(--primary-color); color: white; padding: 0.25rem 0.75rem; border-radius: 4px; display: inline-block; margin-bottom: var(--spacing-sm); font-size: 0.85rem; font-weight: 600;">MOST POPULAR</div>
+                        <h3>Custom Design</h3>
+                        <p style="font-size: 2rem; color: var(--primary-color); font-weight: bold; margin: var(--spacing-md) 0;">$1,200</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Fully custom design</li>
+                            <li>✓ Environment-specific aesthetics</li>
+                            <li>✓ Premium materials available</li>
+                            <li>✓ Custom color matching</li>
+                            <li>✓ Finishing services included</li>
+                            <li>✓ 2-3 week production</li>
+                        </ul>
+                        <p style="margin-top: var(--spacing-md); font-size: 0.9rem; color: var(--text-secondary);">Tailored specifically to your target environment and device requirements</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Enterprise Package</h3>
+                        <p style="font-size: 2rem; color: var(--primary-color); font-weight: bold; margin: var(--spacing-md) 0;">Contact Us</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Multiple custom designs</li>
+                            <li>✓ Design library creation</li>
+                            <li>✓ Priority production queue</li>
+                            <li>✓ Dedicated design consultation</li>
+                            <li>✓ Volume discounts</li>
+                            <li>✓ Annual design retainer options</li>
+                        </ul>
+                        <p style="margin-top: var(--spacing-md); font-size: 0.9rem; color: var(--text-secondary);">For security firms running multiple engagements or organizations with ongoing red team programs</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box info mt-5">
+                    <h4>Package Discounts</h4>
+                    <p>Ordering shells for multiple devices or as part of a red team engagement?</p>
+                    <ul class="mt-2">
+                        <li><strong>Device + Shell Bundle:</strong> Save 15% when ordering a device with custom shell</li>
+                        <li><strong>Red Team Integration:</strong> Custom shells included in comprehensive red team engagements</li>
+                        <li><strong>Volume Pricing:</strong> Discounts available for 3+ shells (10% off) or 5+ shells (20% off)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ETHICAL USE -->
+        <section class="section">
+            <div class="container">
+                <div class="highlight-box warning">
+                    <h3>⚖️ Ethical Use Requirements</h3>
+                    <p>Custom shell design services are provided exclusively for authorized security testing. All orders require:</p>
+                    <ul class="mt-2">
+                        <li>Proof of authorized engagement (statement of work, authorization letter, or contract)</li>
+                        <li>Professional credentials (OSCP, GPEN, CEH, or equivalent certification, OR employment by recognized security firm)</li>
+                        <li>Agreement to our <a href="ethical-use-policy.html">Ethical Use Policy</a></li>
+                        <li>Clear description of intended use case and target environment</li>
+                    </ul>
+                    <p class="mt-3">We reserve the right to refuse service if we cannot verify the legitimacy of the intended use. Custom shells designed to impersonate emergency services, law enforcement equipment, or life-safety systems will not be provided.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container text-center">
+                <h2>Ready to Design Your Custom Shell?</h2>
+                <p style="font-size: var(--font-size-large); color: var(--text-secondary); max-width: 700px; margin: 0 auto var(--spacing-xl);">
+                    Contact us to discuss your engagement requirements and target environment. We'll help design the perfect disguise for your penetration testing devices.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="contact.html" class="btn btn-primary">Request Custom Shell Quote</a>
+                    <a href="pentesting-devices.html" class="btn btn-outline">View Our Devices</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About PivotChip</h3>
+                <p>We are a leading cybersecurity firm dedicated to protecting organizations through ethical security practices and cutting-edge solutions.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="ethical-use-policy.html">Ethical Use Policy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <a href="service-red-teaming.html">Red Teaming</a>
+                <a href="service-security-audit.html">Security Audits</a>
+                <a href="service-cybersecurity-training.html">Cybersecurity Training</a>
+                <a href="service-custom-shells.html">Custom Device Shells</a>
+                <a href="service-automated-reporting.html">Automated Reporting</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>123 Security Street<br>
+                   Cyber City, CC 12345</p>
+                <p>Phone: (555) 123-4567<br>
+                   Email: info@pivotchip.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 PivotChip Security inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>

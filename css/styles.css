@@ -321,7 +321,7 @@ a:hover {
 .hero {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
     color: var(--background-white);
-    padding: var(--spacing-3xl) 0;
+    padding: var(--spacing-xl) 0;
     text-align: center;
 }
 

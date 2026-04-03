@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/images/assets/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contextual AI AppSec Review - map your application's real inputs and data flows, then feed structured evidence to AI for accurate, actionable security findings.">
+    <title>Contextual AI AppSec Review - PivotChip Security inc.</title>
+ 
+    <link rel="stylesheet" href="css/styles.css">
+ 
+    <style>
+        /* Process flow specific to this page */
+        .process-step {
+            display: flex;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+            align-items: flex-start;
+        }
+ 
+        .process-step-number {
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+ 
+        .process-step-body h4 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-sm);
+        }
+ 
+        .process-step-body p {
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+ 
+        .process-step-body ul {
+            margin: var(--spacing-sm) 0 0 var(--spacing-lg);
+            color: var(--text-primary);
+        }
+ 
+        .process-step-body ul li {
+            margin-bottom: 4px;
+        }
+ 
+        .process-connector {
+            width: 3px;
+            height: 36px;
+            background: var(--primary-color);
+            margin-left: 24px;
+            opacity: 0.6;
+        }
+ 
+        .output-tag {
+            display: inline-block;
+            background: var(--background-light);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-top: var(--spacing-sm);
+        }
+ 
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: var(--spacing-lg);
+            font-size: 0.95rem;
+            border: 2px solid #ccc;
+            background: white;
+        }
+ 
+        .comparison-table th {
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 700;
+            border: 1px solid #bbb;
+        }
+ 
+        .comparison-table th:first-child {
+            background: var(--primary-color);
+            color: white;
+            width: 28%;
+        }
+ 
+        .comparison-table th.col-generic {
+            background: var(--primary-color);
+            color: white;
+        }
+ 
+        .comparison-table th.col-contextual {
+            background: var(--primary-color);
+            color: white;
+        }
+ 
+        .comparison-table td {
+            padding: 11px 18px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+ 
+        .comparison-table tr:nth-child(even) td {
+            background: #f9f9f9;
+        }
+ 
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: #333;
+            background: #edf2f7 !important;
+            border-right: 2px solid #bbb;
+        }
+ 
+        .comparison-table td.col-generic {
+            color: #555;
+        }
+ 
+        .comparison-table td.col-contextual {
+            color: #1a3a5c;
+            font-weight: 600;
+        }
+ 
+        .process-track {
+            border-left: 4px solid var(--primary-color);
+            padding-left: var(--spacing-xl);
+            margin-left: 24px;
+        }
+ 
+        .process-track .process-step {
+            position: relative;
+            margin-bottom: var(--spacing-2xl);
+        }
+ 
+        .process-track .process-step:last-child {
+            margin-bottom: 0;
+        }
+ 
+        .process-track .process-step-number {
+            position: absolute;
+            left: calc(-1 * var(--spacing-xl) - 26px);
+        }
+            border-left: 3px solid var(--primary-color);
+            padding: var(--spacing-md) var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            background: var(--background-white);
+        }
+ 
+        .triage-question h4 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+ 
+        .triage-question p {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+ 
+    <!-- HEADER & NAVIGATION -->
+    <header class="header">
+        <div class="header-container">
+            <img src="/images/assets/logo.png" width="70px" style="margin-right:20px">
+            <a href="index.html" class="logo">PivotChip</a>
+ 
+            <nav>
+                <ul class="nav-menu">
+                    <li><a style="text-align: center" href="index.html">Home</a></li>
+                    <li><a style="text-align: center" href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a style="text-align: center" href="services.html" class="dropdown-toggle">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="service-red-teaming.html">Red Teaming</a></li>
+                            <li><a href="service-custom-shells.html">Custom Device Shells</a></li>
+							<li><a href="service-ai-appsec-review.html">AI AppSec Review Process</a></li>
+                            <li><a href="service-security-audit.html">Security Audits</a></li>
+                            <li><a href="service-cybersecurity-training.html">Cybersecurity Training</a></li>
+                        </ul>
+                    </li>
+                    <li><a style="text-align: center" href="pentesting-devices.html">Pentesting Devices</a></li>
+                    <li><a style="text-align: center" href="service-automated-reporting.html">Automated Reporting</a></li>
+                    <li><a style="text-align: center" href="use-cases.html">Use Cases</a></li>
+                    <li><a style="text-align: center" href="ethical-use-policy.html">Ethical Use Policy</a></li>
+                    <li><a style="text-align: center" href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+ 
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+    </header>
+ 
+    <main class="main-content">
+ 
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container">
+                <h1>Contextual AI AppSec Review</h1>
+                <p>Map your application's real attack surface first. Then give that evidence to AI - instead of hoping it guesses correctly from raw code.</p>
+            </div>
+        </section>
+ 
+        <!-- THE PROBLEM -->
+        <section class="section">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Why Generic AI Scans Fall Short</h2>
+                    <p>Feeding a codebase into an LLM and asking it to find vulnerabilities produces findings that are technically plausible but contextually wrong. The model doesn't know which inputs are stored, which routes are public-facing, or what your secrets are named - so it guesses. Most of what it returns is noise, and the real issues get buried in it.</p>
+ 
+                    <p>This process allows to minimize false positives. Before any AI analysis runs, we use custom scripts to build a structured, factual picture of what your application actually accepts, stores, and exposes. That evidence becomes the model's working context - not the source code in full, but a precise inventory of what matters for security.</p>
+ 
+                    <div class="highlight-box info">
+                        <h4>What changes with structured context</h4>
+                        <p>When AI is given verified data about specific inputs, confirmed data flows, and mapped configuration exposure, it can reason about actual paths rather than theoretical ones. Findings reference real code locations. False positives drop significantly. Critical issues surface clearly instead of being diluted by generic warnings.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- COMPARISON -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container">
+                <h2>Generic Scan vs. Contextual Review</h2>
+                <p style="color: var(--text-primary); margin-bottom: var(--spacing-lg);">The same AI model produces very different results depending on what you give it.</p>
+ 
+                <div style="overflow-x: auto;">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th class="col-contextual">Inpute Type</th>
+                                <th class="col-contextual">Generic AI Scan</th>
+                                <th class="col-contextual">Contextual AI Review</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Input to the model</td>
+                                <td class="col-generic">Raw source code or file paths</td>
+                                <td class="col-contextual">Structured inventory of inputs, flows, and config exposure</td>
+                            </tr>
+                            <tr>
+                                <td>Data flow awareness</td>
+                                <td class="col-generic">Inferred - often incorrect</td>
+                                <td class="col-contextual">Verified programmatically before analysis</td>
+                            </tr>
+                            <tr>
+                                <td>Finding specificity</td>
+                                <td class="col-generic">Pattern-matched from training data</td>
+                                <td class="col-contextual">Tied to actual code locations and variable names</td>
+                            </tr>
+                            <tr>
+                                <td>False positive rate</td>
+                                <td class="col-generic">High - validation context is missing</td>
+                                <td class="col-contextual">Lower - model sees what's actually adjacent to each input</td>
+                            </tr>
+                            <tr>
+                                <td>Secret detection</td>
+                                <td class="col-generic">Pattern matching on naming conventions</td>
+                                <td class="col-contextual">Pattern matching plus runtime exposure analysis</td>
+                            </tr>
+                            <tr>
+                                <td>Review vectors</td>
+                                <td class="col-generic">Whatever the model prioritizes</td>
+                                <td class="col-contextual">OWASP Top 10 applied one at a time to structured data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- METHODOLOGY -->
+        <section class="section">
+            <div class="container">
+                <h2>How It Works</h2>
+                <p style="color: var(--text-primary); margin-bottom: var(--spacing-2xl);">Five sequential steps, each building on the output of the previous one. The first four are programmatic. The fifth is where AI analysis runs.</p>
+ 
+                <div class="process-track">
+ 
+                <!-- STEP 1 -->
+                <div class="process-step">
+                    <div class="process-step-number">1</div>
+                    <div class="process-step-body">
+                        <h4>Build the ground truth</h4>
+                        <p>Custom scripts parse your backend schemas - Prisma config files, raw SQL migrations - to produce a master list of every defined database column. A separate scan reads the source code for every external data entry point: REST route parameters, JSON request bodies, GraphQL resolver arguments, and incoming webhooks.</p>
+                        <p>The result is two inventories: what the database expects, and what the application accepts from the outside world.</p>
+                        <span class="output-tag">→ Output: database column list, external input list</span>
+                    </div>
+                </div>
+ 
+                <!-- STEP 2 -->
+                <div class="process-step">
+                    <div class="process-step-number">2</div>
+                    <div class="process-step-body">
+                        <h4>Classify every input</h4>
+                        <p>The two inventories are cross-referenced. Each external input is compared against the column list and placed into one of two categories:</p>
+                        <ul>
+                            <li><strong>Persistent</strong> - matches a database column; data this application intends to store. Injection attacks and unauthorized writes live here.</li>
+                            <li><strong>Volatile</strong> - no column match; data consumed in transit or reflected back to the client. Reflected vulnerabilities live here.</li>
+                        </ul>
+                        <p>Knowing which category an input belongs to means the AI can be asked the right questions about it rather than a blanket query that treats all inputs the same way.</p>
+                        <span class="output-tag">→ Output: classified input inventory</span>
+                    </div>
+                </div>
+ 
+                <!-- STEP 3 -->
+                <div class="process-step">
+                    <div class="process-step-number">3</div>
+                    <div class="process-step-body">
+                        <h4>Verify the data flows</h4>
+                        <p>Classification alone is not enough. For each identified input, the tooling extracts 30–40 lines of surrounding code - enough to see what actually happens to the value after it arrives. Pattern matching then looks for concrete storage operations within that window: ORM queries, raw SQL adapters, Redis writes, Kafka producer calls.</p>
+                        <p>Two discrepancies are flagged automatically:</p>
+                        <ul>
+                            <li>A persistent input with no storage operation in its execution window</li>
+                            <li>A volatile input that appears in a database write</li>
+                        </ul>
+                        <p>The goal is to replace assumptions about what the code does with verification of what it actually does.</p>
+                        <span class="output-tag">→ Output: verified data flow map with code context</span>
+                    </div>
+                </div>
+ 
+                <!-- STEP 4 -->
+                <div class="process-step">
+                    <div class="process-step-number">4</div>
+                    <div class="process-step-body">
+                        <h4>Map the configuration surface</h4>
+                        <p>Pattern matching scans for embedded environment variables, Vault PKI paths, hardware security module references, and financial credentials. Each extracted value is assessed for exposure risk based on naming conventions and where it ends up at runtime.</p>
+                        <p>Two categories receive immediate flags:</p>
+                        <ul>
+                            <li>Framework-specific variables with client-side prefixes (e.g., <code>NEXT_PUBLIC_</code>) that contain backend secrets</li>
+                            <li>Hardcoded bearer strings or authentication tokens that appear directly in source without referencing an environment variable</li>
+                        </ul>
+                        <p>Hardcoded secrets survive credential rotation and persist in version history. This step surfaces them explicitly before AI analysis begins.</p>
+                        <span class="output-tag">→ Output: configuration exposure inventory</span>
+                    </div>
+                </div>
+ 
+                <!-- STEP 5 -->
+                <div class="process-step">
+                    <div class="process-step-number">5</div>
+                    <div class="process-step-body">
+                        <h4>Run structured AI analysis</h4>
+                        <p>The three datasets - classified inputs, verified data flows, configuration exposure - become the model's working context. They are fed in logical chunks sized to the model's context window. The model does not receive the full codebase.</p>
+                        <p>Analysis runs against specific review vectors rather than a broad "find vulnerabilities" prompt. For web applications, this means the OWASP Top 10 is applied one category at a time: broken access control, injection, insecure design, and so on. Each pass asks the model to reason about the structured data against that specific threat class.</p>
+                        <p>Findings produced this way are tied to actual code locations, actual data flows, and actual configuration exposures. Each one can be followed from the entry point to the flagged destination using the extracted code context.</p>
+                        <span class="output-tag">→ Output: finding report with code locations and data flow evidence</span>
+                    </div>
+                </div>
+ 
+                </div><!-- end process-track -->
+            </div>
+        </section>
+ 
+        <!-- TRIAGE -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container">
+ 
+                <div class="content-section">
+                    <h2>Reading the Output</h2>
+                    <p>The analysis will surface real problems. It will also surface findings that look alarming but aren't - because validation logic lives in middleware outside the extracted window, or because the AI reasoned incorrectly from incomplete information. Three questions sort them out.</p>
+ 
+                    <div style="margin-top: var(--spacing-xl);">
+                        <div class="triage-question">
+                            <h4>Does the data path actually connect?</h4>
+                            <p>Trace the input from the entry point to the flagged destination. If a condition, type check, validation call, or permission gate sits between them, the finding needs further investigation before it can be confirmed.</p>
+                        </div>
+ 
+                        <div class="triage-question">
+                            <h4>Is the path reachable without authentication?</h4>
+                            <p>A vulnerability on an admin-only endpoint is serious. The same vulnerability on a public webhook is critical. Findings behind specific permission requirements carry lower urgency than findings on unauthenticated routes.</p>
+                        </div>
+ 
+                        <div class="triage-question">
+                            <h4>Does the fix already exist elsewhere in the codebase?</h4>
+                            <p>Check how similar inputs on similar routes are handled. If the flagged instance is the outlier, it is a real gap. If it matches how everything else is handled, the analysis likely missed shared handling code - a false positive.</p>
+                        </div>
+                    </div>
+
+                </div>
+ 
+                <div class="content-section" style="margin-top: var(--spacing-2xl);">
+                    <h2>What a Real Finding Looks Like</h2>
+                    <p>A confirmed finding has three characteristics. Any finding missing one of these warrants closer inspection before action.</p>
+ 
+                    <div class="grid grid-3" style="margin-top: var(--spacing-xl);">
+                        <div class="card">
+                            <h3>Specific location</h3>
+                            <p style="color: var(--text-primary)">The finding names the file, function, or route where the input enters the application. Not a class of vulnerability in the abstract - a concrete place in the code.</p>
+                        </div>
+ 
+                        <div class="card">
+                            <h3>Confirmed data path</h3>
+                            <p style="color: var(--text-primary)">The value can be traced from its entry point to the flagged destination using the extracted code context, with nothing between them that inspects, transforms, or restricts it.</p>
+                        </div>
+ 
+                        <div class="card">
+                            <h3>No contradicting code nearby</h3>
+                            <p style="color: var(--text-primary)">The surrounding 30–40 lines contain no validation calls, middleware references, or type checks that would handle the input before it reaches the vulnerable operation.</p>
+                        </div>
+                    </div>
+                </div>
+ 
+            </div>
+        </section>
+ 
+        <!-- SCOPE -->
+        <section class="section">
+            <div class="container">
+                <h2>What This Process Covers</h2>
+                <p style="color: var(--text-primary); margin-bottom: var(--spacing-xl);">The methodology is framework-agnostic. It works wherever the underlying patterns exist in the source.</p>
+ 
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Input sources</h3>
+                        <ul style="color: var(--text-primary); line-height: 2;">
+                            <li>REST route parameters</li>
+                            <li>JSON request bodies</li>
+                            <li>GraphQL resolver arguments</li>
+                            <li>Webhook payloads</li>
+                            <li>Query strings and headers</li>
+                        </ul>
+                    </div>
+ 
+                    <div class="card">
+                        <h3>Storage targets</h3>
+                        <ul style="color: var(--text-primary); line-height: 2;">
+                            <li>ORM queries (Prisma, Sequelize, TypeORM)</li>
+                            <li>Raw SQL adapters</li>
+                            <li>Redis writes</li>
+                            <li>Kafka producer calls</li>
+                            <li>File system writes</li>
+                        </ul>
+                    </div>
+ 
+                    <div class="card">
+                        <h3>Configuration types</h3>
+                        <ul style="color: var(--text-primary); line-height: 2;">
+                            <li>Environment variables</li>
+                            <li>Vault PKI paths</li>
+                            <li>HSM references</li>
+                            <li>Financial credentials</li>
+                            <li>Hardcoded auth tokens</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+ 
+        <!-- CTA -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container text-center">
+                <h2>Start with a Mapping Session</h2>
+                <p style="font-size: var(--font-size-large); color: var(--text-primary); max-width: 650px; margin: 0 auto var(--spacing-xl);">
+                    We walk you through the process the first time, build the necessary automation for your stack, and establish a reusable review workflow your team can run on each release.
+                </p>
+                <a href="contact.html" class="btn btn-primary">Schedule a Mapping Session</a>
+            </div>
+        </section>
+ 
+    </main>
+ 
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About PivotChip</h3>
+                <p>We develop devices and training for practical and customised solutions designed for security professionals to test and enhance security.</p>
+            </div>
+ 
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="ethical-use-policy.html">Ethical Use Policy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+ 
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <a href="service-red-teaming.html">Red Teaming</a>
+                <a href="service-custom-shells.html">Custom Device Shells</a>
+                <a href="service-security-audit.html">Security Audits</a>
+                <a href="service-cybersecurity-training.html">Cybersecurity Training</a>
+                <a href="service-automated-reporting.html">Automated Reporting</a>
+            </div>
+ 
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b8d1d6ded7f8c8d1ced7ccdbd0d1c896dbd9">[email&#160;protected]</a></p>
+            </div>
+        </div>
+ 
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 PivotChip Security inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+ 
+    <script src="js/main.js"></script>
+ 
+</body>
+</html>
+ 

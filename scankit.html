@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="icon" type="image/png" href="/images/assets/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ScanKit is a static-analysis pipeline that inventories every external input to your application, ranks the risks, generates tests, and feeds AI-assisted review - turning your attack surface into one managed, explainable dataset.">
+    <title>ScanKit - PivotChip Security inc.</title>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Image modal styles (shared with use-cases page) -->
+    <link rel="stylesheet" href="css/use-cases.css">
+
+    <!-- Page-specific styles -->
+    <style>
+        .pipeline {
+            position: relative;
+            max-width: 880px;
+            margin: 0 auto;
+        }
+        .pipeline-step {
+            display: flex;
+            gap: 1.5rem;
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+        .pipeline-step:last-child { padding-bottom: 0; }
+        .pipeline-step::before {
+            content: '';
+            position: absolute;
+            left: 27px;
+            top: 56px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(var(--accent-color), rgba(52, 152, 219, 0.15));
+        }
+        .pipeline-step:last-child::before { display: none; }
+        .step-number {
+            flex: 0 0 56px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.35);
+        }
+        .step-content {
+            flex: 1;
+            background: var(--background-white);
+            padding: 1.25rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid var(--accent-color);
+        }
+        .step-content h3 { margin-top: 0; margin-bottom: 0.5rem; }
+        .step-content p { margin-bottom: 0; }
+        .step-benefit {
+            margin-top: 0.75rem;
+            padding: 0.6rem 0.9rem;
+            background: rgba(46, 204, 113, 0.08);
+            border-left: 3px solid #2ecc71;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .step-benefit strong { color: #27ae60; }
+
+        /* Normalize image height so captions align across the row */
+        .scankit-gallery .use-case-image img {
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: #fff;
+            padding: calc(var(--spacing-xl) * 1.5);
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+        .cta-box h2 { color: #fff; margin-top: 0; }
+        .cta-box p { color: var(--background-light); font-size: var(--font-size-large); max-width: 700px; margin: 0 auto var(--spacing-lg); }
+
+        @media (max-width: 768px) {
+            .pipeline-step { gap: 1rem; }
+            .step-number { flex-basis: 44px; width: 44px; height: 44px; font-size: 1.2rem; }
+            .pipeline-step::before { left: 21px; top: 44px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="header">
+        <div class="header-container">
+			<img src="/images/assets/logo.png" width="70px" style="margin-right:20px">
+            <a href="index.html" class="logo">PivotChip</a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a style="text-align: center" href="index.html">Home</a></li>
+                    <li><a style="text-align: center" href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a style="text-align: center" href="services.html" class="dropdown-toggle">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="service-red-teaming.html">Red Teaming</a></li>
+                            <li><a href="service-custom-shells.html">Custom Device Shells</a></li>
+							<li><a href="service-ai-appsec-review.html">AI AppSec Review Process</a></li>
+                            <li><a href="service-security-audit.html">Security Audits</a></li>
+                            <li><a href="service-cybersecurity-training.html">Cybersecurity Training</a></li>
+                        </ul>
+                    </li>
+                    <li><a style="text-align: center" href="pentesting-devices.html">Pentesting Devices</a></li>
+                    <li><a style="text-align: center" href="service-automated-reporting.html">Automated Reporting</a></li>
+                    <li><a style="text-align: center" href="scankit.html">ScanKit</a></li>
+                    <li><a style="text-align: center" href="use-cases.html">Use Cases</a></li>
+                    <li><a style="text-align: center" href="ethical-use-policy.html">Ethical Use Policy</a></li>
+                    <li><a style="text-align: center" href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- PAGE HERO -->
+        <section class="hero">
+            <div class="container">
+                <h1>ScanKit</h1>
+                <p>Static analysis that inventories every external input to your application, ranks the risks, generates tests, and feeds AI-assisted review.</p>
+            </div>
+        </section>
+
+        <!-- OVERVIEW -->
+        <section class="section">
+            <div class="container">
+                <div class="content-section">
+                    <h2>One managed, explainable dataset for your attack surface</h2>
+                    <p>ScanKit is a static-analysis pipeline that scans your application code, inventories every external input, ranks the risks, generates tests for them, and feeds AI-assisted review. Request parameters, headers, cookies, webhooks, environment variables, form fields, and datastore reads all land in a single correlated report - so your team gets one ranked worklist instead of a wall of equally-weighted alerts.</p>
+
+                    <div class="highlight-box info">
+                        <h4>Why ScanKit matters</h4>
+                        <p>Security review only works when every number is defensible. ScanKit attaches transparent reasoning to each finding, cross-checks inputs across independent scanners, and confirms risk against a live system - so a "critical" score is demonstrated, not estimated.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+		
+		<!-- VISUAL PLACEHOLDERS -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container">
+                <div class="section-title">
+                    <h2>What you get</h2>
+                    <p>Previews of the reports ScanKit produces - real screenshots to follow</p>
+                </div>
+
+                <div class="grid grid-3 scankit-gallery">
+                    <div class="use-case-image" data-image-modal="scankit-inventory.png">
+                        <img src="images/assets/scankit-inventory.png" alt="Ranked Inventory Report - every external input, scored and reasoned">
+                        <div class="image-overlay">
+                            <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                        </div>
+                        <p class="image-caption">A single correlated report of every external input, ranked by priority.</p>
+                    </div>
+                    <div class="use-case-image" data-image-modal="scankit-diff.png">
+                        <img src="images/assets/scankit-diff.png" alt="Version Diff View - risks introduced, removed, or modified">
+                        <div class="image-overlay">
+                            <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                        </div>
+                        <p class="image-caption">See exactly what a patch changed in your attack surface.</p>
+                    </div>
+                    <div class="use-case-image" data-image-modal="scankit-ai-review.png">
+                        <img src="images/assets/scankit-ai-review.png" alt="AI Review Pane - sourced fix guidance per finding">
+                        <div class="image-overlay">
+                            <span class="image-zoom-icon">🔍 Click to enlarge</span>
+                        </div>
+                        <p class="image-caption">Focused explanations of why a path is risky and how to fix it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS - PIPELINE -->
+        <section class="section" style="background-color: var(--background-light);">
+            <div class="container">
+                <div class="section-title">
+                    <h2>How it works</h2>
+                    <p>A seven-stage pipeline from raw code to a defensible, version-tracked report</p>
+                </div>
+
+                <div class="pipeline">
+
+                    <div class="pipeline-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Scan the latest version of your app</h3>
+                            <p>Run a full external-input scan against the current codebase to build a complete inventory of every entry point: request parameters, headers, cookies, webhooks, environment variables, form fields, and datastore reads.</p>
+                            <div class="step-benefit"><strong>Result:</strong> a complete map of every way data enters your application.</div>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Inventory external risks, ranked by priority</h3>
+                            <p>Every input lands in a single correlated report, tagged with a transparent priority score, risk level, and aggravating factors - such as data reaching the database - with the reasoning attached to each item.</p>
+                            <div class="step-benefit"><strong>Result:</strong> a single ranked worklist where every number is defensible to anyone who asks why.</div>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Backed by multiple analyses</h3>
+                            <p>Independent scanners cross-check every input, and each finding is tagged with how many confirmed it across multiple reports.</p>
+                            <div class="step-benefit"><strong>Result:</strong> focus effort on high-confidence risks and defend why something ranked where it did, instead of weighing every alert equally.</div>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Generate tests and connect to your tools</h3>
+                            <p>Each finding becomes an executable test, with web routes resolved from your code, that plugs into your existing security pipeline.</p>
+                            <div class="step-benefit"><strong>Result:</strong> verify risk against a live target and keep findings within the pipeline you already run.</div>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Confirm risk against a live system</h3>
+                            <p>Run the generated tests against a running target and let confirmed-exploitable results raise the finding's priority.</p>
+                            <div class="step-benefit"><strong>Result:</strong> prioritize remediation backed by proof - a "critical" score means demonstrated, not estimated.</div>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h3>Review risky code with AI, guided by explanations</h3>
+                            <p>Each finding is a normalized record that carries its code context and risk tags, so you can hand a specific risky path to an AI reviewer and get a focused explanation of why it's dangerous and how to fix it.</p>
+                            <div class="step-benefit"><strong>Result:</strong> steer every code review with concrete, sourced reasoning instead of guessing where to look.</div>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <h3>Compare two versions to see what a patch changed</h3>
+                            <p>Scan two versions of the app and diff the reports to see exactly which external risks were introduced, removed, or modified by a patch.</p>
+                            <div class="step-benefit"><strong>Result:</strong> treat every release as a measurable delta in your attack surface, with a clear answer to what new inputs it introduced and whether they are safe.</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE DETAIL GRID -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Built for defensible security review</h2>
+                    <p>Every feature exists to make a finding explainable, verifiable, or measurable</p>
+                </div>
+
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Transparent priority scores</h3>
+                        <p>Each input is tagged with a priority score, a risk level, and aggravating factors - with the reasoning attached. No black-box ranking.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Multi-scanner confidence</h3>
+                        <p>Independent analyses cross-check every input, and findings are tagged by how many scanners confirmed them, so you weight effort by confidence.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Tests from your code</h3>
+                        <p>Findings become executable tests with web routes resolved straight from the codebase, ready to run against a live target.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Confirmed, not estimated</h3>
+                        <p>Live-system confirmation lets demonstrated-exploitable findings raise their own priority - proof backs every critical score.</p>
+                    </div>
+                    <div class="card">
+                        <h3>AI review with sources</h3>
+                        <p>Hand an AI reviewer a specific risky path and get focused, sourced guidance on why it's dangerous and how to fix it.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Release-as-a-delta</h3>
+                        <p>Diff two scans of your app to see exactly which external risks a patch introduced, removed, or modified.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="container">
+                <div class="cta-box">
+                    <h2>Turn your attack surface into one managed dataset</h2>
+                    <p>See ScanKit rank your application's external inputs into a single, defensible, version-tracked report. Contact us to run it against your codebase.</p>
+                    <a href="contact.html" class="btn btn-primary">Request a Scan</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About PivotChip</h3>
+                <p>We develop devices and training for practical and customised solutions designed for security professionals to test and enhance security.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="ethical-use-policy.html">Ethical Use Policy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <a href="service-red-teaming.html">Red Teaming</a>
+                <a href="service-custom-shells.html">Custom Device Shells</a>
+                <a href="service-security-audit.html">Security Audits</a>
+                <a href="service-cybersecurity-training.html">Cybersecurity Training</a>
+                <a href="service-automated-reporting.html">Automated Reporting</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@pivotchip.ca</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 PivotChip Security inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+    <!-- Image modal (shared with use-cases page) -->
+    <script src="js/use-cases.js"></script>
+
+</body>
+</html>

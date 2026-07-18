@@ -539,12 +539,52 @@
   }
   .modal-pill .pill-arrow{ color:var(--modal-accent,var(--stamp-a)); margin-right:3px; }
 
+  /* ===== summary strip ===== */
+  .summary-strip{
+    display:flex; flex-wrap:wrap; gap:0;
+    margin:0 0 28px;
+    border:1px solid var(--border-color);
+    border-radius:var(--border-radius);
+    overflow:hidden;
+    background:var(--background-white);
+    box-shadow:0 1px 4px rgba(0,0,0,0.04);
+  }
+  .summary-tile{
+    flex:1 1 0; min-width:130px;
+    padding:16px 14px 14px;
+    border-right:1px solid var(--border-color);
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    text-align:center;
+    position:relative;
+  }
+  .summary-tile:last-child{ border-right:none; }
+  .summary-tile::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:3px;
+    background:var(--tile-color,var(--accent-color));
+    opacity:.7;
+  }
+  .summary-num{
+    font-family:var(--font-heading); font-weight:700;
+    font-size:clamp(22px,3.5vw,30px); line-height:1;
+    color:var(--tile-color,var(--primary-color));
+  }
+  .summary-label{
+    font-family:var(--font-mono); font-size:10px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.06em;
+    color:var(--text-secondary); line-height:1.4;
+  }
+  .summary-sub{
+    font-family:var(--font-primary); font-size:10.5px;
+    color:var(--text-light); line-height:1.4; margin-top:2px;
+  }
+
   /* ===== responsive ===== */
   @media (max-width:960px){
     .layout-wrapper { grid-template-columns: 1fr; grid-template-rows: auto; column-gap: 0; row-gap: 32px; }
     .main-stages { display: block; }
     .sidebar { grid-column: 1; grid-row: auto; display: flex; flex-direction: column; border-left: none; border-top: 2px dashed var(--border-color); padding-left: 0; padding-top: 32px; }
     .sidebar-cell { grid-row: auto; }
+    .summary-tile { flex:1 1 45%; }
   }
   @media (max-width:720px){
     body{ padding:22px 10px 40px; }
@@ -623,6 +663,45 @@
 </div>
 </header>
 
+<!-- ===== summary strip ===== -->
+<div class="summary-strip">
+  <div class="summary-tile" style="--tile-color:var(--stamp-a)">
+    <div class="summary-num">9</div>
+    <div class="summary-label">Languages</div>
+    <div class="summary-sub">Python · TS/JS · PHP · Go · Java · C# · Ruby · Rust · C/C++</div>
+  </div>
+  <div class="summary-tile" style="--tile-color:var(--stamp-a)">
+    <div class="summary-num">310+</div>
+    <div class="summary-label">Detectors</div>
+    <div class="summary-sub">191 single-line + 119 multi-line CWE patterns</div>
+  </div>
+  <div class="summary-tile" style="--tile-color:var(--stamp-a)">
+    <div class="summary-num">70+</div>
+    <div class="summary-label">CWE Classes</div>
+    <div class="summary-sub">CWE-22 · 78 · 79 · 89 · 119 · 444 · 502 · 918 · 1104 · 1336</div>
+  </div>
+  <div class="summary-tile" style="--tile-color:var(--stamp-a)">
+    <div class="summary-num">10+10</div>
+    <div class="summary-label">OWASP Coverage</div>
+    <div class="summary-sub">Top 10 (2021) + LLM Top 10 (2025)</div>
+  </div>
+  <div class="summary-tile" style="--tile-color:var(--stamp-b)">
+    <div class="summary-num">7</div>
+    <div class="summary-label">Custom Test Suites</div>
+    <div class="summary-sub">Nuclei · Fuzzers · Authz · Cookie · DOM · Race · AI Probes</div>
+  </div>
+  <div class="summary-tile" style="--tile-color:var(--stamp-c)">
+    <div class="summary-num">76</div>
+    <div class="summary-label">AI / LLM Families</div>
+    <div class="summary-sub">Prompt injection · supply chain · excess agency · ...</div>
+  </div>
+  <div class="summary-tile" style="--tile-color:var(--stamp-c)">
+    <div class="summary-num">2</div>
+    <div class="summary-label">SAST Bridges</div>
+    <div class="summary-sub">Semgrep + CodeQL (QL model generation)</div>
+  </div>
+</div>
+
 <div class="layout-wrapper">
   <!-- Left/Main Column: Stages & Transitions -->
   <div class="main-stages">
@@ -645,13 +724,13 @@
 
     <div class="phase">The raw codebase is ingested into the system. The platform automatically identifies the frameworks, languages, and architecture patterns in use to prepare for specialized analysis.</div><div class="card-grid cols-a">
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-target"></use></svg></div><p class="card-title">Input Exposure Mapping</p><p class="card-sub">Maps every point untrusted data enters the system</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-lock"></use></svg></div><p class="card-title">Secrets &amp; Config Scan</p><p class="card-sub">Finds hardcoded keys, tokens &amp; insecure settings</p></div></div>
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-lock"></use></svg></div><p class="card-title">Secrets &amp; Config Scan</p><p class="card-sub">310+ weakness detectors, secrets, insecure configs &amp; dependency advisories</p></div></div>
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-database"></use></svg></div><p class="card-title">Dataflow &amp; Persistence Analysis</p><p class="card-sub">Tracks how data is stored, cached &amp; queried</p></div></div>
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-chainlink"></use></svg></div><p class="card-title">Trace Variable Handling End‑to‑End</p><p class="card-sub">Follows each input from entry point to sink</p></div></div>
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-signpost"></use></svg></div><p class="card-title">HTTP Route Inventory</p><p class="card-sub">Enumerates endpoints, methods &amp; parameters</p></div></div>
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-cookie"></use></svg></div><p class="card-title">Cookie Inventory &amp; Impact</p><p class="card-sub">Catalogs cookies, their flags &amp; exposure scope</p></div></div>
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">AI &amp; LLM Integration Discovery</p><p class="card-sub">Detects LLM providers, prompt inputs &amp; agent flows</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-server"></use></svg></div><p class="card-title">Infrastructure &amp; Deployment Harvesting</p><p class="card-sub">Maps container configs, cloud manifests &amp; port bindings</p></div></div>
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-server"></use></svg></div><p class="card-title">Infrastructure &amp; Deployment Harvesting</p><p class="card-sub">Maps container configs, IaC manifests, port bindings &amp; security misconfigurations</p></div></div>
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-stack"></use></svg></div><p class="card-title">Component Architecture Discovery</p><p class="card-sub">Identifies deployable units, frameworks &amp; service boundaries</p></div></div>
     </div>
     </div>
@@ -823,9 +902,9 @@
     <div class="phase">The final, verified results are formatted for immediate consumption by both humans and automated CI/CD pipelines.</div>
 <div class="phase">
     <div class="card-grid cols-b">
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-dashboard"></use></svg></div><p class="card-title">All Results, Unified</p><p class="card-sub">Organized and presented with reference to code</p></div></div>
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-dashboard"></use></svg></div><p class="card-title">All Results, Unified</p><p class="card-sub">Interactive 8-tab dashboard with per-finding chain visualization</p></div></div>
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">AI‑Assisted Review</p><p class="card-sub">Simplifies finding review with a human‑readable summary</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-braces"></use></svg></div><p class="card-title">Machine‑Readable Artifacts</p><p class="card-sub">Created for detailed reporting</p></div></div>
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-braces"></use></svg></div><p class="card-title">Machine‑Readable Artifacts</p><p class="card-sub">SARIF 2.1.0 with CWE taxonomy, codeFlows &amp; autofix deltas</p></div></div>
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-compare"></use></svg></div><p class="card-title">Patch / Diff Report</p><p class="card-sub">Compares two app versions and flags trends &amp; risk</p></div></div>
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">Intelligent Suppression Engine</p><p class="card-sub">Tags &amp; hides false positives based on environmental context</p></div></div>
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-chainlink"></use></svg></div><p class="card-title">Visual Data‑Flow Mapping</p><p class="card-sub">Interactive force‑directed graphs trace source to sink</p></div></div>

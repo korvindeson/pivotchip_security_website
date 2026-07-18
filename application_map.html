@@ -424,8 +424,8 @@
   .modal-header{
     display:flex; align-items:center; gap:14px;
     padding:20px 24px 16px;
-    border-bottom:1px solid var(--border-color);
-    background:linear-gradient(135deg, #092039, transparent 80%);
+    border-bottom:2px solid var(--modal-accent,var(--stamp-a));
+    background:var(--background-light);
   }
   .modal-header-icon{
     flex:none; width:36px; height:36px; border-radius:8px;
@@ -441,7 +441,7 @@
   }
   .modal-title{
     font-family:var(--font-heading); font-weight:700; font-size:18px;
-    color:#04070a; margin:0; line-height:1.3;
+    color:var(--primary-color); margin:0; line-height:1.3;
   }
   .modal-close{
     flex:none; cursor:pointer; width:32px; height:32px;

@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Application Map — Security Scanning Pipeline</title>
+<title>Application Map: Security Scanning Pipeline</title>
 <style>
   :root{
     /* ---- site palette (matches css/styles.css) ---- */
@@ -114,7 +114,7 @@
   .legend-row{ display:flex; align-items:center; gap:10px; white-space:nowrap; }
   .legend-dot{ width:11px; height:11px; border-radius:50%; flex:none; box-shadow:0 0 0 3px rgba(0,0,0,0.05); }
 
-  /* ===== Sidebar Layout (3rd Party Integrations) — grid aligned with stages ===== */
+  /* ===== Sidebar Layout (3rd Party Integrations) - grid aligned with stages ===== */
   .layout-wrapper {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 210px;
@@ -167,7 +167,7 @@
     color: var(--accent-color);
     margin-bottom: 8px;
   }
-  
+
   .integration-item {
     display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
     margin-bottom: 24px;
@@ -177,7 +177,7 @@
   .integration-icon svg { width: 100%; height: 100%; }
   .integration-name { font-size: 11.5px; font-weight: 600; font-family: var(--font-mono); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.3; }
 
-  /* ===== stage panels (A / B / C) — visually distinct ===== */
+  /* ===== stage panels (A / B / C) - visually distinct ===== */
   .stage{
     position:relative;
     margin:0;
@@ -246,7 +246,7 @@
   }
   .phase-rule{ flex:1; height:1px; background:repeating-linear-gradient(90deg,var(--border-color) 0 6px, transparent 6px 11px); }
 
-  /* ===== card grid — centered even distribution, no whitespace ===== */
+  /* ===== card grid - centered even distribution, no whitespace ===== */
   .card-grid{ display:flex; flex-wrap:wrap; gap:14px; justify-content:center; align-items:stretch; }
   .cols-a > .card{ flex:0 0 auto; width:148px; }
   .cols-b > .card{ flex:0 0 auto; width:260px; }
@@ -309,12 +309,12 @@
 	text-align: center;
   }
 
-  /* ===== minor connector (between phases within a stage) — subtle ===== */
+  /* ===== minor connector (between phases within a stage) - subtle ===== */
   .connector{ display:flex; flex-direction:column; align-items:center; color:var(--text-light); }
   .connector svg{ display:block; }
   .connector.minor{ height:30px; margin:2px 0 4px; opacity:.85; }
 
-  /* ===== major transition gate (between stages) — clearly distinct ===== */
+  /* ===== major transition gate (between stages) - clearly distinct ===== */
   .transition{
     display:flex; justify-content:center; align-items:center;
     margin:32px 0;
@@ -616,7 +616,7 @@
   }
 </style>
 </head>
-<body data-new-gr-c-s-check-loaded="8.937.0" data-gr-ext-installed="">
+<body>
 <svg aria-hidden="true" height="0" style="position:absolute" width="0">
 <defs>
 <marker id="arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
@@ -666,120 +666,180 @@
 <header class="header">
 <div class="header-top">
 <div>
-<div class="kicker">Security Scanning Pipeline — Schematic</div>
+<div class="kicker">Security Scanning Pipeline: Schematic</div>
 <h1 class="h1">Application Map</h1>
-<p class="phase-title">How a codebase becomes actionable cybersecurity intelligence. </p>
+<p class="phase-title">How source code becomes a security report.</p>
 </div>
+
 <div class="legend">
+
 <div class="legend-row"><span class="legend-dot" style="background:var(--stamp-a)"></span>Application Scans</div>
+
 <div class="legend-row"><span class="legend-dot" style="background:var(--stamp-b)"></span>Create &amp; Execute Tests</div>
+
 <div class="legend-row"><span class="legend-dot" style="background:var(--stamp-c)"></span>Reporting</div>
+
 </div>
+
 </div>
 </header>
 
-<p class="subtitle" style="margin:0 0 16px; font-size:14px; color:#576573;">The platform delivers end-to-end detection and testing from source code to live application testing. Built-in capabilities:</p>
+
+<p class="subtitle" style="margin:0 0 16px; font-size:14px; color:#576573;">Static analysis and dynamic testing, from source code to a running application. Built-in capabilities:</p>
+
+
 
 <!-- ===== summary strip ===== -->
 <div class="summary-strip">
+
   <div class="summary-tile" style="--tile-color:var(--stamp-a)">
     <div class="summary-num">9</div>
     <div class="summary-label">Languages</div>
     <div class="summary-sub">Python · TS/JS · PHP · Go · Java · C# · Ruby · Rust · C/C++</div>
   </div>
+
   <div class="summary-tile" style="--tile-color:var(--stamp-a)">
     <div class="summary-num">310+</div>
     <div class="summary-label">Detectors</div>
     <div class="summary-sub">191 single-line + 119 multi-line CWE patterns</div>
   </div>
+
   <div class="summary-tile" style="--tile-color:var(--stamp-a)">
     <div class="summary-num">70+</div>
     <div class="summary-label">CWE Classes</div>
     <div class="summary-sub">CWE-22 · 78 · 79 · 89 · 119 · 444 · 502 · 918 · 1104 · 1336</div>
   </div>
+
   <div class="summary-tile" style="--tile-color:var(--stamp-a)">
     <div class="summary-num">10+10</div>
     <div class="summary-label">OWASP Coverage</div>
     <div class="summary-sub">Top 10 (2021) + LLM Top 10 (2025)</div>
   </div>
+
   <div class="summary-tile" style="--tile-color:var(--stamp-b)">
     <div class="summary-num">7</div>
     <div class="summary-label">Custom Test Suites</div>
     <div class="summary-sub">Nuclei · Fuzzers · Authz · Cookie · DOM · Race · AI Probes</div>
   </div>
+
   <div class="summary-tile" style="--tile-color:var(--stamp-c)">
     <div class="summary-num">76</div>
     <div class="summary-label">AI / LLM Families</div>
     <div class="summary-sub">Prompt injection · supply chain · excess agency · ...</div>
   </div>
+
   <div class="summary-tile" style="--tile-color:var(--stamp-c)">
     <div class="summary-num">2</div>
     <div class="summary-label">SAST Bridges</div>
     <div class="summary-sub">Semgrep + CodeQL (QL model generation)</div>
   </div>
+
 </div>
+
+
 
 <!-- ===== overview box with use-case examples ===== -->
 <div style="display:flex; gap:20px; align-items:stretch; margin:0 0 28px; border:1px solid var(--border-color); border-radius:var(--border-radius); background:var(--background-light); padding:18px 22px; flex-wrap:wrap;">
   <div style="flex:1 1 300px; min-width:0;">
     <p style="font-family:var(--font-heading); font-weight:600; font-size:14px; color:var(--primary-color); margin:0 0 4px;">Three stages:</p>
-    <p style="font-size:13px; line-height:1.6; color:#576573; margin:0;"><strong style="color:var(--primary-color);">Stage A - reads code.</strong> Identifies external risk exposure, ranks it, and generates active tests.</p>
-	<p style="font-size:13px; line-height:1.6; color:#576573; margin:0;"><strong style="color:var(--primary-color);">Stage B - executes tests against the live application.</strong> Synchronize with 3rd-party apps to execute advanced tests.</p>
-	<p style="font-size:13px; line-height:1.6; color:#576573; margin:0;"><strong style="color:var(--primary-color);">Stage C - review results.</strong> All tests and findings are ranked, classified, and reference the source code.</p>
+    
+    <p style="font-size:13px; line-height:1.6; color:#576573; margin:0;"><strong style="color:var(--primary-color);">Stage A - reads code.</strong> Maps external risk surfaces across supported languages, traces inputs to their sinks, and ranks exposure by severity.</p>
+    
+    <p style="font-size:13px; line-height:1.6; color:#576573; margin:0;"><strong style="color:var(--primary-color);">Stage B - executes tests against the live application.</strong> Custom exploits generated from the static map, run against the live app, and corroborated by third-party engines.</p>
+    
+    <p style="font-size:13px; line-height:1.6; color:#576573; margin:0;"><strong style="color:var(--primary-color);">Stage C - review results.</strong> Each finding is cross-validated, classified, paired with in-editor remediation, and added to a portable dataset.</p>
+    
   </div>
   <div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:8px;">
     <p style="font-family:var(--font-mono); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--text-primary); margin:0 0 2px;">Use-cases</p>
+    
     <div style="font-family:var(--font-mono); font-size:11.5px; color:#576573; line-height:1.5; padding:6px 12px; background:var(--background-white); border:1px solid var(--border-color); border-radius:4px;">Automate early stages of security consulting</div>
-    <div style="font-family:var(--font-mono); font-size:11.5px; color:#576573; line-height:1.5; padding:6px 12px; background:var(--background-white); border:1px solid var(--border-color); border-radius:4px;">Convert your code into the structured dataset for human and AI review</div>
+    
+    <div style="font-family:var(--font-mono); font-size:11.5px; color:#576573; line-height:1.5; padding:6px 12px; background:var(--background-white); border:1px solid var(--border-color); border-radius:4px;">Convert source code into a structured dataset for human and AI review</div>
+    
     <div style="font-family:var(--font-mono); font-size:11.5px; color:#576573; line-height:1.5; padding:6px 12px; background:var(--background-white); border:1px solid var(--border-color); border-radius:4px;">Flag LLM agent to execute shell commands, manipulate or send data</div>
+    
+    <div style="font-family:var(--font-mono); font-size:11.5px; color:#576573; line-height:1.5; padding:6px 12px; background:var(--background-white); border:1px solid var(--border-color); border-radius:4px;">Plug security findings into a CI/CD pipeline</div>
+    
   </div>
 </div>
+
 
 <div class="layout-wrapper">
   <!-- Left/Main Column: Stages & Transitions -->
   <div class="main-stages">
+    
     <!-- ============ STAGE A ============ -->
     <section class="stage stage-a">
     <div class="stage-head">
     <div class="stamp">A</div>
     <div class="stage-title">Application Scans</div>
     <div class="stage-trace"></div>
-
+    
     </div>
+    
+    
+    
     <div class="phase">
+    
     <div class="phase-head">
     <span class="phase-tag">PHASE 01</span> 
-
-
     <span class="phase-title">Application Input Scans</span>
     <span class="phase-rule"></span>
     </div>
-
-    <div class="phase">The raw codebase is ingested into the system. The platform automatically identifies the frameworks, languages, and architecture patterns in use to prepare for specialized analysis.</div><div class="card-grid cols-a">
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-target"></use></svg></div><p class="card-title">Input Exposure Mapping</p><p class="card-sub">Maps every point untrusted data enters the system</p></div></div>
+    
+    
+    <div class="phase">The raw codebase is loaded. Frameworks, languages, and architecture patterns are identified to prepare for specialized analysis.</div>
+    
+    <div class="card-grid cols-a">
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-target"></use></svg></div><p class="card-title">Input Exposure Mapping</p><p class="card-sub">External entry surfaces across all supported languages and frameworks</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-lock"></use></svg></div><p class="card-title">Secrets &amp; Config Scan</p><p class="card-sub">310+ weakness detectors, secrets, insecure configs &amp; dependency advisories</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-database"></use></svg></div><p class="card-title">Dataflow &amp; Persistence Analysis</p><p class="card-sub">Tracks how data is stored, cached &amp; queried</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-chainlink"></use></svg></div><p class="card-title">Trace Variable Handling End‑to‑End</p><p class="card-sub">Follows each input from entry point to sink</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-database"></use></svg></div><p class="card-title">Dataflow &amp; Persistence Analysis</p><p class="card-sub">Reads vs writes classified across ORMs, raw SQL, caches, and vector stores, with confidence verdicts</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-chainlink"></use></svg></div><p class="card-title">Trace Variable Handling End-to-End</p><p class="card-sub">Branch-aware taint tracing with sanitizer, guard &amp; recursion recognition</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-signpost"></use></svg></div><p class="card-title">HTTP Route Inventory</p><p class="card-sub">Enumerates endpoints, methods &amp; parameters</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-cookie"></use></svg></div><p class="card-title">Cookie Inventory &amp; Impact</p><p class="card-sub">Catalogs cookies, their flags &amp; exposure scope</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">AI &amp; LLM Integration Discovery</p><p class="card-sub">Detects LLM providers, prompt inputs &amp; agent flows</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">AI &amp; LLM Integration Discovery</p><p class="card-sub">OWASP LLM Top 10 coverage: providers, agents, tools, MCP, vector stores</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-server"></use></svg></div><p class="card-title">Infrastructure &amp; Deployment Harvesting</p><p class="card-sub">Maps container configs, IaC manifests, port bindings &amp; security misconfigurations</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-stack"></use></svg></div><p class="card-title">Component Architecture Discovery</p><p class="card-sub">Identifies deployable units, frameworks &amp; service boundaries</p></div></div>
+    
     </div>
+    
+    
     </div>
+    
+    
+    
     <div aria-hidden="true" class="connector minor">
     <svg height="26" viewBox="0 0 16 26" width="16"><path d="M8 0v18" marker-end="url(#arrow)" stroke="var(--stamp-a)" stroke-width="1.6"></path></svg>
     </div>
+    
+    
     <div class="phase">
+    
     <div class="phase-head">
-    <span class="phase-tag">PHASE 02</span>
+    <span class="phase-tag">PHASE 02</span> 
     <span class="phase-title">Triage Results</span>
     <span class="phase-rule"></span>
     </div>
-    <div class="phase">The correlation engine guides test generation. It identifies suspicious areas and imports targeted results back into the system.</div><div class="card-grid cols-b">
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-merge"></use></svg></div><p class="card-title">Correlation Engine</p><p class="card-sub">e.g., discovers database values referenced in code</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg width="800px" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title>file_type_codeql</title><path d="M26.889,24H5.111A3.061,3.061,0,0,1,2,21V11A3.061,3.061,0,0,1,5.111,8H26.889A3.061,3.061,0,0,1,30,11V21A3.061,3.061,0,0,1,26.889,24ZM5.111,10a1.02,1.02,0,0,0-1.037,1V21a1.02,1.02,0,0,0,1.037,1H26.889a1.02,1.02,0,0,0,1.037-1V11a1.02,1.02,0,0,0-1.037-1Z" style="fill:#2088ff"></path><path d="M22.741,15H20.667a1,1,0,1,1,0-2h2.074a1,1,0,1,1,0,2Z" style="fill:#2088ff"></path><path d="M24.815,19H20.667a1,1,0,1,1,0-2h4.148a1,1,0,1,1,0,2Z" style="fill:#2088ff"></path><path d="M12.217,16a3.412,3.412,0,0,1-.256,1.369,2.661,2.661,0,0,1-.7.972l.863,1.045h-1.19l-.487-.576a3.075,3.075,0,0,1-1.057.179,2.941,2.941,0,0,1-1.444-.353,2.539,2.539,0,0,1-1.01-1.021A3.276,3.276,0,0,1,6.566,16a3.281,3.281,0,0,1,.372-1.619,2.54,2.54,0,0,1,1.01-1.019,3.138,3.138,0,0,1,2.884,0,2.545,2.545,0,0,1,1.012,1.019A3.271,3.271,0,0,1,12.217,16Zm-3.267.886h1.084l.448.554a1.7,1.7,0,0,0,.325-.6A2.718,2.718,0,0,0,10.924,16a2.109,2.109,0,0,0-.419-1.413A1.393,1.393,0,0,0,9.392,14.1a1.4,1.4,0,0,0-1.114.488A2.109,2.109,0,0,0,7.86,16a2.112,2.112,0,0,0,.418,1.412,1.392,1.392,0,0,0,1.114.489,1.664,1.664,0,0,0,.33-.032ZM13.6,19V13h1.276v4.986h2.587V19Z" style="fill:#2088ff"></path></svg>
-</div><p class="card-title">Semgrep &amp; CodeQL Automation</p></div></div>
+    
+    
+    <div class="phase">The correlation engine guides test generation. It identifies suspicious areas and imports targeted results.</div>
+    
+    <div class="card-grid cols-b">
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-merge"></use></svg></div><p class="card-title">Correlation Engine</p><p class="card-sub">Cross-validates static, external-SAST, and dynamic evidence into a single dataset</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg width="800px" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title>file_type_codeql</title><path d="M26.889,24H5.111A3.061,3.061,0,0,1,2,21V11A3.061,3.061,0,0,1,5.111,8H26.889A3.061,3.061,0,0,1,30,11V21A3.061,3.061,0,0,1,26.889,24ZM5.111,10a1.02,1.02,0,0,0-1.037,1V21a1.02,1.02,0,0,0,1.037,1H26.889a1.02,1.02,0,0,0,1.037-1V11a1.02,1.02,0,0,0-1.037-1Z" style="fill:#2088ff"></path><path d="M22.741,15H20.667a1,1,0,1,1,0-2h2.074a1,1,0,1,1,0,2Z" style="fill:#2088ff"></path><path d="M24.815,19H20.667a1,1,0,1,1,0-2h4.148a1,1,0,1,1,0,2Z" style="fill:#2088ff"></path><path d="M12.217,16a3.412,3.412,0,0,1-.256,1.369,2.661,2.661,0,0,1-.7.972l.863,1.045h-1.19l-.487-.576a3.075,3.075,0,0,1-1.057.179,2.941,2.941,0,0,1-1.444-.353,2.539,2.539,0,0,1-1.01-1.021A3.276,3.276,0,0,1,6.566,16a3.281,3.281,0,0,1,.372-1.619,2.54,2.54,0,0,1,1.01-1.019,3.138,3.138,0,0,1,2.884,0,2.545,2.545,0,0,1,1.012,1.019A3.271,3.271,0,0,1,12.217,16Zm-3.267.886h1.084l.448.554a1.7,1.7,0,0,0,.325-.6A2.718,2.718,0,0,0,10.924,16a2.109,2.109,0,0,0-.419-1.413A1.393,1.393,0,0,0,9.392,14.1a1.4,1.4,0,0,0-1.114.488A2.109,2.109,0,0,0,7.86,16a2.112,2.112,0,0,0,.418,1.412,1.392,1.392,0,0,0,1.114.489,1.664,1.664,0,0,0,.33-.032ZM13.6,19V13h1.276v4.986h2.587V19Z" style="fill:#2088ff"></path></svg></div><p class="card-title">Semgrep &amp; CodeQL Automation</p><p class="card-sub">Generated rulesets and QL models; no manual rule authoring required</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" id="semgreplogo" version="1.1" viewBox="0 0 1670 252">
      <g id="semgrep-ellipsis" fill="#13bf95">
           <path d="m412-4e-7c55.22847 0 100 44.77153 100 100 0 55.22847-44.77153 100-100 100s-100-44.77153-100-100c1e-3 -22.75534 7.76297-44.82984 22.00391-62.57812 5.79468 6.661495 7.89062 10.6061 13.99609 20.57812h3.5c-3.0923-7.636258-7.63896-15.06492-13.76367-24.96093 18.96049-21.03049 45.94792-33.03689 74.26367-33.03906zm0 44c-30.92795 0-56 25.07205-56 56 0 30.92795 25.07205 56 56 56s56-25.07205 56-56c0-30.92794-25.07205-56-56-56z"></path>
@@ -795,14 +855,22 @@
           <path id="e2" d="M1454.2132 194.4763q-21.4264 0-37.8896-8.88785-16.4623-9.14925-25.8684-24.83487-9.1458-15.94591-9.1458-36.33581 0-16.20791 5.2261-29.539839 5.2262-13.33193 14.3713-23.003879 9.4071-9.933547 22.2103-15.16192 13.0652-5.489571 28.2204-5.489571 13.5872 0 25.0844 5.228173 11.7582 4.966773 20.3823 14.115925 8.623 8.887853 13.0652 21.174888 4.7036 12.286933 4.4423 26.663863l-.2615 11.50294h-111.8317l-6.0101-21.69789h92.5034l-3.9197 4.44398v-6.01247q-.7839-8.365057-5.4875-14.639924-4.7034-6.535166-12.0191-10.194946-7.0554-3.92108-15.6783-3.92108-13.5872 0-22.7323 5.228173-9.146 4.966674-14.1102 14.900921-4.7036 9.933546-4.7036 24.311876 0 13.85492 5.7487 24.04987 6.0101 10.19495 16.7222 15.94591 10.7132 5.48958 24.8244 5.48958 9.9297 0 18.2903-3.13699 8.3618-3.39838 18.2903-11.76394l14.6332 20.6509q-6.5326 6.27376-15.6782 10.97894-9.1458 4.70537-19.0743 7.31946-9.9297 2.61418-19.5973 2.61418z"></path>
           <path id="p" d="M1532.8144 249.37601V54.367045h29.2664l.2611 31.369834-4.7036-2.352688q1.5679-8.103557 8.8846-15.16192 7.3165-7.319361 17.7682-11.763937 10.7132-4.443977 22.2104-4.443977 18.2903 0 32.4025 9.149252 14.3712 9.149251 22.7343 25.095867Q1670 102.20539 1670 122.85628q0 20.65189-8.3617 36.85781-8.1007 15.94591-22.4723 25.35686-14.1102 9.14926-32.1405 9.14926-12.0192 0-23.2564-4.70528-10.9741-4.70527-18.8132-12.28693-7.8393-7.58066-9.6685-15.94592l7.3168-3.65968v91.75351zm68.724-81.81956q11.4972 0 20.3813-5.75097 9.1458-5.75107 14.3712-15.68492 5.2261-10.19495 5.2261-23.26588 0-12.80893-5.2261-22.74288-4.9648-9.933544-14.1102-15.684914-8.8843-5.75097-20.6423-5.75097t-20.9043 5.75097q-8.8845 5.489571-14.1102 15.684914-5.2262 9.93355-5.2262 22.74288 0 13.07093 5.2262 23.26588 5.2262 9.93355 14.1102 15.68492 9.1456 5.75097 20.9043 5.75097z"></path>
      </g>
-</svg>
-</div><p class="card-title">SAST Feedback Loop</p><p class="card-sub">Semgrep/CodeQL results feed into further tests</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-filesearch"></use></svg></div><p class="card-title">SARIF Blueprint</p><p class="card-sub">CWE taxonomy · surface flows · stable fingerprints</p></div></div>
+</svg></div><p class="card-title">SAST Feedback Loop</p><p class="card-sub">Semgrep/CodeQL results feed into further tests</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-filesearch"></use></svg></div><p class="card-title">SARIF Blueprint</p><p class="card-sub">CWE taxonomy · surface flows · stable fingerprints · in-editor autofix deltas</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">Access Control &amp; Authorization Mapping</p><p class="card-sub">Extracts role-based gates, privilege checks &amp; missing auth barriers</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-codebrackets"></use></svg></div><p class="card-title">External SAST Orchestration</p><p class="card-sub">Automated scoping, ruleset generation &amp; findings ingestion</p></div></div>
+    
     </div>
+    
+    
     </div>
+    
+    
     </section>
+    
     <!-- ============ TRANSITION A → B ============ -->
     <div aria-hidden="true" class="transition transition-ab">
     <div class="transition-gate">
@@ -810,113 +878,144 @@
     <span class="transition-label">Take the observations from Stage A, trace the variable lifecycle</span>
     </div>
     </div>
+    
+    
     <!-- ============ STAGE B ============ -->
     <section class="stage stage-b">
     <div class="stage-head">
     <div class="stamp">B</div>
     <div class="stage-title">Create &amp; Execute Tests</div>
     <div class="stage-trace"></div>
-
+    
     </div>
+    
+    
+    
     <div class="phase">
+    
     <div class="phase-head">
-    <span class="phase-tag">PHASE 03</span>
+    <span class="phase-tag">PHASE 03</span> 
     <span class="phase-title">Create Tests</span>
     <span class="phase-rule"></span>
     </div>
-    <div class="phase">Using the vulnerabilities mapped out in the Master Blueprint, the system automatically writes specific, targeted exploit attempts. It creates custom tests rather than relying on generic payloads. </div><div class="card-grid cols-a">
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-stack"></use></svg></div><p class="card-title">Nuclei YAML Templates</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-dice"></use></svg></div><p class="card-title">AST &amp; HTTP Fuzzers</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-key"></use></svg></div><p class="card-title">Auth / CSRF / IDOR Probes</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-gridtable"></use></svg></div><p class="card-title">Cookie‑State Tests</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-shuffle"></use></svg></div><p class="card-title">Race Condition Tests</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-codebrackets"></use></svg></div><p class="card-title">DOM‑XSS Tests</p></div></div>
+    
+    
+    <div class="phase">Using the findings from Stage A, the system writes specific, targeted exploit attempts. It creates custom tests rather than relying on generic payloads.</div>
+    
+    <div class="card-grid cols-a">
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-stack"></use></svg></div><p class="card-title">Nuclei YAML Templates</p><p class="card-sub">Custom exploit templates matched to each finding's attack class</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-dice"></use></svg></div><p class="card-title">AST &amp; HTTP Fuzzers</p><p class="card-sub">Property-based fuzzers targeting each handler's input shapes</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-key"></use></svg></div><p class="card-title">Auth / CSRF / IDOR Probes</p><p class="card-sub">Identity-matrix replay across anonymous, low-priv &amp; other-tenant users</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-gridtable"></use></svg></div><p class="card-title">Cookie-State Tests</p><p class="card-sub">Pairwise coverage of security-relevant cookie values</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-shuffle"></use></svg></div><p class="card-title">Race Condition Tests</p><p class="card-sub">Concurrent harnesses for TOCTOU, storage, tool &amp; distributed-lock races</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-codebrackets"></use></svg></div><p class="card-title">DOM-XSS Tests</p><p class="card-sub">Playwright confirmation of DOM, reflected &amp; stored XSS</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">AI &amp; Model Behavioral Probes</p><p class="card-sub">Tests prompt isolation, cost limits &amp; data leakage in agents</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">Defensive Rule Generation</p><p class="card-sub">Synthesizes DB firewall rules &amp; allowlists from dataflow</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-loop"></use></svg></div><p class="card-title">Continuous Session Management</p><p class="card-sub">Monitors session health &amp; triggers re-authentication during attacks</p></div></div>
+    
     </div>
+    
+    
     </div>
+    
+    
+    
     <div aria-hidden="true" class="connector minor">
     <svg height="26" viewBox="0 0 16 26" width="16"><path d="M8 0v18" marker-end="url(#arrow-dash)" stroke="var(--stamp-b)" stroke-width="1.6"></path></svg>
     </div>
+    
+    
     <div class="phase flow-wrap">
+    
     <div class="phase-head">
-    <span class="phase-tag">PHASE 04</span>
+    <span class="phase-tag">PHASE 04</span> 
     <span class="phase-title">Live Target Execution</span>
     <span class="phase-rule"></span>
     </div>
-    <div class="phase">The platform fires the generated exploits against a live version of the application. An active Authentication Manager continuously monitors sessions and automatically logs back in if the application terminates the connection during the attack phase. All attacks and findings are passed to 3-rd party tool for advanced automated testing.</div><div class="flow-scroll"><div class="flow-canvas" id="flowCanvas">
+    
+    
+    <div class="phase">Generated exploits are run against a live version of the application. The Authentication Manager monitors sessions and logs back in if the application terminates the connection during the attack phase. Attacks and findings are passed to third-party tools for further automated testing.</div>
+    
+    
+    <div class="flow-scroll"><div class="flow-canvas" id="flowCanvas">
     <svg class="flow-svg" preserveAspectRatio="none" viewBox="0 0 1000 420">
+    
     <path d="M190,43 C220,43 220,110 250,110" fill="none" marker-end="url(#arrow)" stroke="var(--line-cyan)" stroke-width="1.6"></path>
+    
     <path d="M190,125 C220,125 220,125 250,125" fill="none" marker-end="url(#arrow)" stroke="var(--line-cyan)" stroke-width="1.6"></path>
+    
     <path d="M190,207 C220,207 220,140 250,140" fill="none" marker-end="url(#arrow)" stroke="var(--line-cyan)" stroke-width="1.6"></path>
+    
     <path d="M400,113 C450,113 470,55 520,50" fill="none" marker-end="url(#arrow)" stroke="var(--line-cyan)" stroke-width="1.6"></path>
+    
     <path d="M400,138 C450,150 470,278 520,278" fill="none" marker-end="url(#arrow)" stroke="var(--line-cyan)" stroke-width="1.6"></path>
+    
     <path d="M740,278 C765,278 765,278 790,278" fill="none" marker-end="url(#arrow)" stroke="var(--line-cyan)" stroke-width="1.6"></path>
-    <path d="M885,250 C955,165 790,95 650,71" fill="none" marker-end="url(#arrow-dash)" stroke="var(--stamp-b)" stroke-dasharray="5 4" stroke-width="1.6"></path>
+    
+    <path d="M885,250 C955,165 790,95 650,71" fill="none" marker-end="url(#arrow-dash)" stroke="var(--stamp-b)" stroke-width="1.6" stroke-dasharray="5 4"></path>
+    
     <path d="M740,43 C765,43 765,43 790,43" fill="none" marker-end="url(#arrow)" stroke="var(--line-cyan)" stroke-width="1.6"></path>
+    
     </svg>
+    
     <div class="flow-node tool" style="left:2%;top:3.6%;width:17%;height:13.3%;">
     <div class="card-icon"><svg><use href="#i-logo-nuclei"></use></svg></div><span>Nuclei</span>
     </div>
+    
     <div class="flow-node tool" style="left:2%;top:23.1%;width:17%;height:13.3%;">
     <div class="card-icon"><svg><use href="#i-logo-pytest"></use></svg></div><span>pytest</span>
     </div>
+    
     <div class="flow-node tool" style="left:2%;top:42.6%;width:17%;height:13.3%;">
     <div class="card-icon"><svg><use href="#i-logo-playwright"></use></svg></div><span>playwright</span>
     </div>
-    <div class="flow-node" style="left:25%;top:23.1%;width:15%;height:13.3%;">
+    
+    <div class="flow-node " style="left:25%;top:23.1%;width:15%;height:13.3%;">
     <div class="card-icon"><svg><use href="#i-server"></use></svg></div><span>Proxy</span>
     </div>
+    
     <div class="flow-node out" style="left:52%;top:3.6%;width:22%;height:13.3%;">
     <div class="card-icon"><svg><use href="#i-globe"></use></svg></div><span>Live App</span>
     </div>
-    <div class="flow-node" style="left:52%;top:59.5%;width:22%;height:13.3%;">
+    
+    <div class="flow-node " style="left:52%;top:59.5%;width:22%;height:13.3%;">
     <div class="card-icon"><svg><use href="#i-plug"></use></svg></div><span>Sync Plugin</span>
     </div>
+    
     <div class="flow-node out" style="left:79%;top:3.6%;width:19%;height:13.3%;">
     <div class="card-icon"><svg><use href="#i-clipboardcheck"></use></svg></div><span>Log Results</span>
     </div>
-    <div class="flow-node" style="left:79%;top:59.5%;width:19%;height:13.3%;">
-    <div class="card-icon"><svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_d_1_20)">
-<path d="M338 0H640V640H338V602.5L559 383H338V209.5H176.5L338 46.5V0Z" fill="#EB5E32"></path>
-</g>
-<g filter="url(#filter1_d_1_20)">
-<path d="M0 0H309V39L93.5 244.5H309V418.5H485L309 593V640H0V0Z" fill="#303030"></path>
-</g>
-<defs>
-<filter id="filter0_d_1_20" x="158.2" y="0" width="522.1" height="703.3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
-<feOffset dx="11" dy="34"></feOffset>
-<feGaussianBlur stdDeviation="14.65"></feGaussianBlur>
-<feComposite in2="hardAlpha" operator="out"></feComposite>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0"></feColorMatrix>
-<feBlend mode="darken" in2="BackgroundImageFix" result="effect1_dropShadow_1_20"></feBlend>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_20" result="shape"></feBlend>
-</filter>
-<filter id="filter1_d_1_20" x="-18.3" y="0" width="543.6" height="703.3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
-<feOffset dx="11" dy="34"></feOffset>
-<feGaussianBlur stdDeviation="14.65"></feGaussianBlur>
-<feComposite in2="hardAlpha" operator="out"></feComposite>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0"></feColorMatrix>
-<feBlend mode="darken" in2="BackgroundImageFix" result="effect1_dropShadow_1_20"></feBlend>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_20" result="shape"></feBlend>
-</filter>
-</defs>
-</svg></div><span>Burp Suite</span>
+    
+    <div class="flow-node " style="left:79%;top:59.5%;width:19%;height:13.3%;">
+    <div class="card-icon"><svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d_1_20)"><path d="M338 0H640V640H338V602.5L559 383H338V209.5H176.5L338 46.5V0Z" fill="#EB5E32"></path></g><g filter="url(#filter1_d_1_20)"><path d="M0 0H309V39L93.5 244.5H309V418.5H485L309 593V640H0V0Z" fill="#303030"></path></g><defs><filter id="filter0_d_1_20" x="158.2" y="0" width="522.1" height="703.3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix><feOffset dx="11" dy="34"></feOffset><feGaussianBlur stdDeviation="14.65"></feGaussianBlur><feComposite in2="hardAlpha" operator="out"></feComposite><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0"></feColorMatrix><feBlend mode="darken" in2="BackgroundImageFix" result="effect1_dropShadow_1_20"></feBlend><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_20" result="shape"></feBlend></filter><filter id="filter1_d_1_20" x="-18.3" y="0" width="543.6" height="703.3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix><feOffset dx="11" dy="34"></feOffset><feGaussianBlur stdDeviation="14.65"></feGaussianBlur><feComposite in2="hardAlpha" operator="out"></feComposite><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0"></feColorMatrix><feBlend mode="darken" in2="BackgroundImageFix" result="effect1_dropShadow_1_20"></feBlend><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_20" result="shape"></feBlend></filter></defs></svg></div><span>Burp Suite</span>
     </div>
+    
     </div></div>
     <p class="flow-hint">← scroll for full diagram →</p>
+    
     <div class="flow-legend">
+    
     <span><i></i>data / request flow</span>
+    
     <span><i class="dash"></i>Burp ↔ live-app feedback loop</span>
+    
     </div>
+    
+    
     </div>
+    
+    
     </section>
+    
     <!-- ============ TRANSITION B → C ============ -->
     <div aria-hidden="true" class="transition transition-bc">
     <div class="transition-gate">
@@ -924,39 +1023,72 @@
     <span class="transition-label">All data, confirmed attack paths, and external corroborations are combined into a dataset</span>
     </div>
     </div>
+    
+    
     <!-- ============ STAGE C ============ -->
     <section class="stage stage-c">
     <div class="stage-head">
     <div class="stamp">C</div>
     <div class="stage-title">Reporting</div>
     <div class="stage-trace"></div>
-
+    
     </div>
-    <div class="phase">The final, verified results are formatted for immediate consumption by both humans and automated CI/CD pipelines.</div>
-<div class="phase">
+    
+    
+    
+    <div class="phase">Final verified results are formatted for human review and CI/CD pipelines.</div>
+    
+    
+    
+    
+    <div class="phase">
+    
+    
+    
     <div class="card-grid cols-b">
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-dashboard"></use></svg></div><p class="card-title">All Results, Unified</p><p class="card-sub">Interactive 8-tab dashboard with per-finding chain visualization</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">AI‑Assisted Review</p><p class="card-sub">Simplifies finding review with a human‑readable summary</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-braces"></use></svg></div><p class="card-title">Machine‑Readable Artifacts</p><p class="card-sub">SARIF 2.1.0 with CWE taxonomy, codeFlows &amp; autofix deltas</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-dashboard"></use></svg></div><p class="card-title">All Results, Unified</p><p class="card-sub">Interactive 8-tab dashboard with per-finding chain visualization; embedded in a single HTML file for offline review</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">AI-Assisted Review</p><p class="card-sub">Adds a human-readable summary to each finding</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-braces"></use></svg></div><p class="card-title">Machine-Readable Artifacts</p><p class="card-sub">SARIF 2.1.0 with CWE taxonomy, codeFlows &amp; autofix deltas</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-compare"></use></svg></div><p class="card-title">Patch / Diff Report</p><p class="card-sub">Compares two app versions and flags trends &amp; risk</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">Intelligent Suppression Engine</p><p class="card-sub">Tags &amp; hides false positives based on environmental context</p></div></div>
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-chainlink"></use></svg></div><p class="card-title">Visual Data‑Flow Mapping</p><p class="card-sub">Interactive force‑directed graphs trace source to sink</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">Intelligent Suppression Engine</p><p class="card-sub">Operator-tunable rules tag false positives; findings are auditable, not dropped</p></div></div>
+    
+    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-chainlink"></use></svg></div><p class="card-title">Visual Data-Flow Mapping</p><p class="card-sub">Interactive force-directed graphs trace source to sink</p></div></div>
+    
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-database"></use></svg></div><p class="card-title">Data Store Anomaly Detection</p><p class="card-sub">Correlates static DB rules against live proxy logs</p></div></div>
+    
     </div>
+    
+    
     </div>
+    
+    
     </section>
+    
+    
   </div> <!-- end main-stages -->
 
+  
   <!-- Right/Sidebar Column: 3rd Party Integrations -->
   <aside class="sidebar">
+    
     <div class="sidebar-cell sidebar-cell-a">
+      
       <div class="sidebar-head">
         <h2 class="sidebar-title">3rd Party<br>Integrations</h2>
       </div>
-      <div class="card">
-        <div class="card-face">
-          <div class="integration-item">
-            <div class="integration-icon"><svg xmlns="http://www.w3.org/2000/svg" id="semgreplogo" version="1.1" viewBox="0 0 1670 252">
+      
+      
+      
+        <div class="card">
+          <div class="card-face">
+            
+            <div class="integration-item">
+              <div class="integration-icon"><svg xmlns="http://www.w3.org/2000/svg" id="semgreplogo" version="1.1" viewBox="0 0 1670 252">
      <g id="semgrep-ellipsis" fill="#13bf95">
           <path d="m412-4e-7c55.22847 0 100 44.77153 100 100 0 55.22847-44.77153 100-100 100s-100-44.77153-100-100c1e-3 -22.75534 7.76297-44.82984 22.00391-62.57812 5.79468 6.661495 7.89062 10.6061 13.99609 20.57812h3.5c-3.0923-7.636258-7.63896-15.06492-13.76367-24.96093 18.96049-21.03049 45.94792-33.03689 74.26367-33.03906zm0 44c-30.92795 0-56 25.07205-56 56 0 30.92795 25.07205 56 56 56s56-25.07205 56-56c0-30.92794-25.07205-56-56-56z"></path>
           <path d="m256 0c-55.22841 0-100 44.77158-100 100 8e-3 22.74213 7.76844 44.80216 22 62.54102 0.04153-0.05203 0.07004-0.09276 0.11133-0.14454 0.01252 0.01556 0.02458 0.03133 0.03711 0.04688 0.96022-1.20705 1.88357-2.443 2.78711-3.69336 4.19703-5.49557 7.10017-10.10355 9.92773-17.07812 0.25397-0.55649 0.51186-1.11021 0.75586-1.67188h3.38086c-0.72386 2.98756-1.74037 5.91654-2.99414 8.88477-2.79519 5.99462-6.2697 12.37905-9.80078 18.10937-0.05698 0.09227-0.10092 0.17302-0.1582 0.26563 18.94128 20.83966 45.79173 32.72679 73.95312 32.74023 28.16139-0.01344 55.01184-11.90057 73.95312-32.74023-0.05728-0.09261-0.10122-0.17336-0.1582-0.26563-3.53108-5.73032-7.00559-12.11475-9.80078-18.10937-1.25377-2.96823-2.27028-5.89721-2.99414-8.88477h3.38086c0.244 0.56167 0.50189 1.11539 0.75586 1.67188 2.82756 6.97457 5.7307 11.58255 9.92773 17.07812 0.90354 1.25036 1.82689 2.48631 2.78711 3.69336 0.01253-0.01555 0.02459-0.03132 0.03711-0.04688 0.04129 0.05178 0.0698 0.09251 0.11133 0.14454 14.23156-17.73886 21.992-39.79889 22-62.54102 0-55.22842-44.77159-100-100-100zm0 44c30.92792 0 56 25.07208 56 56 0 30.92792-25.07208 56-56 56s-56-25.07208-56-56c0-0.966497 0.02388-1.926386 0.07227-2.880859 1.49985-29.58868 25.96631-53.11914 55.92773-53.11914z"></path>
@@ -971,38 +1103,53 @@
           <path id="e2" d="M1454.2132 194.4763q-21.4264 0-37.8896-8.88785-16.4623-9.14925-25.8684-24.83487-9.1458-15.94591-9.1458-36.33581 0-16.20791 5.2261-29.539839 5.2262-13.33193 14.3713-23.003879 9.4071-9.933547 22.2103-15.16192 13.0652-5.489571 28.2204-5.489571 13.5872 0 25.0844 5.228173 11.7582 4.966773 20.3823 14.115925 8.623 8.887853 13.0652 21.174888 4.7036 12.286933 4.4423 26.663863l-.2615 11.50294h-111.8317l-6.0101-21.69789h92.5034l-3.9197 4.44398v-6.01247q-.7839-8.365057-5.4875-14.639924-4.7034-6.535166-12.0191-10.194946-7.0554-3.92108-15.6783-3.92108-13.5872 0-22.7323 5.228173-9.146 4.966674-14.1102 14.900921-4.7036 9.933546-4.7036 24.311876 0 13.85492 5.7487 24.04987 6.0101 10.19495 16.7222 15.94591 10.7132 5.48958 24.8244 5.48958 9.9297 0 18.2903-3.13699 8.3618-3.39838 18.2903-11.76394l14.6332 20.6509q-6.5326 6.27376-15.6782 10.97894-9.1458 4.70537-19.0743 7.31946-9.9297 2.61418-19.5973 2.61418z"></path>
           <path id="p" d="M1532.8144 249.37601V54.367045h29.2664l.2611 31.369834-4.7036-2.352688q1.5679-8.103557 8.8846-15.16192 7.3165-7.319361 17.7682-11.763937 10.7132-4.443977 22.2104-4.443977 18.2903 0 32.4025 9.149252 14.3712 9.149251 22.7343 25.095867Q1670 102.20539 1670 122.85628q0 20.65189-8.3617 36.85781-8.1007 15.94591-22.4723 25.35686-14.1102 9.14926-32.1405 9.14926-12.0192 0-23.2564-4.70528-10.9741-4.70527-18.8132-12.28693-7.8393-7.58066-9.6685-15.94592l7.3168-3.65968v91.75351zm68.724-81.81956q11.4972 0 20.3813-5.75097 9.1458-5.75107 14.3712-15.68492 5.2261-10.19495 5.2261-23.26588 0-12.80893-5.2261-22.74288-4.9648-9.933544-14.1102-15.684914-8.8843-5.75097-20.6423-5.75097t-20.9043 5.75097q-8.8845 5.489571-14.1102 15.684914-5.2262 9.93355-5.2262 22.74288 0 13.07093 5.2262 23.26588 5.2262 9.93355 14.1102 15.68492 9.1456 5.75097 20.9043 5.75097z"></path>
      </g>
-</svg>
-</div>
-            <div class="integration-name">Semgrep</div>
+</svg></div>
+              <div class="integration-name">Semgrep</div>
+            </div>
+            
+            <div class="integration-item">
+              <div class="integration-icon"><svg width="800px" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title>file_type_codeql</title><path d="M26.889,24H5.111A3.061,3.061,0,0,1,2,21V11A3.061,3.061,0,0,1,5.111,8H26.889A3.061,3.061,0,0,1,30,11V21A3.061,3.061,0,0,1,26.889,24ZM5.111,10a1.02,1.02,0,0,0-1.037,1V21a1.02,1.02,0,0,0,1.037,1H26.889a1.02,1.02,0,0,0,1.037-1V11a1.02,1.02,0,0,0-1.037-1Z" style="fill:#2088ff"></path><path d="M22.741,15H20.667a1,1,0,1,1,0-2h2.074a1,1,0,1,1,0,2Z" style="fill:#2088ff"></path><path d="M24.815,19H20.667a1,1,0,1,1,0-2h4.148a1,1,0,1,1,0,2Z" style="fill:#2088ff"></path><path d="M12.217,16a3.412,3.412,0,0,1-.256,1.369,2.661,2.661,0,0,1-.7.972l.863,1.045h-1.19l-.487-.576a3.075,3.075,0,0,1-1.057.179,2.941,2.941,0,0,1-1.444-.353,2.539,2.539,0,0,1-1.01-1.021A3.276,3.276,0,0,1,6.566,16a3.281,3.281,0,0,1,.372-1.619,2.54,2.54,0,0,1,1.01-1.019,3.138,3.138,0,0,1,2.884,0,2.545,2.545,0,0,1,1.012,1.019A3.271,3.271,0,0,1,12.217,16Zm-3.267.886h1.084l.448.554a1.7,1.7,0,0,0,.325-.6A2.718,2.718,0,0,0,10.924,16a2.109,2.109,0,0,0-.419-1.413A1.393,1.393,0,0,0,9.392,14.1a1.4,1.4,0,0,0-1.114.488A2.109,2.109,0,0,0,7.86,16a2.112,2.112,0,0,0,.418,1.412,1.392,1.392,0,0,0,1.114.489,1.664,1.664,0,0,0,.33-.032ZM13.6,19V13h1.276v4.986h2.587V19Z" style="fill:#2088ff"></path></svg></div>
+              <div class="integration-name">CodeQL</div>
+            </div>
+            
           </div>
-          <div class="integration-item">
-            <div class="integration-icon"><svg width="800px" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title>file_type_codeql</title><path d="M26.889,24H5.111A3.061,3.061,0,0,1,2,21V11A3.061,3.061,0,0,1,5.111,8H26.889A3.061,3.061,0,0,1,30,11V21A3.061,3.061,0,0,1,26.889,24ZM5.111,10a1.02,1.02,0,0,0-1.037,1V21a1.02,1.02,0,0,0,1.037,1H26.889a1.02,1.02,0,0,0,1.037-1V11a1.02,1.02,0,0,0-1.037-1Z" style="fill:#2088ff"></path><path d="M22.741,15H20.667a1,1,0,1,1,0-2h2.074a1,1,0,1,1,0,2Z" style="fill:#2088ff"></path><path d="M24.815,19H20.667a1,1,0,1,1,0-2h4.148a1,1,0,1,1,0,2Z" style="fill:#2088ff"></path><path d="M12.217,16a3.412,3.412,0,0,1-.256,1.369,2.661,2.661,0,0,1-.7.972l.863,1.045h-1.19l-.487-.576a3.075,3.075,0,0,1-1.057.179,2.941,2.941,0,0,1-1.444-.353,2.539,2.539,0,0,1-1.01-1.021A3.276,3.276,0,0,1,6.566,16a3.281,3.281,0,0,1,.372-1.619,2.54,2.54,0,0,1,1.01-1.019,3.138,3.138,0,0,1,2.884,0,2.545,2.545,0,0,1,1.012,1.019A3.271,3.271,0,0,1,12.217,16Zm-3.267.886h1.084l.448.554a1.7,1.7,0,0,0,.325-.6A2.718,2.718,0,0,0,10.924,16a2.109,2.109,0,0,0-.419-1.413A1.393,1.393,0,0,0,9.392,14.1a1.4,1.4,0,0,0-1.114.488A2.109,2.109,0,0,0,7.86,16a2.112,2.112,0,0,0,.418,1.412,1.392,1.392,0,0,0,1.114.489,1.664,1.664,0,0,0,.33-.032ZM13.6,19V13h1.276v4.986h2.587V19Z" style="fill:#2088ff"></path></svg></div>
-            <div class="integration-name">CodeQL</div>
+        </div>
+      
+      
+      <div class="sidebar-cell" style="margin-top:28px;">
+        <div class="card">
+          <div class="card-face">
+            
+            <div class="integration-item">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-a)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7v10l10 5 10-5V7z"></path><path d="M2 7l10 5 10-5M12 22V12"></path></svg></div>
+              <div class="integration-name">Docker / K8s</div>
+            </div>
+            
+            <div class="integration-item">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-a)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7v10l10 5 10-5V7z"></path><path d="M6 12v4M10 14v2M14 12v4M18 14v2"></path></svg></div>
+              <div class="integration-name">Terraform / IaC</div>
+            </div>
+            
+            <div class="integration-item">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-a)" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg></div>
+              <div class="integration-name">Cloud Manifests</div>
+            </div>
+            
           </div>
         </div>
       </div>
-      <div class="sidebar-cell" style="margin-top:28px;">
-      <div class="card"><div class="card-face">
-        <div class="integration-item">
-          <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-a)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7v10l10 5 10-5V7z"></path><path d="M2 7l10 5 10-5M12 22V12"></path></svg></div>
-          <div class="integration-name">Docker / K8s</div>
-        </div>
-        <div class="integration-item">
-          <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-a)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7v10l10 5 10-5V7z"></path><path d="M6 12v4M10 14v2M14 12v4M18 14v2"></path></svg></div>
-          <div class="integration-name">Terraform / IaC</div>
-        </div>
-        <div class="integration-item">
-          <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-a)" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg></div>
-          <div class="integration-name">Cloud Manifests</div>
-        </div>
-      </div></div>
+      
     </div>
-    </div>
+    
     <div class="sidebar-cell sidebar-cell-b">
-      <div class="card">
-        <div class="card-face">
-          <div class="integration-item">
-            <div class="integration-icon"><svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+      
+      
+      
+        <div class="card">
+          <div class="card-face">
+            
+            <div class="integration-item">
+              <div class="integration-icon"><svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d_1_20)">
 <path d="M338 0H640V640H338V602.5L559 383H338V209.5H176.5L338 46.5V0Z" fill="#EB5E32"></path>
 </g>
@@ -1032,46 +1179,63 @@
 </filter>
 </defs>
 </svg></div>
-            <div class="integration-name">Burp Suite Pro</div>
-          </div>
-        </div>
-      </div>
-      <div class="sidebar-cell" style="margin-top:28px;">
-      <div class="card"><div class="card-face">
-        <div class="integration-item">
-          <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-b)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.5L19 10l-5.2 1.5L12 17l-1.8-5.5L5 10l5.2-1.5z"></path></svg></div>
-          <div class="integration-name">OpenAI / Anthropic</div>
-        </div>
-        <div class="integration-item">
-          <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-b)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12h8M12 8v8"></path></svg></div>
-          <div class="integration-name">LangChain / CrewAI</div>
-        </div>
-        <div class="integration-item">
-          <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-b)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M9 9h6v6H9z"></path></svg></div>
-          <div class="integration-name">MCP / Vector DB</div>
-        </div>
-      </div></div>
-    </div>
-    </div>
-    <div class="sidebar-cell sidebar-cell-c">
-      <div class="card">
-        <div class="card-face">
-          <div class="integration-item">
-            <div class="integration-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-c)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8a4 4 0 1 0 0 8h1.5l5-8H16a4 4 0 1 1 0 8h-1.5l-5-8H8z"></path></svg>
+              <div class="integration-name">Burp Suite Pro</div>
             </div>
-            <div class="integration-name">CI Pipeline</div>
+            
+          </div>
+        </div>
+      
+      
+      <div class="sidebar-cell" style="margin-top:28px;">
+        <div class="card">
+          <div class="card-face">
+            
+            <div class="integration-item">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-b)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.5L19 10l-5.2 1.5L12 17l-1.8-5.5L5 10l5.2-1.5z"></path></svg></div>
+              <div class="integration-name">OpenAI / Anthropic</div>
+            </div>
+            
+            <div class="integration-item">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-b)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12h8M12 8v8"></path></svg></div>
+              <div class="integration-name">LangChain / CrewAI</div>
+            </div>
+            
+            <div class="integration-item">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-b)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M9 9h6v6H9z"></path></svg></div>
+              <div class="integration-name">MCP / Vector DB</div>
+            </div>
+            
           </div>
         </div>
       </div>
+      
     </div>
     
-    
+    <div class="sidebar-cell sidebar-cell-c">
+      
+      
+      
+        <div class="card">
+          <div class="card-face">
+            
+            <div class="integration-item">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--stamp-c)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8a4 4 0 1 0 0 8h1.5l5-8H16a4 4 0 1 1 0 8h-1.5l-5-8H8z"></path></svg></div>
+              <div class="integration-name">CI Pipeline</div>
+            </div>
+            
+          </div>
+        </div>
+      
+      
+    </div>
     
   </aside>
+  
 </div> <!-- end layout-wrapper -->
 
 </div>
+
+
 
 <!-- ===== modal popup ===== -->
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
@@ -1093,21 +1257,21 @@
 <script>
 (function(){
   const ARROW_SVG='<div class="modal-arrow"><svg viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 0v15M4 12l4 4 4-4"/></svg></div>';
-  const FLOWS={
+  const FLOWS = {
     "Input Exposure Mapping":{
       d:"Every external data entry point across the codebase is identified, classified, and cataloged.",
       s:[
-{t:"File Walk",d:"Source tree walked across 9 languages, vendor/test/doc dirs pruned"},
-{t:"Pattern Match",d:"89 regex patterns detect HTTP params, headers, cookies, MQ payloads, webhooks, CLI args, env vars, gRPC fields, WS messages"},
-{t:"Classification",d:"Each input bucketed into 10 source categories; PII tagged via identifier heuristics"},
+{"t":"File Walk","d":"Source tree walked across 9 languages, vendor/test/doc dirs pruned"},
+{"t":"Pattern Match","d":"89 regex patterns detect HTTP params, headers, cookies, MQ payloads, webhooks, CLI args, env vars, gRPC fields, WS messages"},
+{"t":"Classification","d":"Each input bucketed into 10 source categories; PII tagged via identifier heuristics"},
 {"t":"Blind-Spot Detection","d":"First-party files with route signals but zero parsed inputs flagged for manual review"},
 {"t":"Coverage Metrics","d":"first_party_coverage_ratio written to JSON with likely + framework blind-spot lists"},
 {"t":"Report A","d":"Master inventory written with component attribution, code snippets, and DB-mapping hints"}
       ]},
     "Secrets &amp; Config Scan":{
-      d:"Hardcoded secrets, insecure configurations, weakness patterns, and dependency versions are detected across every file plus manifest.",
+      d:"Hardcoded secrets, insecure configurations, weakness patterns, and dependency versions are detected across all files and manifests.",
       s:[
-{t:"Comment Strip",d:"Source comments removed so markers inside comments are not matched"},
+{"t":"Comment Strip","d":"Source comments removed so markers inside comments are not matched"},
 {"t":"Pattern Engine","d":"191 single-line + 119 multi-line cross-function detectors fired per file across all CWE classes"},
 {"t":"Config &amp; IaC Extraction","d":"Dockerfiles, Terraform, Helm, K8s, nginx, env files, deploy manifests parsed for insecure settings"},
 {"t":"Lockfile Inventory","d":"Per-package version rows harvested from package-lock, requirements, Cargo.lock, go.mod, pom.xml"},
@@ -1124,7 +1288,7 @@
 {"t":"Confidence Verdict","d":"Each finding tagged confirmed-write, write-nearby, read-only, or schema/near-match"},
 {"t":"Report C","d":"Persistence analysis written for the chain tracer to consume"}
       ]},
-    "Trace Variable Handling End‑to‑End":{
+    "Trace Variable Handling End-to-End":{
       d:"Each input is followed from entry point through transforms, aliases, and function calls to its final sink.",
       s:[
 {"t":"Seed Loading","d":"All A/B/C findings loaded as taint seeds; AI seeds optionally layered"},
@@ -1178,7 +1342,7 @@
 {"t":"Architecture Output","d":"Component map feeds test scoping, dashboard grouping, and route attribution"}
       ]},
     "Correlation Engine":{
-      d:"All scanner reports are joined into a unified dataset with cross-validation, flag derivation, severity scoring, and suppression.",
+      d:"All scanner reports are joined into one dataset. Each finding is corroborated by static, external-SAST, and dynamic evidence. Findings with multiple confirmations rank higher; uncorroborated findings are de-prioritized, not dropped.",
       s:[
 {"t":"A/B/C Join","d":"Reports A, B, C joined by file, name, line into occurrence records; chains layered via fingerprint"},
 {"t":"Chain Folding","d":"Handling-chain terminals, transforms, raw-to-sink verdict, sanitization status folded into each occurrence"},
@@ -1254,7 +1418,7 @@
 {"t":"Replay &amp; Assertion","d":"Each request replayed across identities; 401/403 enforcement + cross-tenant IDOR checked"},
 {"t":"Output","d":"Test index with per-fingerprint authz status"}
       ]},
-    "Cookie‑State Tests":{
+    "Cookie-State Tests":{
       d:"Pairwise cookie-value combinations are generated for posture coverage.",
       s:[
 {"t":"Cookie Axis","d":"Security-relevant multi-value cookies identified as rotation axis"},
@@ -1269,7 +1433,7 @@
 {"t":"Concurrent Execution","d":"Tests fired simultaneously against the live target"},
 {"t":"Race Output","d":"Invariant violations reported as confirmed races"}
       ]},
-    "DOM‑XSS Tests":{
+    "DOM-XSS Tests":{
       d:"Playwright browser tests confirm client-side DOM, reflected, and stored XSS.",
       s:[
 {"t":"Finding Selection","d":"DOM-sink, response-sink, and stored-XSS findings selected from SARIF"},
@@ -1304,23 +1468,23 @@
 {"t":"Cookie Rotation","d":"Live cookies re-read from the browser before each test phase to pick up rotation"}
       ]},
     "All Results, Unified":{
-      d:"Every finding — static, dynamic, external — is organized into a single interactive dashboard.",
+      d:"Every finding (static, dynamic, external) is organized into one interactive dashboard. The full dataset is embedded in the HTML, so it can be shared, audited, or reviewed offline without a server.",
       s:[
 {"t":"Data Integration","d":"A/B/C reports, chains, authz, AI, cookies, routes, db-audit, test results all loaded"},
 {"t":"Occurrence Finalization","d":"150+ flags derived; severity scored; mechanism-mitigation hints attached; suppression tags applied"},
 {"t":"Dashboard Build","d":"8-tab HTML dashboard: Explore, Flow Map, Summary, Similar, Testing, Posture, Cookies, AI Agent"},
-{"t":"Filter System","d":"Grouped facet filters: Scope / Triage / Evidence — cross-tab sharing with categorized vulnerability-type chips"},
+{"t":"Filter System","d":"Grouped facet filters (Scope, Triage, Evidence) with cross-tab sharing and categorized vulnerability-type chips"},
 {"t":"Chain Rendering","d":"Per-hop code snippets paired with visual flow path; click-to-highlight; AI dispositions with lifecycle grouping"},
 {"t":"Embedded Data","d":"All CSVs + JSON embedded into the single HTML file for offline review"}
       ]},
-    "AI‑Assisted Review":{
+    "AI-Assisted Review":{
       d:"An optional LLM-assisted review layer provides human-readable summaries of findings.",
       s:[
 {"t":"Context Assembly","d":"Chain hops, transforms, sink type, and code snippets assembled as prompt context"},
 {"t":"LLM Review","d":"Model provides a plain-language explanation of why the flow is dangerous"},
 {"t":"Review Output","d":"Summaries displayed in-dashboard without changing the deterministic detection layer"}
       ]},
-    "Machine‑Readable Artifacts":{
+    "Machine-Readable Artifacts":{
       d:"SARIF 2.1.0 and structured JSON artifacts are produced for CI/CD integration.",
       s:[
 {"t":"SARIF Emission","d":"Full finding set exported with CWE taxonomy, codeFlows, and autofix deltas"},
@@ -1329,7 +1493,7 @@
 {"t":"CI Integration","d":"Artifacts ready for GitHub Code Scanning, GitLab, Azure DevOps ingestion"}
       ]},
     "Patch / Diff Report":{
-      d:"Two report folders are compared to surface what changed between scans.",
+      d:"Two report folders are compared to show changes between scans.",
       s:[
 {"t":"Pairing","d":"Findings paired on fingerprint identity; loose fallback on file+name for refactored code"},
 {"t":"Delta Classification","d":"added, removed, raw_to_sink_added/removed, flags_changed, flow_changed, corroboration_up/down, risk_up/down"},
@@ -1338,7 +1502,7 @@
 {"t":"Diff Dashboard","d":"Parallel HTML dashboard with per-pair delta panels"}
       ]},
     "Intelligent Suppression Engine":{
-      d:"A centralized filtering system tags and hides false positives based on environmental context and historical tuning.",
+      d:"A centralized filtering system tags and hides false positives based on context and operator-tuned rules.",
       s:[
 {"t":"Rule Loading","d":"Operator-tunable suppressions.json loaded with AND-combined match model"},
 {"t":"Match Evaluation","d":"Fingerprint, flag, vuln_type, classification, owasp, file_glob, component, source_family, has_write, ai_disposition checked per finding"},
@@ -1346,8 +1510,8 @@
 {"t":"Dashboard Toggle","d":"Suppressed findings hidden behind a Show suppressed toggle; counts exclude them by default"},
 {"t":"SARIF Suppressions","d":"Emitted as SARIF-native result.suppressions[] with kind:external + justification"}
       ]},
-    "Visual Data‑Flow Mapping":{
-      d:"Interactive force-directed graphs visually trace the path of untrusted data from source to sink.",
+    "Visual Data-Flow Mapping":{
+      d:"Interactive force-directed graphs trace untrusted data from source to sink.",
       s:[
 {"t":"Graph Build","d":"Source nodes, transform hops, sink terminals constructed from chain data"},
 {"t":"Force Layout","d":"Force-directed simulation positions nodes for readability"},

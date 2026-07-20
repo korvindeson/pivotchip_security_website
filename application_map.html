@@ -247,9 +247,109 @@
   .phase-rule{ flex:1; height:1px; background:repeating-linear-gradient(90deg,var(--border-color) 0 6px, transparent 6px 11px); }
 
   /* ===== card grid - centered even distribution, no whitespace ===== */
-  .card-grid{ display:flex; flex-wrap:wrap; gap:14px; justify-content:center; align-items:stretch; }
+  /* --spacing-h and --spacing-v are set inline per-phase from data.yaml.
+     Defaults of 14px preserve the original look when a phase doesn't set them. */
+  .card-grid{ display:flex; flex-wrap:wrap; gap:var(--spacing-v, 14px) var(--spacing-h, 14px); justify-content:center; align-items:stretch; }
   .cols-a > .card{ flex:0 0 auto; width:148px; }
   .cols-b > .card{ flex:0 0 auto; width:260px; }
+
+  /* ===== arrows in default (wrap) layout - right arrow between cards ===== */
+  .card-grid.arrows-on:not(.layout-vertical):not(.layout-horizontal):not(.layout-radial){ gap:var(--spacing-v, 14px) calc(var(--spacing-h, 14px) + 22px); }
+  .card-grid.arrows-on:not(.layout-vertical):not(.layout-horizontal):not(.layout-radial) > .card:not(:last-child)::after{
+    content:"\2192";
+    position:absolute; top:50%; right:calc(-1 * (var(--spacing-h, 14px) / 2) - 16px);
+    transform:translateY(-50%);
+    font-family:var(--font-mono); font-size:22px; font-weight:700;
+    color:var(--stage-color);
+    pointer-events:none; z-index:5;
+  }
+
+  /* ===== layout modes (per-phase) ===== */
+  /* vertical: cards stack top-to-bottom with down arrows between */
+  .card-grid.layout-vertical{ flex-direction:column; align-items:center; gap:var(--spacing-v, 14px) 0; }
+  .card-grid.layout-vertical > .card{ width:100%; max-width:320px; }
+  .card-grid.layout-vertical.arrows-on{ gap:calc(var(--spacing-v, 14px) + 22px) 0; }
+  .card-grid.layout-vertical.arrows-on > .card:not(:last-child)::after{
+    content:"\2193";
+    position:absolute; left:50%; bottom:calc(-1 * (var(--spacing-v, 14px) / 2) - 16px);
+    transform:translateX(-50%);
+    font-family:var(--font-mono); font-size:22px; font-weight:700;
+    color:var(--stage-color);
+    pointer-events:none; z-index:5;
+  }
+
+  /* horizontal: cards in a row left-to-right with right arrows between */
+  .card-grid.layout-horizontal{ flex-direction:row; flex-wrap:nowrap; overflow-x:auto; padding-bottom:12px; gap:0 var(--spacing-h, 14px); justify-content:flex-start; }
+  .card-grid.layout-horizontal > .card{ flex:0 0 auto; }
+  .card-grid.layout-horizontal.arrows-on{ gap:0 calc(var(--spacing-h, 14px) + 26px); }
+  .card-grid.layout-horizontal.arrows-on > .card:not(:last-child)::after{
+    content:"\2192";
+    position:absolute; top:50%; right:calc(-1 * (var(--spacing-h, 14px) / 2) - 16px);
+    transform:translateY(-50%);
+    font-family:var(--font-mono); font-size:22px; font-weight:700;
+    color:var(--stage-color);
+    pointer-events:none; z-index:5;
+  }
+
+  /* radial: cards positioned on an ellipse, clockwise arrows on each.
+     H slider scales the horizontal radius (--rx), V slider the vertical
+     radius (--ry). Equal values produce a circle; unequal values an
+     ellipse. Position via cos/sin so each axis is truly independent. */
+  .card-grid.layout-radial{
+    position:relative; display:block;
+    min-height:560px;
+    margin-top:20px;
+    /* per-axis radii: 4 -> 132px, 14 -> 183px (default), 60 -> 390px */
+    --rx:calc(120px + var(--spacing-h, 14px) * 4.5);
+    --ry:calc(120px + var(--spacing-v, 14px) * 4.5);
+  }
+  .card-grid.layout-radial > .card{
+    /* angle starts at -90deg (top / 12 o'clock) and increments clockwise */
+    --angle:calc(360deg / var(--n, 4) * var(--i, 0) - 90deg);
+    position:absolute; top:50%; left:50%;
+    margin:0;
+    transform:translate(-50%, -50%)
+            translate(
+              calc(cos(var(--angle)) * var(--rx)),
+              calc(sin(var(--angle)) * var(--ry))
+            );
+    transform-origin:center center;
+    z-index:1;
+    transition: transform var(--transition-speed), z-index 0s 0s;
+  }
+  /* Bring the hovered card above its neighbours so overlapping cards
+     don't obscure the one the user is interacting with. */
+  .card-grid.layout-radial > .card:hover{
+    z-index:10;
+  }
+  .card-grid.layout-radial.arrows-on > .card::before{
+    content:"\21BB";
+    position:absolute; top:-12px; right:-12px;
+    width:26px; height:26px; line-height:26px; text-align:center;
+    background:var(--stage-color); color:#fff;
+    border-radius:50%;
+    font-family:var(--font-mono); font-size:14px; font-weight:700;
+    box-shadow:0 2px 6px rgba(0,0,0,0.18);
+    pointer-events:none; z-index:6;
+  }
+
+  @media (max-width:720px){
+    /* collapse exotic layouts to a single column on small screens */
+    .card-grid.layout-horizontal,
+    .card-grid.layout-radial{
+      flex-direction:column; flex-wrap:wrap; overflow:visible; display:flex;
+      min-height:0;
+    }
+    .card-grid.layout-horizontal > .card,
+    .card-grid.layout-radial > .card{
+      position:static; transform:none; width:100%; max-width:320px; margin:0 0 14px 0;
+    }
+    .card-grid.layout-horizontal.arrows-on > .card:not(:last-child)::after,
+    .card-grid.layout-radial.arrows-on > .card::before,
+    .card-grid.arrows-on:not(.layout-vertical):not(.layout-horizontal):not(.layout-radial) > .card:not(:last-child)::after{ display:none; }
+    .card-grid.arrows-on:not(.layout-vertical):not(.layout-horizontal):not(.layout-radial) > .card:not(:last-child){ margin-right:0; }
+  }
+
 
   .card{ position:relative; cursor:pointer; }
   .card-face{
@@ -789,9 +889,14 @@
     </div>
     
     
-    <div class="phase">The raw codebase is loaded. Frameworks, languages, and architecture patterns are identified to prepare for specialized analysis.</div>
+    <div class="phase">The raw codebase is ingested into the system. The platform automatically identifies the frameworks, languages, and architecture patterns in use to prepare for specialized analysis.</div>
     
-    <div class="card-grid cols-a">
+    
+    
+    
+    
+    
+    <div class="card-grid cols-a arrows-on" style="--spacing-h: 10px; --spacing-v: 14px;">
     
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-target"></use></svg></div><p class="card-title">Input Exposure Mapping</p><p class="card-sub">External entry surfaces across all supported languages and frameworks</p></div></div>
     
@@ -818,10 +923,6 @@
     
     
     
-    <div aria-hidden="true" class="connector minor">
-    <svg height="26" viewBox="0 0 16 26" width="16"><path d="M8 0v18" marker-end="url(#arrow)" stroke="var(--stamp-a)" stroke-width="1.6"></path></svg>
-    </div>
-    
     
     <div class="phase">
     
@@ -832,36 +933,26 @@
     </div>
     
     
-    <div class="phase">The correlation engine guides test generation. It identifies suspicious areas and imports targeted results.</div>
+    <div class="phase">The correlation engine guides test generation. It identifies suspicious areas and imports targeted results back into the system.</div>
     
-    <div class="card-grid cols-b">
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-merge"></use></svg></div><p class="card-title">Correlation Engine</p><p class="card-sub">Cross-validates static, external-SAST, and dynamic evidence into a single dataset</p></div></div>
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg width="800px" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title>file_type_codeql</title><path d="M26.889,24H5.111A3.061,3.061,0,0,1,2,21V11A3.061,3.061,0,0,1,5.111,8H26.889A3.061,3.061,0,0,1,30,11V21A3.061,3.061,0,0,1,26.889,24ZM5.111,10a1.02,1.02,0,0,0-1.037,1V21a1.02,1.02,0,0,0,1.037,1H26.889a1.02,1.02,0,0,0,1.037-1V11a1.02,1.02,0,0,0-1.037-1Z" style="fill:#2088ff"></path><path d="M22.741,15H20.667a1,1,0,1,1,0-2h2.074a1,1,0,1,1,0,2Z" style="fill:#2088ff"></path><path d="M24.815,19H20.667a1,1,0,1,1,0-2h4.148a1,1,0,1,1,0,2Z" style="fill:#2088ff"></path><path d="M12.217,16a3.412,3.412,0,0,1-.256,1.369,2.661,2.661,0,0,1-.7.972l.863,1.045h-1.19l-.487-.576a3.075,3.075,0,0,1-1.057.179,2.941,2.941,0,0,1-1.444-.353,2.539,2.539,0,0,1-1.01-1.021A3.276,3.276,0,0,1,6.566,16a3.281,3.281,0,0,1,.372-1.619,2.54,2.54,0,0,1,1.01-1.019,3.138,3.138,0,0,1,2.884,0,2.545,2.545,0,0,1,1.012,1.019A3.271,3.271,0,0,1,12.217,16Zm-3.267.886h1.084l.448.554a1.7,1.7,0,0,0,.325-.6A2.718,2.718,0,0,0,10.924,16a2.109,2.109,0,0,0-.419-1.413A1.393,1.393,0,0,0,9.392,14.1a1.4,1.4,0,0,0-1.114.488A2.109,2.109,0,0,0,7.86,16a2.112,2.112,0,0,0,.418,1.412,1.392,1.392,0,0,0,1.114.489,1.664,1.664,0,0,0,.33-.032ZM13.6,19V13h1.276v4.986h2.587V19Z" style="fill:#2088ff"></path></svg></div><p class="card-title">Semgrep &amp; CodeQL Automation</p><p class="card-sub">Generated rulesets and QL models; no manual rule authoring required</p></div></div>
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" id="semgreplogo" version="1.1" viewBox="0 0 1670 252">
-     <g id="semgrep-ellipsis" fill="#13bf95">
-          <path d="m412-4e-7c55.22847 0 100 44.77153 100 100 0 55.22847-44.77153 100-100 100s-100-44.77153-100-100c1e-3 -22.75534 7.76297-44.82984 22.00391-62.57812 5.79468 6.661495 7.89062 10.6061 13.99609 20.57812h3.5c-3.0923-7.636258-7.63896-15.06492-13.76367-24.96093 18.96049-21.03049 45.94792-33.03689 74.26367-33.03906zm0 44c-30.92795 0-56 25.07205-56 56 0 30.92795 25.07205 56 56 56s56-25.07205 56-56c0-30.92794-25.07205-56-56-56z"></path>
-          <path d="m256 0c-55.22841 0-100 44.77158-100 100 8e-3 22.74213 7.76844 44.80216 22 62.54102 0.04153-0.05203 0.07004-0.09276 0.11133-0.14454 0.01252 0.01556 0.02458 0.03133 0.03711 0.04688 0.96022-1.20705 1.88357-2.443 2.78711-3.69336 4.19703-5.49557 7.10017-10.10355 9.92773-17.07812 0.25397-0.55649 0.51186-1.11021 0.75586-1.67188h3.38086c-0.72386 2.98756-1.74037 5.91654-2.99414 8.88477-2.79519 5.99462-6.2697 12.37905-9.80078 18.10937-0.05698 0.09227-0.10092 0.17302-0.1582 0.26563 18.94128 20.83966 45.79173 32.72679 73.95312 32.74023 28.16139-0.01344 55.01184-11.90057 73.95312-32.74023-0.05728-0.09261-0.10122-0.17336-0.1582-0.26563-3.53108-5.73032-7.00559-12.11475-9.80078-18.10937-1.25377-2.96823-2.27028-5.89721-2.99414-8.88477h3.38086c0.244 0.56167 0.50189 1.11539 0.75586 1.67188 2.82756 6.97457 5.7307 11.58255 9.92773 17.07812 0.90354 1.25036 1.82689 2.48631 2.78711 3.69336 0.01253-0.01555 0.02459-0.03132 0.03711-0.04688 0.04129 0.05178 0.0698 0.09251 0.11133 0.14454 14.23156-17.73886 21.992-39.79889 22-62.54102 0-55.22842-44.77159-100-100-100zm0 44c30.92792 0 56 25.07208 56 56 0 30.92792-25.07208 56-56 56s-56-25.07208-56-56c0-0.966497 0.02388-1.926386 0.07227-2.880859 1.49985-29.58868 25.96631-53.11914 55.92773-53.11914z"></path>
-          <path d="m100 0c-55.22848 0-100 44.77152-100 100 0 55.22847 44.77152 100 100 100 55.22847 0 100-44.77153 100-100-1e-3 -22.75534-7.76297-44.82984-22.00391-62.57812-5.79468 6.661495-7.89062 10.6061-13.99609 20.57812h-3.5c3.0923-7.636258 7.63896-15.06492 13.76367-24.96093-18.96049-21.03049-45.94792-33.03689-74.26367-33.03906zm0 44c30.92795 0 56 25.07205 56 56 0 30.92795-25.07205 56-56 56-30.92795 0-56-25.07205-56-56 0-30.92795 25.07205-56 56-56z"></path>
-     </g>
-     <g id="semgrep-letters" fill="#293331">
-          <path id="s" d="M659.55109 194.4763q-15.41724 0-28.48243-3.92117-13.0652-4.18248-23.51636-12.02494-10.45116-8.10366-18.55228-19.8669l20.64231-23.52687q12.8032 18.0379 24.82438 25.09587 12.01918 6.79666 27.96042 6.79666 9.40715 0 16.98426-2.87559 7.57802-2.87548 12.01918-8.10365 4.44227-5.22817 4.44227-11.76394 0-4.70538-1.56782-8.62645-1.56783-4.18258-4.96488-7.31947-3.39705-3.13698-8.36183-5.75097-4.96487-2.87558-11.49717-4.96677-6.5326-2.09119-14.89423-3.39838-14.11021-3.13698-24.82437-7.84216-10.45116-4.70528-17.76827-11.763938-7.05521-7.058063-10.45116-16.207914-3.39705-9.149252-3.39705-20.389893 0-11.23994 4.96487-20.650891 4.96488-9.672049 13.58721-16.729911 8.62313-7.058063 20.38131-10.7179437Q648.83763 6 662.16483 6q14.89423 0 26.6534 3.6596807 12.01919 3.6596803 21.16533 10.9789423 9.14573 7.058062 15.41723 17.513907l-21.16532 20.650891q-5.48748-8.365056-12.01918-13.854927-6.2714-5.751069-14.11022-8.626454-7.83922-2.875585-16.46225-2.875585-9.66835 0-16.98426 3.136984-7.0552 2.875584-11.23517 8.103557-4.18096 5.228172-4.18096 12.286935 0 5.228172 2.09033 9.672049 2.35164 4.182478 6.5326 7.58076 4.44227 3.398382 11.49717 6.012468 7.05521 2.614186 16.46225 4.443977 14.37122 3.136983 25.60839 8.103557 11.49718 4.705375 19.3363 11.239938 8.10062 6.53527 12.01918 14.90092 4.18096 8.36506 4.18096 18.03791 0 17.7759-8.36182 30.84684-8.10063 12.80893-23.25536 19.86689-15.15523 6.79666-35.80054 6.79666z"></path>
-          <path id="e1" d="M815.75346 194.4763q-21.42632 0-37.88957-8.88785-16.46225-9.14925-25.8694-24.83487-9.14573-15.94591-9.14573-36.33581 0-16.20791 5.22617-29.539839 5.22618-13.33193 14.37122-23.003879 9.40715-9.933547 22.21034-15.16192 13.0652-5.489571 28.22143-5.489571 13.58721 0 25.08538 5.228173 11.75818 4.966773 20.38131 14.115925 8.62313 8.887853 13.0652 21.174888 4.70357 12.286933 4.44227 26.663863l-.26129 11.50294h-111.8317l-6.01009-21.69789h92.50341l-3.91966 4.44398v-6.01247q-.78393-8.365057-5.48749-14.639924-4.70357-6.535166-12.01918-10.194946-7.05521-3.92108-15.67824-3.92108-13.5872 0-22.73334 5.228173-9.14574 4.966674-14.11022 14.900921-4.70357 9.933546-4.70357 24.311876 0 13.85492 5.74869 24.04987 6.01009 10.19495 16.72225 15.94591 10.71317 5.48958 24.82438 5.48958 9.92975 0 18.29028-3.13699 8.36183-3.39838 18.29028-11.76394l14.63322 20.6509q-6.5327 6.27376-15.67824 10.97894-9.14574 4.70537-19.07429 7.31946-9.92975 2.61418-19.5973 2.61418z"></path>
-          <path id="m" d="M899.25473 191.86632V54.367045h29.52845v28.493849l-4.96487 2.614086q2.35163-6.796664 6.794-12.808932 4.70357-6.012468 11.23517-10.717943 6.5327-4.705376 14.11021-7.319362 7.57752-2.613986 15.41724-2.614086 11.49717 0 20.1203 3.921079 8.88457 3.659681 14.63327 11.239941 6.01 7.58076 8.8845 19.344898l-4.7036-.784246 1.8291-4.443977q3.1357-6.012468 8.1006-11.23994 5.2262-5.489571 11.7582-9.41065 6.5325-4.182478 13.8492-6.273767 7.3166-2.352688 14.1102-2.352688 15.6782 0 25.8694 6.273767 10.1901 6.273767 15.4172 19.082899 5.2262 12.808933 5.2262 31.630837v82.86656h-29.7905V111.0948q0-11.239946-2.8745-18.298908-2.8744-7.058863-8.6231-10.455945-5.7487-3.659681-14.8943-3.659681-6.794 0-13.0652 2.352688-6.0101 2.352687-10.4511 6.535165-4.4423 4.182478-7.0553 9.933448-2.3519 5.489573-2.3519 12.286933v82.08157h-29.78842V110.5725q0-10.19495-3.13565-17.252911-2.87445-7.319461-8.62313-10.978942-5.74869-3.659681-14.11022-3.659681-6.794 0-12.80319 2.352688-6.01009 2.352687-10.45116 6.535165-4.44227 3.92108-7.05521 9.672049-2.35163 5.489572-2.35163 12.024932v82.60457z"></path>
-          <path id="g" d="M1199.1093 251.996q-14.8942 0-29.7905-4.70527-14.8942-4.70538-24.3003-12.02494l10.9741-22.48188q5.2262 3.92118 12.0192 6.79666 7.0553 3.13699 14.6332 4.70528 7.8393 1.82989 15.6783 1.82989 14.1102 0 23.5163-4.70538 9.4071-4.44397 14.1103-13.59293 4.9648-8.88775 4.9648-22.21988v-25.61886l3.6583 1.56849q-1.3066 8.36505-8.6231 15.68492-7.0554 7.31946-17.7683 12.02493-10.7132 4.44388-21.9494 4.44388-19.3362 0-34.7545-9.14925-15.1552-9.14925-24.0403-25.09587-8.6233-15.94592-8.6233-36.59781t8.6233-36.596804q8.6231-16.207914 23.7783-25.356866 15.1552-9.41065 34.2325-9.41065 7.8393 0 15.1553 2.091189 7.3165 1.82989 13.5872 5.228172 6.2711 3.398382 10.9741 7.58076 4.9647 4.182478 8.1004 8.887753 3.1357 4.705375 3.9196 8.887853l-6.0101 2.091189.2613-31.892831h29.0055V182.98707q0 16.46891-4.9647 29.27784-4.7036 12.80893-14.1102 21.69789-9.1458 8.88785-22.4724 13.33193Q1215.829 252 1199.1038 252Zm1.0452-84.43455q12.2812 0 21.6883-5.75097 9.6684-5.75107 14.8943-15.68492 5.2261-9.93355 5.2261-23.26588 0-13.07093-5.4873-23.265874-5.2263-10.194946-14.6333-15.945916-9.407-5.75107-21.6883-5.75107-12.0192 0-21.4263 6.012469-9.4071 5.751069-14.6332 15.945915-5.2262 10.194946-5.2262 23.003876 0 13.07093 5.2262 23.26588 5.2261 9.93355 14.6332 15.68492 9.4071 5.75097 21.4263 5.75097z"></path>
-          <path id="r" d="M1297.8108 191.86632V54.367045h29.2664l.5227 43.392771-3.6583-9.933548q2.8743-10.194946 9.9297-18.298903 7.0552-8.365056 16.2013-13.070931 9.1458-4.966674 18.8133-4.966674 4.4423 0 8.6231.784206 4.1809.784206 6.5327 1.82989l-7.8393 32.15383q-3.1356-1.307093-7.0552-2.091189-3.9196-1.045594-7.8392-1.045594-6.794 0-13.0652 2.614086-6.0102 2.614186-10.7132 7.319461-4.4424 4.443877-7.3165 10.71794-2.6131 6.01247-2.6131 13.33193v74.76161z"></path>
-          <path id="e2" d="M1454.2132 194.4763q-21.4264 0-37.8896-8.88785-16.4623-9.14925-25.8684-24.83487-9.1458-15.94591-9.1458-36.33581 0-16.20791 5.2261-29.539839 5.2262-13.33193 14.3713-23.003879 9.4071-9.933547 22.2103-15.16192 13.0652-5.489571 28.2204-5.489571 13.5872 0 25.0844 5.228173 11.7582 4.966773 20.3823 14.115925 8.623 8.887853 13.0652 21.174888 4.7036 12.286933 4.4423 26.663863l-.2615 11.50294h-111.8317l-6.0101-21.69789h92.5034l-3.9197 4.44398v-6.01247q-.7839-8.365057-5.4875-14.639924-4.7034-6.535166-12.0191-10.194946-7.0554-3.92108-15.6783-3.92108-13.5872 0-22.7323 5.228173-9.146 4.966674-14.1102 14.900921-4.7036 9.933546-4.7036 24.311876 0 13.85492 5.7487 24.04987 6.0101 10.19495 16.7222 15.94591 10.7132 5.48958 24.8244 5.48958 9.9297 0 18.2903-3.13699 8.3618-3.39838 18.2903-11.76394l14.6332 20.6509q-6.5326 6.27376-15.6782 10.97894-9.1458 4.70537-19.0743 7.31946-9.9297 2.61418-19.5973 2.61418z"></path>
-          <path id="p" d="M1532.8144 249.37601V54.367045h29.2664l.2611 31.369834-4.7036-2.352688q1.5679-8.103557 8.8846-15.16192 7.3165-7.319361 17.7682-11.763937 10.7132-4.443977 22.2104-4.443977 18.2903 0 32.4025 9.149252 14.3712 9.149251 22.7343 25.095867Q1670 102.20539 1670 122.85628q0 20.65189-8.3617 36.85781-8.1007 15.94591-22.4723 25.35686-14.1102 9.14926-32.1405 9.14926-12.0192 0-23.2564-4.70528-10.9741-4.70527-18.8132-12.28693-7.8393-7.58066-9.6685-15.94592l7.3168-3.65968v91.75351zm68.724-81.81956q11.4972 0 20.3813-5.75097 9.1458-5.75107 14.3712-15.68492 5.2261-10.19495 5.2261-23.26588 0-12.80893-5.2261-22.74288-4.9648-9.933544-14.1102-15.684914-8.8843-5.75097-20.6423-5.75097t-20.9043 5.75097q-8.8845 5.489571-14.1102 15.684914-5.2262 9.93355-5.2262 22.74288 0 13.07093 5.2262 23.26588 5.2262 9.93355 14.1102 15.68492 9.1456 5.75097 20.9043 5.75097z"></path>
-     </g>
-</svg></div><p class="card-title">SAST Feedback Loop</p><p class="card-sub">Semgrep/CodeQL results feed into further tests</p></div></div>
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-filesearch"></use></svg></div><p class="card-title">SARIF Blueprint</p><p class="card-sub">CWE taxonomy · surface flows · stable fingerprints · in-editor autofix deltas</p></div></div>
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">Access Control &amp; Authorization Mapping</p><p class="card-sub">Extracts role-based gates, privilege checks &amp; missing auth barriers</p></div></div>
+    <div class="card-grid cols-b layout-radial" style="--spacing-h: 34px; --spacing-v: 6px; --n: 6;">
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-codebrackets"></use></svg></div><p class="card-title">External SAST Orchestration</p><p class="card-sub">Automated scoping, ruleset generation &amp; findings ingestion</p></div></div>
+    <div class="card" style="cursor: pointer; --i: 0;"><div class="card-face"><div class="card-icon"><svg><use href="#i-merge"></use></svg></div><p class="card-title">Correlation Engine</p><p class="card-sub">Cross-validates static, external-SAST, and dynamic evidence into a single dataset</p></div></div>
+    
+    <div class="card" style="cursor: pointer; --i: 1;"><div class="card-face"><div class="card-icon"></div><p class="card-title">Semgrep &amp; CodeQL Automation</p><p class="card-sub">Generated rulesets and QL models; no manual rule authoring required</p></div></div>
+    
+    <div class="card" style="cursor: pointer; --i: 2;"><div class="card-face"><div class="card-icon"></div><p class="card-title">SAST Feedback Loop</p><p class="card-sub">Semgrep/CodeQL results feed into further tests</p></div></div>
+    
+    <div class="card" style="cursor: pointer; --i: 3;"><div class="card-face"><div class="card-icon"><svg><use href="#i-filesearch"></use></svg></div><p class="card-title">SARIF Blueprint</p><p class="card-sub">CWE taxonomy · surface flows · stable fingerprints · in-editor autofix deltas</p></div></div>
+    
+    <div class="card" style="cursor: pointer; --i: 4;"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">Access Control &amp; Authorization Mapping</p><p class="card-sub">Extracts role-based gates, privilege checks &amp; missing auth barriers</p></div></div>
+    
+    <div class="card" style="cursor: pointer; --i: 5;"><div class="card-face"><div class="card-icon"><svg><use href="#i-codebrackets"></use></svg></div><p class="card-title">External SAST Orchestration</p><p class="card-sub">Automated scoping, ruleset generation &amp; findings ingestion</p></div></div>
     
     </div>
     
@@ -900,9 +991,14 @@
     </div>
     
     
-    <div class="phase">Using the findings from Stage A, the system writes specific, targeted exploit attempts. It creates custom tests rather than relying on generic payloads.</div>
+    <div class="phase">Using the vulnerabilities mapped out in the Master Blueprint, the system automatically writes specific, targeted exploit attempts. It creates custom tests rather than relying on generic payloads.</div>
     
-    <div class="card-grid cols-a">
+    
+    
+    
+    
+    
+    <div class="card-grid cols-a" style="--spacing-h: 14px; --spacing-v: 14px;">
     
     <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-stack"></use></svg></div><p class="card-title">Nuclei YAML Templates</p><p class="card-sub">Custom exploit templates matched to each finding's attack class</p></div></div>
     
@@ -929,10 +1025,6 @@
     
     
     
-    <div aria-hidden="true" class="connector minor">
-    <svg height="26" viewBox="0 0 16 26" width="16"><path d="M8 0v18" marker-end="url(#arrow-dash)" stroke="var(--stamp-b)" stroke-width="1.6"></path></svg>
-    </div>
-    
     
     <div class="phase flow-wrap">
     
@@ -943,7 +1035,7 @@
     </div>
     
     
-    <div class="phase">Generated exploits are run against a live version of the application. The Authentication Manager monitors sessions and logs back in if the application terminates the connection during the attack phase. Attacks and findings are passed to third-party tools for further automated testing.</div>
+    <div class="phase">The platform fires the generated exploits against a live version of the application. An active Authentication Manager continuously monitors sessions and automatically logs back in if the application terminates the connection during the attack phase. All attacks and findings are passed to 3-rd party tool for advanced automated testing.</div>
     
     
     <div class="flow-scroll"><div class="flow-canvas" id="flowCanvas">
@@ -1036,30 +1128,37 @@
     
     
     
-    <div class="phase">Final verified results are formatted for human review and CI/CD pipelines.</div>
-    
-    
-    
-    
     <div class="phase">
     
+    <div class="phase-head">
+    <span class="phase-tag">PHASE 05</span> 
+    <span class="phase-title">Review and Triage the Report</span>
+    <span class="phase-rule"></span>
+    </div>
     
     
-    <div class="card-grid cols-b">
+    <div class="phase">The final, verified results are formatted for immediate consumption by both humans and automated CI/CD pipelines.</div>
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-dashboard"></use></svg></div><p class="card-title">All Results, Unified</p><p class="card-sub">Interactive 8-tab dashboard with per-finding chain visualization; embedded in a single HTML file for offline review</p></div></div>
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">AI-Assisted Review</p><p class="card-sub">Adds a human-readable summary to each finding</p></div></div>
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-braces"></use></svg></div><p class="card-title">Machine-Readable Artifacts</p><p class="card-sub">SARIF 2.1.0 with CWE taxonomy, codeFlows &amp; autofix deltas</p></div></div>
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-compare"></use></svg></div><p class="card-title">Patch / Diff Report</p><p class="card-sub">Compares two app versions and flags trends &amp; risk</p></div></div>
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">Intelligent Suppression Engine</p><p class="card-sub">Operator-tunable rules tag false positives; findings are auditable, not dropped</p></div></div>
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-chainlink"></use></svg></div><p class="card-title">Visual Data-Flow Mapping</p><p class="card-sub">Interactive force-directed graphs trace source to sink</p></div></div>
+    <div class="card-grid cols-b layout-radial" style="--spacing-h: 48px; --spacing-v: 16px; --n: 7;">
     
-    <div class="card" style="cursor: pointer;"><div class="card-face"><div class="card-icon"><svg><use href="#i-database"></use></svg></div><p class="card-title">Data Store Anomaly Detection</p><p class="card-sub">Correlates static DB rules against live proxy logs</p></div></div>
+    <div class="card" style="cursor: pointer; --i: 0;"><div class="card-face"><div class="card-icon"><svg><use href="#i-dashboard"></use></svg></div><p class="card-title">All Results, Unified</p><p class="card-sub">Interactive 8-tab dashboard with per-finding chain visualization; embedded in a single HTML file for offline review</p></div></div>
+    
+    <div class="card" style="cursor: pointer; --i: 1;"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">AI-Assisted Review</p><p class="card-sub">Adds a human-readable summary to each finding</p></div></div>
+    
+    <div class="card" style="cursor: pointer; --i: 2;"><div class="card-face"><div class="card-icon"><svg><use href="#i-braces"></use></svg></div><p class="card-title">Machine-Readable Artifacts</p><p class="card-sub">SARIF 2.1.0 with CWE taxonomy, codeFlows &amp; autofix deltas</p></div></div>
+    
+    <div class="card" style="cursor: pointer; --i: 3;"><div class="card-face"><div class="card-icon"><svg><use href="#i-compare"></use></svg></div><p class="card-title">Patch / Diff Report</p><p class="card-sub">Compares two app versions and flags trends &amp; risk</p></div></div>
+    
+    <div class="card" style="cursor: pointer; --i: 4;"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">Intelligent Suppression Engine</p><p class="card-sub">Operator-tunable rules tag false positives; findings are auditable, not dropped</p></div></div>
+    
+    <div class="card" style="cursor: pointer; --i: 5;"><div class="card-face"><div class="card-icon"><svg><use href="#i-chainlink"></use></svg></div><p class="card-title">Visual Data-Flow Mapping</p><p class="card-sub">Interactive force-directed graphs trace source to sink</p></div></div>
+    
+    <div class="card" style="cursor: pointer; --i: 6;"><div class="card-face"><div class="card-icon"><svg><use href="#i-database"></use></svg></div><p class="card-title">Data Store Anomaly Detection</p><p class="card-sub">Correlates static DB rules against live proxy logs</p></div></div>
     
     </div>
     
@@ -1260,6 +1359,7 @@
   const FLOWS = {
     "Input Exposure Mapping":{
       d:"Every external data entry point across the codebase is identified, classified, and cataloged.",
+      o:["Input inventory", "Coverage metrics"],
       s:[
 {"t":"File Walk","d":"Source tree walked across 9 languages, vendor/test/doc dirs pruned"},
 {"t":"Pattern Match","d":"89 regex patterns detect HTTP params, headers, cookies, MQ payloads, webhooks, CLI args, env vars, gRPC fields, WS messages"},
@@ -1270,6 +1370,7 @@
       ]},
     "Secrets &amp; Config Scan":{
       d:"Hardcoded secrets, insecure configurations, weakness patterns, and dependency versions are detected across all files and manifests.",
+      o:["Secrets inventory", "Dependency versions", "License report"],
       s:[
 {"t":"Comment Strip","d":"Source comments removed so markers inside comments are not matched"},
 {"t":"Pattern Engine","d":"191 single-line + 119 multi-line cross-function detectors fired per file across all CWE classes"},
@@ -1281,6 +1382,7 @@
       ]},
     "Dataflow &amp; Persistence Analysis":{
       d:"How data flows into databases and persistent stores is mapped with read/write classification and confidence verdicts.",
+      o:["Persistence findings", "DB operation map"],
       s:[
 {"t":"Input Cross-Reference","d":"Report A inputs matched against DB operation patterns in a context window"},
 {"t":"DB Detection","d":"14+ ORM and raw-SQL stores recognized: Prisma, MongoDB, SQLAlchemy, GORM, JDBC, EF Core, Rails, Diesel, PHP PDO"},
@@ -1290,6 +1392,7 @@
       ]},
     "Trace Variable Handling End-to-End":{
       d:"Each input is followed from entry point through transforms, aliases, and function calls to its final sink.",
+      o:["Handling chains", "Raw-to-sink verdicts"],
       s:[
 {"t":"Seed Loading","d":"All A/B/C findings loaded as taint seeds; AI seeds optionally layered"},
 {"t":"Forward Trace","d":"BFS worklist follows assignment aliases, member-assigns, destructuring, promise callbacks, callgraph hops up to depth 5"},
@@ -1301,6 +1404,7 @@
       ]},
     "HTTP Route Inventory":{
       d:"Every HTTP endpoint is enumerated with method, path, parameters, and framework attribution.",
+      o:["Route inventory", "Resolved endpoints"],
       s:[
 {"t":"Framework Detection","d":"30+ per-framework resolvers: Flask, Spring, Rails, Gin, Express, Django, ASP.NET, actix, axum, warp, Laravel, Slim, CodeIgniter, Next.js"},
 {"t":"Route Extraction","d":"Decorator, annotation, config-file, and file-based routing parsed per framework idiom"},
@@ -1309,6 +1413,7 @@
       ]},
     "Cookie Inventory &amp; Impact":{
       d:"Security-relevant cookies are cataloged with flags, values, and exposure scope.",
+      o:["Cookie inventory", "Posture rotation axis"],
       s:[
 {"t":"Cookie Discovery","d":"Hardcoded values, setcookie, res.cookie, set_cookie detected across all languages"},
 {"t":"Flag Analysis","d":"Secure, HttpOnly, SameSite, domain scope checked per cookie"},
@@ -1317,6 +1422,7 @@
       ]},
     "AI &amp; LLM Integration Discovery":{
       d:"LLM providers, agent frameworks, prompt-injection surfaces, and output-to-sink flows are discovered across the codebase.",
+      o:["AI surface inventory", "OWASP LLM mapping", "Tool/MCP analysis"],
       s:[
 {"t":"Framework Signatures","d":"51 framework signatures: LangChain, OpenAI, Anthropic, CrewAI, AutoGen, MCP, A2A, vector DBs, browser-use, computer-use"},
 {"t":"LLM-Call Recognition","d":"Shared multi-language recognizers match call shapes across 8 languages (. -> :: chains, Async suffixes, fluent APIs)"},
@@ -1328,6 +1434,7 @@
       ]},
     "Infrastructure &amp; Deployment Harvesting":{
       d:"Container configurations, cloud deployment manifests, and port bindings map the external attack surface.",
+      o:["Port and domain inventory", "IaC security findings"],
       s:[
 {"t":"Deploy Config Walk","d":"Dockerfiles, docker-compose, K8s, Terraform, Helm, Istio, PaaS manifests, nginx, Apache, HAProxy, Traefik, Envoy, Caddy parsed"},
 {"t":"Port &amp; Domain Harvest","d":"Per-service port bindings and domain groupings extracted across 20+ deployment platforms"},
@@ -1336,6 +1443,7 @@
       ]},
     "Component Architecture Discovery":{
       d:"Deployable units, application frameworks, and service boundaries are structurally mapped.",
+      o:["Component map", "Service boundaries"],
       s:[
 {"t":"File Classification","d":"Each file mapped to a component via framework signatures and import analysis"},
 {"t":"Unit Detection","d":"Monorepo apps, Django apps, Laravel groups structurally identified as deployable units"},
@@ -1343,6 +1451,7 @@
       ]},
     "Correlation Engine":{
       d:"All scanner reports are joined into one dataset. Each finding is corroborated by static, external-SAST, and dynamic evidence. Findings with multiple confirmations rank higher; uncorroborated findings are de-prioritized, not dropped.",
+      o:["Integrated dataset", "Severity ranking", "OWASP rollup"],
       s:[
 {"t":"A/B/C Join","d":"Reports A, B, C joined by file, name, line into occurrence records; chains layered via fingerprint"},
 {"t":"Chain Folding","d":"Handling-chain terminals, transforms, raw-to-sink verdict, sanitization status folded into each occurrence"},
@@ -1354,6 +1463,7 @@
       ]},
     "Semgrep &amp; CodeQL Automation":{
       d:"Third-party static analysis engines are automatically scoped, their rulesets generated, and findings ingested.",
+      o:["Semgrep rules", "CodeQL models", "Bridge SARIF"],
       s:[
 {"t":"Scope Selection","d":"Language, path, and CWE-class scope auto-selected from the codebase inventory"},
 {"t":"Guidance File","d":"Sources, sinks, sanitizers, and scope emitted as sast_guidance.json"},
@@ -1363,6 +1473,7 @@
       ]},
     "SAST Feedback Loop":{
       d:"External SAST results feed back into test generation and the correlation pipeline.",
+      o:["Corroboration index", "Priority boosts"],
       s:[
 {"t":"SARIF Ingest","d":"Semgrep/CodeQL SARIF parsed into taint chains with codeFlows"},
 {"t":"Cross-Validation","d":"External findings cross-referenced against A/B/C findings for a corroboration index"},
@@ -1370,6 +1481,7 @@
       ]},
     "SARIF Blueprint":{
       d:"All findings are exported as SARIF 2.1.0 with CWE taxonomy, codeFlows, and autofix deltas.",
+      o:["SARIF 2.1.0", "Autofix deltas", "CWE taxonomy"],
       s:[
 {"t":"Rule Catalog","d":"Per-finding rule IDs with CWE relationships and test-kind metadata"},
 {"t":"CWE Derivation","d":"Per-finding CWEs refined by chain terminal type and sink classification"},
@@ -1379,6 +1491,7 @@
       ]},
     "Access Control &amp; Authorization Mapping":{
       d:"Role-based access gates, privilege checks, missing authentication, and object-level authorization gaps are extracted.",
+      o:["Missing-auth findings", "IDOR/BOLA findings", "CSRF findings"],
       s:[
 {"t":"Handler Walk","d":"Every inbound handler across 9 languages inspected for auth gates"},
 {"t":"Guard Recognition","d":"Spring Security, ASP.NET Authorize, Devise, JWT, OAuth/OIDC, session libraries recognized; project-specific wrappers harvested via auth_markers.json"},
@@ -1388,6 +1501,7 @@
       ]},
     "External SAST Orchestration":{
       d:"The pipeline automates scoping, ruleset generation, and ingestion for third-party SAST engines.",
+      o:["Guidance file", "Generated rulesets", "Ingested findings"],
       s:[
 {"t":"Guidance File","d":"Sources, sinks, sanitizers, and scope emitted as sast_guidance.json"},
 {"t":"Rule Synthesis","d":"Semgrep taint rules + CodeQL QL data-extension models auto-generated"},
@@ -1396,6 +1510,7 @@
       ]},
     "Nuclei YAML Templates":{
       d:"Classification-matched HTTP exploit templates are generated from the static findings.",
+      o:["Nuclei templates", "Routes template", "Coverage audit"],
       s:[
 {"t":"Classification Lookup","d":"Each finding mapped to an attack class: SQLi, XSS, SSTI, SSRF, path traversal, deser, CRLF, LDAP"},
 {"t":"Route Resolution","d":"Multi-strategy resolver reads source-file decorators, routes inventory, and callgraph reverse-reachability to find the live endpoint"},
@@ -1405,6 +1520,7 @@
       ]},
     "AST &amp; HTTP Fuzzers":{
       d:"Property-based fuzzers and AST-resolved function fuzzers are generated for Python handlers.",
+      o:["Fuzz test files", "Matched strategies", "Lint gate"],
       s:[
 {"t":"AST Parse","d":"Enclosing function for each finding resolved via Python AST"},
 {"t":"Strategy Matching","d":"Hypothesis strategy selected per input classification (int, str, email, UUID, etc.)"},
@@ -1413,6 +1529,7 @@
       ]},
     "Auth / CSRF / IDOR Probes":{
       d:"Authorization replay tests are generated from the identity matrix.",
+      o:["Identity-matrix tests", "Authz enforcement", "IDOR findings"],
       s:[
 {"t":"Identity Matrix","d":"Anonymous, low-priv, other-tenant identities constructed per endpoint"},
 {"t":"Replay &amp; Assertion","d":"Each request replayed across identities; 401/403 enforcement + cross-tenant IDOR checked"},
@@ -1420,6 +1537,7 @@
       ]},
     "Cookie-State Tests":{
       d:"Pairwise cookie-value combinations are generated for posture coverage.",
+      o:["Pairwise matrix", "Replay results", "Posture coverage"],
       s:[
 {"t":"Cookie Axis","d":"Security-relevant multi-value cookies identified as rotation axis"},
 {"t":"Pairwise Matrix","d":"Combinatorics pairwise reduction generates coverage-efficient test set"},
@@ -1428,6 +1546,7 @@
       ]},
     "Race Condition Tests":{
       d:"Concurrency harnesses are generated for TOCTOU and race-condition findings.",
+      o:["Race harnesses", "Confirmed races", "TOCTOU coverage"],
       s:[
 {"t":"Harness Generation","d":"N concurrent identical requests + final-state invariant check"},
 {"t":"Concurrent Execution","d":"Tests fired simultaneously against the live target"},
@@ -1435,6 +1554,7 @@
       ]},
     "DOM-XSS Tests":{
       d:"Playwright browser tests confirm client-side DOM, reflected, and stored XSS.",
+      o:["Playwright specs", "Confirmed XSS", "DOM traces"],
       s:[
 {"t":"Finding Selection","d":"DOM-sink, response-sink, and stored-XSS findings selected from SARIF"},
 {"t":"Payload Injection","d":"Classification-matched payloads injected at each input vector"},
@@ -1443,6 +1563,7 @@
       ]},
     "AI &amp; Model Behavioral Probes":{
       d:"Targeted runtime exploits test prompt isolation, cost exhaustion, data leakage, and tool authorization in AI agents.",
+      o:["Sink probes", "Tool IDOR replays", "Cost/extract probes"],
       s:[
 {"t":"SARIF Read","d":"AI findings loaded from SARIF output"},
 {"t":"Sink Probes","d":"Crafted prompt-injection payloads sent to LLM-output-to-sink paths; markers checked at SQL, exec, SSRF, DOM, deser, notification"},
@@ -1453,6 +1574,7 @@
       ]},
     "Defensive Rule Generation":{
       d:"Database firewall rules and allowlists are synthesized directly from the static dataflow analysis.",
+      o:["Column allowlist", "Firewall rules", "Deploy bundle"],
       s:[
 {"t":"Dataflow Read","d":"Report C parsed for confirmed DB-write targets and column mappings"},
 {"t":"Allowlist Synthesis","d":"Per-table column allowlist generated as JSON"},
@@ -1461,6 +1583,7 @@
       ]},
     "Continuous Session Management":{
       d:"Dynamic authentication probes monitor session health and trigger re-authentication during live attacks.",
+      o:["Session monitor", "Re-auth log", "Chromium profile"],
       s:[
 {"t":"Response Monitor","d":"401/403, Unauthorized JSON, clerk signed-out, www-authenticate detected per response"},
 {"t":"Re-Auth Trigger","d":"Session-expired tests marked for re-auth rerun; pipeline pauses for manual re-login"},
@@ -1469,6 +1592,7 @@
       ]},
     "All Results, Unified":{
       d:"Every finding (static, dynamic, external) is organized into one interactive dashboard. The full dataset is embedded in the HTML, so it can be shared, audited, or reviewed offline without a server.",
+      o:["HTML dashboard", "Chain visualization", "Facet filters"],
       s:[
 {"t":"Data Integration","d":"A/B/C reports, chains, authz, AI, cookies, routes, db-audit, test results all loaded"},
 {"t":"Occurrence Finalization","d":"150+ flags derived; severity scored; mechanism-mitigation hints attached; suppression tags applied"},
@@ -1479,6 +1603,7 @@
       ]},
     "AI-Assisted Review":{
       d:"An optional LLM-assisted review layer provides human-readable summaries of findings.",
+      o:["Finding summaries", "Risk explanations", "Review-only layer"],
       s:[
 {"t":"Context Assembly","d":"Chain hops, transforms, sink type, and code snippets assembled as prompt context"},
 {"t":"LLM Review","d":"Model provides a plain-language explanation of why the flow is dangerous"},
@@ -1486,6 +1611,7 @@
       ]},
     "Machine-Readable Artifacts":{
       d:"SARIF 2.1.0 and structured JSON artifacts are produced for CI/CD integration.",
+      o:["SARIF for CI", "Pipeline metrics", "Coverage warnings"],
       s:[
 {"t":"SARIF Emission","d":"Full finding set exported with CWE taxonomy, codeFlows, and autofix deltas"},
 {"t":"Pipeline Metrics","d":"Route-resolution rate, test-success rate, nuclei coverage written to JSON"},
@@ -1494,6 +1620,7 @@
       ]},
     "Patch / Diff Report":{
       d:"Two report folders are compared to show changes between scans.",
+      o:["Finding deltas", "Chain diffs", "Diff dashboard"],
       s:[
 {"t":"Pairing","d":"Findings paired on fingerprint identity; loose fallback on file+name for refactored code"},
 {"t":"Delta Classification","d":"added, removed, raw_to_sink_added/removed, flags_changed, flow_changed, corroboration_up/down, risk_up/down"},
@@ -1503,6 +1630,7 @@
       ]},
     "Intelligent Suppression Engine":{
       d:"A centralized filtering system tags and hides false positives based on context and operator-tuned rules.",
+      o:["Suppression tags", "SARIF suppressions", "Rule file"],
       s:[
 {"t":"Rule Loading","d":"Operator-tunable suppressions.json loaded with AND-combined match model"},
 {"t":"Match Evaluation","d":"Fingerprint, flag, vuln_type, classification, owasp, file_glob, component, source_family, has_write, ai_disposition checked per finding"},
@@ -1512,6 +1640,7 @@
       ]},
     "Visual Data-Flow Mapping":{
       d:"Interactive force-directed graphs trace untrusted data from source to sink.",
+      o:["Source-sink graphs", "Hop highlights", "Terminal filters"],
       s:[
 {"t":"Graph Build","d":"Source nodes, transform hops, sink terminals constructed from chain data"},
 {"t":"Force Layout","d":"Force-directed simulation positions nodes for readability"},
@@ -1520,6 +1649,7 @@
       ]},
     "Data Store Anomaly Detection":{
       d:"Static database rules are correlated against live proxy logs to flag anomalous data mutations.",
+      o:["Anomalous writes", "Static-live correlation", "Query audit"],
       s:[
 {"t":"Allowlist Load","d":"Static DB firewall allowlist (from dataflow analysis) loaded"},
 {"t":"Log Parsing","d":"Proxy logs (JSON-lines or raw SQL) parsed for executed INSERT/UPDATE queries"},
@@ -1633,17 +1763,24 @@
     var sh='';
     flow.s.forEach(function(_,i){if(i>0)sh+='<div class="modal-stepper-seg"></div>';sh+='<div class="modal-stepper-dot'+(i===last?' last':'')+'"></div>';});
     ms.innerHTML=sh;
-    var ls=flow.s[last],outs=[];
-    var rm=ls.t.match(/report\s*([A-C])/i);if(rm)outs.push('Report '+rm[1].toUpperCase());
-    var cm=ls.d.match(/(\w+\.csv)/i);if(cm)outs.push(cm[1]);
-    var jm=ls.d.match(/(\w+\.json)/i);if(jm)outs.push(jm[1]);
-    if(/sarif/i.test(ls.d))outs.push('SARIF');
-    if(/yaml/i.test(ls.d))outs.push('Nuclei YAML');
-    if(/pytest|hypothesis/i.test(ls.d))outs.push('pytest');
-    if(/playwright/i.test(ls.d))outs.push('Playwright');
-    if(/html|dashboard/i.test(ls.d))outs.push('Dashboard');
-    if(/allowlist|firewall/i.test(ls.d))outs.push('DB Rules');
-    if(!outs.length)outs.push(ls.t);
+    var ls=flow.s[last];
+    /* Declarative outputs (flow.o) take precedence; fall back to regex
+       extraction from the last step text for backward compatibility. */
+    var outs=[];
+    if(flow.o && flow.o.length){
+      flow.o.forEach(function(o){outs.push(o);});
+    }else{
+      var rm=ls.t.match(/report\s*([A-C])/i);if(rm)outs.push('Report '+rm[1].toUpperCase());
+      var cm=ls.d.match(/(\w+\.csv)/i);if(cm)outs.push(cm[1]);
+      var jm=ls.d.match(/(\w+\.json)/i);if(jm)outs.push(jm[1]);
+      if(/sarif/i.test(ls.d))outs.push('SARIF');
+      if(/yaml/i.test(ls.d))outs.push('Nuclei YAML');
+      if(/pytest|hypothesis/i.test(ls.d))outs.push('pytest');
+      if(/playwright/i.test(ls.d))outs.push('Playwright');
+      if(/html|dashboard/i.test(ls.d))outs.push('Dashboard');
+      if(/allowlist|firewall/i.test(ls.d))outs.push('DB Rules');
+      if(!outs.length)outs.push(ls.t);
+    }
     var fh='<span class="modal-footer-label">Outputs</span>';
     outs.forEach(function(o){fh+='<span class="modal-pill"><span class="pill-arrow">&#8594;</span>'+o+'</span>';});
     mf.innerHTML=fh;mf.style.display='flex';

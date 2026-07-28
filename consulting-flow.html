@@ -1,0 +1,2530 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>External Input Security Scanner — Consulting Pipeline</title>
+<style>
+  :root{
+    /* ---- site palette (matches css/styles.css) ---- */
+    --primary-color:#2c3e50;
+    --primary-light:#34495e;
+    --primary-dark:#1a252f;
+    --accent-color:#3498db;
+    --accent-hover:#2980b9;
+    --secondary-color:#e74c3c;
+    --success-color:#27ae60;
+    --warning-color:#f39c12;
+    --info-color:#16a085;
+    --text-primary:#2c3e50;
+    --text-secondary:#7f8c8d;
+    --text-light:#95a5a6;
+    --background-light:#ecf0f1;
+    --background-white:#ffffff;
+    --border-color:#dfe6e9;
+    --shadow-color:rgba(0,0,0,0.10);
+    --font-primary:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    --font-heading:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    --font-mono:'Courier New',Courier,monospace;
+    --border-radius:8px;
+    --transition-speed:0.3s;
+
+    /* ---- stage theming (mapped onto site palette) ---- */
+    --stamp-a:#3498db;                 /* Stage A : accent blue   */
+    --stamp-b:#f39c12;                 /* Stage B : warning orange */
+    --stamp-c:#27ae60;                 /* Stage C : success green  */
+    --stamp-d:#9b59b6;                 /* Stage D : purple        */
+    --stamp-e:#e74c3c;                 /* Stage E : red           */
+    --stamp-f:#1abc9c;                 /* Stage F : teal          */
+    --stamp-g:#e67e22;                 /* Stage G : dark orange   */
+    --stamp-h:#2ecc71;                 /* Stage H : emerald       */
+    --stamp-i:#e84393;                 /* Stage I : pink          */
+    --stamp-j:#6c5ce7;                 /* Stage J : indigo        */
+    --line-cyan:#3498db;               /* generic data-flow lines  */
+    --stamp-a-soft:rgba(52,152,219,0.08);
+    --stamp-b-soft:rgba(243,156,18,0.10);
+    --stamp-c-soft:rgba(39,174,96,0.08);
+    --stamp-d-soft:rgba(155,89,182,0.08);
+    --stamp-e-soft:rgba(231,76,60,0.08);
+    --stamp-f-soft:rgba(26,188,156,0.08);
+    --stamp-g-soft:rgba(230,126,34,0.08);
+    --stamp-h-soft:rgba(46,204,113,0.08);
+    --stamp-i-soft:rgba(232,67,147,0.08);
+    --stamp-j-soft:rgba(108,92,231,0.08);
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ background:var(--background-light); }
+  body{
+    margin:0;
+    padding:40px 20px 60px;
+    background:var(--background-light);
+    font-family:var(--font-primary);
+    color:var(--text-primary);
+    display:flex;
+    justify-content:center;
+    line-height:1.6;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  /* ===== sheet (the page card) ===== */
+  .sheet{
+    position:relative;
+    width:100%;
+    max-width:1500px;
+    background:var(--background-white);
+    border:1px solid var(--border-color);
+    border-radius:var(--border-radius);
+    box-shadow:0 10px 40px rgba(0,0,0,0.08);
+    padding:40px 44px 30px;
+    animation: sheet-in .5s ease-out both;
+  }
+  @keyframes sheet-in{ from{ opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ===== header ===== */
+  .header{ position:relative; padding:6px 0 26px; }
+  .header-top{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:24px; flex-wrap:wrap;
+    border-bottom:2px solid var(--border-color);
+    padding-bottom:22px;
+    margin-bottom:8px;
+  }
+  .kicker{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--accent-color);
+    display:flex; align-items:center; gap:10px;
+  }
+  .kicker::before{ content:""; width:8px; height:8px; background:var(--accent-color); border-radius:50%; }
+  .h1{
+    font-family:var(--font-heading);
+    font-weight:700;
+    font-size:clamp(34px,5vw,52px);
+    margin:10px 0 12px;
+    line-height:1.1;
+    color:var(--primary-color);
+  }
+  .subtitle{
+    max-width:640px;
+    font-size:15px;
+    line-height:1.6;
+    color:#576573;
+    font-weight:400;
+  }
+  .legend{
+    display:flex; flex-direction:column; gap:10px;
+    font-family:var(--font-primary); font-size:13px; font-weight:500;
+    color:var(--text-primary);
+    padding:14px 18px;
+    border:1px solid var(--border-color);
+    border-radius:var(--border-radius);
+    background:var(--background-light);
+    box-shadow:0 1px 3px rgba(0,0,0,0.04);
+  }
+  .legend-row{ display:flex; align-items:center; gap:10px; white-space:nowrap; }
+  .legend-dot{ width:11px; height:11px; border-radius:50%; flex:none; box-shadow:0 0 0 3px rgba(0,0,0,0.05); }
+
+  /* ===== Sidebar Layout (3rd Party Integrations) - grid aligned with stages ===== */
+  .layout-wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 210px;
+    grid-template-rows: repeat(5, auto);
+    column-gap: 36px;
+    align-items: stretch;
+  }
+  .main-stages { display: contents; }
+  .main-stages > * { grid-column: 1; }
+  .sidebar {
+    grid-column: 2;
+    grid-row: 1 / span 5;
+    display: grid;
+    grid-template-rows: subgrid;
+    border-left: 2px dashed var(--border-color);
+    padding-left: 36px;
+  }
+  .sidebar-cell { display: flex; flex-direction: column; }
+  .sidebar-cell-a { grid-row: 1; align-self: start; }
+  .sidebar-cell-b { grid-row: 3; align-self: start; }
+  .sidebar-cell-c { grid-row: 5; align-self: start; }
+  .sidebar-cell-d { grid-row: 7; align-self: start; }
+  .sidebar-cell-e { grid-row: 9; align-self: start; }
+  .sidebar-cell-f { grid-row: 11; align-self: start; }
+  .sidebar-cell-g { grid-row: 13; align-self: start; }
+  .sidebar-cell-h { grid-row: 15; align-self: start; }
+  .sidebar-cell-i { grid-row: 17; align-self: start; }
+  .sidebar-cell-j { grid-row: 19; align-self: start; }
+  .sidebar-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .sidebar-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.2;
+    color: var(--primary-color);
+    margin: 0;
+  }
+  .sidebar .card-face {
+    background: var(--background-light);
+    border: 1px dashed var(--border-color);
+    box-shadow: none;
+    padding: 16px 14px 14px;
+  }
+  .sidebar .card:hover .card-face {
+    border-style: solid;
+    border-color: var(--accent-color);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+  .sidebar .card-icon {
+    width: 22px; height: 22px;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+  }
+
+  .integration-item {
+    display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
+    margin-bottom: 24px;
+  }
+  .integration-item:last-child { margin-bottom: 0; }
+  .integration-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+  .integration-icon svg { width: 100%; height: 100%; }
+  .integration-name { font-size: 11.5px; font-weight: 600; font-family: var(--font-mono); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.3; }
+
+  /* ===== stage panels (A / B / C) - visually distinct ===== */
+  .stage{
+    position:relative;
+    margin:0;
+    padding:30px 32px 24px;
+    border:1px solid var(--stage-border);
+    border-top:5px solid var(--stage-color);
+    border-radius:var(--border-radius);
+    background:linear-gradient(180deg, var(--stage-soft), var(--background-white) 75%);
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  }
+  .stage-a{ --stage-color:var(--stamp-a); --stage-soft:var(--stamp-a-soft); --stage-border:rgba(52,152,219,0.28); }
+  .stage-b{ --stage-color:var(--stamp-b); --stage-soft:var(--stamp-b-soft); --stage-border:rgba(243,156,18,0.32); }
+  .stage-c{ --stage-color:var(--stamp-c); --stage-soft:var(--stamp-c-soft); --stage-border:rgba(39,174,96,0.28); }
+  .stage-d{ --stage-color:var(--stamp-d); --stage-soft:var(--stamp-d-soft); --stage-border:rgba(155,89,182,0.28); }
+  .stage-e{ --stage-color:var(--stamp-e); --stage-soft:var(--stamp-e-soft); --stage-border:rgba(231,76,60,0.28); }
+  .stage-f{ --stage-color:var(--stamp-f); --stage-soft:var(--stamp-f-soft); --stage-border:rgba(26,188,156,0.28); }
+  .stage-g{ --stage-color:var(--stamp-g); --stage-soft:var(--stamp-g-soft); --stage-border:rgba(230,126,34,0.28); }
+  .stage-h{ --stage-color:var(--stamp-h); --stage-soft:var(--stamp-h-soft); --stage-border:rgba(46,204,113,0.28); }
+  .stage-i{ --stage-color:var(--stamp-i); --stage-soft:var(--stamp-i-soft); --stage-border:rgba(232,67,147,0.28); }
+  .stage-j{ --stage-color:var(--stamp-j); --stage-soft:var(--stamp-j-soft); --stage-border:rgba(108,92,231,0.28); }
+
+  .stage-head{
+    display:flex; align-items:center; gap:16px;
+    margin-bottom:22px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--stage-border);
+  }
+  .stamp{
+    flex:none;
+    width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-heading); font-weight:700; font-size:20px;
+    color:var(--background-white);
+    background:var(--stage-color);
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  }
+  .stage-title{
+    font-family:var(--font-heading); font-weight:700; font-size:24px;
+    color:var(--primary-color); letter-spacing:.01em; white-space:nowrap;
+  }
+  .stage-trace{
+    flex:1; height:4px; border-radius:2px;
+    background:linear-gradient(90deg, var(--stage-color), transparent);
+    opacity:.65;
+  }
+  .stage-count{
+    font-family:var(--font-mono); font-size:11px; font-weight:600;
+    color:var(--stage-color); white-space:nowrap;
+    background:var(--stage-soft);
+    border:1px solid var(--stage-border);
+    padding:5px 11px; border-radius:999px;
+  }
+
+  .stage-a .card{ --stage-color:var(--stamp-a); }
+  .stage-b .card{ --stage-color:var(--stamp-b); }
+  .stage-c .card{ --stage-color:var(--stamp-c); }
+  .stage-d .card{ --stage-color:var(--stamp-d); }
+  .stage-e .card{ --stage-color:var(--stamp-e); }
+  .stage-f .card{ --stage-color:var(--stamp-f); }
+  .stage-g .card{ --stage-color:var(--stamp-g); }
+  .stage-h .card{ --stage-color:var(--stamp-h); }
+  .stage-i .card{ --stage-color:var(--stamp-i); }
+  .stage-j .card{ --stage-color:var(--stamp-j); }
+
+  /* ===== phase (sub-section) ===== */
+  .phase{ padding:6px 0 18px; }
+  .phase-head{
+    display:flex; align-items:baseline; gap:12px; margin:0 0 16px;
+  }
+  .phase-tag{
+    font-family:var(--font-mono); font-size:11px; font-weight:600;
+    color:var(--stage-color);
+    background:var(--stage-soft);
+    border:1px solid var(--stage-border);
+    padding:3px 9px; border-radius:4px;
+  }
+  .phase-title{
+    font-family:var(--font-heading); font-weight:600; font-size:17px;
+    color:var(--primary-color);
+  }
+  .phase-rule{ flex:1; height:1px; background:repeating-linear-gradient(90deg,var(--border-color) 0 6px, transparent 6px 11px); }
+
+  /* ===== card grid - centered even distribution, no whitespace ===== */
+  /* --spacing-h and --spacing-v are set inline per-phase from data.yaml.
+     Defaults of 14px preserve the original look when a phase doesn't set them. */
+  .card-grid{ display:flex; flex-wrap:wrap; gap:var(--spacing-v, 14px) var(--spacing-h, 14px); justify-content:center; align-items:stretch; }
+  .cols-a > .card{ flex:0 0 auto; width:148px; }
+  .cols-b > .card{ flex:0 0 auto; width:260px; }
+
+  /* ===== arrows in default (wrap) layout - right arrow between cards ===== */
+  .card-grid.arrows-on:not(.layout-vertical):not(.layout-horizontal):not(.layout-radial){ gap:var(--spacing-v, 14px) calc(var(--spacing-h, 14px) + 22px); }
+  .card-grid.arrows-on:not(.layout-vertical):not(.layout-horizontal):not(.layout-radial) > .card:not(:last-child)::after{
+    content:"\2192";
+    position:absolute; top:50%; right:calc(-1 * (var(--spacing-h, 14px) / 2) - 16px);
+    transform:translateY(-50%);
+    font-family:var(--font-mono); font-size:22px; font-weight:700;
+    color:var(--stage-color);
+    pointer-events:none; z-index:5;
+  }
+
+  /* ===== layout modes (per-phase) ===== */
+  /* vertical: cards stack top-to-bottom with down arrows between */
+  .card-grid.layout-vertical{ flex-direction:column; align-items:center; gap:var(--spacing-v, 14px) 0; }
+  .card-grid.layout-vertical > .card{ width:100%; max-width:320px; }
+  .card-grid.layout-vertical.arrows-on{ gap:calc(var(--spacing-v, 14px) + 22px) 0; }
+  .card-grid.layout-vertical.arrows-on > .card:not(:last-child)::after{
+    content:"\2193";
+    position:absolute; left:50%; bottom:calc(-1 * (var(--spacing-v, 14px) / 2) - 16px);
+    transform:translateX(-50%);
+    font-family:var(--font-mono); font-size:22px; font-weight:700;
+    color:var(--stage-color);
+    pointer-events:none; z-index:5;
+  }
+
+  /* horizontal: cards in a row left-to-right with right arrows between */
+  .card-grid.layout-horizontal{ flex-direction:row; flex-wrap:nowrap; overflow-x:auto; padding-bottom:12px; gap:0 var(--spacing-h, 14px); justify-content:flex-start; }
+  .card-grid.layout-horizontal > .card{ flex:0 0 auto; }
+  .card-grid.layout-horizontal.arrows-on{ gap:0 calc(var(--spacing-h, 14px) + 26px); }
+  .card-grid.layout-horizontal.arrows-on > .card:not(:last-child)::after{
+    content:"\2192";
+    position:absolute; top:50%; right:calc(-1 * (var(--spacing-h, 14px) / 2) - 16px);
+    transform:translateY(-50%);
+    font-family:var(--font-mono); font-size:22px; font-weight:700;
+    color:var(--stage-color);
+    pointer-events:none; z-index:5;
+  }
+
+  /* radial: cards positioned on an ellipse, clockwise arrows on each.
+     H slider scales the horizontal radius (--rx), V slider the vertical
+     radius (--ry). Equal values produce a circle; unequal values an
+     ellipse. Position via cos/sin so each axis is truly independent. */
+  .card-grid.layout-radial{
+    position:relative; display:block;
+    min-height:560px;
+    margin-top:20px;
+    /* per-axis radii: 4 -> 132px, 14 -> 183px (default), 60 -> 390px */
+    --rx:calc(120px + var(--spacing-h, 14px) * 4.5);
+    --ry:calc(120px + var(--spacing-v, 14px) * 4.5);
+  }
+  .card-grid.layout-radial.arrows-on{
+    /* push cards apart so arrows fit in the gap between them */
+    --rx:calc(180px + var(--spacing-h, 14px) * 4.5);
+    --ry:calc(180px + var(--spacing-v, 14px) * 4.5);
+  }
+  .card-grid.layout-radial > .card{
+    /* angle starts at -90deg (top / 12 o'clock) and increments clockwise */
+    --angle:calc(360deg / var(--n, 4) * var(--i, 0) - 90deg);
+    position:absolute; top:50%; left:50%;
+    margin:0;
+    transform:translate(-50%, -50%)
+            translate(
+              calc(cos(var(--angle)) * var(--rx)),
+              calc(sin(var(--angle)) * var(--ry))
+            );
+    transform-origin:center center;
+    z-index:1;
+    transition: transform var(--transition-speed), z-index 0s 0s;
+  }
+  /* Bring the hovered card above its neighbours so overlapping cards
+     don't obscure the one the user is interacting with. */
+  .card-grid.layout-radial > .card:hover{
+    z-index:10;
+  }
+  .card-grid.layout-radial.arrows-on > .card::before{
+    content:"\2192";
+    position:absolute; top:50%; left:50%;
+    width:auto; height:auto; line-height:1;
+    font-family:var(--font-mono); font-size:22px; font-weight:700;
+    color:var(--stage-color);
+    --arrow-dist:calc(var(--rx) * sin(180deg / var(--n)));
+    transform:translate(-50%,-50%)
+            translate(
+              calc(cos(var(--arrow-angle,0deg)) * var(--arrow-dist)),
+              calc(sin(var(--arrow-angle,0deg)) * var(--arrow-dist))
+            )
+            rotate(var(--arrow-angle,0deg));
+    pointer-events:none; z-index:5;
+  }
+
+  /* stepper: vertical numbered timeline with connecting rail */
+  .card-grid.layout-stepper{ flex-direction:column; align-items:stretch; gap:0; counter-reset:step-counter; }
+  .card-grid.layout-stepper > .card{ width:100%; max-width:100%; position:relative; padding-left:44px; }
+  .card-grid.layout-stepper > .card .card-face{ min-height:80px; }
+  .card-grid.layout-stepper > .card::before{
+    content:counter(step-counter); counter-increment:step-counter;
+    position:absolute; left:0; top:20px;
+    width:28px; height:28px; border-radius:50%;
+    background:var(--stage-color); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700; z-index:2;
+  }
+  .card-grid.layout-stepper > .card:not(:last-child)::after{
+    content:''; position:absolute; left:13px; top:48px; bottom:-14px;
+    width:2px; background:var(--stage-color); opacity:.3;
+  }
+
+  /* ===== decision / branching ===== */
+  .decision-block{ margin:24px 0; width:100%; }
+
+  /* ===== join node (convergence point) ===== */
+  .join-node{ display:flex; flex-direction:column; align-items:center; padding:8px 12px; margin:16px auto; max-width:120px; }
+  .join-node-circle{ width:32px; height:32px; border-radius:50%; border:2px solid #8e44ad; background:rgba(142,68,173,0.08); display:flex; align-items:center; justify-content:center; }
+  .join-node-circle svg{ width:18px; height:18px; stroke:#8e44ad; stroke-width:2; }
+  .join-node-label{ font-size:10px; color:var(--text-secondary); margin-top:4px; text-align:center; font-family:var(--font-mono); }
+  .sub-process-wrapper{ position:relative; margin-bottom:12px; }
+  .sub-process-card{ border:2px dashed var(--accent-color) !important; cursor:pointer; position:relative; }
+  .sub-process-toggle{ position:absolute; top:4px; right:4px; font-size:10px; color:var(--accent-color); cursor:pointer; padding:2px 6px; background:var(--background-white); border:1px solid var(--border-color); border-radius:4px; transition:transform .2s; }
+  .sub-flow-container{ transition:max-height .3s ease,opacity .3s ease; overflow:hidden; max-height:2000px; opacity:1; }
+  .sub-flow-container.collapsed{ max-height:0; opacity:0; }
+  .sub-stage{ margin:8px 0; padding:8px; background:rgba(52,152,219,0.04); border-radius:6px; border:1px solid var(--border-color); }
+  .sub-stage-header{ font-weight:700; font-size:13px; color:var(--primary-color); margin-bottom:6px; padding-bottom:4px; border-bottom:1px solid var(--border-color); }
+  .sub-phase{ margin:6px 0; }
+  .sub-phase-header{ font-size:12px; font-weight:600; color:var(--text-secondary); margin-bottom:4px; }
+  .sub-phase-cards{ display:flex; gap:6px; flex-wrap:wrap; }
+  .sub-card{ cursor:pointer; }
+  .sub-card-face{ padding:6px 10px; background:var(--background-white); border:1px solid var(--border-color); border-radius:6px; min-width:80px; text-align:center; }
+  .sub-card-icon svg{ width:16px; height:16px; }
+  .sub-card-title{ margin:0; font-size:11px; font-weight:600; color:var(--text-primary); }
+  .decision-row{ display:flex; justify-content:center; margin:18px 0; position:relative; }
+  .decision-label{
+    font-family:var(--font-heading); font-weight:700;
+    text-transform:uppercase; letter-spacing:.12em; font-size:12px;
+    color:var(--primary-color); text-align:center;
+    padding:8px 24px; border:2px solid var(--stage-color);
+    border-radius:999px; background:var(--background-white);
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  }
+  .decision-arrows{ display:flex; justify-content:center; gap:20px; margin:6px 0 0; }
+  .decision-arrow-col{ flex:1; text-align:center; position:relative; max-width:280px; }
+  .decision-arrow-col svg{ display:block; margin:0 auto; }
+  .decision-arrow-col .branch-name{
+    font-family:var(--font-mono); font-size:10px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.05em;
+    color:var(--stage-color); margin-top:4px;
+  }
+  .decision-branches{ display:flex; gap:var(--spacing-h,14px); margin-top:8px; }
+
+  /* Arrow connectors between cards and decision blocks in arrow-enabled grids */
+  .card-grid.arrows-on > .card + .decision-block::before,
+  .card-grid.arrows-on > .decision-block + .card::before {
+    content:"\2193";
+    position:absolute; top:-22px; left:50%;
+    transform:translateX(-50%);
+    font-family:var(--font-mono); font-size:22px; font-weight:700;
+    color:var(--stage-color);
+    pointer-events:none; z-index:5;
+  }
+  .card-grid.arrows-on.layout-horizontal > .card + .decision-block::before,
+  .card-grid.arrows-on.layout-horizontal > .decision-block + .card::before {
+    content:"\2192";
+    top:50%; left:-20px;
+    transform:translateY(-50%);
+  }
+  .card-grid.arrows-on.layout-vertical > .card + .decision-block::before,
+  .card-grid.arrows-on.layout-vertical > .decision-block + .card::before {
+    content:"\2193";
+  }
+  /* Stepper: the rail continues through decision blocks */
+  .card-grid.layout-stepper > .decision-block { padding-left:44px; position:relative; }
+  .card-grid.layout-stepper > .decision-block::before {
+    counter-increment:step-counter;
+    content:counter(step-counter);
+    position:absolute; left:0; top:20px;
+    width:28px; height:28px; border-radius:50%;
+    background:var(--stage-color); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700; z-index:2;
+  }
+  .card-grid.layout-stepper > .decision-block:not(:last-child)::after {
+    content:''; position:absolute; left:13px; top:48px; bottom:-14px;
+    width:2px; background:var(--stage-color); opacity:.3;
+  }
+
+  /* Decision section for radial layout — column below the circle */
+  .decision-section{ margin-top:28px; border-top:2px dashed var(--stage-color); padding-top:18px; }
+  .decision-section > .decision-block{ margin:16px 0; }
+  .card-grid.layout-radial + .decision-section-arrow{
+    display:flex; justify-content:center; margin:8px 0 4px;
+  }
+  .card-grid.layout-radial + .decision-section-arrow svg{
+    display:block; margin:0 auto;
+  }
+  .decision-branch{ flex:1; min-width:0; }
+  .decision-branch-header{
+    font-family:var(--font-mono); font-size:10px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.08em;
+    color:var(--text-secondary); text-align:center;
+    padding:4px 0 10px; border-bottom:2px solid var(--stage-color);
+    margin-bottom:var(--spacing-v,14px); opacity:.7;
+  }
+  .decision-branch .card-grid{ --stage-color:inherit; }
+
+  /* decision respects layout modes */
+  .decision-branches.layout-vertical{ flex-direction:column; }
+  .decision-branches.layout-horizontal{ flex-direction:row; overflow-x:auto; flex-wrap:nowrap; padding-bottom:12px; }
+  .decision-branches.layout-radial{ position:relative; min-height:440px; display:block; }
+  .decision-branches.layout-radial > .decision-branch{
+    position:absolute; top:50%; left:50%;
+    --angle:calc(360deg / var(--bn,2) * var(--bi,0) - 90deg);
+    transform:translate(-50%,-50%) translate(calc(cos(var(--angle))*160px),calc(sin(var(--angle))*100px));
+    width:220px;
+  }
+  .decision-branches.layout-stepper{ flex-direction:column; gap:0; counter-reset:br-counter; }
+  .decision-branches.layout-stepper > .decision-branch{
+    padding-left:32px; position:relative; counter-increment:br-counter;
+  }
+  .decision-branches.layout-stepper > .decision-branch::before{
+    content:counter(br-counter,upper-alpha);
+    position:absolute; left:0; top:4px;
+    width:22px; height:22px; border-radius:50%;
+    background:var(--stage-color); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:10px; font-weight:700;
+  }
+  .decision-branches.layout-stepper > .decision-branch:not(:last-child)::after{
+    content:''; position:absolute; left:10px; top:26px; bottom:-8px;
+    width:2px; background:var(--stage-color); opacity:.3;
+  }
+
+  @media (max-width:720px){
+    /* collapse exotic layouts to a single column on small screens */
+    .card-grid.layout-horizontal,
+    .card-grid.layout-radial{
+      flex-direction:column; flex-wrap:wrap; overflow:visible; display:flex;
+      min-height:0;
+    }
+    .card-grid.layout-horizontal > .card,
+    .card-grid.layout-radial > .card{
+      position:static; transform:none; width:100%; max-width:320px; margin:0 0 14px 0;
+    }
+    .card-grid.layout-horizontal.arrows-on > .card:not(:last-child)::after,
+    .card-grid.layout-radial.arrows-on > .card::before,
+    .card-grid.arrows-on:not(.layout-vertical):not(.layout-horizontal):not(.layout-radial) > .card:not(:last-child)::after{ display:none; }
+    .card-grid.arrows-on:not(.layout-vertical):not(.layout-horizontal):not(.layout-radial) > .card:not(:last-child){ margin-right:0; }
+    .decision-branches{ flex-direction:column !important; display:flex !important; position:static !important; min-height:0 !important; }
+    .decision-branches.layout-radial > .decision-branch{ position:static; transform:none; width:100%; margin-bottom:14px; }
+  }
+
+
+  .card{ position:relative; cursor:pointer; }
+  .card-face{
+    position:relative;
+    height:100%;
+    min-height:120px;
+    background:var(--background-white);
+    border:1px solid var(--border-color);
+    border-radius:var(--border-radius);
+    padding:20px 16px 28px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed), transform var(--transition-speed);
+  }
+  .card:hover .card-face{
+    border-color:var(--stage-color);
+    transform:translateY(-4px);
+    box-shadow:0 10px 24px rgba(0,0,0,0.12);
+  }
+  .card-face::after{
+    content:"details";
+    position:absolute;
+    bottom:7px; right:10px;
+    font-family:var(--font-mono);
+    font-size:9.5px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.05em;
+    color:#fff;
+    background:var(--stage-color);
+    padding:2px 7px; border-radius:3px;
+    opacity:0;
+    transition:opacity var(--transition-speed);
+    pointer-events:none;
+  }
+  .card:hover .card-face::after{ opacity:.85; }
+  .card-badge{
+    position:absolute; top:-11px; left:14px; z-index:2;
+    width:24px;height:24px;border-radius:50%;
+    background:var(--stage-color);
+    color:var(--background-white);
+    font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 6px rgba(0,0,0,0.18);
+  }
+  .card-icon{
+    width:28px;height:28px; color:var(--stage-color);
+    margin:0 auto 12px;
+  }
+  .card-icon svg{ width:100%; height:100%; }
+  .card-title{
+    font-family:var(--font-heading); font-weight:600; font-size:14.5px;
+    line-height:1.35; color:var(--primary-color); margin:0 0 4px;
+	text-align: center; overflow-wrap:break-word; word-break:break-word;
+  }
+  .card-sub{
+    font-family:var(--font-primary); font-weight:500; font-size:13px;
+    line-height:1.5; color:#576573; margin:0;margin-top:10px;
+	text-align: center; overflow-wrap:break-word; word-break:break-word;
+  }
+
+  /* ===== minor connector (between phases within a stage) - subtle ===== */
+  .connector{ display:flex; flex-direction:column; align-items:center; color:var(--text-light); }
+  .connector svg{ display:block; }
+  .connector.minor{ height:30px; margin:2px 0 4px; opacity:.85; }
+
+  /* ===== major transition gate (between stages) - clearly distinct ===== */
+  .transition{
+    display:flex; justify-content:center; align-items:center;
+    margin:32px 0;
+  }
+  .transition-ab{ --from:var(--stamp-a); --to:var(--stamp-b); }
+  .transition-bc{ --from:var(--stamp-b); --to:var(--stamp-c); }
+  .transition-cd{ --from:var(--stamp-c); --to:var(--stamp-d); }
+  .transition-de{ --from:var(--stamp-d); --to:var(--stamp-e); }
+  .transition-ef{ --from:var(--stamp-e); --to:var(--stamp-f); }
+  .transition-fg{ --from:var(--stamp-f); --to:var(--stamp-g); }
+  .transition-gh{ --from:var(--stamp-g); --to:var(--stamp-h); }
+  .transition-hi{ --from:var(--stamp-h); --to:var(--stamp-i); }
+  .transition-ij{ --from:var(--stamp-i); --to:var(--stamp-j); }
+  .transition-gate{
+    position:relative;
+    display:inline-flex; align-items:center; gap:12px;
+    padding:12px 28px;
+    background-color:var(--background-white);
+    border:2px solid transparent;
+    border-radius:999px;
+    background-image:
+      linear-gradient(var(--background-white),var(--background-white)),
+      linear-gradient(90deg, var(--from), var(--to));
+    background-origin:border-box;
+    background-clip:padding-box, border-box;
+    box-shadow:0 6px 20px rgba(0,0,0,0.12);
+  }
+  .transition-gate::before,
+  .transition-gate::after{
+    content:""; position:absolute; top:50%;
+    width:38vw; max-width:380px; height:0;
+    border-top:2px dashed var(--border-color);
+  }
+  .transition-gate::before{ right:100%; margin-right:18px; }
+  .transition-gate::after{ left:100%; margin-left:18px; }
+  .transition-arrow{ color:var(--primary-color); display:block; }
+  .transition-label{
+    font-family:var(--font-heading); font-weight:700;
+    text-transform:uppercase; letter-spacing:.12em; font-size:12px;
+    color:var(--primary-color); white-space:normal;
+    text-align:center; max-width:440px; line-height:1.4;
+  }
+
+  /* ===== flow diagram (LiveTarget Execution) ===== */
+  .flow-wrap{ padding:6px 0 4px; }
+  .flow-scroll{ overflow-x:auto; overflow-y:hidden; padding-bottom:8px; -webkit-overflow-scrolling:touch; }
+  .flow-canvas{
+    position:relative; width:100%; min-width:820px;
+    aspect-ratio:1000/420;
+    border:1px solid var(--border-color);
+    border-radius:var(--border-radius);
+    background:var(--background-light);
+  }
+  .flow-hint{
+    display:none; font-family:var(--font-mono); font-size:10px; letter-spacing:.08em;
+    color:#576573; text-transform:uppercase; margin:10px 0 0; text-align:center;
+  }
+  .flow-svg{ position:absolute; inset:0; width:100%; height:100%; }
+  .flow-node{
+    position:absolute;
+    display:flex; align-items:center; gap:9px;
+    padding:0 12px;
+    background:var(--background-white);
+    border:1px solid var(--border-color);
+    border-radius:6px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06);
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed), transform var(--transition-speed);
+  }
+  .flow-node:hover{ border-color:var(--stamp-b); box-shadow:0 6px 14px rgba(0,0,0,0.14); transform:translateY(-1px); }
+  .flow-node .card-icon{ width:20px;height:20px;margin:0; flex:none; color:var(--stamp-b); }
+  .flow-node span{
+    font-family:var(--font-mono); font-weight:600; font-size:12.5px; color:var(--primary-color);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .flow-node.tool .card-icon{ color:var(--stamp-a); }
+  .flow-node.out .card-icon{ color:var(--stamp-c); }
+  .flow-legend{
+    display:flex; gap:22px; flex-wrap:wrap; margin-top:14px;
+    font-family:var(--font-mono); font-size:10.5px; color:#576573;
+  }
+  .flow-legend span{ display:inline-flex; align-items:center; gap:7px; }
+  .flow-legend i{ width:18px; height:0; border-top:2px solid var(--stamp-a); display:inline-block; }
+  .flow-legend i.dash{ border-top-style:dashed; border-color:var(--stamp-b); }
+
+  /* ===== title block (footer) ===== */
+  .titleblock{
+    margin-top:32px; padding-top:20px;
+    border-top:2px solid var(--border-color);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .tb-grid{ display:flex; flex-wrap:wrap; }
+  .tb-cell{
+    padding:0 20px; border-left:1px solid var(--border-color);
+  }
+  .tb-cell:first-child{ border-left:none; padding-left:0; }
+  .tb-label{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:.12em; color:var(--text-light); text-transform:uppercase; }
+  .tb-value{ font-family:var(--font-heading); font-size:14px; font-weight:600; color:var(--primary-color); margin-top:3px; }
+  .tb-note{ font-family:var(--font-mono); font-size:11px; color:var(--text-light); }
+
+  /* ===== modal (card detail popup) ===== */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,0.55);
+    display:none; z-index:1000; justify-content:center; align-items:flex-start;
+    padding:40px 20px; overflow-y:auto;
+  }
+  .modal-overlay.open{ display:flex; }
+  .lightbox-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,0.8);
+    display:none; z-index:2000; justify-content:center; align-items:center;
+    padding:40px; cursor:pointer;
+  }
+  .lightbox-overlay.open{ display:flex; }
+  .lightbox-container{ position:relative; max-width:90vw; max-height:90vh; cursor:default; }
+  .lightbox-image{ display:block; max-width:100%; max-height:90vh; border-radius:4px; box-shadow:0 8px 40px rgba(0,0,0,0.5); }
+  .lightbox-close{
+    position:absolute; top:-14px; right:-14px; width:32px; height:32px;
+    border:none; background:#fff; border-radius:50%; cursor:pointer;
+    font-size:18px; line-height:32px; text-align:center; color:#333;
+    box-shadow:0 2px 8px rgba(0,0,0,0.3);
+  }
+  .lightbox-close:hover{ background:#e74c3c; color:#fff; }
+  .modal-box{
+    background:var(--background-white); border-radius:var(--border-radius);
+    max-width:720px; width:100%; margin:auto;
+    box-shadow:0 20px 60px rgba(0,0,0,0.3);
+    overflow:visible;
+  }
+  /* header with stage tint */
+  .modal-header{
+    display:flex; align-items:center; gap:14px;
+    padding:20px 24px 16px;
+    border-bottom:2px solid var(--modal-accent,var(--stamp-a));
+    background:var(--background-light);
+  }
+  .modal-header-icon{
+    flex:none; width:36px; height:36px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--modal-accent,var(--stamp-a)); color:#fff;
+  }
+  .modal-header-icon svg{ width:20px; height:20px; }
+  .modal-header-text{ flex:1; min-width:0; }
+  .modal-stage-badge{
+    font-family:var(--font-mono); font-size:10px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.08em;
+    color:var(--modal-accent,var(--stamp-a)); margin-bottom:2px;
+  }
+  .modal-title{
+    font-family:var(--font-heading); font-weight:700; font-size:18px;
+    color:var(--primary-color); margin:0; line-height:1.3;
+  }
+  .modal-close{
+    flex:none; cursor:pointer; width:32px; height:32px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; color:var(--text-secondary);
+    border:none; background:var(--background-light); border-radius:6px;
+    transition:all var(--transition-speed);
+  }
+  .modal-close:hover{ color:var(--secondary-color); background:rgba(231,76,60,0.1); }
+
+  /* pipeline stepper breadcrumb */
+  .modal-stepper{
+    display:flex; align-items:center; gap:0;
+    padding:10px 24px; background:var(--background-light);
+    border-bottom:1px solid var(--border-color); overflow-x:auto;
+  }
+  .modal-stepper-dot{
+    flex:none; width:8px; height:8px; border-radius:50%;
+    background:var(--modal-accent,var(--stamp-a)); opacity:.4;
+    transition:opacity .2s;
+  }
+  .modal-stepper-dot.last{ opacity:1; }
+  .modal-stepper-seg{
+    flex:1; min-width:12px; height:2px;
+    background:var(--modal-accent,var(--stamp-a)); opacity:.2;
+  }
+
+  .modal-box.has-image{ max-width: 1020px; }
+  .modal-body{ padding:18px 24px 0; }
+  .modal-body.image-layout{ display:flex; gap:20px; }
+  .modal-body-flow{ flex:1; min-width:0; }
+  .modal-body-image{ flex:0 0 280px; max-width:280px; align-self:flex-start; }
+  .modal-body-image img{ width:100%; height:auto; max-height:60vh; object-fit:contain; border-radius:6px; border:1px solid var(--border-color); cursor:pointer; transition:opacity .2s; }
+  .modal-body-image img:hover{ opacity:.85; }
+  .modal-desc{
+    font-size:13px; color:#576573; line-height:1.6;
+    margin:0 0 16px;
+  }
+  /* stat chips */
+  .modal-stats{
+    display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;
+  }
+  .modal-stat-chip{
+    font-family:var(--font-mono); font-size:11px; font-weight:600;
+    padding:3px 8px; border-radius:4px;
+    background:var(--modal-accent,var(--stamp-a)); color:#fff;
+    opacity:.85;
+  }
+
+  /* flow rail */
+  /* ===== modal step layouts ===== */
+  /* default: simple clean vertical list, no rail, no numbered circles */
+  .modal-flow-default{ display:flex; flex-direction:column; gap:12px; padding:0; }
+  .modal-flow-default > .modal-step{ flex-direction:column; gap:4px; opacity:1; transform:none; animation:none; padding-bottom:0; }
+  .modal-flow-default > .modal-step .modal-step-body{ padding-bottom:0; }
+  .modal-flow-default > .modal-step .modal-step-title{ margin:0 0 2px; }
+  .modal-flow-default > .modal-step .modal-step-desc{ font-size:12px; }
+  .modal-flow-default.arrows-on{ gap:calc(12px + 24px) 0; }
+  .modal-flow-default.arrows-on > .modal-step:not(:last-child)::after{
+    content:"\2193";
+    position:absolute; left:50%; bottom:-20px;
+    transform:translateX(-50%);
+    font-family:var(--font-mono); font-size:16px; font-weight:700;
+    color:var(--modal-accent,var(--stamp-a)); z-index:2;
+    pointer-events:none; line-height:1;
+  }
+
+  /* stepper: numbered circles with vertical connecting rail */
+  .modal-flow-stepper{ display:flex; flex-direction:column; }
+  .modal-flow-stepper > .modal-step .modal-step-body{ padding-bottom:16px; }
+  .modal-flow-stepper.arrows-on > .modal-step:not(:last-child)::after{
+    content:"\2193";
+    position:absolute; left:16px; bottom:-18px;
+    font-family:var(--font-mono); font-size:22px; font-weight:700;
+    color:var(--modal-accent,var(--stamp-a)); z-index:2;
+    pointer-events:none; line-height:1;
+  }
+  .modal-flow-stepper.arrows-on{ gap:calc(var(--spacing-v, 14px) + 22px) 0; }
+
+  /* vertical: same as stepper + down arrows between steps */
+  .modal-flow-vertical{ display:flex; flex-direction:column; }
+  .modal-flow-vertical > .modal-step .modal-step-body{ padding-bottom:16px; }
+  .modal-flow-vertical.arrows-on > .modal-step:not(:last-child)::after{
+    content:"\2193";
+    position:absolute; left:16px; bottom:-18px;
+    font-family:var(--font-mono); font-size:22px; font-weight:700;
+    color:var(--modal-accent,var(--stamp-a)); z-index:2;
+    pointer-events:none; line-height:1;
+  }
+  .modal-flow-vertical.arrows-on{ gap:calc(var(--spacing-v, 14px) + 22px) 0; }
+
+  /* horizontal: steps in a row, rail on top with horizontal line, right arrows between */
+  .modal-flow-horizontal{
+    display:flex; flex-direction:row; gap:26px;
+    overflow-x:auto; padding:8px 4px; align-items:flex-start;
+  }
+  .modal-flow-horizontal > .modal-step{
+    flex-direction:column; flex:0 0 200px; gap:6px;
+    opacity:1; transform:none; animation:none;
+  }
+  .modal-flow-horizontal > .modal-step .modal-step-rail{
+    flex-direction:row; width:auto; align-self:stretch;
+  }
+  .modal-flow-horizontal > .modal-step .modal-step-line-h{
+    flex:1; height:2px; min-width:16px; min-height:0;
+    background:var(--modal-accent,var(--stamp-a)); opacity:.25;
+    margin-top:0; margin-left:2px; align-self:center;
+  }
+  .modal-flow-horizontal > .modal-step .modal-step-body{ padding-bottom:0; text-align:center; }
+  .modal-flow-horizontal.arrows-on > .modal-step:not(:last-child)::after{
+    content:"\2192";
+    position:absolute; right:-17px; top:8px;
+    font-family:var(--font-mono); font-size:18px; font-weight:700;
+    color:var(--modal-accent,var(--stamp-a));
+    pointer-events:none; line-height:1;
+  }
+
+  /* radial: steps positioned on a circle */
+  .modal-flow-radial{
+    position:relative; display:block; padding:0;
+    --rx: calc(80px + var(--n,4) * 22px);
+    --ry: calc(70px + var(--n,4) * 18px);
+    width: calc(var(--rx) * 2 + 160px);
+    min-height: calc(var(--ry) * 2 + 140px);
+    margin:0 auto;
+  }
+  .modal-flow-radial > .modal-step{
+    position:absolute; top:50%; left:50%;
+    flex-direction:column; align-items:center; text-align:center;
+    width:140px; gap:6px;
+    opacity:1; animation:none; margin:0;
+    transform:translate(-50%,-50%)
+            translate(
+              calc(cos(var(--step-angle,0deg)) * var(--rx)),
+              calc(sin(var(--step-angle,0deg)) * var(--ry))
+            );
+  }
+  .modal-flow-radial > .modal-step .modal-step-rail{ width:auto; align-self:center; }
+  .modal-flow-radial > .modal-step .modal-step-line{ height:0; display:none; }
+  .modal-flow-radial > .modal-step .modal-step-body{ padding-bottom:0; }
+  .radial-arrow{
+    position:absolute;
+    font-family:var(--font-mono); font-size:16px; font-weight:700;
+    color:var(--modal-accent,var(--stamp-a)); z-index:2;
+    pointer-events:none; line-height:1; text-align:center;
+    top:calc(50% + sin(var(--ma)) * var(--ry));
+    left:calc(50% + cos(var(--ma)) * var(--rx));
+    transform:translate(-50%,-50%) rotate(calc(90deg + var(--ma)));
+    width:20px; height:20px;
+  }
+  .radial-arrow::before{ content:"\2192"; }
+  .modal-step{
+    display:flex; gap:14px; position:relative;
+    padding-bottom:0;
+    opacity:0; transform:translateX(-8px);
+    animation:modal-step-in .35s ease-out forwards;
+  }
+  @keyframes modal-step-in{ to{opacity:1; transform:translateX(0);} }
+
+  /* vertical rail */
+  .modal-step-rail{
+    flex:none; width:32px; display:flex; flex-direction:column; align-items:center;
+    align-self:stretch;
+  }
+  .modal-step-icon{
+    width:32px; height:32px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-weight:700; font-size:11px;
+    border:2px solid var(--modal-accent,var(--stamp-a));
+    background:var(--background-white); color:var(--modal-accent,var(--stamp-a));
+    z-index:1;
+  }
+  .modal-step-icon svg{ width:16px; height:16px; }
+  .modal-step-icon.terminal{
+    background:var(--modal-accent,var(--stamp-a)); color:#fff;
+    border-color:var(--modal-accent,var(--stamp-a));
+  }
+  .modal-step-line{
+    flex:1; width:2px; min-height:16px;
+    background:var(--modal-accent,var(--stamp-a)); opacity:.25;
+    margin-top:2px;
+  }
+  .modal-step:last-child .modal-step-line{ display:none; }
+
+  /* step content */
+  .modal-step-body{
+    flex:1; padding-bottom:16px;
+  }
+  .modal-step-title{
+    font-family:var(--font-heading); font-weight:600; font-size:13.5px;
+    color:var(--primary-color); margin:4px 0 3px;
+  }
+  .modal-step-desc{
+    font-size:12px; color:#576573; line-height:1.5; margin:0;
+  }
+  .modal-step.terminal .modal-step-body{
+    padding-bottom:8px;
+  }
+
+  /* footer output pills */
+  .modal-footer{
+    display:flex; flex-wrap:wrap; gap:6px; align-items:center;
+    padding:14px 24px; border-top:1px solid var(--border-color);
+    background:var(--background-light);
+  }
+  .modal-footer-label{
+    font-family:var(--font-mono); font-size:10px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--text-primary);
+    margin-right:4px;
+  }
+  .modal-pill{
+    font-family:var(--font-mono); font-size:11px; font-weight:500;
+    padding:3px 10px; border-radius:999px;
+    background:var(--background-white); border:1px solid var(--border-color);
+    color:var(--primary-color);
+  }
+  .modal-pill .pill-arrow{ color:var(--modal-accent,var(--stamp-a)); margin-right:3px; }
+
+  /* ===== summary strip ===== */
+  .summary-strip{
+    display:flex; flex-wrap:wrap; gap:0;
+    margin:0 0 28px;
+    border:1px solid var(--border-color);
+    border-radius:var(--border-radius);
+    overflow:hidden;
+    background:var(--background-white);
+    box-shadow:0 1px 4px rgba(0,0,0,0.04);
+  }
+  .summary-tile{
+    flex:1 1 0; min-width:130px;
+    padding:16px 14px 14px;
+    border-right:1px solid var(--border-color);
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    text-align:center;
+    position:relative;
+  }
+  .summary-tile:last-child{ border-right:none; }
+  .summary-tile::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:3px;
+    background:var(--tile-color,var(--accent-color));
+    opacity:.7;
+  }
+  .summary-num{
+    font-family:var(--font-heading); font-weight:700;
+    font-size:clamp(22px,3.5vw,30px); line-height:1;
+    color:var(--tile-color,var(--primary-color));
+  }
+  .summary-label{
+    font-family:var(--font-mono); font-size:10px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.06em;
+    color:var(--text-primary); line-height:1.4;
+  }
+  .summary-sub{
+    font-family:var(--font-primary); font-size:10.5px;
+    color:#576573; line-height:1.4; margin-top:2px;
+  }
+
+  /* ===== responsive ===== */
+  @media (max-width:960px){
+    .layout-wrapper { grid-template-columns: 1fr; grid-template-rows: auto; column-gap: 0; row-gap: 32px; }
+    .main-stages { display: block; }
+    .sidebar { grid-column: 1; grid-row: auto; display: flex; flex-direction: column; border-left: none; border-top: 2px dashed var(--border-color); padding-left: 0; padding-top: 32px; }
+    .sidebar-cell { grid-row: auto; }
+    .summary-tile { flex:1 1 45%; }
+  }
+  @media (max-width:720px){
+    body{ padding:22px 10px 40px; }
+    .sheet{ padding:26px 18px 22px; }
+    .header-top{ align-items:flex-start; }
+    .legend{ order:2; }
+    .h1{ font-size:clamp(26px,9vw,40px); }
+    .stage{ padding:24px 18px 20px; }
+    .stage-title{ font-size:19px; }
+    .stage-count{ display:none; }
+    .flow-hint{ display:block; }
+    .transition{ margin:24px 0; }
+    .transition-gate::before,.transition-gate::after{ width:24vw; max-width:90px; }
+  }
+</style>
+</head>
+<body>
+<svg aria-hidden="true" height="0" style="position:absolute" width="0">
+<defs>
+<marker id="arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+<path d="M1 1 L9 5 L1 9 Z" fill="var(--line-cyan)"></path>
+</marker>
+<marker id="arrow-dash" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+<path d="M1 1 L9 5 L1 9 Z" fill="var(--stamp-b)"></path>
+</marker>
+<g fill="none" id="ico" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6">
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" fill="none" r="7.2" stroke="currentColor" stroke-width="1.6"></circle><circle cx="12" cy="12" fill="none" r="3.2" stroke="currentColor" stroke-width="1.6"></circle><circle cx="12" cy="12" fill="currentColor" r="0.9" stroke="none"></circle></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect fill="none" height="9" rx="1.6" stroke="currentColor" stroke-width="1.6" width="14" x="5" y="10.5"></rect><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1" fill="none" stroke="currentColor" stroke-width="1.6"></path><circle cx="12" cy="15" fill="currentColor" r="1.3" stroke="none"></circle></symbol>
+<symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="6" fill="none" rx="7" ry="2.6" stroke="currentColor" stroke-width="1.6"></ellipse><path d="M5 6v5.4C5 12.8 8.1 14 12 14s7-1.2 7-2.6V6" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M5 11.4v5.4C5 18.2 8.1 19.4 12 19.4s7-1.2 7-2.6v-5.4" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-chainlink" viewBox="0 0 24 24"><path d="M9.5 14.5l5-5" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M7.8 12.8l-2.1 2.1a2.6 2.6 0 1 0 3.7 3.7l2.1-2.1" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M16.2 11.2l2.1-2.1a2.6 2.6 0 1 0-3.7-3.7l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-signpost" viewBox="0 0 24 24"><path d="M12 21V9.5" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M12 21s7-7.6 7-12.1a7 7 0 1 0-14 0C5 13.4 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6"></path><circle cx="12" cy="9" fill="none" r="2.2" stroke="currentColor" stroke-width="1.6"></circle></symbol>
+<symbol id="i-cookie" viewBox="0 0 24 24"><circle cx="12" cy="12" fill="none" r="8" stroke="currentColor" stroke-width="1.6"></circle><circle cx="9" cy="9.3" fill="currentColor" r="1" stroke="none"></circle><circle cx="14.3" cy="8.3" fill="currentColor" r="1" stroke="none"></circle><circle cx="15.3" cy="13.6" fill="currentColor" r="1" stroke="none"></circle><circle cx="9.7" cy="15.3" fill="currentColor" r="1" stroke="none"></circle></symbol>
+<symbol id="i-merge" viewBox="0 0 24 24"><circle cx="6" cy="6" fill="currentColor" r="1.9" stroke="none"></circle><circle cx="6" cy="18" fill="currentColor" r="1.9" stroke="none"></circle><circle cx="18.2" cy="12" fill="currentColor" r="1.9" stroke="none"></circle><path d="M7.6 7.1 16.6 11" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M7.6 16.9 16.6 13" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.2 19 6v6c0 4.4-3 7.9-7 8.8-4-.9-7-4.4-7-8.8V6l7-2.8z" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M8.7 12.2l2.2 2.2 4.4-4.6" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-loop" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 0 1 12.8-5.3" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M17.3 3.3v3.6h-3.6" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M6.7 20.7v-3.6h3.6" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-filesearch" viewBox="0 0 24 24"><path d="M6.5 3h7l4 4v13a1 1 0 0 1-1 1h-10a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.6"></path><circle cx="10.6" cy="13.6" fill="none" r="2.6" stroke="currentColor" stroke-width="1.5"></circle><path d="M12.5 15.5 15 18" fill="none" stroke="currentColor" stroke-width="1.5"></path></symbol>
+<symbol id="i-stack" viewBox="0 0 24 24"><path d="M12 4 20 8l-8 4-8-4 8-4z" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M4 12l8 4 8-4" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M4 16l8 4 8-4" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-dice" viewBox="0 0 24 24"><rect fill="none" height="16" rx="3" stroke="currentColor" stroke-width="1.6" width="16" x="4" y="4"></rect><circle cx="8.5" cy="8.5" fill="currentColor" r="1.05" stroke="none"></circle><circle cx="15.5" cy="8.5" fill="currentColor" r="1.05" stroke="none"></circle><circle cx="12" cy="12" fill="currentColor" r="1.05" stroke="none"></circle><circle cx="8.5" cy="15.5" fill="currentColor" r="1.05" stroke="none"></circle><circle cx="15.5" cy="15.5" fill="currentColor" r="1.05" stroke="none"></circle></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="7.5" fill="none" r="4" stroke="currentColor" stroke-width="1.6"></circle><path d="M10.3 10.3 20 20" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M16.3 20 20 16.3" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M13.4 17.1 15.7 14.8" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-gridtable" viewBox="0 0 24 24"><rect fill="none" height="16" rx="1.6" stroke="currentColor" stroke-width="1.6" width="16" x="4" y="4"></rect><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 6.5h4l11 11h3" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M15 6.5h3" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M3 17.5h4l3.3-3.8" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M16.8 4.2 19.7 6.5l-2.9 2.3" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M16.8 19.8l2.9-2.3-2.9-2.3" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-codebrackets" viewBox="0 0 24 24"><path d="M9 6.5 3.5 12 9 17.5" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M15 6.5 20.5 12 15 17.5" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-terminal" viewBox="0 0 24 24"><rect fill="none" height="16" rx="1.6" stroke="currentColor" stroke-width="1.6" width="18" x="3" y="4"></rect><path d="M7 9.5 10 12l-3 2.5" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M13 15h4" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-cursorclick" viewBox="0 0 24 24"><path d="M6 3.5 10.8 19l2.3-6.2L19 10.3 6 3.5z" fill="currentColor" stroke="currentColor" stroke-linejoin="round" stroke-width="1.1"></path><path d="M16.3 4.6 17.7 3.2" fill="none" stroke="currentColor" stroke-width="1.5"></path><path d="M20 8.3l1.9-.6" fill="none" stroke="currentColor" stroke-width="1.5"></path></symbol>
+<symbol id="i-server" viewBox="0 0 24 24"><rect fill="none" height="6.4" rx="1.4" stroke="currentColor" stroke-width="1.6" width="16" x="4" y="4"></rect><rect fill="none" height="6.4" rx="1.4" stroke="currentColor" stroke-width="1.6" width="16" x="4" y="13.6"></rect><circle cx="7.4" cy="7.2" fill="currentColor" r="0.9" stroke="none"></circle><circle cx="7.4" cy="16.8" fill="currentColor" r="0.9" stroke="none"></circle></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" fill="none" r="8.4" stroke="currentColor" stroke-width="1.6"></circle><path d="M3.6 12h16.8" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M12 3.6c2.9 2.6 2.9 14.2 0 16.8-2.9-2.6-2.9-14.2 0-16.8z" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2.5v5.5M15 2.5v5.5" fill="none" stroke="currentColor" stroke-width="1.6"></path><rect fill="none" height="6.2" rx="2" stroke="currentColor" stroke-width="1.6" width="11" x="6.5" y="8"></rect><path d="M12 14.2v2.8a3.4 3.4 0 0 1-3.4 3.4H6.8" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-bug" viewBox="0 0 24 24"><circle cx="12" cy="14" fill="none" r="5.6" stroke="currentColor" stroke-width="1.6"></circle><path d="M9.4 9 7.6 7.2M14.6 9l1.8-1.8M5.6 14H2.8M21.2 14h-2.8M8.2 18.6l-1.8 1.8M15.8 18.6l1.8 1.8" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M8.7 12.6a3.3 3.3 0 0 1 6.6 0" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-clipboardcheck" viewBox="0 0 24 24"><rect fill="none" height="17" rx="1.6" stroke="currentColor" stroke-width="1.6" width="12" x="6" y="4"></rect><rect fill="none" height="3" rx="1" stroke="currentColor" stroke-width="1.6" width="6" x="9" y="2.3"></rect><path d="M9.3 13.2 11.4 15.3 15 11" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-dashboard" viewBox="0 0 24 24"><rect fill="none" height="7.2" rx="1.3" stroke="currentColor" stroke-width="1.6" width="7" x="4" y="4"></rect><rect fill="none" height="4.4" rx="1.3" stroke="currentColor" stroke-width="1.6" width="7" x="13" y="4"></rect><rect fill="none" height="9.6" rx="1.3" stroke="currentColor" stroke-width="1.6" width="7" x="13" y="10.4"></rect><rect fill="none" height="6.8" rx="1.3" stroke="currentColor" stroke-width="1.6" width="7" x="4" y="13.2"></rect></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M11.5 3 13 8l5 1.5-5 1.5-1.5 5-1.5-5-5-1.5 5-1.5 1.5-5z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"></path><path d="M18.5 14.5 19.3 17l2.5.8-2.5.8-.8 2.4-.8-2.4-2.5-.8 2.5-.8.8-2.4z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.3"></path></symbol>
+<symbol id="i-braces" viewBox="0 0 24 24"><path d="M9.3 4.3c-2 0-2.7 1-2.7 2.8v2.2c0 1.3-.5 2-1.8 2 1.3 0 1.8.7 1.8 2v2.2c0 1.8.7 2.8 2.7 2.8" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M14.7 4.3c2 0 2.7 1 2.7 2.8v2.2c0 1.3.5 2 1.8 2-1.3 0-1.8.7-1.8 2v2.2c0 1.8-.7 2.8-2.7 2.8" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-compare" viewBox="0 0 24 24"><path d="M8.3 3.3 4.8 6.8l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M4.8 6.8h9.7a3.4 3.4 0 0 1 3.4 3.4v4.3" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M15.7 20.7 19.2 17.2l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M19.2 17.2H9.5a3.4 3.4 0 0 1-3.4-3.4V9.5" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" fill="none" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M16 16 21 21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="17" cy="7" fill="none" r="2.2" stroke="currentColor" stroke-width="1.6"/><path d="M4 12h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="13" cy="12" fill="none" r="2.2" stroke="currentColor" stroke-width="1.6"/><path d="M4 17h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7" cy="17" fill="none" r="2.2" stroke="currentColor" stroke-width="1.6"/></symbol>
+</g>
+<symbol id="i-logo-semgrep" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="#FF4081"></rect><path d="M15.6 8.5c-.7-1.1-2-1.7-3.9-1.7-2.1 0-3.7 1.1-3.7 2.8 0 1.5 1.2 2.2 3.3 2.6 2 .4 3.3.8 3.3 2.1 0 1.5-1.5 2.5-3.6 2.5-1.7 0-3.2-.6-3.9-1.9" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"></path></symbol>
+<symbol id="i-logo-codeql" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="#362A66"></rect><path d="M8.4 8.6 12 15l3.6-6.4M6.2 12h11.6" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="8.4" cy="8.6" r="1.7" fill="#fff"></circle><circle cx="15.6" cy="8.6" r="1.7" fill="#fff"></circle><circle cx="12" cy="15.4" r="1.7" fill="#fff"></circle></symbol>
+<symbol id="i-logo-burp" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="#FF2D6F"></rect><path d="M8.4 6.4h4.4c1.7 0 2.8 1 2.8 2.5 0 1-.6 1.8-1.5 2.1 1.2.3 1.9 1.2 1.9 2.5 0 1.8-1.3 2.9-3.2 2.9H8.4z" fill="none" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path></symbol>
+<symbol id="i-logo-nuclei" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2" fill="#F8C000"></circle><circle cx="12" cy="12" r="3.1" fill="#1F2937"></circle><circle cx="6.8" cy="8" r="1.1" fill="#1F2937"></circle><circle cx="17.4" cy="8.6" r="1.1" fill="#1F2937"></circle><circle cx="16.8" cy="16.6" r="1.1" fill="#1F2937"></circle><circle cx="6.4" cy="15.8" r="1.1" fill="#1F2937"></circle></symbol>
+<symbol id="i-logo-pytest" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2" fill="#3776AB"></circle><path d="M9.7 17.3V8.5h2.7c1.8 0 3 1 3 2.7 0 1.7-1.2 2.8-3 2.8H9.7" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+<symbol id="i-logo-playwright" viewBox="0 0 24 24"><path d="M12 2.6C8.6 6.5 5.4 8.7 4.3 13.2c-.8 3.4 1.4 6.3 4.8 6.3 1.3 0 2.3-.4 3-1 .7.6 1.7 1 3 1 3.4 0 5.6-2.9 4.8-6.3C18.6 8.7 15.4 6.5 12 2.6z" fill="#E51F47"></path><ellipse cx="9.5" cy="12.6" rx="1.1" ry="1.5" fill="#fff"></ellipse><path d="M8.1 16.4c1.2 1.1 2.5 1.1 3.8 0" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round"></path></symbol>
+</defs>
+</svg>
+<div class="sheet">
+<header class="header">
+<div class="header-top">
+<div>
+<div class="kicker">Static Analysis & Security Testing</div>
+<h1 class="h1">Application Security Posture Map</h1>
+<p class="phase-title">From source code to a prioritized, evidence-backed security assessment.</p>
+</div>
+
+<div class="legend">
+
+<div class="legend-row"><span class="legend-dot" style="background:var(--stamp-a)"></span>Map the Attack Surface</div>
+
+<div class="legend-row"><span class="legend-dot" style="background:var(--stamp-b)"></span>Deploy Application to VM</div>
+
+<div class="legend-row"><span class="legend-dot" style="background:var(--stamp-c)"></span>Generate and Execute Security Tests</div>
+
+<div class="legend-row"><span class="legend-dot" style="background:var(--stamp-d)"></span>Collect Runtime Evidence</div>
+
+<div class="legend-row"><span class="legend-dot" style="background:var(--stamp-e)"></span>Deliver Actionable Intelligence</div>
+
+</div>
+
+</div>
+</header>
+
+
+<p class="subtitle" style="margin:0 0 16px; font-size:14px; color:#576573;">End-to-end pipeline for consulting teams. Scans polyglot codebases, maps every external input, traces data to storage, generates and executes targeted security tests, and delivers a unified offline dashboard with every finding scored and corroborated.</p>
+
+
+
+<!-- ===== summary strip ===== -->
+<div class="summary-strip">
+
+  <div class="summary-tile" style="--tile-color:var(--stamp-a)">
+    <div class="summary-num">9</div>
+    <div class="summary-label">Languages</div>
+    <div class="summary-sub">Python · TS/JS · PHP · Go · Java · C# · Ruby · Rust · C/C++</div>
+  </div>
+
+  <div class="summary-tile" style="--tile-color:var(--stamp-a)">
+    <div class="summary-num">310+</div>
+    <div class="summary-label">Detector Families</div>
+    <div class="summary-sub">Single-file and cross-function weakness patterns</div>
+  </div>
+
+  <div class="summary-tile" style="--tile-color:var(--stamp-b)">
+    <div class="summary-num">7</div>
+    <div class="summary-label">Test Suites</div>
+    <div class="summary-sub">DAST · Fuzz · Authz · Cookie · Race · DOM · AI Probes</div>
+  </div>
+
+  <div class="summary-tile" style="--tile-color:var(--stamp-c)">
+    <div class="summary-num">76</div>
+    <div class="summary-label">AI Detector Families</div>
+    <div class="summary-sub">Prompt injection · supply chain · excess agency · model extraction</div>
+  </div>
+
+  <div class="summary-tile" style="--tile-color:var(--stamp-c)">
+    <div class="summary-num">8</div>
+    <div class="summary-label">Log Sources</div>
+    <div class="summary-sub">local · http · ssh · gcp · gcs · kubectl · docker · push receiver</div>
+  </div>
+
+</div>
+
+
+
+<!-- ===== overview box with use-case examples ===== -->
+<div style="display:flex; gap:20px; align-items:stretch; margin:0 0 28px; border:1px solid var(--border-color); border-radius:var(--border-radius); background:var(--background-light); padding:18px 22px; flex-wrap:wrap;">
+  <div style="flex:1 1 300px; min-width:0;">
+    <p style="font-family:var(--font-heading); font-weight:600; font-size:14px; color:var(--primary-color); margin:0 0 4px;">Five stages:</p>
+    
+    <p style="font-size:13px; line-height:1.6; color:#576573; margin:0;"><strong style="color:var(--primary-color);">Stage A — reads every line of source code.</strong> Discovers every way untrusted data enters the system, every secret, every route, every database operation, and every AI agent surface.</p>
+    
+    <p style="font-size:13px; line-height:1.6; color:#576573; margin:0;"><strong style="color:var(--primary-color);">Stage B — deploys the application to a pre-running VM.</strong> An AI-driven agent reads docs and manifests, plans the deployment with an LLM, executes it over SSH, and feeds live connection info into the pipeline.</p>
+    
+    <p style="font-size:13px; line-height:1.6; color:#576573; margin:0;"><strong style="color:var(--primary-color);">Stage C — generates and executes targeted security tests.</strong> Custom exploit attempts are generated from the static map and run against the deployed application to separate real vulnerabilities from noise.</p>
+    
+    <p style="font-size:13px; line-height:1.6; color:#576573; margin:0;"><strong style="color:var(--primary-color);">Stage D — collects and correlates runtime evidence.</strong> Server logs are pulled or pushed into a sqlite store, correlated to active tests via X-Test-Id, and enriched with live database schema intelligence.</p>
+    
+    <p style="font-size:13px; line-height:1.6; color:#576573; margin:0;"><strong style="color:var(--primary-color);">Stage E — delivers the bottom line.</strong> Correlates all static, dynamic, and runtime evidence, scores each finding with a transparent rubric, and produces an offline dashboard the whole team can use.</p>
+    
+  </div>
+  <div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:8px;">
+    <p style="font-family:var(--font-mono); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--text-primary); margin:0 0 2px;">Use Cases</p>
+    
+    <div style="font-family:var(--font-mono); font-size:11.5px; color:#576573; line-height:1.5; padding:6px 12px; background:var(--background-white); border:1px solid var(--border-color); border-radius:4px;">Automate the discovery phase of security consulting engagements</div>
+    
+    <div style="font-family:var(--font-mono); font-size:11.5px; color:#576573; line-height:1.5; padding:6px 12px; background:var(--background-white); border:1px solid var(--border-color); border-radius:4px;">Convert source code into a structured, evidence-backed security dataset</div>
+    
+    <div style="font-family:var(--font-mono); font-size:11.5px; color:#576573; line-height:1.5; padding:6px 12px; background:var(--background-white); border:1px solid var(--border-color); border-radius:4px;">Identify AI/LLM agent vulnerabilities alongside traditional weaknesses</div>
+    
+    <div style="font-family:var(--font-mono); font-size:11.5px; color:#576573; line-height:1.5; padding:6px 12px; background:var(--background-white); border:1px solid var(--border-color); border-radius:4px;">Generate executable security tests without manual authoring</div>
+    
+    <div style="font-family:var(--font-mono); font-size:11.5px; color:#576573; line-height:1.5; padding:6px 12px; background:var(--background-white); border:1px solid var(--border-color); border-radius:4px;">Track security posture changes between code versions</div>
+    
+  </div>
+</div>
+
+
+<div class="layout-wrapper">
+  <!-- Left/Main Column: Stages & Transitions -->
+  <div class="main-stages">
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+    
+    <!-- ============ STAGE A ============ -->
+    <section class="stage stage-a" data-id="map-the-attack-surface" data-go-to="" data-edges="[]">
+    <div class="stage-head">
+    <div class="stamp">A</div>
+    <div class="stage-title">Map the Attack Surface</div>
+    <div class="stage-trace"></div>
+    
+    </div>
+    
+    
+    
+    
+    
+    <div class="phase" data-id="map-the-attack-surface-p-1" data-go-to="" data-edges="[]">
+    
+    <div class="phase-head">
+    <span class="phase-tag">PHASE 01</span> 
+    <span class="phase-title">Discover Every Entry Point</span>
+    <span class="phase-rule"></span>
+    </div>
+    
+    
+    <div class="phase">The scanner reads the entire codebase and builds a complete inventory of every place untrusted data can enter the system.</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card-grid cols-a arrows-on" style="--spacing-h: 10px; --spacing-v: 14px;">
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="map-the-attack-surface-p-1-c-1" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-target"></use></svg></div><p class="card-title">Input Surface Mapping</p><p class="card-sub">Everything external that touches the application</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="map-the-attack-surface-p-1-c-2" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-lock"></use></svg></div><p class="card-title">Secret and Config Discovery</p><p class="card-sub">Hardcoded credentials, API keys, and insecure settings</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="map-the-attack-surface-p-1-c-3" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-signpost"></use></svg></div><p class="card-title">Route Inventory</p><p class="card-sub">Every HTTP endpoint the application exposes</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="map-the-attack-surface-p-1-c-4" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-cookie"></use></svg></div><p class="card-title">Cookie Analysis</p><p class="card-sub">Security-relevant cookies and their values</p></div></div>
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="phase" data-id="map-the-attack-surface-p-2" data-go-to="" data-edges="[]">
+    
+    <div class="phase-head">
+    <span class="phase-tag">PHASE 02</span> 
+    <span class="phase-title">Trace Data Through the Code</span>
+    <span class="phase-rule"></span>
+    </div>
+    
+    
+    <div class="phase">Every discovered input is followed forward through function calls and module boundaries to see where it ends up.</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card-grid cols-a arrows-on" style="--spacing-h: 10px; --spacing-v: 14px;">
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="map-the-attack-surface-p-2-c-1" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-chainlink"></use></svg></div><p class="card-title">Forward Taint Tracing</p><p class="card-sub">Follow each input from source to sink</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="map-the-attack-surface-p-2-c-2" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-database"></use></svg></div><p class="card-title">Persistence Analysis</p><p class="card-sub">Which inputs actually reach the database</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="map-the-attack-surface-p-2-c-3" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">AI and LLM Agent Surface</p><p class="card-sub">OWASP LLM Top 10 coverage for AI-powered applications</p></div></div>
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="phase" data-id="map-the-attack-surface-p-3" data-go-to="" data-edges="[]">
+    
+    <div class="phase-head">
+    <span class="phase-tag">PHASE 03</span> 
+    <span class="phase-title">Map Access Controls</span>
+    <span class="phase-rule"></span>
+    </div>
+    
+    
+    <div class="phase">Every handler is checked for authentication gates, authorization checks, and CSRF protection.</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card-grid cols-b" style="--spacing-h: 10px; --spacing-v: 14px;">
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="map-the-attack-surface-p-3-c-1" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">Authentication and Authorization Audit</p><p class="card-sub">Who can do what, and are the checks in place?</p></div></div>
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    </div>
+    
+    
+    
+    </section>
+    
+    
+    <!-- ============ TRANSITION A → B ============ -->
+    <div aria-hidden="true" class="transition transition-ab">
+    <div class="transition-gate">
+    <svg class="transition-arrow" height="20" viewBox="0 0 24 24" width="20"><path d="M12 3v15M5 11l7 7 7-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path></svg>
+    <span class="transition-label">Static findings feed into VM deployment</span>
+    </div>
+    </div>
+    
+    
+    
+    <!-- ============ STAGE B ============ -->
+    <section class="stage stage-b" data-id="deploy-application-to-vm" data-go-to="" data-edges="[]">
+    <div class="stage-head">
+    <div class="stamp">B</div>
+    <div class="stage-title">Deploy Application to VM</div>
+    <div class="stage-trace"></div>
+    
+    </div>
+    
+    
+    
+    
+    
+    <div class="phase" data-id="deploy-application-to-vm-p-1" data-go-to="" data-edges="[]">
+    
+    <div class="phase-head">
+    <span class="phase-tag">PHASE 04</span> 
+    <span class="phase-title">Deploy Application to VM</span>
+    <span class="phase-rule"></span>
+    </div>
+    
+    
+    <div class="phase">An optional AI-driven agent reads the repo's documentation and deployment manifests, plans the deployment with an LLM, executes it on a pre-running VM over SSH, and feeds the live connection info back into the pipeline.</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card-grid cols-a layout-vertical arrows-on" style="--spacing-h: 14px; --spacing-v: 10px;">
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="deploy-application-to-vm-p-1-c-1" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-filesearch"></use></svg></div><p class="card-title">Read Documentation and Manifests</p><p class="card-sub">No LLM, no SSH — pure static extraction</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="deploy-application-to-vm-p-1-c-2" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">Plan the Deployment with AI</p><p class="card-sub">AI assembles executable deployment plan from static context</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="deploy-application-to-vm-p-1-c-3" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-globe"></use></svg></div><p class="card-title">Execute Deployment on VM</p><p class="card-sub">SSH execution with AI recovery and blocking-stdin intervention</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="deploy-application-to-vm-p-1-c-4" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-plug"></use></svg></div><p class="card-title">Feed Connection Info to Pipeline</p><p class="card-sub">Sets args so downstream stages target the deployed VM</p></div></div>
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    </div>
+    
+    
+    
+    </section>
+    
+    
+    <!-- ============ TRANSITION B → C ============ -->
+    <div aria-hidden="true" class="transition transition-bc">
+    <div class="transition-gate">
+    <svg class="transition-arrow" height="20" viewBox="0 0 24 24" width="20"><path d="M12 3v15M5 11l7 7 7-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path></svg>
+    <span class="transition-label">Live connection info feeds into test generation and execution</span>
+    </div>
+    </div>
+    
+    
+    
+    <!-- ============ STAGE C ============ -->
+    <section class="stage stage-c" data-id="generate-and-execute-security-tests" data-go-to="" data-edges="[]">
+    <div class="stage-head">
+    <div class="stamp">C</div>
+    <div class="stage-title">Generate and Execute Security Tests</div>
+    <div class="stage-trace"></div>
+    
+    </div>
+    
+    
+    
+    
+    
+    <div class="phase" data-id="generate-and-execute-security-tests-p-1" data-go-to="" data-edges="[]">
+    
+    <div class="phase-head">
+    <span class="phase-tag">PHASE 05</span> 
+    <span class="phase-title">Generate Security Tests</span>
+    <span class="phase-rule"></span>
+    </div>
+    
+    
+    <div class="phase">The scanner writes custom exploit attempts from the static findings — no generic payloads, no manual setup.</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card-grid cols-a layout-vertical arrows-on" style="--spacing-h: 14px; --spacing-v: 10px;">
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="generate-and-execute-security-tests-p-1-c-1" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-bug"></use></svg></div><p class="card-title">DAST Exploit Templates</p><p class="card-sub">Targeted attack payloads for each vulnerability class</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="generate-and-execute-security-tests-p-1-c-2" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-dice"></use></svg></div><p class="card-title">Fuzz Tests</p><p class="card-sub">Property-based and HTTP-level fuzzing</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="generate-and-execute-security-tests-p-1-c-3" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-key"></use></svg></div><p class="card-title">Authorization Probes</p><p class="card-sub">Identity-matrix replay tests for access control gaps</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="generate-and-execute-security-tests-p-1-c-4" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-gridtable"></use></svg></div><p class="card-title">Cookie-State Replay</p><p class="card-sub">Pairwise coverage of security-relevant cookie values</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="generate-and-execute-security-tests-p-1-c-5" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-shuffle"></use></svg></div><p class="card-title">Race Condition Tests</p><p class="card-sub">Concurrent harnesses for TOCTOU and race findings</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="generate-and-execute-security-tests-p-1-c-6" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-codebrackets"></use></svg></div><p class="card-title">DOM XSS Confirmation</p><p class="card-sub">Playwright specs proving script execution in the browser</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="generate-and-execute-security-tests-p-1-c-7" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">Database Firewall Rules</p><p class="card-sub">Allowlists and firewall rules synthesized from dataflow analysis</p></div></div>
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="phase" data-id="generate-and-execute-security-tests-p-2" data-go-to="" data-edges="[]">
+    
+    <div class="phase-head">
+    <span class="phase-tag">PHASE 06</span> 
+    <span class="phase-title">Execute Tests Against the Live System</span>
+    <span class="phase-rule"></span>
+    </div>
+    
+    
+    <div class="phase">All generated tests are fired against the running application. An authentication manager keeps sessions alive across the entire run.</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card-grid cols-a layout-vertical arrows-on" style="--spacing-h: 14px; --spacing-v: 10px;">
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="generate-and-execute-security-tests-p-2-c-1" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-globe"></use></svg></div><p class="card-title">Run All Test Suites</p><p class="card-sub">Every generated test executes against the live target</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="generate-and-execute-security-tests-p-2-c-2" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-loop"></use></svg></div><p class="card-title">Session Management</p><p class="card-sub">Authentication stays live across the entire testing phase</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="generate-and-execute-security-tests-p-2-c-3" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-plug"></use></svg></div><p class="card-title">Third-Party Integrations</p><p class="card-sub">Guided SAST and Burp Suite bridge</p></div></div>
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    </div>
+    
+    
+    
+    </section>
+    
+    
+    <!-- ============ TRANSITION C → D ============ -->
+    <div aria-hidden="true" class="transition transition-cd">
+    <div class="transition-gate">
+    <svg class="transition-arrow" height="20" viewBox="0 0 24 24" width="20"><path d="M12 3v15M5 11l7 7 7-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path></svg>
+    <span class="transition-label">Live test results feed into runtime evidence collection</span>
+    </div>
+    </div>
+    
+    
+    
+    <!-- ============ STAGE D ============ -->
+    <section class="stage stage-d" data-id="collect-runtime-evidence" data-go-to="" data-edges="[]">
+    <div class="stage-head">
+    <div class="stamp">D</div>
+    <div class="stage-title">Collect Runtime Evidence</div>
+    <div class="stage-trace"></div>
+    
+    </div>
+    
+    
+    
+    
+    
+    <div class="phase" data-id="collect-runtime-evidence-p-1" data-go-to="" data-edges="[]">
+    
+    <div class="phase-head">
+    <span class="phase-tag">PHASE 07</span> 
+    <span class="phase-title">Collect Runtime Evidence</span>
+    <span class="phase-rule"></span>
+    </div>
+    
+    
+    <div class="phase">After test execution, server logs are collected, correlated to the active tests, and optionally enriched with live database schema intelligence. The results overlay the dashboard with runtime-corroborated findings.</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card-grid cols-b layout-vertical arrows-on" style="--spacing-h: 14px; --spacing-v: 10px;">
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="collect-runtime-evidence-p-1-c-1" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-database"></use></svg></div><p class="card-title">Store and Collect Log Events</p><p class="card-sub">sqlite store with pull and push transport adapters</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="collect-runtime-evidence-p-1-c-2" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-merge"></use></svg></div><p class="card-title">Correlate Logs to Active Tests</p><p class="card-sub">Three strategies join runtime events to findings</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="collect-runtime-evidence-p-1-c-3" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-search"></use></svg></div><p class="card-title">Probe Database Schema</p><p class="card-sub">Read-only schema intelligence confirms static predictions</p></div></div>
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    </div>
+    
+    
+    
+    </section>
+    
+    
+    <!-- ============ TRANSITION D → E ============ -->
+    <div aria-hidden="true" class="transition transition-de">
+    <div class="transition-gate">
+    <svg class="transition-arrow" height="20" viewBox="0 0 24 24" width="20"><path d="M12 3v15M5 11l7 7 7-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path></svg>
+    <span class="transition-label">Runtime logs feed into the correlation engine</span>
+    </div>
+    </div>
+    
+    
+    
+    <!-- ============ STAGE E ============ -->
+    <section class="stage stage-e" data-id="deliver-actionable-intelligence" data-go-to="" data-edges="[]">
+    <div class="stage-head">
+    <div class="stamp">E</div>
+    <div class="stage-title">Deliver Actionable Intelligence</div>
+    <div class="stage-trace"></div>
+    
+    </div>
+    
+    
+    
+    
+    
+    <div class="phase" data-id="deliver-actionable-intelligence-p-1" data-go-to="" data-edges="[]">
+    
+    <div class="phase-head">
+    <span class="phase-tag">PHASE 08</span> 
+    <span class="phase-title">Correlate and Score</span>
+    <span class="phase-rule"></span>
+    </div>
+    
+    
+    <div class="phase">All evidence from static analysis, dynamic testing, and external engines is joined into one prioritized dataset.</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card-grid cols-b layout-radial" style="--spacing-h: 36px; --spacing-v: 16px; --n: 4;">
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer; --i: 0; --arrow-angle: 45.0deg;" data-id="deliver-actionable-intelligence-p-1-c-1" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-merge"></use></svg></div><p class="card-title">Correlation Engine</p><p class="card-sub">Every finding corroborated across multiple sources</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer; --i: 1; --arrow-angle: 135.0deg;" data-id="deliver-actionable-intelligence-p-1-c-2" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-sliders"></use></svg></div><p class="card-title">Transparent Scoring</p><p class="card-sub">Every finding scored with an explainable rubric</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer; --i: 2; --arrow-angle: 225.0deg;" data-id="deliver-actionable-intelligence-p-1-c-3" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-shield"></use></svg></div><p class="card-title">False Positive Suppression</p><p class="card-sub">Operator-tunable rules tag false positives without dropping them</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer; --i: 3; --arrow-angle: 315.0deg;" data-id="deliver-actionable-intelligence-p-1-c-4" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-compare"></use></svg></div><p class="card-title">Cross-Version Diff</p><p class="card-sub">Compare two scans to see what changed</p></div></div>
+    
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="phase" data-id="deliver-actionable-intelligence-p-2" data-go-to="" data-edges="[]">
+    
+    <div class="phase-head">
+    <span class="phase-tag">PHASE 09</span> 
+    <span class="phase-title">Review and Report</span>
+    <span class="phase-rule"></span>
+    </div>
+    
+    
+    <div class="phase">All results are delivered in a single offline HTML dashboard and machine-readable artifacts for CI.</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card-grid cols-a" style="--spacing-h: 10px; --spacing-v: 14px;">
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="deliver-actionable-intelligence-p-2-c-1" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-dashboard"></use></svg></div><p class="card-title">Integrated Dashboard</p><p class="card-sub">Every finding, chain, and test result in one offline HTML file</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="deliver-actionable-intelligence-p-2-c-2" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-braces"></use></svg></div><p class="card-title">Machine-Readable Outputs</p><p class="card-sub">SARIF, CSV, and JSON for CI and downstream tools</p></div></div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="card" style="cursor: pointer;" data-id="deliver-actionable-intelligence-p-2-c-3" data-go-to="" data-edges="[]"><div class="card-face"><div class="card-icon"><svg><use href="#i-sparkles"></use></svg></div><p class="card-title">AI-Assisted Triage</p><p class="card-sub">Optional LLM review of findings from the dashboard</p></div></div>
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    </div>
+    
+    
+    
+    </section>
+    
+    
+    
+  </div> <!-- end main-stages -->
+
+  
+</div> <!-- end layout-wrapper -->
+
+</div>
+
+
+
+<!-- ===== modal popup ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header" id="modalHeader">
+      <div class="modal-header-icon" id="modalHeaderIcon"></div>
+      <div class="modal-header-text">
+        <div class="modal-stage-badge" id="modalStageBadge"></div>
+        <h3 class="modal-title" id="modalTitle"></h3>
+      </div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-stepper" id="modalStepper"></div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter" style="display:none;"></div>
+  </div>
+</div>
+
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+  <div class="lightbox-container" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="event.stopPropagation();closeLightbox()">&times;</button>
+    <img class="lightbox-image" id="lightboxImage" src="" alt="">
+  </div>
+</div>
+
+<script>
+(function(){
+  const ARROW_SVG='<div class="modal-arrow"><svg viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 0v15M4 12l4 4 4-4"/></svg></div>';
+  const FLOWS = {
+    "Input Surface Mapping":{
+      d:"Every HTTP parameter, header, cookie, webhook, environment variable, CLI argument, message queue payload, database read-back, and file input is found and classified.",
+      l:"stepper",
+      o:["Complete input inventory"],
+      st:["89 detection patterns across 9 languages"],
+      s:[
+{"t":"Walk the source tree","d":"All first-party code across 9 languages is scanned; vendor and test directories are excluded"},
+{"t":"Match input patterns","d":"Framework-specific and generic recognizers flag every data entry point"},
+{"t":"Classify by source","d":"Each input is bucketed by origin type and tagged for PII"},
+{"t":"Find blind spots","d":"Files with route signals but no detected inputs are flagged for manual review"}
+      ]},
+    "Secret and Config Discovery":{
+      d:"The scanner finds secrets stored in code, configuration files, and infrastructure manifests, plus dependency vulnerabilities.",
+      l:"stepper",
+      o:["Secrets and config inventory", "Dependency vulnerability report"],
+      s:[
+{"t":"Strip comments","d":"Comments are removed so in-comment markers are not mistaken for real secrets"},
+{"t":"Fire all detectors","d":"310+ single-file and cross-function weakness patterns run on every file"},
+{"t":"Check manifests","d":"Dependency versions are extracted from all package formats and matched against advisory databases"},
+{"t":"Find IaC misconfigs","d":"Docker, Kubernetes, Terraform, and cloud manifests are inspected for insecure defaults"}
+      ]},
+    "Route Inventory":{
+      d:"All application routes are resolved with their methods, path parameters, and handler attribution.",
+      l:"stepper",
+      o:["Complete route map", "Handler attribution per endpoint"],
+      s:[
+{"t":"Detect frameworks","d":"30+ framework resolvers identify the routing style used"},
+{"t":"Extract routes","d":"Decorators, annotations, config files, and file-based routing are parsed"},
+{"t":"Resolve prefixes","d":"Class-level and group-level path prefixes are prepended"},
+{"t":"Attribute handlers","d":"Each route is linked back to its handler function"}
+      ]},
+    "Cookie Analysis":{
+      d:"Every cookie write site is cataloged, including enum-branch values and runtime-observed values.",
+      l:"stepper",
+      o:["Cookie inventory with value kinds", "Posture rotation axis for testing"],
+      s:[
+{"t":"Find cookie writes","d":"All setcookie, res.cookie, and set_cookie calls are detected"},
+{"t":"Classify values","d":"Each value is tagged as a write-literal, enum-branch, or runtime value"},
+{"t":"Flag weak flags","d":"Missing Secure, HttpOnly, or SameSite flags are noted"}
+      ]},
+    "Forward Taint Tracing":{
+      d:"The tracer walks every path an input can take through the code, recording each transform and the final destination.",
+      l:"stepper",
+      o:["End-to-end handling chains", "Raw-to-sink verdicts"],
+      s:[
+{"t":"Load seeds","d":"All inputs from Phase 01 are loaded as starting points"},
+{"t":"Trace forward","d":"A worklist algorithm follows assignments, renames, destructuring, and function calls"},
+{"t":"Classify hops","d":"Each step is tagged as a transform, storage operation, or terminal"},
+{"t":"Detect sanitizers","d":"Parsing, validation, encoding, and cryptographic operations are recognized"},
+{"t":"Flag raw-to-sink paths","d":"Inputs that reach storage or reflection with no sanitizer are surfaced as highest priority"}
+      ]},
+    "Persistence Analysis":{
+      d:"Every input is checked for proximity to database operations, and a confidence verdict is assigned.",
+      l:"stepper",
+      o:["Database write map", "Persistence confidence per input"],
+      s:[
+{"t":"Cross-reference inputs","d":"Each input is matched against database operation patterns in its surrounding code"},
+{"t":"Recognize ORMs and raw SQL","d":"14+ storage backends are identified"},
+{"t":"Assign confidence","d":"Each finding gets a verdict: confirmed-write, write-nearby, read-only, or schema-match"}
+      ]},
+    "AI and LLM Agent Surface":{
+      d:"The scanner maps prompt-injection surfaces, tool-authorization gaps, MCP supply-chain risks, and model output to unsafe sinks.",
+      l:"stepper",
+      o:["AI agent surface inventory", "OWASP LLM mapping per category"],
+      s:[
+{"t":"Find AI frameworks","d":"LangChain, OpenAI, Anthropic, CrewAI, AutoGen, MCP, and others are recognized"},
+{"t":"Detect prompt-injection paths","d":"Untrusted input flowing into agent executors is flagged"},
+{"t":"Analyze tools","d":"Tool definitions are checked for authorization gaps and confused-deputy risks"},
+{"t":"Trace model output","d":"LLM output flowing into SQL, system commands, or network calls is flagged"},
+{"t":"Map to OWASP LLM","d":"Every finding is stamped with its OWASP LLM Top 10 2025 category"}
+      ]},
+    "Authentication and Authorization Audit":{
+      d:"Every inbound handler is inspected for auth gates, privilege checks, and object-level authorization.",
+      l:"stepper",
+      o:["Auth coverage map", "IDOR and CSRF findings"],
+      s:[
+{"t":"Walk all handlers","d":"Every route handler across 9 languages is checked for auth gates"},
+{"t":"Recognize guard patterns","d":"Framework auth decorators, middleware, and inline checks are identified"},
+{"t":"Detect IDOR","d":"Database writes using user-supplied identifiers without ownership checks are flagged"},
+{"t":"Flag CSRF gaps","d":"State-changing routes without anti-CSRF tokens are noted"}
+      ]},
+    "Read Documentation and Manifests":{
+      d:"Deterministic extraction of runtime, services, ports, and env vars from README files, Dockerfiles, compose files, .env templates, and language manifests. No LLM, no SSH.",
+      l:"stepper",
+      o:["Deploy context with runtime, services, ports, and env vars"],
+      s:[
+{"t":"Find deploy artifacts","d":"README, Dockerfile, docker-compose, .env.example, Procfile, and language manifests are located"},
+{"t":"Detect runtime","d":"Python, Node, Java, Go, Ruby, PHP, or C# is identified from manifests and Dockerfile base images"},
+{"t":"Harvest services","d":"External services (Postgres, Redis, MySQL, MongoDB) are detected from compose service names and Dockerfile ENV references"},
+{"t":"Extract env requirements","d":"Required environment variables are parsed from .env.example templates"},
+{"t":"Identify start commands","d":"npm scripts, Procfile entries, Dockerfile CMD/ENTRYPOINT, and README code blocks are collected"},
+{"t":"Detect seed scripts","d":"Seed SQL files, migration commands, and admin-creation scripts are found"}
+      ]},
+    "Plan the Deployment with AI":{
+      d:"The deploy context is sent to an LLM which produces an ordered list of steps with verify checks, fallback policies, and test-user login specs.",
+      l:"stepper",
+      o:["Deploy requirements with ordered steps and connection hints"],
+      s:[
+{"t":"Send context to LLM","d":"Runtime, services, ports, README excerpts, and dependency lists form the prompt"},
+{"t":"Receive deployment plan","d":"The LLM returns a structured plan with idempotent transfer, shell, and background-start steps"},
+{"t":"Validate plan structure","d":"Every step carries an idempotent flag, verify command, fallback policy, and timeout"},
+{"t":"Extract connection hints","d":"base_url port, DB DSN, app log paths, and test-user login specs are parsed from the plan"},
+{"t":"Operator review","d":"With --vm-deploy-plan-only the plan is saved for review; otherwise execution proceeds"}
+      ]},
+    "Execute Deployment on VM":{
+      d:"The deployment plan runs over SSH on a pre-running VM. Each step's verify check short-circuits idempotent re-runs. On failure, the LLM suggests recovery before a blocking stdin prompt.",
+      l:"stepper",
+      o:["Deployment summary with live base_url, db_dsn, and auth profiles"],
+      s:[
+{"t":"Transfer source code","d":"Application files are copied to the VM via scp/rsync"},
+{"t":"Install dependencies","d":"pip, npm, mvn, or other package managers run on the VM"},
+{"t":"Apply migrations and seeds","d":"Database migrations and seed scripts execute"},
+{"t":"Start the application","d":"The app starts in the background; health probes confirm it is live"},
+{"t":"AI recovery on failure","d":"When a step fails, the LLM is asked for up to N recovery command suggestions"},
+{"t":"Human intervention","d":"When AI recovery is exhausted, a blocking stdin prompt offers retry, skip, abort, or command substitution"},
+{"t":"Capture test-user credentials","d":"Each declared test user is logged in over HTTP; the resulting auth token or cookie is saved"}
+      ]},
+    "Feed Connection Info to Pipeline":{
+      d:"The deployment summary is read and the pipeline's args are mutated. CLI flags always win.",
+      l:"stepper",
+      o:["Pipeline args set for the deployed VM", "Auth profiles ready for test execution"],
+      s:[
+{"t":"Read deployment summary","d":"vm_deployment.json is loaded from the deploy output directory"},
+{"t":"Set base_url","d":"The deployed app's URL becomes the target for all generated tests"},
+{"t":"Set db_dsn","d":"The database connection string is passed to the runtime-evidence and DB-probe stages"},
+{"t":"Attach auth profiles","d":"Captured test-user credentials are made available to the authz test generator"},
+{"t":"Auto-enable log collection","d":"When the deploy produced app-log sources, --log-collect is enabled so runtime evidence is gathered"},
+{"t":"Bypass mapping UI","d":"A single-unit plan is synthesised so the multidomain mapping interface is never shown"}
+      ]},
+    "DAST Exploit Templates":{
+      d:"Every testable finding is matched to an attack class, and an executable exploit template is emitted.",
+      l:"stepper",
+      o:["DAST templates", "Route-resolution map for each finding"],
+      s:[
+{"t":"Map to attack class","d":"Each finding is matched to SQLi, XSS, SSTI, SSRF, path traversal, deserialization, CRLF, or LDAP"},
+{"t":"Resolve the live route","d":"The route resolver reads source-code decorators and the route inventory to find the exact endpoint"},
+{"t":"Match payloads","d":"Attack-class-appropriate payloads are selected from the payload library"},
+{"t":"Emit templates","d":"Per-finding Nuclei YAML is written with matched payloads and response matchers"}
+      ]},
+    "Fuzz Tests":{
+      d:"Type-confused, boundary, and oversized inputs are generated for every handler parameter.",
+      l:"stepper",
+      o:["Fuzz test files", "HTTP fuzz suite per route"],
+      s:[
+{"t":"Parse the handler function","d":"The enclosing function's AST is read to extract parameter names and types"},
+{"t":"Choose smart strategies","d":"Hypothesis strategies are selected per parameter name and classification"},
+{"t":"Emit fuzz suites","d":"pytest files are written targeting the resolved function directly"},
+{"t":"HTTP fuzzer","d":"A separate suite probes every resolved route with malformed query, path, and body inputs"}
+      ]},
+    "Authorization Probes":{
+      d:"Every endpoint is replayed across anonymous, low-privilege, and other-tenant identities.",
+      l:"stepper",
+      o:["Authz test suite", "IDOR probe results"],
+      s:[
+{"t":"Build identity matrix","d":"Anonymous and role-specific identities are constructed per endpoint"},
+{"t":"Replay and assert","d":"Each request is replayed; 401/403 enforcement and cross-tenant data access are checked"},
+{"t":"Generate CSRF tests","d":"Tokenless submissions are tested against state-changing endpoints"}
+      ]},
+    "Cookie-State Replay":{
+      d:"Every route is tested under every meaningful cookie combination to catch role-escalation and posture-switch vulnerabilities.",
+      l:"stepper",
+      o:["Cookie-state test matrix", "Posture coverage per route"],
+      s:[
+{"t":"Identify posture cookies","d":"Multi-value cookies that switch security levels are found"},
+{"t":"Build pairwise matrix","d":"Combinatorial reduction generates a coverage-efficient set of cookie combinations"},
+{"t":"Replay all routes","d":"Each route is exercised under every cookie combination"}
+      ]},
+    "Race Condition Tests":{
+      d:"Concurrent request harnesses are generated for every finding with a potential race condition.",
+      l:"stepper",
+      o:["Race harness scaffolds", "TOCTOU coverage per finding"],
+      s:[
+{"t":"Generate harness","d":"N concurrent identical requests with a final-state invariant check are scaffolded"},
+{"t":"Flag for operator","d":"The operator fills in the invariant assertion"},
+{"t":"Load-smoke test","d":"A parallel hammer test is generated alongside"}
+      ]},
+    "DOM XSS Confirmation":{
+      d:"Real browser tests confirm reflected, stored, and client-side DOM XSS by observing actual script execution.",
+      l:"stepper",
+      o:["Playwright confirmation specs", "Confirmed or refuted XSS"],
+      s:[
+{"t":"Select XSS findings","d":"DOM-sink, response-sink, and stored-XSS findings are selected"},
+{"t":"Inject payloads","d":"Classification-matched XSS payloads are injected at each input vector"},
+{"t":"Check DOM mutation","d":"Playwright loads the page, injects the payload, and checks for DOM mutation"}
+      ]},
+    "Database Firewall Rules":{
+      d:"The set of statically-mapped database fields is turned into deployable firewall rules.",
+      l:"stepper",
+      o:["Column allowlist", "Per-vendor firewall rules"],
+      s:[
+{"t":"Read dataflow results","d":"Confirmed DB-write targets and column mappings are loaded"},
+{"t":"Synthesize allowlist","d":"A per-table column allowlist is generated as JSON"},
+{"t":"Emit firewall rules","d":"ProxySQL-format firewall rules are written from the allowlist"}
+      ]},
+    "Run All Test Suites":{
+      d:"DAST templates, fuzzers, authz probes, cookie replays, race harnesses, and DOM specs all run against the resolved endpoints.",
+      l:"stepper",
+      o:["Test results per finding", "Confirmed vulnerabilities"],
+      s:[
+{"t":"Deploy DAST templates","d":"Nuclei templates are fired against the live target"},
+{"t":"Run fuzz suites","d":"pytest-based fuzzers and HTTP fuzzers execute against resolved routes"},
+{"t":"Execute authz probes","d":"Identity-matrix requests are sent with the live session"},
+{"t":"Fire cookie replays","d":"Every route is tested under every cookie combination"},
+{"t":"Run race harnesses","d":"Concurrent requests are fired with invariant checks"},
+{"t":"Execute DOM specs","d":"Playwright opens a real browser and confirms or refutes XSS"}
+      ]},
+    "Session Management":{
+      d:"The scanner monitors session health and re-authenticates when the session expires mid-run.",
+      l:"stepper",
+      o:["Live session throughout the test run", "Re-auth log with per-test granularity"],
+      s:[
+{"t":"Capture session","d":"A browser login captures the authenticated cookie at the start"},
+{"t":"Serve session to all tests","d":"Every test subprocess receives the live cookie through a local proxy"},
+{"t":"Monitor for expiry","d":"Every response is checked for 401/403 or unauthorized signals"},
+{"t":"Re-authenticate on expiry","d":"When the session drops, the scanner pauses, re-logs in, and reruns affected tests"}
+      ]},
+    "Third-Party Integrations":{
+      d:"The scanner feeds its source-derived attack surface to Semgrep and CodeQL for corroboration, and seeds Burp Suite's site map and insertion points for active scanning.",
+      l:"stepper",
+      o:["Corroborated findings with provenance", "Burp site map pre-seeded"],
+      s:[
+{"t":"Emit SAST guidance","d":"Sources, sinks, sanitizers, and scope are written to a guidance file"},
+{"t":"Generate rules","d":"Semgrep taint-mode rules and CodeQL query scopes are auto-generated"},
+{"t":"Run external engines","d":"Semgrep and CodeQL execute and return SARIF results"},
+{"t":"Fold findings back","d":"External results are correlated back into the same dataset with provenance tags"},
+{"t":"Seed Burp Suite","d":"Routes, recorded traffic, and insertion points are pushed into Burp via the bridge"}
+      ]},
+    "Store and Collect Log Events":{
+      d:"Every log line from the running application is normalized into a standard shape and stored in a sqlite database. Pull adapters reach out to the server; a push receiver accepts batches during the run.",
+      l:"stepper",
+      o:["Normalized log events in sqlite store", "Raw log archive for replay"],
+      s:[
+{"t":"Normalize log events","d":"Each log line becomes a LogEvent with source, kind, timestamp, request_id, test_id, query, table, status, and error fields"},
+{"t":"Pull from sources","d":"Transport adapters reach out to local files, HTTP endpoints, SSH hosts, GCP Logging, GCS buckets, kubectl pods, or Docker containers"},
+{"t":"Accept pushed batches","d":"A stdlib HTTP server accepts JSON batches at /ingest during the entire DAST run"},
+{"t":"Deduplicate on ingest","d":"The same (raw_hash, source) pair never creates duplicate rows"},
+{"t":"Archive raw payloads","d":"Original log lines are archived verbatim under raw/<source>/<run_id>/ for audit"}
+      ]},
+    "Correlate Logs to Active Tests":{
+      d:"Log events are matched to the tests that produced them using X-Test-Id headers, temporal proximity, and sink-column references.",
+      l:"stepper",
+      o:["Runtime evidence per finding", "Exercised vs. unexercised static findings"],
+      s:[
+{"t":"X-Test-Id exact match","d":"Every generated HTTP harness stamps X-Test-Id on each request; the app echoes it into logs. Maps test_name to finding fingerprints. Confidence 1.0"},
+{"t":"Temporal and shape fallback","d":"For sources without the id, an event within a per-run window of a test's recorded HTTP exchange and touching the same route/param is matched. Confidence 0.4"},
+{"t":"Sink-column direct match","d":"A query event that writes or reads a column or table a static finding sinks to marks that finding as exercised. No test id needed"},
+{"t":"Enrich test results","d":"Each test entry in test_results.json gets a runtime_evidence block with queries, errors, tables, and columns observed"},
+{"t":"Flag anomolous writes","d":"Database writes to columns no static scanner predicted are surfaced as anomalies"}
+      ]},
+    "Probe Database Schema":{
+      d:"An active database probe connects to the live database and runs guarded discovery queries. On VM-deploy, the probe runs ON the VM via SSH.",
+      l:"stepper",
+      o:["Confirmed column and table existence", "Row count intelligence for severity calibration"],
+      s:[
+{"t":"Connect to database","d":"The DSN from the deployment summary or the CLI --db-dsn flag is used to connect"},
+{"t":"Confirm column existence","d":"Every table and column a static finding sinks to is verified against the live schema"},
+{"t":"Report row counts","d":"Table cardinality is recorded so IDOR and mass-leak severity can be calibrated"},
+{"t":"Detect PII columns","d":"Column names matching PII heuristics are tagged"},
+{"t":"Read-only guarantee","d":"Only SELECT, WITH, SHOW, EXPLAIN, and PRAGMA are allowed; every statement runs inside a rolled-back transaction"},
+{"t":"VM-aware execution","d":"On VM-deploy, the probe commands execute over SSH so 127.0.0.1 resolves to the VM's database, not the scanner host's"}
+      ]},
+    "Correlation Engine":{
+      d:"Scanner reports, handling chains, test results, and external SAST findings are joined on a stable identity key.",
+      l:"stepper",
+      o:["Correlated dataset", "Corroboration level per finding"],
+      s:[
+{"t":"Join A and C","d":"Input inventory and data-flow reports are strong-joined on file, name, and line"},
+{"t":"Attach B findings","d":"Secrets and config findings are attached to matching occurrences"},
+{"t":"Link chains","d":"Handling chains are folded into each occurrence"},
+{"t":"Fold test results","d":"DAST, fuzz, authz, cookie, race, and DOM test outcomes are attached"},
+{"t":"Flag each finding","d":"150+ boolean flags are derived from classification and evidence"}
+      ]},
+    "Transparent Scoring":{
+      d:"Each occurrence receives a 0-150 priority score with the exact reasons attached.",
+      l:"stepper",
+      o:["Prioritized findings list", "Score breakdown per finding"],
+      s:[
+{"t":"Start from risk base","d":"Critical, high, medium, or low base from the finding type"},
+{"t":"Add aggravating factors","d":"Raw-to-sink, write proximity, PII presence, corroboration depth, test confirmation each add points"},
+{"t":"Break down the score","d":"Every aggravating factor is recorded alongside the total"},
+{"t":"Boost AI findings","d":"AI-agent findings carry their own aggravating factors with parity weighting"}
+      ]},
+    "False Positive Suppression":{
+      d:"A centralized suppression engine matches operator-defined rules and tags findings while keeping them visible.",
+      l:"stepper",
+      o:["Suppressed finding tags", "Auditable suppression log"],
+      s:[
+{"t":"Load rules","d":"Operator-tunable suppression rules are loaded from a JSON file"},
+{"t":"Evaluate each finding","d":"Fingerprint, flags, classification, component, and other fields are checked against each rule"},
+{"t":"Tag matched findings","d":"Matched records are tagged as suppressed with the rule name and reason"},
+{"t":"Surface in dashboard","d":"Suppressed findings are hidden by default but can be shown with a toggle"}
+      ]},
+    "Cross-Version Diff":{
+      d:"Two report folders are compared to surface new findings, remediated issues, and risk changes.",
+      l:"stepper",
+      o:["Finding deltas between versions", "Diff dashboard with trend data"],
+      s:[
+{"t":"Pair findings","d":"Findings are matched across runs on their stable identity key"},
+{"t":"Classify deltas","d":"Each pair is categorized as added, removed, risk-up, risk-down, or unchanged"},
+{"t":"Diff chains","d":"Handling-chain signatures are compared for structural changes"},
+{"t":"Diff tests","d":"Test-outcome transitions are tracked"}
+      ]},
+    "Integrated Dashboard":{
+      d:"The full dataset is embedded in a portable, interactive dashboard.",
+      l:"stepper",
+      o:["Offline HTML dashboard", "Interactive data-flow graphs"],
+      s:[
+{"t":"Load all data","d":"Scanner reports, chains, authz, AI, cookies, routes, test results, and DB audit data are loaded"},
+{"t":"Build nine tabs","d":"Explore, Flow Map, Summary, Similar Issues, Testing and Audit, Posture, Cookies, AI Agent, Runtime Evidence"},
+{"t":"Render chains","d":"Per-hop code snippets paired with a visual flow path"},
+{"t":"Add filters","d":"Vulnerability type, test status, severity, and other facets let reviewers slice the data"}
+      ]},
+    "Machine-Readable Outputs":{
+      d:"Standards-compliant artifacts are produced for ingestion into CI pipelines and other tooling.",
+      l:"stepper",
+      o:["SARIF for CI ingestion", "Pipeline metrics with regression check"],
+      s:[
+{"t":"Export SARIF","d":"All findings are exported as SARIF 2.1.0 with CWE taxonomy, codeFlows, and remediation guidance"},
+{"t":"Write CSV reports","d":"A, B, C, and chains reports are written in tabular, diff-able format"},
+{"t":"Emit pipeline metrics","d":"Route-resolution rate, test-success rate, and coverage metrics are recorded"},
+{"t":"Check for regression","d":"Metrics are compared against the prior run; regressions trigger a warning"}
+      ]},
+    "AI-Assisted Triage":{
+      d:"A reviewer can send a finding's full context to an LLM for a plain-language explanation and triage.",
+      l:"stepper",
+      o:["LLM-generated finding summaries", "Risk explanations attached to findings"],
+      s:[
+{"t":"Assemble context","d":"Chain hops, transforms, sink type, code snippets, and priority breakdown are assembled"},
+{"t":"Send to LLM","d":"The context is sent to a local bridge that calls Claude, Gemini, or GLM"},
+{"t":"Append verdict","d":"The model's triage verdict is appended to the finding's note"}
+      ]}
+  };
+
+  function closeModal(){
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  window.closeModal=closeModal;
+  function openLightbox(src){
+    document.getElementById('lightboxImage').src=src;
+    document.getElementById('lightboxOverlay').classList.add('open');
+  }
+  window.openLightbox=openLightbox;
+  function closeLightbox(){
+    document.getElementById('lightboxOverlay').classList.remove('open');
+    document.getElementById('lightboxImage').src='';
+  }
+  window.closeLightbox=closeLightbox;
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){
+      closeModal();
+      if(document.getElementById('lightboxOverlay').classList.contains('open'))closeLightbox();
+    }
+  });
+  /* Build a decoded lookup so textContent ("Secrets & Config") matches FLOWS keys ("Secrets &amp; Config") */
+  var DECODED_FLOWS={};
+  Object.keys(FLOWS).forEach(function(k){DECODED_FLOWS[k.replace(/&amp;/g,'&').replace(/\u2011/g,'-').replace(/\u2019/g,"'")]=FLOWS[k];});
+  document.querySelectorAll('.card-title').forEach(function(el){
+    var card=el.closest('.card');
+    if(card)card.style.cursor='pointer';
+    el.addEventListener('click',function(e){
+      e.stopPropagation();
+      var raw=el.textContent.replace(/\u2011/g,'-').replace(/\u2019/g,"'").trim();
+      openModal(raw,DECODED_FLOWS[raw],card);
+    });
+    if(card){
+      card.addEventListener('click',function(e){
+        var titleEl=card.querySelector('.card-title');
+        if(!titleEl)return;
+        var raw=titleEl.textContent.replace(/\u2011/g,'-').replace(/\u2019/g,"'").trim();
+        openModal(raw,DECODED_FLOWS[raw],card);
+      });
+    }
+  });
+  var ICON_MAP=[
+    [/\breport|output|artifact|sarif\b/i,'i-clipboardcheck'],
+    [/\bscan|walk|file\b/i,'i-filesearch'],
+    [/\bpattern|regex|detector|match\b/i,'i-codebrackets'],
+    [/\bclassif|bucket|categor|tag\b/i,'i-shuffle'],
+    [/\bdb|database|query|sql|store|persist\b/i,'i-database'],
+    [/\btrace|chain|follow|propag\b/i,'i-chainlink'],
+    [/\broute|endpoint|handler\b/i,'i-signpost'],
+    [/\bcookie|session\b/i,'i-cookie'],
+    [/\bconfig|extract|deploy|docker|k8s|helm|iac\b/i,'i-server'],
+    [/\bauth|guard|csrf|idor|privilege\b/i,'i-shield'],
+    [/\bai|llm|prompt|model|agent\b/i,'i-sparkles'],
+    [/\btest|probe|fuzz|nuclei|payload|attack\b/i,'i-bug'],
+    [/\bmerge|join|correlat|integrate|unified\b/i,'i-merge'],
+    [/\bdashboard|display|render|visual|graph\b/i,'i-dashboard'],
+    [/\bsuppress|filter\b/i,'i-shield'],
+    [/\bkey|secret|token|cred\b/i,'i-key'],
+    [/\bcomponent|framework|unit|architecture\b/i,'i-stack'],
+    [/\bmetric|coverage|regression|stat\b/i,'i-gridtable'],
+    [/\bflag|severity|priority|score\b/i,'i-gridtable'],
+    [/\brace|concurren|toctou|harness\b/i,'i-loop'],
+    [/\bbrowser|dom|playwright|inject\b/i,'i-cursorclick'],
+    [/\bfirewall|allowlist\b/i,'i-shield'],
+    [/\bdiff|patch|pairing|delta\b/i,'i-compare'],
+    [/\bdataflow|write|read\b/i,'i-database'],
+    [/\bsearch|find|locate|probe\b/i,'i-search'],
+    [/\bscore|rating|slider|priority|severity\b/i,'i-sliders']
+  ];
+  function iconFor(text){
+    for(var j=0;j<ICON_MAP.length;j++){if(ICON_MAP[j][0].test(text))return ICON_MAP[j][1];}
+    return null;
+  }
+  function openModal(title,flow,cardEl){
+    var mo=document.getElementById('modalOverlay');
+    var mb=document.getElementById('modalBody');
+    var mf=document.getElementById('modalFooter');
+    var ms=document.getElementById('modalStepper');
+    var mhb=document.getElementById('modalStageBadge');
+    var mhi=document.getElementById('modalHeaderIcon');
+    var box=document.getElementById('modalBox');
+    document.getElementById('modalTitle').textContent=title;
+    var accent='--stamp-a',stageLabel='Stage A';
+    if(cardEl){
+      var stageEl=cardEl.closest('[class*="stage-"]');
+      if(stageEl){
+        var clsMatch=stageEl.className.match(/stage-([a-z])/);
+        if(clsMatch){
+          stageLabel='Stage '+clsMatch[1].toUpperCase();
+          accent='--stamp-'+clsMatch[1];
+        }
+      }
+      var cardSvg=cardEl.querySelector('.card-icon svg');
+      if(cardSvg){mhi.innerHTML='';var c=cardSvg.cloneNode(true);c.style.width='20px';c.style.height='20px';mhi.appendChild(c);}
+    }
+    mhb.textContent=stageLabel;
+    var av=getComputedStyle(document.documentElement).getPropertyValue(accent).trim();
+    box.style.setProperty('--modal-accent',av);
+    if(!flow){
+      ms.innerHTML='';mf.style.display='none';
+      box.classList.remove('has-image');mb.className='modal-body';
+      mb.innerHTML='<p class="modal-desc">Detail workflow for this step is not yet available.</p>';
+      mo.classList.add('open');document.body.style.overflow='hidden';return;
+    }
+    var html='<p class="modal-desc">'+flow.d+'</p>';
+    /* User-defined stats only, no fallback */
+    if(flow.st && flow.st.length){
+      html+='<div class="modal-stats">';
+      flow.st.forEach(function(s){html+='<span class="modal-stat-chip">'+s+'</span>';});
+      html+='</div>';
+    }
+    var flowLayout = flow.l && flow.l !== 'default' ? flow.l : 'default';
+    var arrowsOn = flow.a ? ' arrows-on' : '';
+    html+='<div class="modal-flow modal-flow-' + flowLayout + arrowsOn + '"';
+    var last=flow.s.length-1;
+    if (flow.l === 'radial') html += ' style="--n:' + flow.s.length + ';"';
+    html+='>';
+    flow.s.forEach(function(step,i){
+      var term=(i===last);
+      var ic=iconFor(step.t+' '+step.d);
+      var stepAttrs = '';
+      if (flow.l !== 'radial' && flow.l !== 'horizontal') stepAttrs = 'animation-delay:' + Math.round(i*60) + 'ms';
+      if (flow.l === 'radial') stepAttrs = '--i:' + i + ';--step-angle:' + (360 / flow.s.length * i) + 'deg';
+      html+='<div class="modal-step'+(term?' terminal':'')+'"' + (stepAttrs ? ' style="' + stepAttrs + '"' : '') + '>';
+      if (flowLayout !== 'default') {
+        html+='<div class="modal-step-rail"><div class="modal-step-icon'+(term?' terminal':'')+'">';
+        html+=ic?'<svg><use href="#'+ic+'"></use></svg>':String(i+1);
+        html+='</div>';
+        if(!term && flowLayout !== 'horizontal') html+='<div class="modal-step-line"></div>';
+        if(!term && flowLayout === 'horizontal') html+='<div class="modal-step-line modal-step-line-h"></div>';
+        html+='</div>';
+      }
+      html+='<div class="modal-step-body"><p class="modal-step-title">'+step.t+'</p><p class="modal-step-desc">'+step.d+'</p></div></div>';
+    });
+    /* radial arrows: injected as direct children of the flow container so
+       they position relative to the container, not the translated step */
+    if (flow.l === 'radial' && flow.a) {
+      for (var ri = 0; ri < flow.s.length - 1; ri++) {
+        var sa = 360 / flow.s.length * ri;
+        var na = 360 / flow.s.length * (ri + 1);
+        var ma = (sa + na) / 2;
+        html += '<span class="radial-arrow" style="--ma:' + ma + 'deg"></span>';
+      }
+    }
+    html+='</div>';
+    var sh='';
+    flow.s.forEach(function(_,i){if(i>0)sh+='<div class="modal-stepper-seg"></div>';sh+='<div class="modal-stepper-dot'+(i===last?' last':'')+'"></div>';});
+    ms.innerHTML=sh;
+    var ls=flow.s[last];
+    var outs=[];
+    if(flow.o && flow.o.length){
+      flow.o.forEach(function(o){outs.push(o);});
+    }else{
+      var rm=ls.t.match(/report\s*([A-C])/i);if(rm)outs.push('Report '+rm[1].toUpperCase());
+      var cm=ls.d.match(/(\w+\.csv)/i);if(cm)outs.push(cm[1]);
+      var jm=ls.d.match(/(\w+\.json)/i);if(jm)outs.push(jm[1]);
+      if(/sarif/i.test(ls.d))outs.push('SARIF');
+      if(/yaml/i.test(ls.d))outs.push('Nuclei YAML');
+      if(/pytest|hypothesis/i.test(ls.d))outs.push('pytest');
+      if(/playwright/i.test(ls.d))outs.push('Playwright');
+      if(/html|dashboard/i.test(ls.d))outs.push('Dashboard');
+      if(/allowlist|firewall/i.test(ls.d))outs.push('DB Rules');
+      if(!outs.length)outs.push(ls.t);
+    }
+    var fh='<span class="modal-footer-label">Outputs</span>';
+    outs.forEach(function(o){fh+='<span class="modal-pill"><span class="pill-arrow">&#8594;</span>'+o+'</span>';});
+    mf.innerHTML=fh;mf.style.display='flex';
+    if(flow.img){
+      box.classList.add('has-image');
+      mb.className='modal-body image-layout';
+      mb.innerHTML='<div class="modal-body-flow">'+html+'</div><div class="modal-body-image"><img src="'+flow.img+'" alt="'+title+'" onclick="openLightbox(this.src)"></div>';
+    }else{
+      box.classList.remove('has-image');
+      mb.className='modal-body';
+      mb.innerHTML=html;
+    }
+    mo.classList.add('open');document.body.style.overflow='hidden';
+  }
+})();
+</script>
+
+<!-- Node-to-Node Connector SVG Overlay -->
+<svg class="connector-svg" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:50;display:none;" id="connector-overlay"></svg>
+
+<script>
+(function(){
+  var EDGES = [];
+  function drawConnectors(){
+    var svg = document.getElementById('connector-overlay');
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var container = svg.parentElement;
+    var containerRect = container.getBoundingClientRect();
+    if (!EDGES.length) { svg.style.display = 'none'; return; }
+
+    // First pass: group edges by target for fan-in detection
+    var edgeGroups = {};
+    EDGES.forEach(function(edge) {
+      if (!edgeGroups[edge.target]) edgeGroups[edge.target] = [];
+      edgeGroups[edge.target].push(edge);
+    });
+
+    EDGES.forEach(function(edge){
+      var sourceEl = document.querySelector('[data-id="' + edge.source + '"]');
+      var targetEl = document.querySelector('[data-id="' + edge.target + '"]');
+      if (!sourceEl || !targetEl) return;
+      var srcRect = sourceEl.getBoundingClientRect();
+      var tgtRect = targetEl.getBoundingClientRect();
+      var group = edgeGroups[edge.target] || [];
+      var isFanIn = group.length > 1;
+
+      var x1 = srcRect.left - containerRect.left + srcRect.width / 2;
+      var y1 = srcRect.top - containerRect.top + srcRect.height / 2;
+      var x2, y2;
+      if (isFanIn) {
+        var groupIdx = group.indexOf(edge);
+        var total = group.length;
+        var yOffset = (total > 1) ? (groupIdx / (total - 1) - 0.5) * tgtRect.height * 0.6 : 0;
+        x2 = tgtRect.left - containerRect.left;
+        y2 = tgtRect.top - containerRect.top + tgtRect.height / 2 + yOffset;
+      } else {
+        x2 = tgtRect.left - containerRect.left + tgtRect.width / 2;
+        y2 = tgtRect.top - containerRect.top + tgtRect.height / 2;
+      }
+      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      var dx = x2 - x1, dy = y2 - y1;
+      var cp = Math.min(Math.abs(dx), Math.abs(dy)) * 0.4 + 20;
+      var d;
+      if (Math.abs(dx) > Math.abs(dy)) {
+        d = 'M ' + x1 + ',' + y1 + ' C ' + (x1 + cp) + ',' + y1 + ' ' + (x2 - cp) + ',' + y2 + ' ' + x2 + ',' + y2;
+      } else {
+        d = 'M ' + x1 + ',' + y1 + ' C ' + x1 + ',' + (y1 + cp) + ' ' + x2 + ',' + (y2 - cp) + ' ' + x2 + ',' + y2;
+      }
+      path.setAttribute('d', d);
+
+      // Edge style: solid / dashed / dotted
+      var edgeStroke = edge.color || (isFanIn ? '#9b59b6' : '#3498db');
+      var edgeDash = '';
+      if (edge.style === 'dashed') edgeDash = '6,4';
+      else if (edge.style === 'dotted') edgeDash = '2,2';
+
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', edgeStroke);
+      path.setAttribute('stroke-width', '1.5');
+      path.setAttribute('stroke-opacity', '0.5');
+      path.setAttribute('stroke-dasharray', edgeDash);
+      path.setAttribute('marker-end', 'url(#arrow)');
+      svg.appendChild(path);
+
+      // Edge label along path midpoint
+      if (edge.label) {
+        var pathLen = path.getTotalLength();
+        var mid = path.getPointAtLength(pathLen / 2);
+        var labelEl = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        // Background rect for readability
+        var bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        var textEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textEl.textContent = edge.label;
+        textEl.setAttribute('font-size', '10');
+        textEl.setAttribute('fill', edgeStroke || (isFanIn ? '#9b59b6' : '#3498db'));
+        textEl.setAttribute('text-anchor', 'middle');
+        textEl.setAttribute('dominant-baseline', 'middle');
+        textEl.setAttribute('x', '0');
+        textEl.setAttribute('y', '0');
+        // Approximate width for background
+        var approxW = edge.label.length * 6 + 8;
+        bg.setAttribute('x', -approxW / 2);
+        bg.setAttribute('y', -8);
+        bg.setAttribute('rx', '3');
+        bg.setAttribute('ry', '3');
+        bg.setAttribute('width', approxW);
+        bg.setAttribute('height', '16');
+        bg.setAttribute('fill', '#fff');
+        bg.setAttribute('opacity', '0.85');
+        labelEl.appendChild(bg);
+        labelEl.appendChild(textEl);
+        labelEl.setAttribute('transform', 'translate(' + mid.x + ',' + mid.y + ')');
+        svg.appendChild(labelEl);
+      }
+    });
+    svg.style.display = 'block';
+  }
+  if (EDGES.length) {
+    drawConnectors();
+    window.addEventListener('resize', drawConnectors);
+  }
+
+  // Sub-process expand/collapse
+  document.querySelectorAll('.sub-process-toggle').forEach(function(tog) {
+    tog.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var wrapper = this.closest('.sub-process-wrapper');
+      var container = wrapper.querySelector('.sub-flow-container');
+      if (!container) return;
+      var isCollapsed = container.classList.toggle('collapsed');
+      this.textContent = isCollapsed ? '\u25B6' : '\u25BC';
+    });
+  });
+})();
+</script>
+
+</body></html>

@@ -53,7 +53,7 @@
         <section class="hero">
             <div class="container">
                 <h1>Use Cases</h1>
-                <p>Real-world demonstrations of how our devices and techniques are used in security testing scenarios</p>
+                <p>Field scenarios, per-client-type applications, and additional options for our devices in authorized security testing</p>
             </div>
         </section>
 
@@ -66,6 +66,7 @@
                     <aside class="use-cases-sidebar">
                         <h3>Select a Use Case</h3>
                         <nav class="use-case-nav">
+                            <div class="use-case-nav-group">Field Scenarios</div>
                             <a href="#hoteling-office" class="use-case-link active" data-use-case="hoteling-office">
                                 <span class="use-case-title">Testing Hoteling Office Spaces</span>
                             </a>
@@ -74,6 +75,43 @@
                             </a>
                             <a href="#advanced-persistent-access" class="use-case-link" data-use-case="advanced-persistent-access">
                                 <span class="use-case-title">Advanced Persistent Access via Combined Devices</span>
+                            </a>
+
+                            <div class="use-case-nav-group">By Client Type</div>
+                            <a href="#consulting-engagements" class="use-case-link" data-use-case="consulting-engagements">
+                                <span class="use-case-title">Consulting Engagements, Run by One Expert</span>
+                            </a>
+                            <a href="#internal-deployment-testing" class="use-case-link" data-use-case="internal-deployment-testing">
+                                <span class="use-case-title">Automated Testing of New Deployments</span>
+                            </a>
+                            <a href="#internal-training-simulations" class="use-case-link" data-use-case="internal-training-simulations">
+                                <span class="use-case-title">Internal Training &amp; Simulations</span>
+                            </a>
+                            <a href="#red-team-operations" class="use-case-link" data-use-case="red-team-operations">
+                                <span class="use-case-title">Red Team Operations</span>
+                            </a>
+
+                            <div class="use-case-nav-group">Additional Options</div>
+                            <a href="#purple-team-validation" class="use-case-link" data-use-case="purple-team-validation">
+                                <span class="use-case-title">Purple Team &amp; SOC: Detection Validation</span>
+                            </a>
+                            <a href="#audit-compliance-evidence" class="use-case-link" data-use-case="audit-compliance-evidence">
+                                <span class="use-case-title">Audit &amp; Compliance: Continuous Evidence</span>
+                            </a>
+                            <a href="#occupancy-mustering" class="use-case-link" data-use-case="occupancy-mustering">
+                                <span class="use-case-title">Occupancy &amp; Evacuation Mustering</span>
+                            </a>
+                            <a href="#zone-monitoring" class="use-case-link" data-use-case="zone-monitoring">
+                                <span class="use-case-title">Insider Threat &amp; Zone Monitoring</span>
+                            </a>
+                            <a href="#shadow-it-discovery" class="use-case-link" data-use-case="shadow-it-discovery">
+                                <span class="use-case-title">Shadow-IT &amp; Asset Discovery</span>
+                            </a>
+                            <a href="#traveler-kits" class="use-case-link" data-use-case="traveler-kits">
+                                <span class="use-case-title">Executive Protection: Traveler Kits</span>
+                            </a>
+                            <a href="#education-labs" class="use-case-link" data-use-case="education-labs">
+                                <span class="use-case-title">Education &amp; Research Labs</span>
                             </a>
                             <!-- Easy to add more use cases - just copy the structure above -->
                         </nav>
@@ -108,7 +146,7 @@
 
                             <div class="use-case-section">
                                 <h3>Devices Used in This Test</h3>
-                                <p>This security assessment utilizes the following specialized penetration testing devices:</p>
+                                <p>This security assessment uses these devices:</p>
                                 <div class="devices-used-grid">
                                     <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
                                         <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
@@ -461,7 +499,7 @@
 
                             <div class="use-case-section">
                                 <h3>Devices Used in This Test</h3>
-                                <p>This security assessment utilizes the following specialized penetration testing devices:</p>
+                                <p>This security assessment uses these devices:</p>
                                 <div class="devices-used-grid">
                                     <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
                                         <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
@@ -912,7 +950,7 @@
 
                             <div class="use-case-section">
                                 <h3>Devices Used in This Test</h3>
-                                <p>This security assessment utilizes the following specialized penetration testing devices:</p>
+                                <p>This security assessment uses these devices:</p>
                                 <div class="devices-used-grid">
                                     <a href="pentesting-devices.html#long-distance-module" class="device-used-card">
                                         <div class="device-used-icon"><img src="images/devices/long-distance-icon.png" alt="Long Distance Module" style="height: 48px;"></div>
@@ -1563,6 +1601,1923 @@
                                     <li>All deployed infrastructure tracked with removal verification at engagement conclusion</li>
                                     <li>Comprehensive documentation enabling organization to detect similar real-world attacks</li>
                                     <li>Post-engagement purple team session demonstrating detection and response improvements</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE: CONSULTING ENGAGEMENTS -->
+                        <article id="consulting-engagements" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Consulting Delivery</span>
+                                <h2>Consulting Engagements, Run by One Expert</h2>
+                                <p class="use-case-intro">Consulting teams are constrained by senior pentester time: every site visit, every travel day, and every engagement depends on scarce specialist availability. This use case shows how a security firm structures engagements so a specialist arms the devices beforehand, any available employee performs the on-site connection, and the expert controls and reports the engagement remotely.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>A consulting firm wants to deliver meaningful computer and network testing to more clients without scaling its senior staff. The engagement model works in three roles:</p>
+                                <ul>
+                                    <li><strong>The expert</strong> loads the test plan onto the devices before anyone travels and reviews the results afterwards</li>
+                                    <li><strong>The visitor</strong> is chosen by availability, not skill: a field technician, a junior, whoever is free. They only connect devices to target computers and network ports</li>
+                                    <li><strong>The devices</strong> hold the method and run it the same way every time, so results do not depend on who visited</li>
+                                </ul>
+                                <p>The visitor needs no laptop or tools: a phone is enough. Devices are armed per engagement and reused, and one expert can run several engagements in parallel.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>This engagement model uses these devices:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Takes control of target computers from any USB port</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#network-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/network-module-icon.png" alt="Network Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Network Module</div>
+                                        <div class="device-used-description">Runs the LAN-side tests from any network port</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#command-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/command-module-icon.png" alt="Command Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Command Module</div>
+                                        <div class="device-used-description">Collects logs from all deployed devices for the merged report</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Arming by the Expert</h4>
+                                        <p>Before anyone travels, the security expert loads the test plan onto the devices for this specific engagement. The plan defines which prepared tests launch, which network checks run, and what the survey collects. Arming is the expert's job before anyone travels. Everything after runs without them on site.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>On-Site Connection by Any Available Person</h4>
+                                        <p>The visitor's entire task is physical: connect the USB device to the target computers and the network device to LAN ports. Because the visitor needs no laptop, no tooling and no specialist knowledge, scheduling depends on availability instead of expert calendars.</p>
+                                        <p class="warning-box"><strong>⚠️ Authorization Required:</strong> Engagements are only performed with explicit written authorization from the client organization, defining scope, systems and time windows.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Live Expert Control</h4>
+                                        <p>Once a device is connected on site, the expert reaches it remotely and runs any command on the target computer, with output returned in real time. In the room, control works from a phone over the device's own hotspot; remotely, paired devices relay commands through the fleet. The expert works live exactly where the test plan needs human judgment.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Collection and Merged Client Report</h4>
+                                        <p>All deployed devices sync their logs to one collector. The USB device's computer findings and the network device's LAN findings merge into a single site report: executive summary, severity per event, timeline, plain-language findings and MITRE ATT&amp;CK mapping. The expert reviews and delivers it remotely. Expert time goes to arming and review only.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>MITRE ATT&amp;CK Mapping</h3>
+                                <p>The automated test plans map to the following MITRE ATT&amp;CK tactics and techniques:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Initial Access</h4>
+                                        <ul>
+                                            <li><strong>T1200:</strong> Hardware Additions - USB device connection by the field visitor</li>
+                                            <li><strong>T1091:</strong> Replication Through Removable Media - device appears as a standard keyboard</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Execution</h4>
+                                        <ul>
+                                            <li><strong>T1059.001:</strong> Command and Scripting Interpreter: PowerShell - Windows payload execution</li>
+                                            <li><strong>T1059.004:</strong> Command and Scripting Interpreter: Unix Shell - Linux and macOS variants</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Discovery</h4>
+                                        <ul>
+                                            <li><strong>T1082:</strong> System Information Discovery - one-command pentest survey</li>
+                                            <li><strong>T1087:</strong> Account Discovery - domain membership and admin rights</li>
+                                            <li><strong>T1201:</strong> Password Policy Discovery - password policy collection</li>
+                                            <li><strong>T1482:</strong> Domain Trust Modification Checks - domain controller and site mapping</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Credential Access</h4>
+                                        <ul>
+                                            <li><strong>T1557:</strong> Adversary-in-the-Middle - impostor responder tests on the LAN</li>
+                                            <li><strong>T1040:</strong> Network Sniffing - traffic interception to show visible exposure</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Collection</h4>
+                                        <ul>
+                                            <li><strong>T1005:</strong> Data from Local System - file browsing and survey collection</li>
+                                            <li><strong>T1113:</strong> Screen Capture - screenshot evidence</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Command and Control</h4>
+                                        <ul>
+                                            <li><strong>T1071:</strong> Application Layer Protocol - command channel to the operator</li>
+                                            <li><strong>T1573:</strong> Encrypted Channel - encrypted fleet sync and relay</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Findings &amp; Vulnerabilities Identified</h3>
+                                <p>A typical engagement of this kind surfaces:</p>
+                                <div class="findings-grid">
+                                    <div class="finding-card critical">
+                                        <h4>🔴 Critical: Domain Admin Cached on Workstations</h4>
+                                        <p>The one-command survey showed domain administrator credentials cached on standard user workstations. A single compromised desk yields domain-level access.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: Legacy Name-Lookup Protocol Exposure</h4>
+                                        <p>Network impostor tests recorded workstations answering name lookups and leaking authentication material through legacy protocols.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: Unencrypted Rebuilt Laptops</h4>
+                                        <p>Rebuilt machines returned to service without disk encryption. The same armed device catches this at every redeployment.</p>
+                                    </div>
+                                    <div class="finding-card medium">
+                                        <h4>🟡 Medium: Overly Broad Shared Folders</h4>
+                                        <p>Shared folders were readable by groups far wider than the data owners intended.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Recommended Countermeasures</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Technical Controls</h4>
+                                        <ul>
+                                            <li>USB port controls and device whitelisting on workstations</li>
+                                            <li>Disable legacy name-lookup protocols (LLMNR/NBT-NS) and enable SMB signing</li>
+                                            <li>Enforce full-disk encryption as a redeployment gate</li>
+                                            <li>Restrict local admin rights and credential caching</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Administrative Controls</h4>
+                                        <ul>
+                                            <li>Standing authorization workflow for recurring assessments</li>
+                                            <li>Scope documents defining systems, windows and contacts</li>
+                                            <li>Visitor selection by availability with defined physical tasks only</li>
+                                            <li>Expert review checkpoint before every client report</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact &amp; Results</h3>
+                                <p>This engagement model changes the economics of security consulting:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">1</div>
+                                        <div class="stat-label">Expert Running Several Parallel Engagements</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Specialist Skills Needed On Site</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-label">Identical Method on Every Visit</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">1</div>
+                                        <div class="stat-label">Merged Report per Site</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">Because the device holds the method, the person sent on site is chosen by availability rather than skill, and the results are identical no matter who plugged the devices in. Expert time concentrates on arming and review, the two steps that need senior judgment, so one specialist can run several engagements in parallel while every client still receives the same rigorous, ATT&amp;CK-mapped report.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Delegating execution to non-specialists raises the bar for governance:</p>
+                                <ul>
+                                    <li>Written client authorization defining scope, systems and time windows before arming</li>
+                                    <li>Test plans reviewed and approved by the responsible expert for each engagement</li>
+                                    <li>Devices armed per engagement and wiped or re-armed between clients</li>
+                                    <li>Field visitors briefed on exactly what to connect and what never to touch</li>
+                                    <li>All collected data encrypted on the device and handled under the consulting firm's data policies</li>
+                                    <li>Expert review of every finding before client delivery</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE: AUTOMATED TESTING OF NEW DEPLOYMENTS -->
+                        <article id="internal-deployment-testing" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Internal Security Program</span>
+                                <h2>Automated Testing of New Deployments</h2>
+                                <p class="use-case-intro">When a new machine or network segment goes into service, who evaluates what an attacker could do from that position? This use case shows how an organization turns its security testing into a routine acceptance gate: the device evaluates every new system with common pentester activities, and the security team reviews the findings remotely.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>New workstations, servers and rebuilt laptops are typically joined to the company domain and go straight into production. New network segments go live the same way. The organization connects the device at deployment time to answer one question from the attacker's perspective: <em>what could an attacker do from here?</em></p>
+                                <ul>
+                                    <li>The USB connection takes control of the new machine and runs the opening checklist of a pentest automatically</li>
+                                    <li>The network connection evaluates the new segment for credential leaks and impostor behavior</li>
+                                    <li>The same run repeats for every new deployment and after every change or patch cycle</li>
+                                </ul>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>This acceptance-gate process uses these devices:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Surveys and takes control of the new machine from inside</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#network-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/network-module-icon.png" alt="Network Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Network Module</div>
+                                        <div class="device-used-description">Tests the new segment for credential leaks and impostor responses</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>USB Connection to the New Machine</h4>
+                                        <p>The target is a freshly deployed domain-joined workstation, server or rebuilt laptop. Once connected, the operator has full command and control: any command can be run and the output is returned live. The device detects the operating system on its own and runs the matching survey.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>The Opening Checklist, Collected Automatically</h4>
+                                        <p>One command collects what a pentester gathers in the first hour: domain membership, domain controller and site, admin rights, password policy, security software, disk encryption, patch level, firewall state, shared folders, mapped drives and open ports.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Anything Further on Demand</h4>
+                                        <p>Where the survey raises questions, the operator browses files, copies data, runs additional commands and captures screenshots. This tests what an attacker with this machine could do, safely, with every step recorded.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Network-Side Checks and the Acceptance Gate</h4>
+                                        <p>On the network side, the device tests whether login credentials leak through Windows file sharing and directory services, whether computers follow an impostor answering name lookups, and whether browsers accept a rogue proxy setting. The same armed device moves from machine to machine as systems deploy; runs repeat after every change or patch cycle, with results timestamped for audits and reviewed remotely by the security team.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>MITRE ATT&amp;CK Mapping</h3>
+                                <p>The deployment checks map to the following MITRE ATT&amp;CK tactics and techniques:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Initial Access</h4>
+                                        <ul>
+                                            <li><strong>T1091:</strong> Replication Through Removable Media - keyboard-emulated takeover of the new machine</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Discovery</h4>
+                                        <ul>
+                                            <li><strong>T1082:</strong> System Information Discovery - patch, encryption and firewall state</li>
+                                            <li><strong>T1087:</strong> Account Discovery - admin rights on the fresh deployment</li>
+                                            <li><strong>T1069:</strong> Permission Groups Discovery - shared folder group membership</li>
+                                            <li><strong>T1201:</strong> Password Policy Discovery - domain password policy</li>
+                                            <li><strong>T1046:</strong> Network Service Scanning - open ports on the new segment</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Credential Access</h4>
+                                        <ul>
+                                            <li><strong>T1557:</strong> Adversary-in-the-Middle - impostor answering name lookups</li>
+                                            <li><strong>T1040:</strong> Network Sniffing - credential leakage through file sharing protocols</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Collection</h4>
+                                        <ul>
+                                            <li><strong>T1005:</strong> Data from Local System - on-demand file browsing and copying</li>
+                                            <li><strong>T1113:</strong> Screen Capture - recorded evidence of exposure</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Findings &amp; Vulnerabilities Identified</h3>
+                                <p>A typical rollout surfaces these findings:</p>
+                                <div class="findings-grid">
+                                    <div class="finding-card critical">
+                                        <h4>🔴 Critical: Standard Users with Local Admin</h4>
+                                        <p>The new workstation image granted local administrator rights to everyday users. Every fresh deployment carried the same problem until the image was fixed.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: New Segment Leaks Authentication Material</h4>
+                                        <p>On the new office segment, the impostor test recorded multiple machines trusting an unauthorized name-lookup responder and exposing credential material.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: Security Software Missing After Rebuild</h4>
+                                        <p>A rebuilt laptop returned to service without the endpoint protection suite. The survey caught it before the machine reached its user.</p>
+                                    </div>
+                                    <div class="finding-card medium">
+                                        <h4>🟡 Medium: Patch Level Behind Baseline</h4>
+                                        <p>Several deployments missed the latest patch wave; the timestamped history showed exactly which build cycle skipped them.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Recommended Countermeasures</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Technical Controls</h4>
+                                        <ul>
+                                            <li>Harden the golden image: no local admin for standard users, EDR and encryption pre-enabled</li>
+                                            <li>Disable legacy name-lookup protocols and require SMB signing domain-wide</li>
+                                            <li>Automated patch-compliance reporting per deployment wave</li>
+                                            <li>Network access control for new segments</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Administrative Controls</h4>
+                                        <ul>
+                                            <li>Make the device run a formal acceptance gate in the deployment checklist</li>
+                                            <li>Re-run the evaluation after every change or patch cycle</li>
+                                            <li>Security team reviews findings remotely with timestamped history</li>
+                                            <li>Define remediation owners for each recurring finding class</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact &amp; Results</h3>
+                                <p>A typical program shows what routine testing delivers:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">40+</div>
+                                        <div class="stat-label">Systems Evaluated at Rollout</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">11</div>
+                                        <div class="stat-label">Survey Checks per Machine, One Command</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-label">Runs Timestamped for Audit</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Production Impact</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">Security testing became a routine acceptance gate for production: every new system gets the same evaluation, every change cycle repeats it, and results are timestamped for audits. The security team reviews findings remotely instead of scheduling ad-hoc pentests, and deployment-time mistakes are caught before the first user logs in.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Internal testing of production systems requires clear boundaries:</p>
+                                <ul>
+                                    <li>Security team owns the program; deployment teams are informed of every evaluation</li>
+                                    <li>Testing limited to the organization's own newly deployed systems and segments</li>
+                                    <li>On-demand exploration restricted to machines in the current deployment scope</li>
+                                    <li>Collected data minimized to the survey scope and retained per policy</li>
+                                    <li>Findings routed to remediation owners, not used for individual performance evaluation</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE: INTERNAL TRAINING & SIMULATIONS -->
+                        <article id="internal-training-simulations" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Security Training</span>
+                                <h2>Internal Training &amp; Simulations with Benign Load</h2>
+                                <p class="use-case-intro">Awareness training is only credible when the audience sees the real effect. This use case shows how organizations run device-based training and simulations that carry zero risk to production systems. Every demonstration uses benign load only, and classroom-safe builds ship with network attacks removed.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>Security teams need to show staff and trainees what a takeover actually looks like, without touching production. The training kit supports a full curriculum of harmless demonstrations:</p>
+                                <ul>
+                                    <li><strong>Harmless demos:</strong> a training script types a visible message into a text editor. The audience sees the takeover effect while nothing on the machine changes</li>
+                                    <li><strong>Safe live control:</strong> the instructor demonstrates real command and control with harmless commands (whoami, folder listing, a screenshot) through the same channel an attacker would use</li>
+                                    <li><strong>Proof without exploitation:</strong> network traps record an exposure to prove it exists; nothing is exploited</li>
+                                    <li><strong>Detection practice:</strong> the team replays known attack patterns against their own environment and tunes their alerts</li>
+                                    <li><strong>Live drills:</strong> the presence board supports evacuation exercises: who is in the building and who is accounted for, displayed live</li>
+                                </ul>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>The training program uses this configuration:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Takeover demonstrations and safe live control on training machines</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#network-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/network-module-icon.png" alt="Network Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Network Module</div>
+                                        <div class="device-used-description">Exposure-proofing traps on the isolated training network</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Harmless Demos for Awareness Sessions</h4>
+                                        <p>A training script types a visible message into a text editor on the presenter's machine. The audience watches the cursor move and text appear with no one touching the keyboard. The takeover effect, with zero changes to the machine.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Safe Live Control on the Training Laptop</h4>
+                                        <p>On a dedicated training laptop, the instructor runs real command-and-control with harmless commands: whoami, a folder listing, a screenshot. Trainees see exactly what an attacker's channel looks like from the operator's side, through the instructor's phone browser. No app or internet required.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Proof Without Exploitation</h4>
+                                        <p>On the isolated training network, traps record when a system leaks credentials or follows an impostor responder. The log entry is the proof the exposure exists. No exploitation, no data taken.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Detection Practice and Live Drills</h4>
+                                        <p>The security team replays known attack patterns against their own environment and tunes their alerts to the arrivals. For facilities drills, the presence board displays who is in the building and who is accounted for, live, for real evacuation exercises.</p>
+                                        <p class="warning-box"><strong>⚠️ Classroom-Safe Builds:</strong> Devices supplied for trainee hands-on use come with network attacks removed from the build, safe to hand to a classroom.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>MITRE ATT&amp;CK Mapping</h3>
+                                <p>The demonstrations emulate the following MITRE ATT&amp;CK tactics and techniques, so blue teams train on realistic arrivals:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Execution</h4>
+                                        <ul>
+                                            <li><strong>T1059.001:</strong> Command and Scripting Interpreter: PowerShell - emulated payload execution</li>
+                                            <li><strong>T1059.004:</strong> Command and Scripting Interpreter: Unix Shell - shell command demonstration</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Discovery</h4>
+                                        <ul>
+                                            <li><strong>T1033:</strong> System Owner/User Discovery - whoami demonstration</li>
+                                            <li><strong>T1083:</strong> File and Directory Discovery - folder listing demonstration</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Collection</h4>
+                                        <ul>
+                                            <li><strong>T1113:</strong> Screen Capture - screenshot demonstration</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Credential Access (Proof Only)</h4>
+                                        <ul>
+                                            <li><strong>T1557:</strong> Adversary-in-the-Middle - trap records the exposure, nothing exploited</li>
+                                            <li><strong>T1040:</strong> Network Sniffing - visibility proof on the training network</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Findings &amp; Vulnerabilities Identified</h3>
+                                <p>A typical program produces these measurements:</p>
+                                <div class="findings-grid">
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: Alerts Missed the Benign C2 Pattern</h4>
+                                        <p>The detection-practice replays showed the SOC's rules did not alert on the emulated takeover channel. The team closed the gap using the same replay as the regression test.</p>
+                                    </div>
+                                    <div class="finding-card medium">
+                                        <h4>🟡 Medium: Exposures Proven but Never Exploited</h4>
+                                        <p>Network traps recorded credential leakage on the training segment, giving the team concrete proof for remediation without a single exploit being run.</p>
+                                    </div>
+                                    <div class="finding-card medium">
+                                        <h4>🟡 Medium: Awareness Effect Not Measured</h4>
+                                        <p>Before the device-based demos, training success was judged by attendance; the visible takeover demonstration made the risk concrete and measurable in follow-up surveys.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Recommended Countermeasures</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Technical Controls</h4>
+                                        <ul>
+                                            <li>Run all demonstrations on dedicated training hardware or isolated segments</li>
+                                            <li>Use classroom-safe builds with network attacks removed for trainee hands-on time</li>
+                                            <li>Feed replay arrivals into the SOC's detection tuning cycle</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Administrative Controls</h4>
+                                        <ul>
+                                            <li>Schedule regular drills combining awareness demos and detection practice</li>
+                                            <li>Integrate the presence board into official evacuation exercises with facilities</li>
+                                            <li>Track remediation of every proven exposure after each session</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact &amp; Results</h3>
+                                <p>A typical program shows what benign-load simulation delivers:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Changes to Production Systems</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-label">Benign Load Only</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">4</div>
+                                        <div class="stat-label">Demo Types from One Kit</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">1</div>
+                                        <div class="stat-label">Switch to Classroom-Safe Build</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">Training with the device carries zero risk to production: demonstrations use benign load, proofs stop at the recorded exposure, and classroom kits ship with network attacks removed. Audiences see the real takeover effect, blue teams tune detections against realistic arrivals, and facilities gain a live presence board for evacuation exercises. All from the same hardware.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Training use is bounded by strict benign-load rules:</p>
+                                <ul>
+                                    <li>Every demonstration script is reviewed to confirm it changes nothing on the target machine</li>
+                                    <li>Network traps record exposures only: no exploitation, no data collection beyond the log entry</li>
+                                    <li>Trainee hands-on devices use restricted builds with network attacks removed</li>
+                                    <li>Presence-based drills use consent-registered devices only</li>
+                                    <li>Detection replays run inside the organization's own environment with change-control approval</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE: RED TEAM OPERATIONS -->
+                        <article id="red-team-operations" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Red Team Operations</span>
+                                <h2>Red Team Operations</h2>
+                                <p class="use-case-intro">For offensive security teams, the device is a full-operation platform: discreet command and control from a phone, one-click launch of prepared attacks with automatic OS matching, passive tracking of specific people and assets, and after-action evidence for the engagement report. Built for authorized red team engagements.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>A red team needs persistence of presence, discretion and repeatability across a physical engagement. The device kit supports four operational pillars:</p>
+                                <ul>
+                                    <li><strong>Command and control:</strong> on a target computer the device appears as a normal keyboard and keeps a discreet channel to the operator: any command with live output, file browsing and copying, live logs, screenshots</li>
+                                    <li><strong>Tracking and identification:</strong> passive presence monitoring shows who and what is in range: when a registered device appears, which devices are new to a zone, who is a regular, who returned after an absence</li>
+                                    <li><strong>One-click simulations:</strong> attack scripts prepared in advance launch from the browser, with the device selecting the Windows, macOS or Linux variant automatically</li>
+                                    <li><strong>Stealth:</strong> the device acts only when the machine is unlocked, hides its windows, removes its traces and reconnects after interruptions</li>
+                                </ul>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>This operation uses these devices:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Keyboard-emulated takeover with discreet C2 channel</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#command-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/command-module-icon.png" alt="Command Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Command Module</div>
+                                        <div class="device-used-description">Pairs and relays commands across zones; collects logs</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#network-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/network-module-icon.png" alt="Network Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Network Module</div>
+                                        <div class="device-used-description">Network-side traps and traffic visibility</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#long-distance-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/long-distance-icon.png" alt="Long Distance Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Long Distance Module</div>
+                                        <div class="device-used-description">Command and control from up to 1km away</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Pre-Operation Setup</h4>
+                                        <p>Attack scripts are prepared and loaded in advance. Specific people are registered beforehand under an alias, with consent, for presence tracking. The operator defines zones and pairs devices so commands can relay across the site.</p>
+                                        <p class="warning-box"><strong>⚠️ Rules of Engagement:</strong> Operations run only under a signed rules-of-engagement document with defined scope, objectives, and emergency contacts.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Insertion and Stealth</h4>
+                                        <p>On a target computer the device appears as a standard keyboard and detects the operating system on its own. It acts only when the machine is unlocked and in use, hides its windows, removes its traces, and reconnects automatically after interruptions.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Live Command and Control from a Phone</h4>
+                                        <p>The operator controls the device from a phone over the device's own hotspot: any command with live output, file browsing and copying, live logs, screenshots, and one-click launch of the prepared simulations. Paired devices relay commands, so one operator covers several zones, or reaches in from distance through the Long Distance Module.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Presence Intelligence and After-Action Evidence</h4>
+                                        <p>Passive WiFi and Bluetooth listening classifies people and devices as new, known, regular or returning. Data is encrypted on the device, stored under pseudonyms, and wiped with one command. Every action is logged on the device, giving clean material for the engagement report.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>MITRE ATT&amp;CK Mapping</h3>
+                                <p>The operation maps to the following MITRE ATT&amp;CK tactics and techniques:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Initial Access</h4>
+                                        <ul>
+                                            <li><strong>T1200:</strong> Hardware Additions - physical device insertion during the engagement</li>
+                                            <li><strong>T1091:</strong> Replication Through Removable Media - keyboard-emulated takeover</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Execution</h4>
+                                        <ul>
+                                            <li><strong>T1059:</strong> Command and Scripting Interpreter - OS-matched payload variants</li>
+                                            <li><strong>T1059.001:</strong> Command and Scripting Interpreter: PowerShell - Windows simulations</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Defense Evasion</h4>
+                                        <ul>
+                                            <li><strong>T1070:</strong> Indicator Removal - hidden windows and trace cleanup after execution</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Discovery</h4>
+                                        <ul>
+                                            <li><strong>T1082:</strong> System Information Discovery - automatic OS identification</li>
+                                            <li><strong>T1018:</strong> Remote System Discovery - network segment mapping around the device</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Collection</h4>
+                                        <ul>
+                                            <li><strong>T1005:</strong> Data from Local System - file browsing and copying</li>
+                                            <li><strong>T1113:</strong> Screen Capture - live screenshot capability</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Command and Control</h4>
+                                        <ul>
+                                            <li><strong>T1071:</strong> Application Layer Protocol - discreet operator channel</li>
+                                            <li><strong>T1573:</strong> Encrypted Channel - encrypted control and sync</li>
+                                            <li><strong>T1090:</strong> Proxy - paired devices relaying commands across zones</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Findings &amp; Vulnerabilities Identified</h3>
+                                <p>A representative engagement surfaced the following findings:</p>
+                                <div class="findings-grid">
+                                    <div class="finding-card critical">
+                                        <h4>🔴 Critical: Unrestricted USB Peripherals in Secure Zones</h4>
+                                        <p>Devices inserted into workstations inside restricted zones were accepted without any peripheral policy. The physical security boundary did not extend to USB endpoints.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: HID Injection Undetected</h4>
+                                        <p>Keyboard-emulated takeover produced no endpoint alerts on any of the tested operating systems; monitoring had no visibility into HID-level activity.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: Wireless Presence Exposes Staff Patterns</h4>
+                                        <p>Passive listening mapped staff movement and presence patterns from unmodified wireless signals. That is an intelligence gift to any physical attacker.</p>
+                                    </div>
+                                    <div class="finding-card medium">
+                                        <h4>🟡 Medium: Unmonitored Inter-Zone Links</h4>
+                                        <p>Paired relay devices moved commands between zones across links that inter-zone traffic monitoring did not cover.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Recommended Countermeasures</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Technical Controls</h4>
+                                        <ul>
+                                            <li>USB peripheral allowlisting and HID injection detection</li>
+                                            <li>Wireless monitoring for unknown hotspots and device-to-device links</li>
+                                            <li>Endpoint telemetry that surfaces keyboard-device process injection</li>
+                                            <li>Inter-zone traffic inspection, including wireless links</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Administrative Controls</h4>
+                                        <ul>
+                                            <li>Physical access policies that treat unattended workstations as attack surface</li>
+                                            <li>Clear-screen and lock policies enforced by group policy</li>
+                                            <li>Red team rules of engagement with defined zones and emergency contacts</li>
+                                            <li>Post-engagement purple team session on detection gaps</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact &amp; Results</h3>
+                                <p>This representative operation shows what the kit changes for red teams:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">3</div>
+                                        <div class="stat-label">Zones Covered by One Operator</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">12</div>
+                                        <div class="stat-label">One-Click Simulations Launched</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-label">Actions Logged for the Report</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Traces Left on Target Machines</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">The operation stayed repeatable and consistent: prepared simulations launched with one click and selected the right OS variant every time, paired devices let a single operator cover several zones, and every action was logged as after-action evidence. The client received an engagement report built from complete, timestamped logs instead of operator memory.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Red team use demands the highest operational discipline:</p>
+                                <ul>
+                                    <li>Signed rules of engagement with scope, objectives and emergency contacts before insertion</li>
+                                    <li>Legal review of all techniques, including wireless listening, for the engagement jurisdiction</li>
+                                    <li>Presence tracking only for consent-registered devices under alias</li>
+                                    <li>Presence data encrypted, pseudonymized and wiped at engagement conclusion</li>
+                                    <li>No persistence installed; every change reversed and verified at wrap-up</li>
+                                    <li>Complete action logs preserved as after-action evidence</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE: PURPLE TEAM & SOC DETECTION VALIDATION -->
+                        <article id="purple-team-validation" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Detection Validation</span>
+                                <h2>Purple Team &amp; SOC: Detection Validation</h2>
+                                <p class="use-case-intro">The red side runs the attacks, the blue side sees what arrives in monitoring, and both sides get the same report. This use case shows how purple teams use the device to validate detection coverage against real hardware attacks, and prove whether alert tuning improved detection.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>SOCs are usually validated by paper exercises or atomized malware samples. The device replays realistic, built-in attacks against the client's own network instead:</p>
+                                <ul>
+                                    <li>Credential traps and impostor responders on the network side</li>
+                                    <li>Machine takeover over USB on the endpoint side</li>
+                                    <li>The ATT&amp;CK-mapped report shows which techniques worked, which the SOC logged and which were missed</li>
+                                    <li>Repeat runs show whether alert tuning improved detection</li>
+                                </ul>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>This validation exercise uses these devices:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Replays USB takeover techniques for endpoint telemetry</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#network-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/network-module-icon.png" alt="Network Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Network Module</div>
+                                        <div class="device-used-description">Replays responder and interception techniques for network sensors</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#command-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/command-module-icon.png" alt="Command Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Command Module</div>
+                                        <div class="device-used-description">One merged report shared by red and blue sides</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Replay Built-In Attacks</h4>
+                                        <p>The red side launches the built-in attack set against the client's own network: credential traps, impostor responders, and machine takeover over USB. Simulations are repeatable and consistent, so each run is directly comparable.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Blue Side Watches Monitoring</h4>
+                                        <p>The SOC works its normal queues. Nothing about the replay tells the blue side which technique is running. They see exactly what a real attack would have left in their tools.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Compare the Same Report</h4>
+                                        <p>The ATT&amp;CK-mapped report shows, per technique: did it work, did the SOC log it, was it missed? Both sides work from the same document, so the debrief is about coverage, not recollection.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Tune and Repeat</h4>
+                                        <p>The blue side tunes alerts for the missed techniques. A repeat run then proves whether the tuning improved detection, with the same hardware, the same attacks and the same report format.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>MITRE ATT&amp;CK Mapping</h3>
+                                <p>The replay set spans the following MITRE ATT&amp;CK tactics and techniques:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Initial Access</h4>
+                                        <ul>
+                                            <li><strong>T1091:</strong> Replication Through Removable Media - USB takeover replay</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Execution</h4>
+                                        <ul>
+                                            <li><strong>T1059:</strong> Command and Scripting Interpreter - OS-matched payload execution</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Credential Access</h4>
+                                        <ul>
+                                            <li><strong>T1557:</strong> Adversary-in-the-Middle - impostor responder replay</li>
+                                            <li><strong>T1040:</strong> Network Sniffing - interception visibility replay</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Command and Control</h4>
+                                        <ul>
+                                            <li><strong>T1071:</strong> Application Layer Protocol - operator channel arrival</li>
+                                            <li><strong>T1573:</strong> Encrypted Channel - encrypted control traffic</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Findings &amp; Vulnerabilities Identified</h3>
+                                <p>A typical validation cycle produces this coverage picture:</p>
+                                <div class="findings-grid">
+                                    <div class="finding-card critical">
+                                        <h4>🔴 Critical: USB Takeover Invisible End-to-End</h4>
+                                        <p>No tool in the chain (endpoint, network or SIEM) registered the emulated keyboard takeover. Detection coverage for hardware-based initial access was zero.</p>
+                                    </div>
+                                    <div class="finding-card high">
+                                        <h4>🟠 High: Responder Attacks Logged but Never Alerted</h4>
+                                        <p>The impostor responder replays appeared in logs, but no alert rule consumed them. The data existed; the escalation path did not.</p>
+                                    </div>
+                                    <div class="finding-card medium">
+                                        <h4>🟡 Medium: Alerts Fired Without Escalation</h4>
+                                        <p>Two low-severity alerts triggered correctly but sat untriaged; the repeat run measured whether routing changes fixed the handoff.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Recommended Countermeasures</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Technical Controls</h4>
+                                        <ul>
+                                            <li>Detection rules mapped to the replayed ATT&amp;CK techniques</li>
+                                            <li>USB and HID activity visibility in endpoint telemetry</li>
+                                            <li>Log-source health checks so responder events reach the SIEM</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Process Controls</h4>
+                                        <ul>
+                                            <li>Quarterly validation replays with the same attack set</li>
+                                            <li>Coverage tracked per technique: works / logged / missed</li>
+                                            <li>Joint red-blue debriefs working from the shared report</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact &amp; Results</h3>
+                                <p>A typical cycle shows the measurement loop:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">14</div>
+                                        <div class="stat-label">Techniques Replayed</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">5</div>
+                                        <div class="stat-label">Missed on First Run</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">13</div>
+                                        <div class="stat-label">Detected on Repeat Run</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">1</div>
+                                        <div class="stat-label">Shared Report for Both Sides</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">The first run found five techniques the SOC missed; after tuning, the repeat run caught thirteen of fourteen. Because the device replays the same attacks identically each time, improvement is measured, not asserted. The ATT&amp;CK-mapped report gives both sides the same evidence of what changed.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Detection validation runs inside the client's own environment under strict rules:</p>
+                                <ul>
+                                    <li>Replays executed only against the client's own network and endpoint estate</li>
+                                    <li>Change-control approval for every alert tuning change between runs</li>
+                                    <li>Traps record exposures without exploiting them</li>
+                                    <li>Results used for detection improvement, not individual blame</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE: AUDIT & COMPLIANCE CONTINUOUS EVIDENCE -->
+                        <article id="audit-compliance-evidence" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Compliance Evidence</span>
+                                <h2>Audit &amp; Compliance: Continuous Evidence</h2>
+                                <p class="use-case-intro">Audits require proof that security controls work, not just that a policy exists. This use case shows how recurring device runs generate a continuous evidence stream automatically: every run timestamped, severity-rated, ATT&amp;CK-mapped and exportable, with a history that also shows drift.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>Organizations facing ISO 27001, PCI DSS or NIS2-style audits traditionally assemble evidence by hand before each audit window. The device approach replaces the scramble:</p>
+                                <ul>
+                                    <li>Recurring runs test the controls the audits ask about, from inside the machines and from the network</li>
+                                    <li>Every run is timestamped and severity-rated, mapped to MITRE ATT&amp;CK, exportable as PDF, JSON or CSV</li>
+                                    <li>Recurring runs produce a continuous evidence stream for ISO 27001, PCI DSS and NIS2 style audits</li>
+                                    <li>The history also shows drift: what passed last quarter and fails now</li>
+                                </ul>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>This evidence program uses these devices:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Generates the severity-rated, ATT&amp;CK-mapped run reports</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#network-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/network-module-icon.png" alt="Network Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Network Module</div>
+                                        <div class="device-used-description">Segment-level control checks on a schedule</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#command-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/command-module-icon.png" alt="Command Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Command Module</div>
+                                        <div class="device-used-description">Central log collection across recurring runs</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Schedule the Recurring Runs</h4>
+                                        <p>The organization defines the control checks that matter for its audit scope and runs them on a fixed schedule: per site, per segment, per machine group.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Every Run Produces Audit-Grade Output</h4>
+                                        <p>Each run is timestamped and severity-rated, mapped to MITRE ATT&amp;CK, and exportable as PDF for auditors or JSON/CSV for evidence systems.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Build the Continuous Evidence Stream</h4>
+                                        <p>Collected across recurring runs, the history becomes the evidence stream: not a snapshot from audit week, but a dated record showing the controls were tested and held, or didn't, at every point in the period.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Track Drift Between Runs</h4>
+                                        <p>The history shows drift: what passed last quarter and fails now. Drift findings route to remediation before the next audit, not during it.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>What the Evidence Stream Contains</h3>
+                                <p>Each run report is structured for audit consumption:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Report Contents</h4>
+                                        <ul>
+                                            <li>Executive summary for audit and management readers</li>
+                                            <li>Severity per event with a full timeline</li>
+                                            <li>Plain-language findings for control owners</li>
+                                            <li>MITRE ATT&amp;CK mapping for technical assessors</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Framework Support</h4>
+                                        <ul>
+                                            <li>ISO 27001-style control effectiveness checks</li>
+                                            <li>PCI DSS segmentation and encryption verification</li>
+                                            <li>NIS2-style technical measure evidence</li>
+                                            <li>PDF, JSON and CSV exports for auditor and GRC tooling</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Practical Safeguards</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Evidence Integrity</h4>
+                                        <ul>
+                                            <li>Runs executed on a fixed schedule, not selectively</li>
+                                            <li>Timestamps and logs retained under the evidence policy</li>
+                                            <li>Exports generated from the same source logs as the reports</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Scope Discipline</h4>
+                                        <ul>
+                                            <li>Checks limited to systems in the declared audit scope</li>
+                                            <li>Collected data minimized to the control questions asked</li>
+                                            <li>Auditor access provided through exports, not live devices</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact &amp; Results</h3>
+                                <p>A typical program shows the difference:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">12</div>
+                                        <div class="stat-label">Runs per Year, per Site</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">3</div>
+                                        <div class="stat-label">Export Formats (PDF/JSON/CSV)</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-label">Runs Timestamped and Rated</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Manual Evidence Assembly at Audit Time</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">Audit preparation stopped being a project: the recurring runs generate the continuous evidence stream as a by-product of testing, exports drop straight into auditor requests, and the drift view turns "what changed since last quarter" into a standing report instead of an audit-week surprise.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Compliance testing keeps to the audited scope:</p>
+                                <ul>
+                                    <li>Runs authorized by the control owner for the declared audit scope</li>
+                                    <li>Evidence retained and disposed of per the organization's data policies</li>
+                                    <li>Findings reported to remediation owners irrespective of audit calendar</li>
+                                    <li>No testing of systems outside the compliance boundary</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE: OCCUPANCY & EVACUATION MUSTERING -->
+                        <article id="occupancy-mustering" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Occupancy &amp; Mustering</span>
+                                <h2>Occupancy &amp; Evacuation Mustering</h2>
+                                <p class="use-case-intro">The presence system answers two questions facilities has always struggled with: who is in the building, and is everyone accounted for in an evacuation? It runs on a facilities budget, not a security budget: the same hardware, with privacy built in.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>Evacuation exercises and daily occupancy planning both rely on outdated tools: badge swipes that show who entered but not who stayed, or clipboards at the muster point. The device-based presence system provides:</p>
+                                <ul>
+                                    <li>Live occupancy per zone, on the device screen and in the web interface</li>
+                                    <li>Evacuation mustering lists built from consent-registered staff devices</li>
+                                    <li>After-hours presence and new-visitor alerts</li>
+                                    <li>Data encrypted on the device, stored under pseudonyms, wipeable with one command</li>
+                                </ul>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>This facilities deployment uses this configuration:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Passive presence listening and display of live occupancy</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#command-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/command-module-icon.png" alt="Command Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Command Module</div>
+                                        <div class="device-used-description">Zone data merged into one building-wide view</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Place Devices per Zone</h4>
+                                        <p>Devices are placed in the building's zones: floors, wings, muster-relevant areas. They listen passively to WiFi and Bluetooth signals; nothing is installed on anyone's phone or laptop.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Consent-Register Staff Devices</h4>
+                                        <p>Staff who want mustering protection register their devices beforehand, with consent. Registered devices are what the mustering lists are built from.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Read Live Occupancy</h4>
+                                        <p>Status, network address and live occupancy show on the device display, no phone needed, and in the web interface for facilities staff: who is in which zone right now.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Run Drills and Daily Alerts</h4>
+                                        <p>Evacuation exercises get live mustering lists: who is in the building and who is accounted for. Day to day, the system raises after-hours presence and new-visitor alerts.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>What the Data Shows</h3>
+                                <p>The presence system answers facilities questions directly:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Live Views</h4>
+                                        <ul>
+                                            <li>Occupancy per zone, live, on the device screen or web interface</li>
+                                            <li>People classified as new, known, regular or returning</li>
+                                            <li>Mustering lists during drills and real evacuations</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Alerts</h4>
+                                        <ul>
+                                            <li>After-hours presence in zones that should be empty</li>
+                                            <li>New-visitor alerts for unregistered devices</li>
+                                            <li>Mustering gaps: registered devices still inside during a drill</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Practical Safeguards</h3>
+                                <p>Privacy is the design constraint that makes this acceptable to works councils and privacy officers:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Data Protection</h4>
+                                        <ul>
+                                            <li>Data is encrypted on the device</li>
+                                            <li>Stored under pseudonyms, not names</li>
+                                            <li>Can be wiped with one command at any time</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Governance</h4>
+                                        <ul>
+                                            <li>Mustering built only from consent-registered devices</li>
+                                            <li>Purely passive listening: nothing installed on phones or laptops</li>
+                                            <li>Works council and privacy officer review before rollout</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact &amp; Results</h3>
+                                <p>A typical deployment shows the difference:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">Live</div>
+                                        <div class="stat-label">Occupancy per Zone</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-label">Consent-Registered Mustering</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Apps Installed on Staff Phones</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">1</div>
+                                        <div class="stat-label">Command to Wipe All Data</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">Evacuation exercises moved from clipboard guessing to live mustering lists, and facilities gained zone-level occupancy for daily planning, on a facilities budget. Because data is encrypted, pseudonymized and wipeable with one command, works councils and privacy officers could accept the system on review rather than in conflict.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Presence systems live or die by consent and restraint:</p>
+                                <ul>
+                                    <li>Mustering lists built exclusively from consent-registered devices</li>
+                                    <li>No re-identification of individuals beyond the registered scope</li>
+                                    <li>Data encrypted on-device, pseudonymized in storage, wiped on demand</li>
+                                    <li>Deployed for safety purposes with works council involvement, not covert monitoring</li>
+                                    <li>Purely passive: nothing transmitted, nothing installed on personal devices</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE: INSIDER THREAT & ZONE MONITORING -->
+                        <article id="zone-monitoring" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Physical Security</span>
+                                <h2>Insider Threat &amp; Zone Monitoring</h2>
+                                <p class="use-case-intro">Restricted areas are usually guarded by a door log. This use case shows how the device builds a passive picture of who enters restricted zones: who is new, who is a regular, who returned after an absence, with deviation flags when something appears where it does not belong.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>Labs, server rooms, finance areas and other restricted zones share a monitoring gap: badge systems record entries but not patterns. The device adds the pattern layer, passively:</p>
+                                <ul>
+                                    <li>Devices placed in restricted zones classify who is new, who is a regular, and who returned after an absence</li>
+                                    <li>Zone deviation flags appear when a device appears where it does not belong</li>
+                                    <li>Purely passive: nothing is transmitted, nothing is installed on phones or laptops</li>
+                                </ul>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>This zone deployment uses this configuration:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Passive classification of devices and people per zone</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Deploy to Restricted Zones</h4>
+                                        <p>Devices are placed in the zones that need pattern visibility. Placement is the only active step. From then on the devices listen passively to WiFi and Bluetooth signals in range.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Classify Who and What Is in Range</h4>
+                                        <p>The device classifies devices and people as new, known, regular or returning. Patterns emerge without identifying anyone: the new badge in the lab, the regular in the server room, the return after weeks of absence.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Flag Zone Deviations</h4>
+                                        <p>When a device appears where it does not belong (say, a finance-floor device in the lab zone), a deviation flag is raised for the security team to review.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Review Patterns, Retain Control of Data</h4>
+                                        <p>Security reviews zone patterns on their own schedule. Data is encrypted on the device, stored under pseudonyms, and can be wiped with one command, which keeps the monitoring reversible.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>What the Data Shows</h3>
+                                <p>The zone picture answers physical security questions directly:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Pattern Views</h4>
+                                        <ul>
+                                            <li>Who is new to a zone versus who is a regular</li>
+                                            <li>Who returned after an absence</li>
+                                            <li>Presence patterns by zone and time</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Deviation Flags</h4>
+                                        <ul>
+                                            <li>Devices appearing where they do not belong</li>
+                                            <li>New devices in zones that rarely see them</li>
+                                            <li>After-hours presence patterns in restricted areas</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Practical Safeguards</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Passive by Design</h4>
+                                        <ul>
+                                            <li>Nothing is transmitted by the system</li>
+                                            <li>Nothing is installed on phones or laptops</li>
+                                            <li>Listening is receive-only on existing signals</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Data Handling</h4>
+                                        <ul>
+                                            <li>Encryption on the device</li>
+                                            <li>Pseudonymous storage: patterns, not names</li>
+                                            <li>One-command wipe keeps deployment reversible</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact &amp; Results</h3>
+                                <p>A typical deployment shows the gain:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">3</div>
+                                        <div class="stat-label">Restricted Zones Covered</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">4</div>
+                                        <div class="stat-label">Classes: New / Known / Regular / Returning</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Transmitters Installed</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">1</div>
+                                        <div class="stat-label">Command to Wipe Data</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">Security gained the pattern layer that badge logs never had: who is new in a zone, who belongs, and who came back after being away, plus deviation flags when a device shows up where it does not belong. Because the system is purely passive and the data stays encrypted and pseudonymous on the device, the monitoring adds visibility without adding surveillance infrastructure.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Zone monitoring is bounded by proportionality:</p>
+                                <ul>
+                                    <li>Deployed only in restricted zones with a defined security purpose</li>
+                                    <li>Patterns reviewed as patterns, no individual dossiers</li>
+                                    <li>Data encrypted, pseudonymized and wipeable at any time</li>
+                                    <li>Nothing installed or transmitted to personal devices</li>
+                                    <li>Deployment disclosed to the workforce per local law and policy</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE: SHADOW-IT & ASSET DISCOVERY -->
+                        <article id="shadow-it-discovery" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">IT Operations</span>
+                                <h2>Shadow-IT &amp; Asset Discovery</h2>
+                                <p class="use-case-intro">Few organizations have a complete list of what runs on their network. This use case shows how IT operations builds one by listening: a passive inventory of devices and operating systems, alerts when something new appears, and zero performance impact, and nothing to deploy on endpoints.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>Asset inventories rot: scanners miss devices, spreadsheets age, and shadow-IT fills the gaps. The device approach needs no credentials, no agents and no scan windows:</p>
+                                <ul>
+                                    <li>Passive inventory of devices and operating systems on the network</li>
+                                    <li>Alerts when a new device appears</li>
+                                    <li>Zero performance impact and nothing to deploy on endpoints</li>
+                                </ul>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>This inventory deployment uses this configuration:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#network-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/network-module-icon.png" alt="Network Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Network Module</div>
+                                        <div class="device-used-description">Passive listening and inventory on the LAN segment</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Plug Into the Segment</h4>
+                                        <p>The device connects to a LAN port on the segment to be mapped and listens. Passive reconnaissance means no scan traffic, no authentication attempts, no load on the network.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Build the Passive Inventory</h4>
+                                        <p>From observed traffic alone, the device builds an inventory of devices and their operating systems, including the printers, cameras, media boxes and lab equipment that scanners and CMDBs usually miss.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Alert on New Devices</h4>
+                                        <p>When a device appears that was not in the inventory before, an alert fires: the shadow-IT signal, caught at plug-in time instead of at audit time.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Reconcile With the CMDB</h4>
+                                        <p>IT operations compares the passive inventory against the CMDB: undocumented devices get registered or investigated, and stale entries get corrected from observed reality.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>What the Data Shows</h3>
+                                <p>The passive inventory answers IT operations questions directly:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Inventory Views</h4>
+                                        <ul>
+                                            <li>Device count and types per segment</li>
+                                            <li>Operating system fingerprint spread</li>
+                                            <li>Devices present that the CMDB does not know</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Change Signals</h4>
+                                        <ul>
+                                            <li>New-device alerts at plug-in time</li>
+                                            <li>Devices that disappeared from a segment</li>
+                                            <li>Segments with unusual device churn</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Practical Safeguards</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Zero Footprint</h4>
+                                        <ul>
+                                            <li>Zero performance impact on the network</li>
+                                            <li>Nothing to deploy on endpoints</li>
+                                            <li>No credentials needed for the passive view</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Scope Discipline</h4>
+                                        <ul>
+                                            <li>Deployed on segments IT owns and has disclosed</li>
+                                            <li>Inventory used for asset management, not individual monitoring</li>
+                                            <li>Data handled under the IT operations data policy</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact &amp; Results</h3>
+                                <p>A typical deployment shows the gain:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">180</div>
+                                        <div class="stat-label">Devices Discovered passively</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">23</div>
+                                        <div class="stat-label">Undocumented Devices Found</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Endpoint Agents Deployed</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Network Performance Impact</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">The passive view found twenty-three devices the CMDB did not know: printers, media devices and lab equipment on segments everyone assumed were fully mapped. Because the method is listen-only, IT gained the inventory without a project: no agents, no scan windows, no performance cost, and standing alerts when the next shadow-IT device plugs in.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Asset discovery stays inside operational boundaries:</p>
+                                <ul>
+                                    <li>Deployed only on network segments owned by the organization</li>
+                                    <li>Passive listening only; no active scanning of endpoints</li>
+                                    <li>Inventory data used for asset management purposes</li>
+                                    <li>Deployment disclosed within the organization's IT governance</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE: EXECUTIVE PROTECTION TRAVELER KITS -->
+                        <article id="traveler-kits" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Executive Protection</span>
+                                <h2>Executive Protection: Traveler Kits</h2>
+                                <p class="use-case-intro">Executives work from hotels and shared offices on unvetted networks, usually minutes before a critical call. This use case shows how a travel-bag kit checks those environments in advance: plug into the hotel network or a shared PC and run the standard checks before use.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>Travel is when executives are most exposed and least protected: hotel WiFi with unknown operators, business-center PCs of unknown history, shared office networks shared with strangers. The traveler kit turns the standard checks into a pre-use routine:</p>
+                                <ul>
+                                    <li>Plug into the hotel network and run the network-side checks before connecting real work</li>
+                                    <li>Plug into a shared PC and run the standard machine checks before use</li>
+                                    <li>Results review in minutes on a phone over the device's own hotspot. No app, no internet needed</li>
+                                    <li>Fits in a travel bag</li>
+                                </ul>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>The traveler kit contains the following device configuration:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Standard checks on shared PCs before use</div>
+                                    </a>
+                                    <a href="pentesting-devices.html#network-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/network-module-icon.png" alt="Network Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">Network Module</div>
+                                        <div class="device-used-description">Unvetted-network checks before connecting</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Check the Hotel Network First</h4>
+                                        <p>Before any real work connects, the network device plugs into the hotel or shared-office network and runs the standard network checks: whether credentials would leak through common protocols, whether an impostor answering name lookups gets followed, what traffic is visible to others on the segment.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Check the Shared PC</h4>
+                                        <p>For business-center or loaner machines, the USB device runs the standard checks before use: security software, disk encryption, patches, firewall, open ports: the opening checklist that tells the executive what kind of machine they are about to touch.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Review on the Phone in Minutes</h4>
+                                        <p>Results arrive on the executive's phone through the device's own hotspot: status, findings, severity. The go/no-go decision happens before exposure, not after.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Pack and Move On</h4>
+                                        <p>The kit packs back into the travel bag. Devices are wiped or re-armed per trip, and protection staff can review the collected evidence afterwards for a travel-security picture over time.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>What the Check Covers</h3>
+                                <p>The pre-use routine covers both environments the executive is about to touch:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Network Side</h4>
+                                        <ul>
+                                            <li>Credential-leak traps through common sharing protocols</li>
+                                            <li>Impostor name-lookup response tests</li>
+                                            <li>Traffic visibility to others on the segment</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Machine Side</h4>
+                                        <ul>
+                                            <li>Security software and disk encryption state</li>
+                                            <li>Patch level and firewall configuration</li>
+                                            <li>Domain membership and admin rights, where applicable</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Practical Safeguards</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Use Boundaries</h4>
+                                        <ul>
+                                            <li>Checks run only on equipment and networks the traveler is authorized to test</li>
+                                            <li>Where network terms prohibit testing, the kit stays in the bag</li>
+                                            <li>Machine checks are read-only surveys; nothing is changed or installed</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Data Handling</h4>
+                                        <ul>
+                                            <li>Evidence encrypted on the device</li>
+                                            <li>Wiped or re-armed per trip</li>
+                                            <li>Review restricted to the executive protection team</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact &amp; Results</h3>
+                                <p>A typical routine shows the change:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">Minutes</div>
+                                        <div class="stat-label">Per Environment Check</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">2</div>
+                                        <div class="stat-label">Environments Covered (Network + PC)</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">1</div>
+                                        <div class="stat-label">Travel-Bag Kit</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Changes Made to Checked Machines</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">The pre-use check became a routine instead of a leap of faith: the network is tested before work touches it, the shared PC is surveyed before the executive sits down, and the go/no-go decision rests on severity-rated findings reviewed on a phone. All from a kit that fits in a travel bag.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Traveler checks carry strict legal boundaries:</p>
+                                <ul>
+                                    <li>Testing only where the traveler is authorized: owned or contractually permitted equipment and networks</li>
+                                    <li>Hotel and shared networks are tested only where terms and local law permit; otherwise checks are skipped</li>
+                                    <li>Shared-PC checks limited to read-only surveys</li>
+                                    <li>Evidence wiped or re-armed per trip; access restricted to the protection team</li>
+                                </ul>
+                                <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
+                            </div>
+                        </article>
+
+                        <!-- USE CASE: EDUCATION & RESEARCH LABS -->
+                        <article id="education-labs" class="use-case-article">
+                            <div class="use-case-header">
+                                <span class="use-case-badge">Education &amp; Research</span>
+                                <h2>Education &amp; Research Labs</h2>
+                                <p class="use-case-intro">Universities and training companies need safe, real hardware for teaching offensive security, not screenshots and slideshows. This use case shows how restricted device builds make lab equipment that is safe to hand to students, with resettable CTF challenges and research-grade data on top.</p>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Scenario Overview</h3>
+                                <p>Teaching hardware security means letting students run real takeovers, so the hardware must be safe by construction. The education build answers that:</p>
+                                <ul>
+                                    <li>Restricted builds with the network attacks removed make safe lab equipment</li>
+                                    <li>CTF events get consistent, resettable challenges</li>
+                                    <li>The device's operating system fingerprint data is a research product for machine learning work</li>
+                                </ul>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Devices Used in This Test</h3>
+                                <p>The education lab uses this configuration:</p>
+                                <div class="devices-used-grid">
+                                    <a href="pentesting-devices.html#usb-drive-module" class="device-used-card">
+                                        <div class="device-used-icon"><img src="images/devices/usb-drive-icon.png" alt="USB Drive Module" style="height: 48px;"></div>
+                                        <div class="device-used-name">USB Drive Module</div>
+                                        <div class="device-used-description">Restricted build: takeover teaching without network attacks</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Testing Methodology</h3>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Restricted Builds for Student Hands-On Time</h4>
+                                        <p>Student kits ship with network attacks removed from the build. Students run real keyboard-emulation takeovers against lab machines and see the operator side. A hardware boundary makes unsafe use structurally impossible.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Classroom Exercises</h4>
+                                        <p>Instructors demonstrate live control with harmless commands (whoami, folder listing, a screenshot), and students repeat the sequence themselves on lab hardware through the same browser interface professionals use.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Resettable CTF Challenges</h4>
+                                        <p>For capture-the-flag events, devices load identical challenge sets. Every team faces the same hardware running the same challenges, and each device resets to a clean state between rounds: consistent, resettable, repeatable.</p>
+                                    </div>
+                                </div>
+
+                                <div class="methodology-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Research Datasets</h4>
+                                        <p>The device's operating system fingerprint data, collected as it classifies lab machines, is exported as structured datasets for machine learning research on device fingerprinting.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>What the Lab Gets</h3>
+                                <p>The education build gives institutions three concrete assets:</p>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Teaching Hardware</h4>
+                                        <ul>
+                                            <li>Safe-by-construction builds for student hands-on use</li>
+                                            <li>Real takeover effects instead of video demonstrations</li>
+                                            <li>The same browser interface used in professional engagements</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Research Products</h4>
+                                        <ul>
+                                            <li>Consistent, resettable CTF challenge hardware</li>
+                                            <li>OS fingerprint datasets for machine learning work</li>
+                                            <li>19 keyboard layouts supporting international curricula</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Practical Safeguards</h3>
+                                <div class="grid grid-2">
+                                    <div class="countermeasure-box">
+                                        <h4>Safe by Construction</h4>
+                                        <ul>
+                                            <li>Network attacks removed from student builds</li>
+                                            <li>Hardware boundary, not a policy promise</li>
+                                            <li>Lab exercises run on dedicated lab machines only</li>
+                                        </ul>
+                                    </div>
+                                    <div class="countermeasure-box">
+                                        <h4>Operational Hygiene</h4>
+                                        <ul>
+                                            <li>Devices reset between rounds and cohorts</li>
+                                            <li>Research data exported pseudonymized</li>
+                                            <li>Instructor access separate from student access</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="use-case-section">
+                                <h3>Impact &amp; Results</h3>
+                                <p>A typical lab shows what institutions gain:</p>
+                                <div class="impact-stats">
+                                    <div class="impact-stat">
+                                        <div class="stat-number">0</div>
+                                        <div class="stat-label">Network Attacks in Student Builds</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-label">Resettable CTF Challenges</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">19</div>
+                                        <div class="stat-label">Keyboard Layouts Built In</div>
+                                    </div>
+                                    <div class="impact-stat">
+                                        <div class="stat-number">1</div>
+                                        <div class="stat-label">Research Dataset Product</div>
+                                    </div>
+                                </div>
+                                <p class="impact-conclusion">Students run real takeovers on real hardware without the lab becoming a liability: the restricted build makes unsafe use structurally impossible, CTF rounds reset to identical starting states, and the fingerprint data flowing out of the lab doubles as a machine-learning research product. Teaching offensive security stopped being a choice between realism and safety.</p>
+                            </div>
+
+                            <div class="ethical-disclaimer">
+                                <h4>⚖️ Ethical Testing Standards</h4>
+                                <p>Educational use keeps safety and consent at the center:</p>
+                                <ul>
+                                    <li>Student builds verified to have network attacks removed</li>
+                                    <li>Exercises confined to institution-owned lab machines</li>
+                                    <li>CTF participants compete against dedicated challenge hardware only</li>
+                                    <li>Research datasets pseudonymized and shared under research ethics review</li>
                                 </ul>
                                 <p>Learn more about our <a href="ethical-use-policy.html">Ethical Use Policy</a>.</p>
                             </div>

@@ -14,6 +14,8 @@
 .use-cases-sidebar {
     position: sticky;
     top: calc(var(--header-height) + var(--spacing-md));
+    max-height: calc(100vh - var(--header-height) - 2 * var(--spacing-md));
+    overflow-y: auto;
     background-color: var(--background-white);
     border-radius: var(--border-radius);
     padding: var(--spacing-lg);
@@ -32,6 +34,20 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xs);
+}
+
+.use-case-nav-group {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-md);
+    padding: 0 var(--spacing-md);
+}
+
+.use-case-nav-group:first-child {
+    margin-top: 0;
 }
 
 .use-case-link {
@@ -555,6 +571,8 @@
 
     .use-cases-sidebar {
         position: static;
+        max-height: none;
+        overflow-y: visible;
         margin-bottom: var(--spacing-lg);
     }
 

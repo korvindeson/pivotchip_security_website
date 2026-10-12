@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Expert workstation loading a test plan onto a USB testing device" font-family="Segoe UI, Tahoma, Verdana, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a252f"/>
+      <stop offset="1" stop-color="#2c3e50"/>
+    </linearGradient>
+    <linearGradient id="scr" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0e1a26"/>
+      <stop offset="1" stop-color="#15293c"/>
+    </linearGradient>
+    <pattern id="dots" width="46" height="46" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#3d5567"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" rx="24" fill="url(#bg)"/>
+  <rect width="800" height="500" rx="24" fill="url(#dots)" opacity="0.35"/>
+
+  <!-- laptop -->
+  <rect x="90" y="80" width="340" height="240" rx="12" fill="#22384c"/>
+  <rect x="98" y="88" width="324" height="224" rx="8" fill="url(#scr)"/>
+  <rect x="98" y="88" width="324" height="32" rx="8" fill="#1b2f42"/>
+  <rect x="98" y="112" width="324" height="8" fill="#1b2f42"/>
+  <circle cx="114" cy="104" r="4" fill="#e74c3c"/>
+  <circle cx="128" cy="104" r="4" fill="#f39c12"/>
+  <circle cx="142" cy="104" r="4" fill="#27ae60"/>
+  <text x="310" y="109" text-anchor="middle" font-size="12" letter-spacing="1.5" fill="#9fb6c6" font-weight="600">TEST PLAN &#8212; ACME HQ</text>
+
+  <!-- checklist rows -->
+  <g font-size="13" fill="#cfe0ee">
+    <rect x="112" y="132" width="296" height="30" rx="6" fill="#1b2f42"/>
+    <rect x="123" y="141" width="12" height="12" rx="2.5" fill="none" stroke="#27ae60" stroke-width="2"/>
+    <path d="M125 147 l3.5 3.5 l6 -7" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="152">Recon sweep</text>
+
+    <rect x="112" y="170" width="296" height="30" rx="6" fill="#1b2f42"/>
+    <rect x="123" y="179" width="12" height="12" rx="2.5" fill="none" stroke="#27ae60" stroke-width="2"/>
+    <path d="M125 185 l3.5 3.5 l6 -7" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="190">Credential traps</text>
+
+    <rect x="112" y="208" width="296" height="30" rx="6" fill="#1b2f42"/>
+    <rect x="123" y="217" width="12" height="12" rx="2.5" fill="none" stroke="#27ae60" stroke-width="2"/>
+    <path d="M125 223 l3.5 3.5 l6 -7" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="228">Persistence check</text>
+
+    <rect x="112" y="246" width="296" height="30" rx="6" fill="#1b2f42"/>
+    <rect x="123" y="255" width="12" height="12" rx="2.5" fill="none" stroke="#27ae60" stroke-width="2"/>
+    <path d="M125 261 l3.5 3.5 l6 -7" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="146" y="266">Report template</text>
+  </g>
+  <circle cx="124" cy="296" r="5" fill="#27ae60"/>
+  <circle cx="124" cy="296" r="9" fill="#27ae60" opacity="0.25"/>
+  <text x="140" y="301" font-size="12" font-weight="700" letter-spacing="1.5" fill="#4cd787">READY TO DEPLOY</text>
+
+  <!-- laptop base -->
+  <rect x="64" y="324" width="392" height="14" rx="7" fill="#3a4f61"/>
+  <rect x="230" y="324" width="60" height="6" rx="3" fill="#2c3e50"/>
+
+  <!-- transfer arc + document -->
+  <text x="520" y="112" text-anchor="middle" font-size="12" fill="#7fa8c9">plan + payloads</text>
+  <path d="M448 176 C 505 152 545 142 596 150" fill="none" stroke="#3498db" stroke-width="2.5" stroke-dasharray="7 7" opacity="0.9"/>
+  <polygon points="612,153 594,141 597,159" fill="#3498db"/>
+  <g opacity="0.9">
+    <rect x="492" y="122" width="26" height="32" rx="3" fill="#3498db" opacity="0.25" stroke="#3498db" stroke-width="1.5"/>
+    <path d="M508 122 l10 10 h-10 z" fill="#3498db" opacity="0.6"/>
+    <rect x="498" y="138" width="14" height="3" rx="1.5" fill="#9fd0f0"/>
+    <rect x="498" y="145" width="10" height="3" rx="1.5" fill="#9fd0f0"/>
+  </g>
+
+  <!-- cable from laptop to device -->
+  <path d="M456 296 C 530 296 545 330 612 328" fill="none" stroke="#46617a" stroke-width="4"/>
+  <rect x="610" y="318" width="24" height="12" rx="3" fill="#46617a"/>
+
+  <!-- device -->
+  <rect x="640" y="140" width="36" height="28" rx="2" fill="#b9c4cc"/>
+  <rect x="648" y="146" width="8" height="14" fill="#7c8a94"/>
+  <rect x="661" y="146" width="8" height="14" fill="#7c8a94"/>
+  <rect x="618" y="168" width="80" height="150" rx="16" fill="#14181c" stroke="#2f3a44" stroke-width="2"/>
+  <rect x="632" y="190" width="52" height="64" rx="6" fill="#0a0f14" stroke="#22303f"/>
+  <circle cx="658" cy="177" r="9" fill="#27ae60" opacity="0.3"/>
+  <circle cx="658" cy="177" r="4" fill="#27ae60"/>
+  <text x="658" y="292" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="2" fill="#26313c">PC</text>
+
+  <!-- armed pill -->
+  <rect x="602" y="352" width="112" height="32" rx="16" fill="#27ae60" opacity="0.15"/>
+  <rect x="602" y="352" width="112" height="32" rx="16" fill="none" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="658" y="373" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#4cd787">&#10003; ARMED</text>
+</svg>

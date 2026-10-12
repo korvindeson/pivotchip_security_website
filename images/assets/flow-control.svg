@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Testing device plugged into the side of a laptop, sharing a Wi-Fi hotspot with a phone browser that runs a live terminal session; it can also be reached remotely from a fleet" font-family="Segoe UI, Tahoma, Verdana, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a252f"/>
+      <stop offset="1" stop-color="#2c3e50"/>
+    </linearGradient>
+    <pattern id="dots" width="46" height="46" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#3d5567"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" rx="24" fill="url(#bg)"/>
+  <rect width="800" height="500" rx="24" fill="url(#dots)" opacity="0.35"/>
+
+  <!-- ============ target laptop (same drawing as the Plug-in step) ============ -->
+  <g transform="translate(20 30)">
+    <rect x="62" y="40" width="226" height="150" rx="10" fill="#0f1c28" stroke="#35485a" stroke-width="2"/>
+    <rect x="76" y="54" width="198" height="104" rx="6" fill="#101d2b" stroke="#22384c"/>
+    <text x="90" y="80" font-size="12" font-family="Consolas, Menlo, monospace" fill="#7fb9e0">$ run survey</text>
+    <rect x="90" y="94" width="140" height="8" rx="4" fill="#22384c"/>
+    <rect x="90" y="110" width="104" height="8" rx="4" fill="#22384c"/>
+    <rect x="90" y="126" width="124" height="8" rx="4" fill="#22384c"/>
+    <rect x="76" y="166" width="198" height="10" fill="#16283a"/>
+    <path d="M56 194 L294 194 L316 232 L34 232 Z" fill="#3a4f61"/>
+    <g fill="#2c3e50">
+      <rect x="76" y="202" width="198" height="5" rx="2"/>
+      <rect x="70" y="211" width="210" height="5" rx="2"/>
+    </g>
+    <rect x="148" y="220" width="54" height="8" rx="3" fill="#2c3e50"/>
+    <rect x="34" y="232" width="282" height="16" rx="5" fill="#2f4252"/>
+    <rect x="304" y="234" width="12" height="12" rx="2" fill="#0b1219" stroke="#46617a" stroke-width="1.5"/>
+    <text x="175" y="282" text-anchor="middle" font-size="16" font-weight="600" letter-spacing="0.3" fill="#d6e8f5">Target machine</text>
+
+    <!-- plugged-in device (same as the Plug-in step) -->
+    <rect x="308" y="235" width="22" height="10" fill="#b9c4cc"/>
+    <rect x="313" y="238" width="6" height="4" fill="#7c8a94"/>
+    <rect x="328" y="223" width="60" height="34" rx="8" fill="#14181c" stroke="#2f3a44" stroke-width="2"/>
+    <circle cx="344" cy="237" r="7" fill="#27ae60" opacity="0.3"/>
+    <circle cx="344" cy="237" r="3.5" fill="#27ae60"/>
+    <line x1="358" y1="235" x2="376" y2="235" stroke="#2f3a44" stroke-width="2" stroke-linecap="round"/>
+    <line x1="358" y1="241" x2="376" y2="241" stroke="#2f3a44" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- hotspot arcs, centred on the device -->
+    <path d="M402 207 C 424 223 424 257 402 273" fill="none" stroke="#3498db" stroke-width="3" stroke-linecap="round" opacity="0.95"/>
+    <path d="M420 191 C 452 215 452 265 420 289" fill="none" stroke="#3498db" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+    <path d="M438 175 C 480 207 480 273 438 305" fill="none" stroke="#3498db" stroke-width="3" stroke-linecap="round" opacity="0.3"/>
+    <text x="436" y="158" text-anchor="middle" font-size="16" font-weight="600" letter-spacing="0.3" fill="#d6e8f5">Device hotspot</text>
+  </g>
+
+  <!-- ============ remote fleet (optional) ============ -->
+  <g fill="#22384c" stroke="#3498db" stroke-opacity="0.5" stroke-width="1.5">
+    <circle cx="430" cy="52" r="14"/>
+    <circle cx="452" cy="44" r="17"/>
+    <circle cx="474" cy="54" r="12"/>
+    <rect x="418" y="50" width="68" height="18" rx="9"/>
+  </g>
+  <text x="452" y="94" text-anchor="middle" font-size="13" fill="#9fc2dc">or remote &#183; fleet</text>
+  <path d="M492 58 C 510 58 518 66 522 96" fill="none" stroke="#3498db" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
+
+  <!-- ============ phone ============ -->
+  <g transform="translate(-10 -14)">
+    <rect x="540" y="84" width="200" height="352" rx="28" fill="#14181c" stroke="#3a4f61" stroke-width="2.5"/>
+    <rect x="616" y="98" width="48" height="6" rx="3" fill="#2f3a44"/>
+    <rect x="554" y="114" width="172" height="308" rx="16" fill="#0c1620"/>
+    <text x="568" y="141" font-size="12.5" font-weight="700" letter-spacing="1" fill="#4cd787">&#9679; LIVE SESSION</text>
+    <rect x="696" y="131" width="20" height="10" rx="2" fill="none" stroke="#46617a" stroke-width="1.5"/>
+    <rect x="716" y="134" width="3" height="4" fill="#46617a"/>
+
+    <!-- terminal -->
+    <rect x="566" y="152" width="148" height="158" rx="8" fill="#101d2b" stroke="#22384c"/>
+    <text x="578" y="176" font-size="12" font-weight="600" fill="#cfe0ee">&#8250; Send commands</text>
+    <text x="578" y="195" font-size="12" font-weight="600" fill="#cfe0ee">&#8250; Read logs</text>
+    <text x="578" y="218" font-size="11.5" font-family="Consolas, Menlo, monospace" fill="#7fb9e0">$ survey --full</text>
+    <rect x="578" y="230" width="110" height="7" rx="3.5" fill="#22384c"/>
+    <rect x="578" y="243" width="88" height="7" rx="3.5" fill="#22384c"/>
+    <rect x="578" y="256" width="122" height="7" rx="3.5" fill="#22384c"/>
+    <rect x="578" y="269" width="70" height="7" rx="3.5" fill="#22384c"/>
+    <text x="578" y="296" font-size="11.5" font-family="Consolas, Menlo, monospace" fill="#4cd787">&#10003; 41 checks logged</text>
+
+    <!-- action buttons -->
+    <g font-size="11.5" font-weight="600" fill="#9fd0f0" text-anchor="middle">
+      <rect x="566" y="326" width="68" height="26" rx="13" fill="#3498db" opacity="0.15"/>
+      <rect x="566" y="326" width="68" height="26" rx="13" fill="none" stroke="#3498db" stroke-opacity="0.5"/>
+      <text x="600" y="343">screens</text>
+      <rect x="646" y="326" width="68" height="26" rx="13" fill="#3498db" opacity="0.15"/>
+      <rect x="646" y="326" width="68" height="26" rx="13" fill="none" stroke="#3498db" stroke-opacity="0.5"/>
+      <text x="680" y="343">files</text>
+      <rect x="566" y="360" width="68" height="26" rx="13" fill="#3498db" opacity="0.15"/>
+      <rect x="566" y="360" width="68" height="26" rx="13" fill="none" stroke="#3498db" stroke-opacity="0.5"/>
+      <text x="600" y="377">tests</text>
+      <rect x="646" y="360" width="68" height="26" rx="13" fill="#3498db" opacity="0.15"/>
+      <rect x="646" y="360" width="68" height="26" rx="13" fill="none" stroke="#3498db" stroke-opacity="0.5"/>
+      <text x="680" y="377">logs</text>
+    </g>
+    <rect x="604" y="436" width="72" height="5" rx="2.5" fill="#2f3a44"/>
+  </g>
+
+  <text x="630" y="466" text-anchor="middle" font-size="15" font-weight="600" letter-spacing="0.3" fill="#d6e8f5">Browser only &#8212; no app, no internet</text>
+</svg>

@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="A hand plugging the USB testing device into the side of a laptop base, and a hand plugging an identical LAN testing device into an office wall network port" font-family="Segoe UI, Tahoma, Verdana, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a252f"/>
+      <stop offset="1" stop-color="#2c3e50"/>
+    </linearGradient>
+    <pattern id="dots" width="46" height="46" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#3d5567"/>
+    </pattern>
+
+    <!-- shared testing device body (origin = right edge, vertical centre) -->
+    <g id="device">
+      <rect x="-60" y="-17" width="60" height="34" rx="8" fill="#14181c" stroke="#2f3a44" stroke-width="2"/>
+      <circle cx="-44" cy="-3" r="7" fill="#27ae60" opacity="0.3"/>
+      <circle cx="-44" cy="-3" r="3.5" fill="#27ae60"/>
+      <line x1="-30" y1="-5" x2="-12" y2="-5" stroke="#2f3a44" stroke-width="2" stroke-linecap="round"/>
+      <line x1="-30" y1="1" x2="-12" y2="1" stroke="#2f3a44" stroke-width="2" stroke-linecap="round"/>
+    </g>
+
+    <!-- office hand: "hand-point-left" from Font Awesome 5 Free (Dave Gandy, CC BY 4.0,
+         https://fontawesome.com/license/free), recoloured; suit sleeve added.
+         Origin = fingertip; the index finger lies on y = 0. -->
+    <g id="hand">
+      <g transform="scale(0.26) translate(0 -200)">
+        <path d="M440 176h48c13.255 0 24 10.745 24 24v192c0 13.255-10.745 24-24 24h-48c-13.255 0-24-10.745-24-24V200c0-13.255 10.745-24 24-24Z" fill="#e8eef1" stroke="#aebfc9" stroke-width="6"/>
+        <circle cx="464" cy="368" r="17" fill="#3498db"/>
+        <path d="M494 150 L2200 128 L2200 468 L494 446 Z" fill="#2f4252" stroke="#46617a" stroke-width="6" stroke-linejoin="round"/>
+        <line x1="510" y1="156" x2="510" y2="440" stroke="#46617a" stroke-width="5"/>
+        <g fill="#46617a"><circle cx="536" cy="392" r="9"/><circle cx="562" cy="395" r="9"/><circle cx="588" cy="398" r="9"/></g>
+        <path d="M44.8 155.826h149.234c-5.841-8.248-10.57-16.558-14.153-24.918C166.248 99.098 189.778 63.986 224 64c18.616.008 32.203 10.897 40 29.092c12.122 28.286 78.648 64.329 107.534 77.323c17.857 7.956 28.453 25.479 28.464 43.845l.002.001v171.526c0 11.812-8.596 21.897-20.269 23.703c-46.837 7.25-61.76 38.483-123.731 38.315c-2.724-.007-13.254.195-16 .195c-50.654 0-81.574-22.122-72.6-71.263c-18.597-9.297-30.738-39.486-16.45-62.315c-24.645-21.177-22.639-53.896-6.299-70.944H44.8c-24.15 0-44.8-20.201-44.8-43.826c0-23.283 21.35-43.826 44.8-43.826Z" fill="#cfd8dc" stroke="#aebfc9" stroke-width="7" stroke-linejoin="round"/>
+      </g>
+    </g>
+    <clipPath id="frame"><rect width="800" height="500" rx="24"/></clipPath>
+  </defs>
+
+  <rect width="800" height="500" rx="24" fill="url(#bg)"/>
+  <rect width="800" height="500" rx="24" fill="url(#dots)" opacity="0.35"/>
+
+  <g clip-path="url(#frame)">
+  <g transform="translate(100 0)">
+
+  <!-- ============ TOP: USB device into laptop base ============ -->
+  <g transform="translate(0 -18)">
+
+  <!-- laptop screen -->
+  <rect x="62" y="40" width="226" height="150" rx="10" fill="#0f1c28" stroke="#35485a" stroke-width="2"/>
+  <rect x="76" y="54" width="92" height="60" rx="6" fill="#16283a" stroke="#22384c"/>
+  <rect x="178" y="72" width="96" height="60" rx="6" fill="#16283a" stroke="#22384c"/>
+  <rect x="76" y="166" width="198" height="10" fill="#16283a"/>
+  <!-- laptop base: keyboard deck + front edge -->
+  <path d="M56 194 L294 194 L316 232 L34 232 Z" fill="#3a4f61"/>
+  <g fill="#2c3e50">
+    <rect x="76" y="202" width="198" height="5" rx="2"/>
+    <rect x="70" y="211" width="210" height="5" rx="2"/>
+  </g>
+  <rect x="148" y="220" width="54" height="8" rx="3" fill="#2c3e50"/>
+  <rect x="34" y="232" width="282" height="16" rx="5" fill="#2f4252"/>
+  <!-- USB port in the side of the base -->
+  <rect x="304" y="234" width="12" height="12" rx="2" fill="#0b1219" stroke="#46617a" stroke-width="1.5"/>
+  <text x="175" y="282" text-anchor="middle" font-size="16" font-weight="600" letter-spacing="0.3" fill="#d6e8f5">Connect to USB</text>
+
+  <!-- USB-A connector entering the port -->
+  <rect x="308" y="235" width="22" height="10" fill="#b9c4cc"/>
+  <rect x="313" y="238" width="6" height="4" fill="#7c8a94"/>
+
+  <use href="#device" transform="translate(388 240)"/>
+  <use href="#hand" transform="translate(388 240)"/>
+
+  <!-- insertion direction -->
+  <path d="M430 165 l-13 11 l13 11" fill="none" stroke="#3498db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <path d="M457 165 l-13 11 l13 11" fill="none" stroke="#3498db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+
+  </g>
+
+  <!-- ============ BOTTOM: LAN device into wall network port ============ -->
+  <g transform="translate(70 28)">
+
+  <!-- office wall section with skirting board -->
+  <rect x="-36" y="304" width="282" height="132" rx="10" fill="#1f2f3d" stroke="#35485a" stroke-width="1.5"/>
+  <rect x="-36" y="418" width="282" height="18" rx="6" fill="#3a4f61"/>
+  <rect x="-36" y="418" width="282" height="4" fill="#2f4252"/>
+
+  <!-- wall plate -->
+  <rect x="170" y="316" width="76" height="96" rx="9" fill="#dfe6ea" stroke="#aebfc9" stroke-width="1.5"/>
+  <circle cx="208" cy="326" r="2.5" fill="#aebfc9"/>
+  <circle cx="208" cy="406" r="2.5" fill="#aebfc9"/>
+  <!-- jack 1 (in use) -->
+  <rect x="192" y="336" width="32" height="26" rx="2" fill="#0b1219"/>
+  <rect x="201" y="360" width="14" height="5" fill="#0b1219"/>
+  <!-- jack 2 (free) -->
+  <rect x="192" y="376" width="32" height="26" rx="2" fill="#0b1219"/>
+  <rect x="201" y="400" width="14" height="5" fill="#0b1219"/>
+  <g fill="#d9b44a" opacity="0.8">
+    <rect x="196" y="379" width="2" height="6"/><rect x="200" y="379" width="2" height="6"/>
+    <rect x="204" y="379" width="2" height="6"/><rect x="208" y="379" width="2" height="6"/>
+    <rect x="212" y="379" width="2" height="6"/><rect x="216" y="379" width="2" height="6"/>
+  </g>
+  <text x="105" y="460" text-anchor="middle" font-size="16" font-weight="600" letter-spacing="0.3" fill="#d6e8f5">Connect to Network directly</text>
+
+  <!-- RJ45 connector entering jack 1 -->
+  <rect x="210" y="341" width="52" height="17" rx="2" fill="#b9c4cc"/>
+  <rect x="230" y="337" width="16" height="4" rx="1" fill="#9aa7b0"/>
+  <rect x="213" y="344" width="8" height="10" fill="#d9b44a" opacity="0.8"/>
+
+  <use href="#device" transform="translate(318 349)"/>
+  <use href="#hand" transform="translate(318 349)"/>
+
+  <!-- insertion direction -->
+  <path d="M360 278 l-13 11 l13 11" fill="none" stroke="#3498db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <path d="M387 278 l-13 11 l13 11" fill="none" stroke="#3498db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+
+  </g>
+  </g>
+  </g>
+</svg>

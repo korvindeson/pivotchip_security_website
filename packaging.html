@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="/images/assets/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Answer four questions and get a recommended PivotChip device package: which modules, how many, which support level, and whether ScanKit fits your source-code review.">
+    <meta name="description" content="Answer four questions and get a recommended PivotChip device package: modules, counts, support level, and ScanKit.">
     <title>Packaging - PivotChip Security inc.</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/packaging.css?v=2">
+    <link rel="stylesheet" href="css/packaging.css?v=3">
 </head>
 <body>
 
@@ -52,7 +52,7 @@
         <section class="hero">
             <div class="container">
                 <h1>Build Your Package</h1>
-                <p>Answer four questions and get a recommended device kit, support level, and ScanKit option for your practice</p>
+                <p>Answer four questions. Get a device kit, support level, and ScanKit option.</p>
             </div>
         </section>
 
@@ -77,8 +77,8 @@
                     <!-- STEP 1: TESTING FREQUENCY -->
                     <div class="pkg-step active" data-step="1">
                         <div class="pkg-step-kicker">Step 1 of 4</div>
-                        <h2>How often do you perform projects with physical testing?</h2>
-                        <p class="pkg-step-sub">This sizes your kit and decides whether rental or ownership fits better.</p>
+                        <h2>How often do you run physical testing projects?</h2>
+                        <p class="pkg-step-sub">Sets the kit size and whether rental or ownership makes sense.</p>
                         
                         <div class="pkg-slider-container">
                             <div class="pkg-slider-value" id="pkg-freq-value">Monthly</div>
@@ -104,7 +104,7 @@
                     <div class="pkg-step" data-step="2">
                         <div class="pkg-step-kicker">Step 2 of 4</div>
                         <h2>What is your client's fleet size?</h2>
-                        <p class="pkg-step-sub">The number of computers a single engagement has to cover.</p>
+                        <p class="pkg-step-sub">Computers one engagement must cover.</p>
                         
                         <div class="pkg-slider-container">
                             <div class="pkg-slider-value" id="pkg-fleet-value"></div>
@@ -140,7 +140,7 @@
                     <div class="pkg-step" data-step="3">
                         <div class="pkg-step-kicker">Step 3 of 4</div>
                         <h2>Which capabilities do you need?</h2>
-                        <p class="pkg-step-sub">Select everything your package should cover &mdash; this decides which modules are included.</p>
+                        <p class="pkg-step-sub">Pick everything you need. This decides which modules go in.</p>
 
                         <div class="pkg-checks pkg-checks-rows">
                             <label class="pkg-check">
@@ -153,7 +153,7 @@
                                         <span class="pkg-check-box"></span>
                                         <span class="pkg-check-body"><strong>Network access</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>Plug into a network port and execute network attacks: automated man-in-the-middle, credential harvesting, asset discovery.</small></span>
+                                    <span class="pkg-check-body"><small>Run network attacks from any port: man-in-the-middle, credential harvesting, asset discovery.</small></span>
                                     <a class="pkg-check-more" href="pentesting-devices.html#network-module">Network Module &rarr;</a>
                                 </div>
                             </label>
@@ -168,7 +168,7 @@
                                         <span class="pkg-check-box"></span>
                                         <span class="pkg-check-body"><strong>USB access</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>Command and control computers remotely: plug in once and get a discreet two-way channel on Windows, macOS or Linux.</small></span>
+                                    <span class="pkg-check-body"><small>Control computers remotely from a USB port. Works on Windows, macOS and Linux.</small></span>
                                     <a class="pkg-check-more" href="pentesting-devices.html#usb-drive-module">USB Drive Module &rarr;</a>
                                 </div>
                             </label>
@@ -183,7 +183,7 @@
                                         <span class="pkg-check-box"></span>
                                         <span class="pkg-check-body"><strong>Zone monitoring</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>Detect when people are present, identify new people and devices, and map presence per zone &mdash; passively over Wi-Fi and Bluetooth.</small></span>
+                                    <span class="pkg-check-body"><small>Detect people and devices in an area and map presence per zone over Wi-Fi and Bluetooth.</small></span>
                                     <a class="pkg-check-more" href="use-cases.html#zone-monitoring">Zone monitoring use case &rarr;</a>
                                 </div>
                             </label>
@@ -198,7 +198,7 @@
                                         <span class="pkg-check-box"></span>
                                         <span class="pkg-check-body"><strong>Fleet control</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>A dedicated device to control many: execute routines, watch live reports, and control all devices from a single spot (up to 50).</small></span>
+                                    <span class="pkg-check-body"><small>Control every device from one spot: routines, live reports, up to 50 devices.</small></span>
                                     <a class="pkg-check-more" href="pentesting-devices.html#command-module">Command Module &rarr;</a>
                                 </div>
                             </label>
@@ -213,7 +213,7 @@
                                         <span class="pkg-check-box"></span>
                                         <span class="pkg-check-body"><strong>Dedicated training routines</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>The LCD screen and red light make devices extremely obvious or discreet on command, record all activity as it happens, and display fake &ldquo;ransomware&rdquo; messages to test team response.</small></span>
+                                    <span class="pkg-check-body"><small>LCD screen and red light make devices obvious or discreet. Records all activity and shows fake ransomware messages to test response.</small></span>
                                     <a class="pkg-check-more" href="use-cases.html#ransomware-simulation">Ransomware simulation &rarr;</a>
                                 </div>
                             </label>
@@ -228,7 +228,7 @@
                                         <span class="pkg-check-box"></span>
                                         <span class="pkg-check-body"><strong>Custom testing routines</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>Run any terminal command or software on remote computers, execute popular man-in-the-middle attacks, and build custom workflows for deployment evaluation or discreet operations.</small></span>
+                                    <span class="pkg-check-body"><small>Run any command or software on remote machines. Build custom workflows for repeatable or discreet operations.</small></span>
                                     <a class="pkg-check-more" href="use-cases.html#consulting-engagements">Consulting use case &rarr;</a>
                                 </div>
                             </label>
@@ -243,7 +243,7 @@
                                         <span class="pkg-check-box"></span>
                                         <span class="pkg-check-body"><strong>Longer range access</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>Command and control from farther away: Wi-Fi HaLow reaches up to 1 km line of sight (300&ndash;500 m urban) and relays across locations.</small></span>
+                                    <span class="pkg-check-body"><small>Control devices at distance. Wi-Fi HaLow reaches 1 km line of sight, 300-500 m in cities.</small></span>
                                     <a class="pkg-check-more" href="pentesting-devices.html#long-distance-module">Long Distance Module &rarr;</a>
                                 </div>
                             </label>
@@ -258,7 +258,7 @@
                                         <span class="pkg-check-box"></span>
                                         <span class="pkg-check-body"><strong>Integration with RFID readers</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>Pair the kit with your RFID badge readers &mdash; custom commissioning joins physical access events with your engagement data.</small></span>
+                                    <span class="pkg-check-body"><small>Pair the kit with your RFID badge readers. Commissioning ties badge events to engagement data.</small></span>
                                     <a class="pkg-check-more" href="service-red-teaming.html">Commissioning details &rarr;</a>
                                 </div>
                             </label>
@@ -273,7 +273,7 @@
                                         <span class="pkg-check-box"></span>
                                         <span class="pkg-check-body"><strong>Live engagement support</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>An engineer on call during active engagements: real-time help with devices, payloads and troubleshooting.</small></span>
+                                    <span class="pkg-check-body"><small>An engineer on call during engagements for devices, payloads and troubleshooting.</small></span>
                                     <a class="pkg-check-more" href="service-red-teaming.html">Support details &rarr;</a>
                                 </div>
                             </label>
@@ -284,7 +284,7 @@
                     <div class="pkg-step" data-step="4">
                         <div class="pkg-step-kicker">Step 4 of 4</div>
                         <h2>Do you do source code review?</h2>
-                        <p class="pkg-step-sub">ScanKit scans application source code, deploys the application to a testing environment, runs active tests and automated AI triage, and works as a helper for security researchers.</p>
+                        <p class="pkg-step-sub">ScanKit scans source code, deploys the app to a test environment, runs active tests and AI triage, and assists your researchers.</p>
 
                         <div class="pkg-checks pkg-radio-group pkg-checks-rows">
                             <label class="pkg-check pkg-radio">
@@ -295,9 +295,9 @@
                                 <div class="pkg-check-content">
                                     <div class="pkg-check-top">
                                         <span class="pkg-check-box"></span>
-                                        <span class="pkg-check-body"><strong>Yes &mdash; we review source code in-house</strong></span>
+                                        <span class="pkg-check-body"><strong>Yes, we review source code in-house</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>ScanKit slots into your existing review process: scan, deploy, active tests, AI triage, unified report.</small></span>
+                                    <span class="pkg-check-body"><small>ScanKit fits your process: scan, deploy, test, triage, report.</small></span>
                                 </div>
                             </label>
 
@@ -309,9 +309,9 @@
                                 <div class="pkg-check-content">
                                     <div class="pkg-check-top">
                                         <span class="pkg-check-box"></span>
-                                        <span class="pkg-check-body"><strong>No &mdash; we lack that capability</strong></span>
+                                        <span class="pkg-check-body"><strong>No, we lack that capability</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>The package adds ScanKit onboarding with training, so your team gains the capability.</small></span>
+                                    <span class="pkg-check-body"><small>The package adds ScanKit with training so your team gains the capability.</small></span>
                                 </div>
                             </label>
 
@@ -325,7 +325,7 @@
                                         <span class="pkg-check-box"></span>
                                         <span class="pkg-check-body"><strong>Partially / we outsource it</strong></span>
                                     </div>
-                                    <span class="pkg-check-body"><small>ScanKit is available as an optional add-on to bring outsourced reviews in-house.</small></span>
+                                    <span class="pkg-check-body"><small>Optional ScanKit brings outsourced reviews in-house.</small></span>
                                 </div>
                             </label>
                         </div>
@@ -393,7 +393,7 @@
 
     <!-- Main JavaScript -->
     <script src="js/main.js"></script>
-    <script src="js/packaging.js?v=2"></script>
+    <script src="js/packaging.js?v=3"></script>
 
 </body>
 </html>

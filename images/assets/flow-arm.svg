@@ -57,14 +57,14 @@
   <rect x="230" y="324" width="60" height="6" rx="3" fill="#2c3e50"/>
 
   <!-- transfer arc + document -->
-  <text x="520" y="112" text-anchor="middle" font-size="12" fill="#7fa8c9">plan + payloads</text>
+  <text x="522" y="100" text-anchor="middle" font-size="16" fill="#a5c9e4">plan + payloads</text>
   <path d="M448 176 C 505 152 545 142 596 150" fill="none" stroke="#3498db" stroke-width="2.5" stroke-dasharray="7 7" opacity="0.9"/>
   <polygon points="612,153 594,141 597,159" fill="#3498db"/>
   <g opacity="0.9">
-    <rect x="492" y="122" width="26" height="32" rx="3" fill="#3498db" opacity="0.25" stroke="#3498db" stroke-width="1.5"/>
-    <path d="M508 122 l10 10 h-10 z" fill="#3498db" opacity="0.6"/>
-    <rect x="498" y="138" width="14" height="3" rx="1.5" fill="#9fd0f0"/>
-    <rect x="498" y="145" width="10" height="3" rx="1.5" fill="#9fd0f0"/>
+    <rect x="509" y="112" width="26" height="32" rx="3" fill="#3498db" opacity="0.25" stroke="#3498db" stroke-width="1.5"/>
+    <path d="M525 112 l10 10 h-10 z" fill="#3498db" opacity="0.6"/>
+    <rect x="515" y="128" width="14" height="3" rx="1.5" fill="#9fd0f0"/>
+    <rect x="515" y="135" width="10" height="3" rx="1.5" fill="#9fd0f0"/>
   </g>
 
   <!-- cable from laptop to device -->

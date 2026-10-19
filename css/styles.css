@@ -1096,6 +1096,18 @@ a:hover {
    RESPONSIVE DESIGN
    =================================== */
 
+/* COMPACT NAV - keeps the full menu on one line on laptop widths */
+@media (max-width: 1400px) and (min-width: 769px) {
+    .nav-menu {
+        gap: 2px;
+    }
+
+    .nav-menu > li > a {
+        padding: var(--spacing-xs) 10px;
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 768px) {
     :root {
         --font-size-4xl: 2rem;

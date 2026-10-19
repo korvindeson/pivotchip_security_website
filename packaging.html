@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/images/assets/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Answer four questions and get a recommended PivotChip device package: which modules, how many, which support level, and whether ScanKit fits your source-code review.">
+    <title>Packaging - PivotChip Security inc.</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/packaging.css?v=2">
+</head>
+<body>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="header">
+        <div class="header-container">
+            <img src="/images/assets/logo.png" width="70px" style="margin-right:20px" alt="PivotChip Logo">
+            <a href="index.html" class="logo">PivotChip</a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a style="text-align: center" href="index.html">Home</a></li>
+                    <li><a style="text-align: center" href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a style="text-align: center" href="services.html" class="dropdown-toggle">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="service-red-teaming.html">Red Teaming</a></li>
+                            <li><a href="service-custom-shells.html">Custom Device Shells</a></li>
+                            <li><a href="service-ai-appsec-review.html">AI AppSec Review Process</a></li>
+                            <li><a href="service-security-audit.html">Security Audits</a></li>
+                            <li><a href="service-cybersecurity-training.html">Cybersecurity Training</a></li>
+                        </ul>
+                    </li>
+                    <li><a style="text-align: center" href="pentesting-devices.html">Pentesting Devices</a></li>
+                    <li><a style="text-align: center" href="service-automated-reporting.html">Automated Reporting</a></li>
+                    <li><a style="text-align: center" href="scankit.html">ScanKit</a></li>
+                    <li><a style="text-align: center" href="use-cases.html">Use Cases</a></li>
+                    <li><a style="text-align: center" href="packaging.html">Packaging</a></li>
+                    <li><a style="text-align: center" href="ethical-use-policy.html">Ethical Use Policy</a></li>
+                    <li><a style="text-align: center" href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- PAGE HERO -->
+        <section class="hero">
+            <div class="container">
+                <h1>Build Your Package</h1>
+                <p>Answer four questions and get a recommended device kit, support level, and ScanKit option for your practice</p>
+            </div>
+        </section>
+
+        <!-- CONFIGURATOR -->
+        <section class="section">
+            <div class="container">
+                <div class="pkg-wizard" id="pkg-wizard">
+
+                    <!-- PROGRESS BAR -->
+                    <div class="pkg-progress">
+                        <button type="button" class="pkg-progress-item"><span class="pkg-dot">1</span><span class="pkg-dot-label">Frequency</span></button>
+                        <div class="pkg-progress-line"></div>
+                        <button type="button" class="pkg-progress-item"><span class="pkg-dot">2</span><span class="pkg-dot-label">Fleet Size</span></button>
+                        <div class="pkg-progress-line"></div>
+                        <button type="button" class="pkg-progress-item"><span class="pkg-dot">3</span><span class="pkg-dot-label">Capabilities</span></button>
+                        <div class="pkg-progress-line"></div>
+                        <button type="button" class="pkg-progress-item"><span class="pkg-dot">4</span><span class="pkg-dot-label">Code Review</span></button>
+                        <div class="pkg-progress-line"></div>
+                        <button type="button" class="pkg-progress-item"><span class="pkg-dot">5</span><span class="pkg-dot-label">Your Package</span></button>
+                    </div>
+
+                    <!-- STEP 1: TESTING FREQUENCY -->
+                    <div class="pkg-step active" data-step="1">
+                        <div class="pkg-step-kicker">Step 1 of 4</div>
+                        <h2>How often do you perform projects with physical testing?</h2>
+                        <p class="pkg-step-sub">This sizes your kit and decides whether rental or ownership fits better.</p>
+                        
+                        <div class="pkg-slider-container">
+                            <div class="pkg-slider-value" id="pkg-freq-value">Monthly</div>
+                            <div class="pkg-slider-track-wrap">
+                                <input type="range" class="pkg-range" id="pkg-freq" min="0" max="3" step="1" value="1" aria-label="How often you perform projects with physical testing">
+                                <div class="pkg-track-dots" id="pkg-freq-dots">
+                                    <span class="pkg-dot-mark"></span>
+                                    <span class="pkg-dot-mark"></span>
+                                    <span class="pkg-dot-mark"></span>
+                                    <span class="pkg-dot-mark"></span>
+                                </div>
+                            </div>
+                            <div class="pkg-range-labels" id="pkg-freq-labels">
+                                <span>Weekly</span>
+                                <span class="on">Monthly</span>
+                                <span>Every 6 months</span>
+                                <span>Annually</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: FLEET SIZE -->
+                    <div class="pkg-step" data-step="2">
+                        <div class="pkg-step-kicker">Step 2 of 4</div>
+                        <h2>What is your client's fleet size?</h2>
+                        <p class="pkg-step-sub">The number of computers a single engagement has to cover.</p>
+                        
+                        <div class="pkg-slider-container">
+                            <div class="pkg-slider-value" id="pkg-fleet-value"></div>
+                            <div class="pkg-slider-track-wrap">
+                                <input type="range" class="pkg-range" id="pkg-fleet" min="0" max="4" step="1" value="1" aria-label="Your client's fleet size">
+                                <div class="pkg-track-dots" id="pkg-fleet-dots">
+                                    <span class="pkg-dot-mark"></span>
+                                    <span class="pkg-dot-mark"></span>
+                                    <span class="pkg-dot-mark"></span>
+                                    <span class="pkg-dot-mark"></span>
+                                    <span class="pkg-dot-mark"></span>
+                                </div>
+                            </div>
+                            <div class="pkg-range-labels" id="pkg-fleet-labels">
+                                <span>Under 10</span>
+                                <span class="on">10&ndash;25</span>
+                                <span>25&ndash;50</span>
+                                <span>50&ndash;100</span>
+                                <span>Over 100</span>
+                            </div>
+                        </div>
+
+                        <div class="pkg-fleet-options">
+                            <label class="pkg-checkbox-inline" for="pkg-multi-loc">
+                                <input type="checkbox" id="pkg-multi-loc">
+                                <span class="pkg-checkbox-custom"></span>
+                                <span>Client operates across <strong>multiple locations</strong></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: CAPABILITY CHECKLIST -->
+                    <div class="pkg-step" data-step="3">
+                        <div class="pkg-step-kicker">Step 3 of 4</div>
+                        <h2>Which capabilities do you need?</h2>
+                        <p class="pkg-step-sub">Select everything your package should cover &mdash; this decides which modules are included.</p>
+
+                        <div class="pkg-checks pkg-checks-rows">
+                            <label class="pkg-check">
+                                <input type="checkbox" data-cap="network">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6" y2="6"></line><line x1="6" y1="18" x2="6" y2="18"></line></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>Network access</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>Plug into a network port and execute network attacks: automated man-in-the-middle, credential harvesting, asset discovery.</small></span>
+                                    <a class="pkg-check-more" href="pentesting-devices.html#network-module">Network Module &rarr;</a>
+                                </div>
+                            </label>
+
+                            <label class="pkg-check">
+                                <input type="checkbox" data-cap="usb">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>USB access</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>Command and control computers remotely: plug in once and get a discreet two-way channel on Windows, macOS or Linux.</small></span>
+                                    <a class="pkg-check-more" href="pentesting-devices.html#usb-drive-module">USB Drive Module &rarr;</a>
+                                </div>
+                            </label>
+
+                            <label class="pkg-check">
+                                <input type="checkbox" data-cap="zone">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>Zone monitoring</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>Detect when people are present, identify new people and devices, and map presence per zone &mdash; passively over Wi-Fi and Bluetooth.</small></span>
+                                    <a class="pkg-check-more" href="use-cases.html#zone-monitoring">Zone monitoring use case &rarr;</a>
+                                </div>
+                            </label>
+
+                            <label class="pkg-check">
+                                <input type="checkbox" data-cap="fleet">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>Fleet control</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>A dedicated device to control many: execute routines, watch live reports, and control all devices from a single spot (up to 50).</small></span>
+                                    <a class="pkg-check-more" href="pentesting-devices.html#command-module">Command Module &rarr;</a>
+                                </div>
+                            </label>
+
+                            <label class="pkg-check">
+                                <input type="checkbox" data-cap="training">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><path d="M12 6v6l4 2"></path></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>Dedicated training routines</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>The LCD screen and red light make devices extremely obvious or discreet on command, record all activity as it happens, and display fake &ldquo;ransomware&rdquo; messages to test team response.</small></span>
+                                    <a class="pkg-check-more" href="use-cases.html#ransomware-simulation">Ransomware simulation &rarr;</a>
+                                </div>
+                            </label>
+
+                            <label class="pkg-check">
+                                <input type="checkbox" data-cap="custom">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>Custom testing routines</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>Run any terminal command or software on remote computers, execute popular man-in-the-middle attacks, and build custom workflows for deployment evaluation or discreet operations.</small></span>
+                                    <a class="pkg-check-more" href="use-cases.html#consulting-engagements">Consulting use case &rarr;</a>
+                                </div>
+                            </label>
+
+                            <label class="pkg-check">
+                                <input type="checkbox" data-cap="range">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>Longer range access</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>Command and control from farther away: Wi-Fi HaLow reaches up to 1 km line of sight (300&ndash;500 m urban) and relays across locations.</small></span>
+                                    <a class="pkg-check-more" href="pentesting-devices.html#long-distance-module">Long Distance Module &rarr;</a>
+                                </div>
+                            </label>
+
+                            <label class="pkg-check">
+                                <input type="checkbox" data-cap="rfid">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>Integration with RFID readers</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>Pair the kit with your RFID badge readers &mdash; custom commissioning joins physical access events with your engagement data.</small></span>
+                                    <a class="pkg-check-more" href="service-red-teaming.html">Commissioning details &rarr;</a>
+                                </div>
+                            </label>
+
+                            <label class="pkg-check">
+                                <input type="checkbox" data-cap="live">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>Live engagement support</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>An engineer on call during active engagements: real-time help with devices, payloads and troubleshooting.</small></span>
+                                    <a class="pkg-check-more" href="service-red-teaming.html">Support details &rarr;</a>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: SOURCE CODE REVIEW -->
+                    <div class="pkg-step" data-step="4">
+                        <div class="pkg-step-kicker">Step 4 of 4</div>
+                        <h2>Do you do source code review?</h2>
+                        <p class="pkg-step-sub">ScanKit scans application source code, deploys the application to a testing environment, runs active tests and automated AI triage, and works as a helper for security researchers.</p>
+
+                        <div class="pkg-checks pkg-radio-group pkg-checks-rows">
+                            <label class="pkg-check pkg-radio">
+                                <input type="radio" name="pkg-review" value="inhouse">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>Yes &mdash; we review source code in-house</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>ScanKit slots into your existing review process: scan, deploy, active tests, AI triage, unified report.</small></span>
+                                </div>
+                            </label>
+
+                            <label class="pkg-check pkg-radio">
+                                <input type="radio" name="pkg-review" value="lack">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>No &mdash; we lack that capability</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>The package adds ScanKit onboarding with training, so your team gains the capability.</small></span>
+                                </div>
+                            </label>
+
+                            <label class="pkg-check pkg-radio">
+                                <input type="radio" name="pkg-review" value="partial">
+                                <span class="pkg-check-visual">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                                </span>
+                                <div class="pkg-check-content">
+                                    <div class="pkg-check-top">
+                                        <span class="pkg-check-box"></span>
+                                        <span class="pkg-check-body"><strong>Partially / we outsource it</strong></span>
+                                    </div>
+                                    <span class="pkg-check-body"><small>ScanKit is available as an optional add-on to bring outsourced reviews in-house.</small></span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- STEP 5: RESULT -->
+                    <div class="pkg-step" data-step="5">
+                        <div class="pkg-step-kicker">Your Package</div>
+                        <h2>Your recommended package</h2>
+                        <div id="pkg-result"></div>
+                    </div>
+
+                    <!-- STEP ACTIONS -->
+                    <div class="pkg-actions">
+                        <button type="button" class="btn btn-outline" id="pkg-back">Back</button>
+                        <span class="pkg-hint" id="pkg-hint">Choose an option above to build your package.</span>
+                        <button type="button" class="btn btn-primary" id="pkg-next">Next</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About PivotChip</h3>
+                <p>We develop devices and training for practical and customised solutions designed for security professionals to test and enhance security.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="pentesting-devices.html">Pentesting Devices</a>
+                <a href="ethical-use-policy.html">Ethical Use Policy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <a href="service-red-teaming.html">Red Teaming</a>
+                <a href="service-custom-shells.html">Custom Device Shells</a>
+                <a href="service-security-audit.html">Security Audits</a>
+                <a href="service-cybersecurity-training.html">Cybersecurity Training</a>
+                <a href="service-automated-reporting.html">Automated Reporting</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@pivotchip.ca</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 PivotChip Security inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/packaging.js?v=2"></script>
+
+</body>
+</html>
